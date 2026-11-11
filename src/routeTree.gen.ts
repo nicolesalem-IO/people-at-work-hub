@@ -15,7 +15,10 @@ import { Route as BuildersRouteImport } from './routes/builders'
 import { Route as ContributeRouteImport } from './routes/contribute'
 import { Route as EvidenceRouteImport } from './routes/evidence'
 import { Route as PackageRouteImport } from './routes/package'
+import { Route as ResultsRouteImport } from './routes/results'
+import { Route as ReviewRouteImport } from './routes/review'
 import { Route as SummarizeRouteImport } from './routes/summarize'
+import { Route as ValidityRouteImport } from './routes/validity'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -47,9 +50,24 @@ const PackageRoute = PackageRouteImport.update({
   path: '/package',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ResultsRoute = ResultsRouteImport.update({
+  id: '/results',
+  path: '/results',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ReviewRoute = ReviewRouteImport.update({
+  id: '/review',
+  path: '/review',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const SummarizeRoute = SummarizeRouteImport.update({
   id: '/summarize',
   path: '/summarize',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ValidityRoute = ValidityRouteImport.update({
+  id: '/validity',
+  path: '/validity',
   getParentRoute: () => rootRouteImport,
 } as any)
 
@@ -60,7 +78,10 @@ export interface FileRoutesByFullPath {
   '/contribute': typeof ContributeRoute
   '/evidence': typeof EvidenceRoute
   '/package': typeof PackageRoute
+  '/results': typeof ResultsRoute
+  '/review': typeof ReviewRoute
   '/summarize': typeof SummarizeRoute
+  '/validity': typeof ValidityRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -69,7 +90,10 @@ export interface FileRoutesByTo {
   '/contribute': typeof ContributeRoute
   '/evidence': typeof EvidenceRoute
   '/package': typeof PackageRoute
+  '/results': typeof ResultsRoute
+  '/review': typeof ReviewRoute
   '/summarize': typeof SummarizeRoute
+  '/validity': typeof ValidityRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -79,7 +103,10 @@ export interface FileRoutesById {
   '/contribute': typeof ContributeRoute
   '/evidence': typeof EvidenceRoute
   '/package': typeof PackageRoute
+  '/results': typeof ResultsRoute
+  '/review': typeof ReviewRoute
   '/summarize': typeof SummarizeRoute
+  '/validity': typeof ValidityRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -90,7 +117,10 @@ export interface FileRouteTypes {
     | '/contribute'
     | '/evidence'
     | '/package'
+    | '/results'
+    | '/review'
     | '/summarize'
+    | '/validity'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -99,7 +129,10 @@ export interface FileRouteTypes {
     | '/contribute'
     | '/evidence'
     | '/package'
+    | '/results'
+    | '/review'
     | '/summarize'
+    | '/validity'
   id:
     | '__root__'
     | '/'
@@ -108,7 +141,10 @@ export interface FileRouteTypes {
     | '/contribute'
     | '/evidence'
     | '/package'
+    | '/results'
+    | '/review'
     | '/summarize'
+    | '/validity'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -118,7 +154,10 @@ export interface RootRouteChildren {
   ContributeRoute: typeof ContributeRoute
   EvidenceRoute: typeof EvidenceRoute
   PackageRoute: typeof PackageRoute
+  ResultsRoute: typeof ResultsRoute
+  ReviewRoute: typeof ReviewRoute
   SummarizeRoute: typeof SummarizeRoute
+  ValidityRoute: typeof ValidityRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -165,11 +204,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PackageRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/results': {
+      id: '/results'
+      path: '/results'
+      fullPath: '/results'
+      preLoaderRoute: typeof ResultsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/review': {
+      id: '/review'
+      path: '/review'
+      fullPath: '/review'
+      preLoaderRoute: typeof ReviewRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/summarize': {
       id: '/summarize'
       path: '/summarize'
       fullPath: '/summarize'
       preLoaderRoute: typeof SummarizeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/validity': {
+      id: '/validity'
+      path: '/validity'
+      fullPath: '/validity'
+      preLoaderRoute: typeof ValidityRouteImport
       parentRoute: typeof rootRouteImport
     }
   }
@@ -182,7 +242,10 @@ const rootRouteChildren: RootRouteChildren = {
   ContributeRoute: ContributeRoute,
   EvidenceRoute: EvidenceRoute,
   PackageRoute: PackageRoute,
+  ResultsRoute: ResultsRoute,
+  ReviewRoute: ReviewRoute,
   SummarizeRoute: SummarizeRoute,
+  ValidityRoute: ValidityRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
