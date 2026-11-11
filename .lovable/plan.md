@@ -1,63 +1,41 @@
-# Candidate pipeline for approved batteries
+# Welcome and first-run onboarding
 
-## Result
-Build the full HR campaign-to-decision workflow using the current yellow bands, white content, ink actions, and existing Admin Center roles and assignments. Add a mobile-friendly private candidate experience at `/take/$token` with no candidate account.
+## Welcome page
+- Make `/` the welcome screen for signed-out visitors and people who have not completed setup; keep returning users on **Your roles**.
+- Use your supplied headline, eyebrow, subhead, buttons, four How It Works cards and trust strip.
+- Follow the requested asymmetric yellow-image/white-text layout, with square yellow corners, ink pill actions, Manrope headings and DM Sans body. Stack the image above the text on phones.
+- Generate a replaceable product illustration showing the blueprint, numerical question and 92% coverage cards, with the supplied alt text. Use large, readable labels and no people.
+- **Explore the demo** opens the fictional Northwind Health workspace immediately without sign-in. **Start a role** begins setup.
 
-## 1. Campaign launch
-- **Launch assessment** appears on a battery with a recorded HR approval. Explain missing approval or incomplete release requirements for blocked batteries.
-- HR and Admin create campaigns with job role, immutable approved battery version, opening/closing dates, candidate access window, and welcome message.
-- Default the candidate window from organization settings; allow a campaign-specific value such as **5 days**. Candidate expiry is the earlier of their individual window and campaign closing date.
-- Campaigns keep their original battery version if a new draft is created later.
+## Five setup screens
+1. **What's your role?** Choose HR / People team, Hiring manager, I-O practitioner or Subject-matter expert.
+2. **What are you hiring for?** Save job title, organization and openings; default purpose to Selection.
+3. **Find the closest benchmark.** Search O*NET using the title and show three matches with codes and descriptions, plus None of these fit. Clearly distinguish saved/demo matches from verified live results.
+4. **Who knows this job best?** Add at least two SMEs, including name, email and incumbent/supervisor type, or use the fictional team. Include the supplied 10–15 minute explanation. Preserve the existing skippable Admin team-invitation step without increasing the five-screen count.
+5. **You're set.** Show the yellow checklist band and open the roles workspace.
 
-## 2. Candidate invitations and pipeline
-- Add candidates individually by name/email, paste CSV, or upload CSV. Preview rows, highlight malformed or duplicate entries, and confirm before creating invitations.
-- Generate unique unguessable links at `/take/$token`, store only token hashes, and keep candidates separate from organization users.
-- Demo offers **Copy link** and **Open as candidate**; live invitations send email with the campaign welcome message and expiry.
-- Show derived pipeline stages: **Invited → Started → Submitted → Auto-scored → Rater review → Scored → Decision recorded**. Persist timestamps and history so labels reflect actual events rather than editable display state.
-- Revoked, expired, or completed links show friendly states. A submitted link never starts a second attempt.
+Every screen gets the yellow progress indicator, Step X of 5, Skip for now, one focused main action and keyboard-accessible choices. Save progress after each screen; skipping preserves the draft.
 
-## 3. Candidate experience
-- Yellow welcome band with role name, total allotted time, sections, welcome message, privacy/retention notice, and consent.
-- Accommodation request types: extra time, screen reader, other. HR reviews requests before testing starts; display the agreed arrangement to the candidate.
-- Practice item before each timed section. Only the current section's permitted questions reach the candidate browser; answer keys stay private.
-- Randomize question order and option order once per attempt, persist that order, and score against canonical option IDs so resume and scoring stay consistent.
-- Autosave every response with pending/saved/error states and retry. Persist response time and server-checked section deadlines. Resume through the same link within the access window; leaving does not reset timers.
-- Accessible keyboard and screen-reader controls. No webcam, invasive proctoring, or candidate sign-in.
-- **Review and submit** lists unanswered items. Submission locks responses and confirms: **“Thanks, your responses were received.”**
+## SME invitation welcome
+- Add a mobile-first private invitation welcome with the requested yellow heading, role name, three bullets and Start rating action.
+- Require verification of the invited email before access to real ratings, without a separate account-creation form. Preserve assigned-role restrictions and keep individual live ratings limited to the authorized analyst/Admin and their author.
+- Fictional SME links remain explicitly labeled and isolated from real records.
 
-## 4. Scoring and Rater queue
-- Submission automatically scores aptitude, job knowledge, and SJT agreement with the SME key.
-- Assign **two active Raters** to each work sample through the existing Admin assignment controls.
-- Blind queue exposes candidate ID only, assigned response, rubric, and 1–5 anchored dimensions. Require a comment for every submitted rubric rating.
-- More than **1 point** disagreement on any dimension blocks final scoring and flags third-rater review or a recorded consensus discussion. Preserve independent ratings and reconciliation history.
-- Calculate section, KSAO, and blueprint-weighted composite profiles only when required parts are complete. Compare with recorded cuts without making a hiring decision.
+## Empty pages and accessibility
+- Audit the roles dashboard, evidence, interviews, ratings, blueprint/builders, candidates and Admin lists. Replace blank tables with a yellow icon, one-line explanation and relevant action.
+- Keep ink text on yellow, magenta focus rings, image alt text, predictable focus between setup screens and reduced-motion support.
+- Keep long headings and forms readable at 390px, 979px and desktop widths; use fixed desktop/mobile type sizes, not viewport-scaled fonts or negative letter spacing.
 
-## 5. Results and fairness
-- HR sees all campaign results; Hiring managers see only assigned roles. Candidate list includes stage, composite, pass/below-cut and KSAO profile chart.
-- Candidate details show section scores, relevant Rater comments, and decision history. Hiring managers record **advance / hold / reject**, with a required reason.
-- Keep **“Recommendation requires human review.”** visible. Nothing decides automatically.
-- Fairness reports show optional self-reported group pass rates and the four-fifths check, visible to **HR and I-O analyst**, plus Admin. Never expose demographics to Raters or Hiring managers during scoring.
-- This explicitly adds HR fairness access and replaces the current provisional hire/hold/decline decision labels with the requested advance/hold/reject choices while preserving historical records.
+## Technical and security details
+- Keep the current TanStack routing and design components; add a dedicated dashboard path while preserving existing workspace navigation.
+- Persist signed-in onboarding drafts and completion in owner-scoped Cloud records; signed-out drafts use isolated browser storage and cannot grant access.
+- The self-selected occupation changes wording and suggested next actions, **not live privileges**. Organization permissions still require Admin-managed roles; never auto-promote someone to HR or Admin.
+- Add additive storage, grants, policies and protected save actions for onboarding and verified SME invitations as needed. Candidate and onboarding invite types remain separate.
+- Keep real O*NET extraction limitations visible; do not label a saved benchmark as live.
+- The candidate pipeline remains in progress and is not replaced by this work.
 
-## 6. Storage, privacy and audit
-- Extend the existing campaign/attempt storage additively with candidate records, responses/timing, normalized scores, and independent Rater scores; keep approved batteries and historical interviews intact.
-- Enforce campaign dates, one attempt, consent, accommodation approval, server deadlines, immutable submissions, Rater assignments, required comments, and permission checks in protected actions and database safeguards.
-- Extend the existing **12-month default** retention cleanup to all new candidate personal data and response records. Preserve minimal non-identifying audit history.
-- Audit invitations, accommodation decisions, score changes, reconciliation, and hiring decisions; never log raw tokens or response bodies.
-- Preserve existing `/candidate/$token` links, redirecting to the new experience without breaking invitations.
-
-## 7. Fictional demo
-- One campaign with five clearly fictional candidates: **1 invited, 1 in progress, 1 awaiting Rater review, 2 fully scored**.
-- Seed realistic persisted stage/timing/score records as well as an isolated signed-out preview, with working demo links that cannot access live records.
-- Use the existing fictional team for HR, manager, and Rater previews. Demo email is never sent.
-
-## Verification
-- Tests for HR-only launch, actual approval record, date/window boundaries, unique tokens, CSV validation, one attempt, consent, accommodations, autosave/resume, randomized-option scoring, submission lock, automatic scoring, two Raters, >1-point disagreement, weighted composite, required decision reasons, and fairness visibility.
-- Browser walkthroughs on desktop and phone: HR launch → CSV invitation → candidate consent/practice/timed autosave/resume → submit → blind ratings → results → manager decision → fairness.
-- Verify denied direct requests, not only hidden controls, and confirm candidate/Rater responses contain no answer keys or unauthorized identities/demographics.
-- Run live account checks only with a verified testing account and first Admin. The connected app currently has **zero real accounts**, so these checks remain blocked until one is provisioned; fictional preview checks are reported separately.
-
-## Current foundation and boundaries
-- Reuse the Admin Center, multiple organization roles, job assignments, blind scoring boundary, settings, privacy notice, retention schedule, and audit writer already added.
-- The Admin demo and database-boundary tests pass; live invitation/acceptance and signed-in refresh checks are not yet verified because there are no real accounts.
-- Do not redesign the app, add candidate accounts, or change the AI provider. Implementation of this new pipeline begins after approval.
+## Verification and dependencies
+- Test first-run, saved-step resume, skip, demo entry, completed-user entry, SME invitation access and permission boundaries.
+- Walk setup and candidate flows on desktop and phone, verifying saved values read back and no overflow.
+- Candidate demo autosave/resume and the current 35 workflow tests pass. Live signed-in verification remains blocked by zero real accounts; invitation emails also require a verified sender domain.
+- After approval, finish the remaining candidate scoring/results checks alongside onboarding. Report any real-account, email or O*NET limitations rather than treating demo checks as live verification.

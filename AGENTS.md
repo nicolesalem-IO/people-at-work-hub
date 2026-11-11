@@ -47,3 +47,5 @@ use the editor.
 - Organization roles and active status live in separate protected tables; shared permission helpers drive presentation while database policies and protected actions authorize every operation.
 - Fictional profile selection affects isolated demo data only and never authorizes live reads or writes.
 - Blind work-sample scoring uses restricted projections and per-attempt/item assignments rather than exposing identity-bearing candidate rows to raters.
+- Candidate pipeline timing, one-attempt state, canonical option IDs, submission locks and scoring are enforced by transactional private-token actions; candidate browser payloads omit answer keys and future timed sections.
+- Demo pipeline progress is isolated browser storage with explicit fictional links, never a live authorization source.
