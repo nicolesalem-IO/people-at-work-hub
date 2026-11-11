@@ -26,6 +26,7 @@ import { Route as SummarizeRouteImport } from './routes/summarize'
 import { Route as TeamInviteRouteImport } from './routes/team-invite'
 import { Route as ValidityRouteImport } from './routes/validity'
 import { Route as CandidateTokenRouteImport } from './routes/candidate.$token'
+import { Route as TakeTokenRouteImport } from './routes/take.$token'
 import { Route as ApiPublicJobsCandidateRetentionRouteImport } from './routes/api/public/jobs/candidate-retention'
 
 const IndexRoute = IndexRouteImport.update({
@@ -113,6 +114,11 @@ const CandidateTokenRoute = CandidateTokenRouteImport.update({
   path: '/candidate/$token',
   getParentRoute: () => rootRouteImport,
 } as any)
+const TakeTokenRoute = TakeTokenRouteImport.update({
+  id: '/take/$token',
+  path: '/take/$token',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ApiPublicJobsCandidateRetentionRoute =
   ApiPublicJobsCandidateRetentionRouteImport.update({
     id: '/api/public/jobs/candidate-retention',
@@ -138,6 +144,7 @@ export interface FileRoutesByFullPath {
   '/team-invite': typeof TeamInviteRoute
   '/validity': typeof ValidityRoute
   '/candidate/$token': typeof CandidateTokenRoute
+  '/take/$token': typeof TakeTokenRoute
   '/api/public/jobs/candidate-retention': typeof ApiPublicJobsCandidateRetentionRoute
 }
 export interface FileRoutesByTo {
@@ -158,6 +165,7 @@ export interface FileRoutesByTo {
   '/team-invite': typeof TeamInviteRoute
   '/validity': typeof ValidityRoute
   '/candidate/$token': typeof CandidateTokenRoute
+  '/take/$token': typeof TakeTokenRoute
   '/api/public/jobs/candidate-retention': typeof ApiPublicJobsCandidateRetentionRoute
 }
 export interface FileRoutesById {
@@ -179,6 +187,7 @@ export interface FileRoutesById {
   '/team-invite': typeof TeamInviteRoute
   '/validity': typeof ValidityRoute
   '/candidate/$token': typeof CandidateTokenRoute
+  '/take/$token': typeof TakeTokenRoute
   '/api/public/jobs/candidate-retention': typeof ApiPublicJobsCandidateRetentionRoute
 }
 export interface FileRouteTypes {
@@ -201,6 +210,7 @@ export interface FileRouteTypes {
     | '/team-invite'
     | '/validity'
     | '/candidate/$token'
+    | '/take/$token'
     | '/api/public/jobs/candidate-retention'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -221,6 +231,7 @@ export interface FileRouteTypes {
     | '/team-invite'
     | '/validity'
     | '/candidate/$token'
+    | '/take/$token'
     | '/api/public/jobs/candidate-retention'
   id:
     | '__root__'
@@ -241,6 +252,7 @@ export interface FileRouteTypes {
     | '/team-invite'
     | '/validity'
     | '/candidate/$token'
+    | '/take/$token'
     | '/api/public/jobs/candidate-retention'
   fileRoutesById: FileRoutesById
 }
@@ -262,6 +274,7 @@ export interface RootRouteChildren {
   TeamInviteRoute: typeof TeamInviteRoute
   ValidityRoute: typeof ValidityRoute
   CandidateTokenRoute: typeof CandidateTokenRoute
+  TakeTokenRoute: typeof TakeTokenRoute
   ApiPublicJobsCandidateRetentionRoute: typeof ApiPublicJobsCandidateRetentionRoute
 }
 
@@ -386,6 +399,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CandidateTokenRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/take/$token': {
+      id: '/take/$token'
+      path: '/take/$token'
+      fullPath: '/take/$token'
+      preLoaderRoute: typeof TakeTokenRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/api/public/jobs/candidate-retention': {
       id: '/api/public/jobs/candidate-retention'
       path: '/api/public/jobs/candidate-retention'
@@ -414,6 +434,7 @@ const rootRouteChildren: RootRouteChildren = {
   TeamInviteRoute: TeamInviteRoute,
   ValidityRoute: ValidityRoute,
   CandidateTokenRoute: CandidateTokenRoute,
+  TakeTokenRoute: TakeTokenRoute,
   ApiPublicJobsCandidateRetentionRoute: ApiPublicJobsCandidateRetentionRoute,
 }
 export const routeTree = rootRouteImport
