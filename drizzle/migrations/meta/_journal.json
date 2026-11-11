@@ -113,6 +113,13 @@
       "when": 1794426572673,
       "tag": "0015_admin_scoring_retention_and_candidate_privacy_guards",
       "breakpoints": true
+    },
+    {
+      "idx": 16,
+      "version": "7",
+      "when": 1794426608049,
+      "tag": "0016_candidate_privacy_acknowledgement",
+      "breakpoints": true
     }
   ]
 }
