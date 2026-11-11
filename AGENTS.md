@@ -31,3 +31,8 @@ use the editor.
 
 ## AI
 - AI calls go through @lovable.dev/ai-gateway inside createServerFn handlers (src/lib/*.functions.ts); evidence citations are re-validated server-side because model output is untrusted.
+
+## Database
+- Enforce workflow approvals, immutable approved records and same-role evidence links in PostgreSQL triggers as well as RLS, so direct data requests cannot bypass the workflow.
+- Keep audit history trigger-written and client-read-only, and serialize dependent workflow changes with a transaction advisory lock to prevent approval/edit races.
+- Backend setup does not connect the existing demo screens to persistent data; keep that integration a separate requested change.

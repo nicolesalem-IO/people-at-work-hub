@@ -1,0 +1,41 @@
+{
+  "version": "7",
+  "dialect": "postgresql",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "7",
+      "when": 1794421112078,
+      "tag": "0000_io_workspace_backend",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1794421217320,
+      "tag": "0001_backend_rule_regression_checks",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1794421281776,
+      "tag": "0002_allow_privileged_regression_runner",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "7",
+      "when": 1794421342646,
+      "tag": "0003_remove_implicit_anonymous_access",
+      "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "7",
+      "when": 1794421421995,
+      "tag": "0004_contribution_to_evidence",
+      "breakpoints": true
+    }
+  ]
+}
