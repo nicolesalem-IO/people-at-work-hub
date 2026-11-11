@@ -541,6 +541,7 @@ export type Database = {
         Args: { role: Database["public"]["Enums"]["app_role"]; user_id: string }
         Returns: boolean
       }
+      test_workspace_rule: { Args: { test_name: string }; Returns: boolean }
     }
     Enums: {
       app_role: "contributor" | "analyst" | "hr_reviewer" | "admin"
