@@ -11,6 +11,8 @@ export const Route = createFileRoute("/evidence")({
       { name: "description", content: "Every source excerpt linked to the task it supports, with conflicts surfaced." },
       { property: "og:title", content: "Evidence library — I-O Workspace" },
       { property: "og:description", content: "Every source excerpt linked to the task it supports, with conflicts surfaced." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
   component: Evidence,
