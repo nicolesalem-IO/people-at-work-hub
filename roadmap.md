@@ -1,4 +1,5 @@
 # Roadmap
+- [ ] Polish headings, complete demo decisions/disagreement, 95-minute section overview, post-submit optional group and five-day candidate deadlines
 - [x] Welcome image/page, five-step saved setup, returning/demo entry, SME welcome, owner-private drafts and rating projections, friendly evidence/blueprint/builder/Admin empty states; desktop/phone walkthrough passes
 - [x] Candidate pipeline screens, private timed testing, autosave/resume, locked submission, blind rubric saves and human decisions verified in isolated demo; 89 tests pass including database boundaries
 - [ ] Live onboarding, SME email verification and candidate administration/scoring walkthrough — blocked: zero real accounts and no verified sender domain
