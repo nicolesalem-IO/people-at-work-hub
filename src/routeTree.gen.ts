@@ -14,11 +14,13 @@ import { Route as BlueprintRouteImport } from './routes/blueprint'
 import { Route as BuildersRouteImport } from './routes/builders'
 import { Route as ContributeRouteImport } from './routes/contribute'
 import { Route as EvidenceRouteImport } from './routes/evidence'
+import { Route as InterviewsRouteImport } from './routes/interviews'
 import { Route as PackageRouteImport } from './routes/package'
 import { Route as ResultsRouteImport } from './routes/results'
 import { Route as ReviewRouteImport } from './routes/review'
 import { Route as SummarizeRouteImport } from './routes/summarize'
 import { Route as ValidityRouteImport } from './routes/validity'
+import { Route as CandidateTokenRouteImport } from './routes/candidate.$token'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -43,6 +45,11 @@ const ContributeRoute = ContributeRouteImport.update({
 const EvidenceRoute = EvidenceRouteImport.update({
   id: '/evidence',
   path: '/evidence',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const InterviewsRoute = InterviewsRouteImport.update({
+  id: '/interviews',
+  path: '/interviews',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PackageRoute = PackageRouteImport.update({
@@ -70,6 +77,11 @@ const ValidityRoute = ValidityRouteImport.update({
   path: '/validity',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CandidateTokenRoute = CandidateTokenRouteImport.update({
+  id: '/candidate/$token',
+  path: '/candidate/$token',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -77,11 +89,13 @@ export interface FileRoutesByFullPath {
   '/builders': typeof BuildersRoute
   '/contribute': typeof ContributeRoute
   '/evidence': typeof EvidenceRoute
+  '/interviews': typeof InterviewsRoute
   '/package': typeof PackageRoute
   '/results': typeof ResultsRoute
   '/review': typeof ReviewRoute
   '/summarize': typeof SummarizeRoute
   '/validity': typeof ValidityRoute
+  '/candidate/$token': typeof CandidateTokenRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -89,11 +103,13 @@ export interface FileRoutesByTo {
   '/builders': typeof BuildersRoute
   '/contribute': typeof ContributeRoute
   '/evidence': typeof EvidenceRoute
+  '/interviews': typeof InterviewsRoute
   '/package': typeof PackageRoute
   '/results': typeof ResultsRoute
   '/review': typeof ReviewRoute
   '/summarize': typeof SummarizeRoute
   '/validity': typeof ValidityRoute
+  '/candidate/$token': typeof CandidateTokenRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -102,11 +118,13 @@ export interface FileRoutesById {
   '/builders': typeof BuildersRoute
   '/contribute': typeof ContributeRoute
   '/evidence': typeof EvidenceRoute
+  '/interviews': typeof InterviewsRoute
   '/package': typeof PackageRoute
   '/results': typeof ResultsRoute
   '/review': typeof ReviewRoute
   '/summarize': typeof SummarizeRoute
   '/validity': typeof ValidityRoute
+  '/candidate/$token': typeof CandidateTokenRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -116,11 +134,13 @@ export interface FileRouteTypes {
     | '/builders'
     | '/contribute'
     | '/evidence'
+    | '/interviews'
     | '/package'
     | '/results'
     | '/review'
     | '/summarize'
     | '/validity'
+    | '/candidate/$token'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -128,11 +148,13 @@ export interface FileRouteTypes {
     | '/builders'
     | '/contribute'
     | '/evidence'
+    | '/interviews'
     | '/package'
     | '/results'
     | '/review'
     | '/summarize'
     | '/validity'
+    | '/candidate/$token'
   id:
     | '__root__'
     | '/'
@@ -140,11 +162,13 @@ export interface FileRouteTypes {
     | '/builders'
     | '/contribute'
     | '/evidence'
+    | '/interviews'
     | '/package'
     | '/results'
     | '/review'
     | '/summarize'
     | '/validity'
+    | '/candidate/$token'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -153,11 +177,13 @@ export interface RootRouteChildren {
   BuildersRoute: typeof BuildersRoute
   ContributeRoute: typeof ContributeRoute
   EvidenceRoute: typeof EvidenceRoute
+  InterviewsRoute: typeof InterviewsRoute
   PackageRoute: typeof PackageRoute
   ResultsRoute: typeof ResultsRoute
   ReviewRoute: typeof ReviewRoute
   SummarizeRoute: typeof SummarizeRoute
   ValidityRoute: typeof ValidityRoute
+  CandidateTokenRoute: typeof CandidateTokenRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -197,6 +223,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof EvidenceRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/interviews': {
+      id: '/interviews'
+      path: '/interviews'
+      fullPath: '/interviews'
+      preLoaderRoute: typeof InterviewsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/package': {
       id: '/package'
       path: '/package'
@@ -232,6 +265,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ValidityRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/candidate/$token': {
+      id: '/candidate/$token'
+      path: '/candidate/$token'
+      fullPath: '/candidate/$token'
+      preLoaderRoute: typeof CandidateTokenRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -241,11 +281,13 @@ const rootRouteChildren: RootRouteChildren = {
   BuildersRoute: BuildersRoute,
   ContributeRoute: ContributeRoute,
   EvidenceRoute: EvidenceRoute,
+  InterviewsRoute: InterviewsRoute,
   PackageRoute: PackageRoute,
   ResultsRoute: ResultsRoute,
   ReviewRoute: ReviewRoute,
   SummarizeRoute: SummarizeRoute,
   ValidityRoute: ValidityRoute,
+  CandidateTokenRoute: CandidateTokenRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
