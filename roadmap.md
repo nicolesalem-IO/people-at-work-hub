@@ -1,10 +1,12 @@
 # Roadmap
-- [ ] Apply uploaded visual-style and workflow redesign brief
-- [ ] Persist interview answers/evidence after refresh and walk the signed-in flow with the user's testing account
-- [ ] Assessment data, source-attributed O*NET extract and deterministic scoring rules
-- [ ] Rating-first job analysis, blueprint, builders, results, fairness and HR review
-- [ ] Candidate invitations, timed save/resume, submission and protected scoring
-- [ ] Assessment tests, database safeguards and desktop/mobile verification
+- [x] Apply uploaded visual-style and workflow redesign brief; dashboard, named steps, yellow bands, focused ratings and battery summaries verified on desktop/phone
+- [ ] Interview answers/evidence are wired to persistent saves; signed-in refresh check blocked: connected app has zero accounts
+- [x] Official O*NET extract and deterministic assessment scoring rules; 11 scoring tests pass
+- [ ] Persistent assessment demo records — deferred by latest visual-only request; no data changes authorized in redesign
+- [x] Rating-first job analysis, blueprint, builders, results, fairness and HR review pages
+- [ ] Candidate signed-in administration and timed save/resume verification — blocked: no app accounts
+- [x] Assessment unit tests and desktop/mobile presentation verification
+- [ ] Additional assessment database safeguards and real candidate scoring verification — deferred by latest visual-only scope; requires test accounts
 - [x] Update Evidence and Contribute to structured interviews and saved role information; desktop/phone filters and questions verified
 - [x] Recheck Claude after connector addition — workspace catalog still exposes no permitted Claude generation surface
 - [x] Brand design system + workspace pages
