@@ -1,0 +1,3 @@
+import {createFileRoute} from '@tanstack/react-router';
+import {AssessmentAnalysis} from '@/components/io/AssessmentAnalysis';
+export const Route=createFileRoute('/ratings')({head:()=>({meta:[{title:'SME work ratings — I-O Workspace'},{name:'description',content:'Rate the work and review source-attributed judgments, critical incidents and decision authority.'},{property:'og:title',content:'SME work ratings — I-O Workspace'},{property:'og:description',content:'Rate the work and review source-attributed judgments, critical incidents and decision authority.'},{property:'og:type',content:'website'},{name:'twitter:card',content:'summary_large_image'}]}),component:AssessmentAnalysis});

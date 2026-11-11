@@ -4,9 +4,9 @@ import { cn } from "@/lib/utils";
 export type Status = "approved" | "draft" | "conflict" | "missing" | "pending" | "unconfigured";
 
 const map: Record<Status, { label: string; icon: typeof CheckCircle2; cls: string }> = {
-  approved: { label: "Approved", icon: CheckCircle2, cls: "bg-success-soft text-success border-success/30" },
+  approved: { label: "Approved", icon: CheckCircle2, cls: "bg-brand-yellow text-foreground border-brand-yellow" },
   draft: { label: "Draft — needs review", icon: FileEdit, cls: "bg-yellow-soft text-warning border-brand-yellow" },
-  conflict: { label: "Unresolved conflict", icon: AlertTriangle, cls: "bg-pink-soft text-pink-ink border-brand-pink" },
+  conflict: { label: "Unresolved conflict", icon: AlertTriangle, cls: "bg-background text-foreground border-input" },
   missing: { label: "Insufficient evidence", icon: HelpCircle, cls: "bg-muted text-muted-foreground border-input border-dashed" },
   pending: { label: "Awaiting input", icon: CircleDashed, cls: "bg-background text-foreground border-input" },
   unconfigured: { label: "Configuration required", icon: ShieldAlert, cls: "bg-muted text-muted-foreground border-input" },

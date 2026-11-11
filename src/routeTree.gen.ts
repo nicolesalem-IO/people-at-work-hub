@@ -10,12 +10,15 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as BenchmarkRouteImport } from './routes/benchmark'
 import { Route as BlueprintRouteImport } from './routes/blueprint'
 import { Route as BuildersRouteImport } from './routes/builders'
 import { Route as ContributeRouteImport } from './routes/contribute'
+import { Route as DefineRouteImport } from './routes/define'
 import { Route as EvidenceRouteImport } from './routes/evidence'
 import { Route as InterviewsRouteImport } from './routes/interviews'
 import { Route as PackageRouteImport } from './routes/package'
+import { Route as RatingsRouteImport } from './routes/ratings'
 import { Route as ResultsRouteImport } from './routes/results'
 import { Route as ReviewRouteImport } from './routes/review'
 import { Route as SummarizeRouteImport } from './routes/summarize'
@@ -25,6 +28,11 @@ import { Route as CandidateTokenRouteImport } from './routes/candidate.$token'
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BenchmarkRoute = BenchmarkRouteImport.update({
+  id: '/benchmark',
+  path: '/benchmark',
   getParentRoute: () => rootRouteImport,
 } as any)
 const BlueprintRoute = BlueprintRouteImport.update({
@@ -42,6 +50,11 @@ const ContributeRoute = ContributeRouteImport.update({
   path: '/contribute',
   getParentRoute: () => rootRouteImport,
 } as any)
+const DefineRoute = DefineRouteImport.update({
+  id: '/define',
+  path: '/define',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const EvidenceRoute = EvidenceRouteImport.update({
   id: '/evidence',
   path: '/evidence',
@@ -55,6 +68,11 @@ const InterviewsRoute = InterviewsRouteImport.update({
 const PackageRoute = PackageRouteImport.update({
   id: '/package',
   path: '/package',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RatingsRoute = RatingsRouteImport.update({
+  id: '/ratings',
+  path: '/ratings',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ResultsRoute = ResultsRouteImport.update({
@@ -85,12 +103,15 @@ const CandidateTokenRoute = CandidateTokenRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/benchmark': typeof BenchmarkRoute
   '/blueprint': typeof BlueprintRoute
   '/builders': typeof BuildersRoute
   '/contribute': typeof ContributeRoute
+  '/define': typeof DefineRoute
   '/evidence': typeof EvidenceRoute
   '/interviews': typeof InterviewsRoute
   '/package': typeof PackageRoute
+  '/ratings': typeof RatingsRoute
   '/results': typeof ResultsRoute
   '/review': typeof ReviewRoute
   '/summarize': typeof SummarizeRoute
@@ -99,12 +120,15 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/benchmark': typeof BenchmarkRoute
   '/blueprint': typeof BlueprintRoute
   '/builders': typeof BuildersRoute
   '/contribute': typeof ContributeRoute
+  '/define': typeof DefineRoute
   '/evidence': typeof EvidenceRoute
   '/interviews': typeof InterviewsRoute
   '/package': typeof PackageRoute
+  '/ratings': typeof RatingsRoute
   '/results': typeof ResultsRoute
   '/review': typeof ReviewRoute
   '/summarize': typeof SummarizeRoute
@@ -114,12 +138,15 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/benchmark': typeof BenchmarkRoute
   '/blueprint': typeof BlueprintRoute
   '/builders': typeof BuildersRoute
   '/contribute': typeof ContributeRoute
+  '/define': typeof DefineRoute
   '/evidence': typeof EvidenceRoute
   '/interviews': typeof InterviewsRoute
   '/package': typeof PackageRoute
+  '/ratings': typeof RatingsRoute
   '/results': typeof ResultsRoute
   '/review': typeof ReviewRoute
   '/summarize': typeof SummarizeRoute
@@ -130,12 +157,15 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/benchmark'
     | '/blueprint'
     | '/builders'
     | '/contribute'
+    | '/define'
     | '/evidence'
     | '/interviews'
     | '/package'
+    | '/ratings'
     | '/results'
     | '/review'
     | '/summarize'
@@ -144,12 +174,15 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/benchmark'
     | '/blueprint'
     | '/builders'
     | '/contribute'
+    | '/define'
     | '/evidence'
     | '/interviews'
     | '/package'
+    | '/ratings'
     | '/results'
     | '/review'
     | '/summarize'
@@ -158,12 +191,15 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
+    | '/benchmark'
     | '/blueprint'
     | '/builders'
     | '/contribute'
+    | '/define'
     | '/evidence'
     | '/interviews'
     | '/package'
+    | '/ratings'
     | '/results'
     | '/review'
     | '/summarize'
@@ -173,12 +209,15 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  BenchmarkRoute: typeof BenchmarkRoute
   BlueprintRoute: typeof BlueprintRoute
   BuildersRoute: typeof BuildersRoute
   ContributeRoute: typeof ContributeRoute
+  DefineRoute: typeof DefineRoute
   EvidenceRoute: typeof EvidenceRoute
   InterviewsRoute: typeof InterviewsRoute
   PackageRoute: typeof PackageRoute
+  RatingsRoute: typeof RatingsRoute
   ResultsRoute: typeof ResultsRoute
   ReviewRoute: typeof ReviewRoute
   SummarizeRoute: typeof SummarizeRoute
@@ -193,6 +232,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/benchmark': {
+      id: '/benchmark'
+      path: '/benchmark'
+      fullPath: '/benchmark'
+      preLoaderRoute: typeof BenchmarkRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/blueprint': {
@@ -216,6 +262,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ContributeRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/define': {
+      id: '/define'
+      path: '/define'
+      fullPath: '/define'
+      preLoaderRoute: typeof DefineRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/evidence': {
       id: '/evidence'
       path: '/evidence'
@@ -235,6 +288,13 @@ declare module '@tanstack/react-router' {
       path: '/package'
       fullPath: '/package'
       preLoaderRoute: typeof PackageRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/ratings': {
+      id: '/ratings'
+      path: '/ratings'
+      fullPath: '/ratings'
+      preLoaderRoute: typeof RatingsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/results': {
@@ -277,12 +337,15 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  BenchmarkRoute: BenchmarkRoute,
   BlueprintRoute: BlueprintRoute,
   BuildersRoute: BuildersRoute,
   ContributeRoute: ContributeRoute,
+  DefineRoute: DefineRoute,
   EvidenceRoute: EvidenceRoute,
   InterviewsRoute: InterviewsRoute,
   PackageRoute: PackageRoute,
+  RatingsRoute: RatingsRoute,
   ResultsRoute: ResultsRoute,
   ReviewRoute: ReviewRoute,
   SummarizeRoute: SummarizeRoute,

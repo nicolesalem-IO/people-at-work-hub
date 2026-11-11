@@ -39,3 +39,6 @@ use the editor.
 - Interview coverage is deterministic and source-counted; database triggers enforce HR approval and version-bound output eligibility because neither AI output nor browser state can authorize drafting.
 - Assessment batteries use versioned payloads with database approval guards; candidate invitations use hashed bearer tokens and return question-only projections so answer keys never reach candidate browsers.
 - Keep prior structured interviews accessible alongside rating-based assessments; answer saves atomically create dated evidence through the database function and read back persisted rows.
+
+## Presentation
+- Practitioner pages share a roles dashboard, named stepper, reusable step bands and battery method summaries; progress derives from existing workflow checks so presentation cannot unlock actions.

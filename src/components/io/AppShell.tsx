@@ -1,47 +1,9 @@
-import { Link, Outlet } from "@tanstack/react-router";
-
-const nav = [
-  { to: "/", label: "Job analysis" },
-  { to: "/evidence", label: "Evidence" },
-  { to: "/contribute", label: "Contribute" },
-  { to: "/interviews", label: "Saved interviews" },
-  { to: "/blueprint", label: "Blueprint" },
-  { to: "/builders", label: "Tests" },
-  { to: "/results", label: "Results" },
-  { to: "/validity", label: "Validity" },
-  { to: "/review", label: "HR review" },
-] as const;
-
-export function AppShell() {
-  return (
-    <div className="min-h-screen bg-background">
-      <div className="h-1.5 bg-brand-yellow" />
-      <header className="border-b bg-background">
-        <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-4 px-5 py-5 md:px-10">
-          <Link to="/" className="flex items-center gap-3 text-xl font-semibold">
-            <span className="size-3 rounded-[3px] bg-brand-pink" aria-hidden="true" />
-            I-O Workspace
-          </Link>
-          <nav aria-label="Primary" className="flex flex-wrap gap-x-5 gap-y-2">
-            {nav.map(({ to, label }) => (
-              <Link
-                key={to}
-                to={to}
-                activeOptions={{ exact: true }}
-                className="text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground transition-colors hover:text-foreground data-[status=active]:text-pink-ink"
-              >
-                {label}
-              </Link>
-            ))}
-          </nav>
-        </div>
-      </header>
-      <main className="mx-auto max-w-6xl px-5 py-10 md:px-10 md:py-14">
-        <Outlet />
-      </main>
-      <footer className="mx-auto max-w-6xl border-t px-5 py-6 text-sm text-muted-foreground md:px-10">
-        Demo candidates and scores are fictional. Recommendation requires human review.
-      </footer>
-    </div>
-  );
-}
+import { Link, Outlet, useLocation } from "@tanstack/react-router";
+import {useState} from 'react';
+import {ArrowRight,LogOut} from 'lucide-react';
+import {useAssessment} from './AssessmentProvider';
+import {RoleStepper} from './RoleStepper';
+import {Button} from '@/components/ui/button';
+import {Input} from '@/components/ui/input';
+import {supabase} from '@/integrations/supabase/client';
+export function AppShell(){const c=useAssessment(),path=useLocation({select:l=>l.pathname}),candidate=path.startsWith('/candidate/');const [login,setLogin]=useState(false),[email,setEmail]=useState(''),[password,setPassword]=useState('');return <div className="min-h-screen bg-background">{!candidate&&<div className="workspace-top-banner"><div className="workspace-top-banner-inner"><span>{c.signedIn?'Signed in · Your saved workspace':'Fictional preview · Sign in to save your work'}</span>{c.signedIn?<Button size="sm" variant="ghost" onClick={()=>void supabase.auth.signOut()}><LogOut/> Sign out</Button>:<Button size="sm" variant="link" onClick={()=>setLogin(!login)}>Sign in <ArrowRight/></Button>}</div>{login&&<form className="workspace-top-banner-inner" onSubmit={e=>{e.preventDefault();void c.run(async()=>{const {error}=await supabase.auth.signInWithPassword({email,password});if(error)throw error;setPassword('');setLogin(false);},'Signed in.');}}><label>Email<Input type="email" value={email} onChange={e=>setEmail(e.target.value)} required/></label><label>Password<Input type="password" value={password} onChange={e=>setPassword(e.target.value)} required/></label><Button type="submit" disabled={c.busy}>Sign in <ArrowRight/></Button>{c.error&&<p role="alert">{c.error}</p>}</form>}</div>}<header className="workspace-header"><div className="workspace-header-inner"><Link to="/" className="workspace-wordmark"><span className="workspace-logo-dot" aria-hidden="true"/>I-O Workspace</Link>{!candidate&&<nav className="workspace-nav" aria-label="Primary"><Link to="/" activeOptions={{exact:true}}>Your roles</Link><Link to="/evidence">Evidence</Link><Link to="/interviews">Saved interviews</Link><Link to="/results">Results</Link></nav>}</div></header><main className="workspace-main">{!candidate&&path!=='/'&&<RoleStepper/>}<Outlet/></main><footer className="workspace-footer">{candidate?'Candidate responses are confidential.':'Demo candidates and scores are fictional. Recommendation requires human review.'}</footer></div>;}
