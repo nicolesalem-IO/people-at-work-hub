@@ -37,3 +37,5 @@ use the editor.
 - Keep audit history trigger-written and client-read-only, and serialize dependent workflow changes with a transaction advisory lock to prevent approval/edit races.
 - Job analysis, Evidence, Contribute and Outputs share persistent interview records; signed-out pages use the same fictional preview, while legacy hiring material remains read-only.
 - Interview coverage is deterministic and source-counted; database triggers enforce HR approval and version-bound output eligibility because neither AI output nor browser state can authorize drafting.
+- Assessment batteries use versioned payloads with database approval guards; candidate invitations use hashed bearer tokens and return question-only projections so answer keys never reach candidate browsers.
+- Keep prior structured interviews accessible alongside rating-based assessments; answer saves atomically create dated evidence through the database function and read back persisted rows.
