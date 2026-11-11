@@ -12,6 +12,18 @@ export type SummaryResult =
   | { ok: true; competencies: Competency[]; gaps: string[]; conflicts: string[]; droppedCitations: number }
   | { ok: false; error: string };
 
+/** Drops citations to unknown note IDs; an uncited competency is downgraded to "limited". */
+export function sanitizeCitations(list: Competency[], noteIds: string[]) {
+  const valid = new Set(noteIds);
+  let dropped = 0;
+  const competencies = list.map((c) => {
+    const ids = c.evidence_ids.filter((id) => valid.has(id));
+    dropped += c.evidence_ids.length - ids.length;
+    return { ...c, evidence_ids: ids, support: ids.length === 0 ? ("limited" as const) : c.support };
+  });
+  return { competencies, dropped };
+}
+
 const schema = {
   type: "object",
   additionalProperties: false,
@@ -78,13 +90,7 @@ export const summarizeCompetencies = createServerFn({ method: "POST" })
       }
       const parsed = JSON.parse(raw) as { competencies: Competency[]; gaps: string[]; conflicts: string[] };
       // Enforce traceability server-side: drop citations to unknown IDs.
-      const valid = new Set(data.notes.map((n) => n.id));
-      let dropped = 0;
-      const competencies = parsed.competencies.map((c) => {
-        const ids = c.evidence_ids.filter((id) => valid.has(id));
-        dropped += c.evidence_ids.length - ids.length;
-        return { ...c, evidence_ids: ids, support: ids.length === 0 ? ("limited" as const) : c.support };
-      });
+      const { competencies, dropped } = sanitizeCitations(parsed.competencies, data.notes.map((n) => n.id));
       return { ok: true, competencies, gaps: parsed.gaps, conflicts: parsed.conflicts, droppedCitations: dropped };
     } catch (e) {
       console.error("summarizeCompetencies failed", e);
