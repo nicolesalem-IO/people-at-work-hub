@@ -120,6 +120,13 @@
       "when": 1794426608049,
       "tag": "0016_candidate_privacy_acknowledgement",
       "breakpoints": true
+    },
+    {
+      "idx": 17,
+      "version": "7",
+      "when": 1794426799957,
+      "tag": "0017_admin_private_scoring_boundary",
+      "breakpoints": true
     }
   ]
 }

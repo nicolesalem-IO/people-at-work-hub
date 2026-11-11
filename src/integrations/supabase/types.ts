@@ -1215,6 +1215,23 @@ export type Database = {
         Args: { aid: string; item?: string }
         Returns: Json
       }
+      org_server_score_snapshot: {
+        Args: { actor: string; aid: string; item?: string }
+        Returns: Json
+      }
+      org_server_store_score: {
+        Args: {
+          actor: string
+          aid: string
+          expected: Json
+          item?: string
+          recs: Json
+          rs: Json
+          sc: Json
+          st: string
+        }
+        Returns: boolean
+      }
       org_session: { Args: never; Returns: Json }
       org_store_score: {
         Args: {
@@ -1228,6 +1245,7 @@ export type Database = {
         }
         Returns: boolean
       }
+      org_test_rule: { Args: { rule: string }; Returns: boolean }
       revise_interview: { Args: { sid: string }; Returns: string }
       save_interview_answer: { Args: { payload: Json }; Returns: string }
       test_interview_rule: { Args: { test_name: string }; Returns: boolean }
