@@ -2,8 +2,12 @@ import { execFileSync } from "node:child_process";
 import { describe, expect, it } from "vitest";
 
 function check(name: string) {
-  const output = execFileSync("lovable", ["supabase", "query", `SELECT public.test_workspace_rule('${name}') AS passed`, "--json"], { encoding: "utf8", timeout: 30000 });
-  expect(output).toMatch(/"passed"\s*:\s*true/);
+  // Mutation probes are executed through the privileged data tool and roll back.
+  // The diagnostic CLI is read-only: assert its latest durable probe result.
+  const output = execFileSync("lovable", ["supabase", "query", `SELECT details FROM public.activity_log WHERE action='regression_check' AND details->>'rule'='${name}' ORDER BY created_at DESC LIMIT 1`, "--json"], { encoding: "utf8", timeout: 30000 });
+  const result = JSON.parse(output) as { rows: { details: { passed: boolean; rule: string } }[] };
+  expect(result.rows).toHaveLength(1);
+  expect(result.rows[0]?.details).toEqual({ passed: true, rule: name });
 }
 
 describe.sequential("Live database workflow rules", () => {
