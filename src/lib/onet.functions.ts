@@ -13,7 +13,7 @@ import {
   type OnetMatch,
 } from "./onet-api";
 
-// Server-only. The O*NET key is read from the ONET_API_KEY secret (Lovable Cloud → Secrets) and never sent to browsers.
+// Server-only. The O*NET key is read from the ONET_API_KEY secret (Netlify → Environment variables) and never sent to browsers.
 const cache = new Map<string, { at: number; value: unknown }>();
 const TTL = 24 * 60 * 60 * 1000;
 async function onetGet(path: string): Promise<unknown> {

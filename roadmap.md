@@ -1,4 +1,5 @@
 # Roadmap
+- [x] Moved off Lovable: own Supabase project (all 29 migrations + hardening, 14 built-in rule checks pass), Claude replaces Lovable AI gateway (competency summaries, interview outputs, quick plan, "Draft with AI" with validated, SME-gated drafts and a demo preview), Netlify build config; see NETLIFY.md
 - [x] ATS handoff: app no longer collects applications; Stage 0 screening criteria export (copy/CSV) for the company's ATS, candidate-side qualification check (unconfirmed → HR review, no auto-reject), ATS CSV import with ats_id, results export CSV; 8 tests
 - [x] Live O*NET Web Services v2 via server-only ONET_API_KEY (search + tasks/knowledge/skills/abilities/technology), cached, merged into the saved benchmark, saved-data fallback; 8 parser tests
 - [x] "See a test plan for any job" on the welcome page and /try: O*NET match → day-one skills → plan (reasoning capped at 25%, interview 15%) → 3 AI-drafted sample questions with server-validated task/skill citations, hourly AI budget, saved/fallback questions; 8 tests

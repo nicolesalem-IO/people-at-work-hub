@@ -361,3 +361,7 @@ h1,h2,h3 {word-break:normal;overflow-wrap:normal;hyphens:none;}
 .quick-plan-footer{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;border-top:1px solid var(--border);margin-top:32px;padding-top:24px;}
 @media(max-width:900px){.quick-plan-grid,.quick-plan-questions{grid-template-columns:1fr;}}
 @media(max-width:640px){.quick-plan-form{flex-direction:column;}.quick-plan-skill{flex-direction:column;}.quick-plan-skill span:last-child{text-align:left;}}
+
+/* AI draft preview in the test builder */
+.draft-preview{border:2px solid var(--brand-yellow);border-radius:var(--radius);padding:22px;margin-bottom:28px;background:var(--background);}
+.draft-preview-item{border:1px solid var(--border);border-radius:var(--radius);padding:20px;}

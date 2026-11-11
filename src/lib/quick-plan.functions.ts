@@ -67,23 +67,17 @@ async function draftWithAi(
   skills: ReturnType<typeof pickDayOne>,
   tasks: ReturnType<typeof pickTasks>,
 ): Promise<QuickQuestion[]> {
-  const { generateResponse } = await import("@lovable.dev/ai-gateway");
-  const res = await generateResponse({
-    model: "openai/gpt-6-astra",
-    instructions: INSTRUCTIONS,
-    input: [
-      {
-        role: "user",
-        content: `Job: ${title}\n\nTasks:\n${tasks.map((t) => `[${t.id}] ${t.name}`).join("\n")}\n\nSkills needed on day one (suggested method):\n${skills.map((s) => `[${s.id}] ${s.name} (${s.method})`).join("\n")}`,
-      },
-    ],
-    text: { format: { type: "json_schema", name: "sample_questions", strict: true, schema } },
+  const { claudeJson, CLAUDE_FAST } = await import("./claude.server");
+  const out = await claudeJson<{ questions: unknown }>({
+    model: CLAUDE_FAST,
+    system: INSTRUCTIONS,
+    user: `Job: ${title}\n\nTasks:\n${tasks.map((t) => `[${t.id}] ${t.name}`).join("\n")}\n\nSkills needed on day one (suggested method):\n${skills.map((s) => `[${s.id}] ${s.name} (${s.method})`).join("\n")}`,
+    name: "sample_questions",
+    schema: schema as unknown as Record<string, unknown>,
+    maxTokens: 2000,
+    timeoutMs: 25000,
   });
-  let raw = "";
-  for (const item of res.output ?? [])
-    if (item.type === "message")
-      for (const c of item.content) if (c.type === "output_text") raw += c.text;
-  return sanitizeQuestions((JSON.parse(raw) as { questions: unknown }).questions, skills, tasks);
+  return sanitizeQuestions(out.questions, skills, tasks);
 }
 
 export const buildQuickPlan = createServerFn({ method: "POST" })

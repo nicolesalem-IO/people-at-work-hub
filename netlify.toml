@@ -1,0 +1,13 @@
+# Netlify hosting. The TanStack Start server (and every server function, including Claude and O*NET
+# calls) is built by Nitro as a Netlify Function; static assets are published from dist/.
+[build]
+  command = "bun run build"
+  publish = "dist"
+
+[build.environment]
+  NITRO_PRESET = "netlify"
+  NODE_VERSION = "22"
+
+# Public settings (Supabase URL and publishable key) and secrets (SUPABASE_SERVICE_ROLE_KEY,
+# ANTHROPIC_API_KEY, ONET_API_KEY) live in Netlify → Project configuration → Environment variables.
+# Never commit secret values to this file.
