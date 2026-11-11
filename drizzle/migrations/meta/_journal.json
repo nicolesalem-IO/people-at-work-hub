@@ -85,6 +85,13 @@
       "when": 1794424388920,
       "tag": "0011_assessment_approval_guards",
       "breakpoints": true
+    },
+    {
+      "idx": 12,
+      "version": "7",
+      "when": 1794424629764,
+      "tag": "0012_assessment_candidate_actions",
+      "breakpoints": true
     }
   ]
 }

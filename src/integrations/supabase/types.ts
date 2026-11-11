@@ -894,6 +894,10 @@ export type Database = {
     }
     Functions: {
       assessment_analysis_ready: { Args: { v: Json }; Returns: boolean }
+      assessment_candidate_action: {
+        Args: { command: string; payload?: Json; token: string }
+        Returns: Json
+      }
       assessment_permission: {
         Args: { bid: string; p: string }
         Returns: boolean
