@@ -118,12 +118,16 @@ export type Database = {
           alternate_format: string
           answers: Json
           battery_id: string
+          campaign_id: string | null
           created_at: string
           current_section: string | null
           expires_at: string
           extra_minutes: number
           id: string
           name: string
+          privacy_accepted_at: string | null
+          privacy_notice: string
+          purged_at: string | null
           raters: Json
           reconciliations: Json
           revoked: boolean
@@ -138,12 +142,16 @@ export type Database = {
           alternate_format?: string
           answers?: Json
           battery_id: string
+          campaign_id?: string | null
           created_at?: string
           current_section?: string | null
           expires_at?: string
           extra_minutes?: number
           id?: string
           name: string
+          privacy_accepted_at?: string | null
+          privacy_notice?: string
+          purged_at?: string | null
           raters?: Json
           reconciliations?: Json
           revoked?: boolean
@@ -158,12 +166,16 @@ export type Database = {
           alternate_format?: string
           answers?: Json
           battery_id?: string
+          campaign_id?: string | null
           created_at?: string
           current_section?: string | null
           expires_at?: string
           extra_minutes?: number
           id?: string
           name?: string
+          privacy_accepted_at?: string | null
+          privacy_notice?: string
+          purged_at?: string | null
           raters?: Json
           reconciliations?: Json
           revoked?: boolean
@@ -179,6 +191,13 @@ export type Database = {
             columns: ["battery_id"]
             isOneToOne: false
             referencedRelation: "assessment_batteries"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "assessment_attempts_campaign_id_fkey"
+            columns: ["campaign_id"]
+            isOneToOne: false
+            referencedRelation: "assessment_campaigns"
             referencedColumns: ["id"]
           },
         ]
@@ -216,6 +235,38 @@ export type Database = {
         }
         Relationships: []
       }
+      assessment_campaigns: {
+        Row: {
+          battery_id: string
+          created_at: string
+          created_by: string | null
+          id: string
+          name: string
+        }
+        Insert: {
+          battery_id: string
+          created_at?: string
+          created_by?: string | null
+          id?: string
+          name: string
+        }
+        Update: {
+          battery_id?: string
+          created_at?: string
+          created_by?: string | null
+          id?: string
+          name?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "assessment_campaigns_battery_id_fkey"
+            columns: ["battery_id"]
+            isOneToOne: false
+            referencedRelation: "assessment_batteries"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       assessment_demographics: {
         Row: {
           attempt_id: string
@@ -235,6 +286,42 @@ export type Database = {
             columns: ["attempt_id"]
             isOneToOne: true
             referencedRelation: "assessment_attempts"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      assessment_rater_assignments: {
+        Row: {
+          attempt_id: string
+          id: string
+          item_id: string
+          person_id: string
+        }
+        Insert: {
+          attempt_id: string
+          id?: string
+          item_id: string
+          person_id: string
+        }
+        Update: {
+          attempt_id?: string
+          id?: string
+          item_id?: string
+          person_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "assessment_rater_assignments_attempt_id_fkey"
+            columns: ["attempt_id"]
+            isOneToOne: false
+            referencedRelation: "assessment_attempts"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "assessment_rater_assignments_person_id_fkey"
+            columns: ["person_id"]
+            isOneToOne: false
+            referencedRelation: "org_people"
             referencedColumns: ["id"]
           },
         ]
@@ -453,6 +540,41 @@ export type Database = {
             columns: ["job_role_id"]
             isOneToOne: false
             referencedRelation: "job_roles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      hiring_decisions: {
+        Row: {
+          attempt_id: string
+          created_at: string
+          decided_by: string | null
+          decision: string
+          id: string
+          note: string
+        }
+        Insert: {
+          attempt_id: string
+          created_at?: string
+          decided_by?: string | null
+          decision: string
+          id?: string
+          note: string
+        }
+        Update: {
+          attempt_id?: string
+          created_at?: string
+          decided_by?: string | null
+          decision?: string
+          id?: string
+          note?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "hiring_decisions_attempt_id_fkey"
+            columns: ["attempt_id"]
+            isOneToOne: false
+            referencedRelation: "assessment_attempts"
             referencedColumns: ["id"]
           },
         ]
@@ -760,6 +882,156 @@ export type Database = {
           },
         ]
       }
+      org_assignments: {
+        Row: {
+          id: string
+          permission: string
+          person_id: string
+          role_id: string
+          source_id: string
+        }
+        Insert: {
+          id?: string
+          permission: string
+          person_id: string
+          role_id: string
+          source_id?: string
+        }
+        Update: {
+          id?: string
+          permission?: string
+          person_id?: string
+          role_id?: string
+          source_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "org_assignments_person_id_fkey"
+            columns: ["person_id"]
+            isOneToOne: false
+            referencedRelation: "org_people"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      org_invitations: {
+        Row: {
+          accepted_at: string | null
+          created_at: string
+          expires_at: string
+          id: string
+          person_id: string
+          revoked: boolean
+        }
+        Insert: {
+          accepted_at?: string | null
+          created_at?: string
+          expires_at?: string
+          id?: string
+          person_id: string
+          revoked?: boolean
+        }
+        Update: {
+          accepted_at?: string | null
+          created_at?: string
+          expires_at?: string
+          id?: string
+          person_id?: string
+          revoked?: boolean
+        }
+        Relationships: [
+          {
+            foreignKeyName: "org_invitations_person_id_fkey"
+            columns: ["person_id"]
+            isOneToOne: false
+            referencedRelation: "org_people"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      org_people: {
+        Row: {
+          created_at: string
+          email: string
+          id: string
+          last_active: string | null
+          name: string
+          status: string
+          user_id: string | null
+        }
+        Insert: {
+          created_at?: string
+          email: string
+          id?: string
+          last_active?: string | null
+          name: string
+          status?: string
+          user_id?: string | null
+        }
+        Update: {
+          created_at?: string
+          email?: string
+          id?: string
+          last_active?: string | null
+          name?: string
+          status?: string
+          user_id?: string | null
+        }
+        Relationships: []
+      }
+      org_person_roles: {
+        Row: {
+          person_id: string
+          role: string
+        }
+        Insert: {
+          person_id: string
+          role: string
+        }
+        Update: {
+          person_id?: string
+          role?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "org_person_roles_person_id_fkey"
+            columns: ["person_id"]
+            isOneToOne: false
+            referencedRelation: "org_people"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      org_settings: {
+        Row: {
+          candidate_days: number
+          id: boolean
+          logo_path: string
+          name: string
+          onet_mode: string
+          privacy_notice: string
+          retention_months: number
+        }
+        Insert: {
+          candidate_days?: number
+          id?: boolean
+          logo_path?: string
+          name?: string
+          onet_mode?: string
+          privacy_notice?: string
+          retention_months?: number
+        }
+        Update: {
+          candidate_days?: number
+          id?: boolean
+          logo_path?: string
+          name?: string
+          onet_mode?: string
+          privacy_notice?: string
+          retention_months?: number
+        }
+        Relationships: []
+      }
       package_materials: {
         Row: {
           blocked_by_conflict_id: string | null
@@ -927,6 +1199,14 @@ export type Database = {
         Returns: boolean
       }
       interview_required: { Args: { p: string[] }; Returns: string[] }
+      org_active: { Args: { uid: string }; Returns: boolean }
+      org_assigned: {
+        Args: { p: string; rid: string; uid: string }
+        Returns: boolean
+      }
+      org_can: { Args: { cap: string; rid?: string }; Returns: boolean }
+      org_has_role: { Args: { r: string; uid: string }; Returns: boolean }
+      org_save_person: { Args: { v: Json }; Returns: string }
       revise_interview: { Args: { sid: string }; Returns: string }
       save_interview_answer: { Args: { payload: Json }; Returns: string }
       test_interview_rule: { Args: { test_name: string }; Returns: boolean }

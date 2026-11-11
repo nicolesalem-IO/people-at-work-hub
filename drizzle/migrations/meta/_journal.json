@@ -92,6 +92,13 @@
       "when": 1794424629764,
       "tag": "0012_assessment_candidate_actions",
       "breakpoints": true
+    },
+    {
+      "idx": 13,
+      "version": "7",
+      "when": 1794426263514,
+      "tag": "0013_admin_people_permissions_settings",
+      "breakpoints": true
     }
   ]
 }
