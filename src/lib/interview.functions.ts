@@ -27,6 +27,9 @@ export const saveInterviewAnswer=createServerFn({method:'POST'}).middleware([req
 export const reviewInterview=createServerFn({method:'POST'}).middleware([requireSupabaseAuth]).inputValidator((v:{session_id:string;status:'in_review'|'approved'|'rejected'})=>v).handler(async({data,context})=>{
  const {error}=await context.supabase.from('interview_sessions').update({status:data.status}).eq('id',data.session_id).select().single();if(error)throw new Error(error.message);return true;
 });
+export const reviseInterview=createServerFn({method:'POST'}).middleware([requireSupabaseAuth]).inputValidator((v:{session_id:string})=>v).handler(async({data,context})=>{
+ const {data:id,error}=await context.supabase.rpc('revise_interview',{sid:data.session_id});if(error)throw new Error(error.message);return id;
+});
 export const resolveInterviewConflict=createServerFn({method:'POST'}).middleware([requireSupabaseAuth]).inputValidator((v:{id:string;note:string})=>{if(!v.note.trim())throw new Error('A resolution note is required.');return v;}).handler(async({data,context})=>{
  const {error}=await context.supabase.from('evidence_conflicts').update({status:'resolved',resolution_note:data.note}).eq('id',data.id).select().single();if(error)throw new Error(error.message);return true;
 });
