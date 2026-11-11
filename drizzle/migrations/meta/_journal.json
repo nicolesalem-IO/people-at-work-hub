@@ -57,6 +57,13 @@
       "when": 1794421892921,
       "tag": "0007_interview_demo_and_versioning",
       "breakpoints": true
+    },
+    {
+      "idx": 8,
+      "version": "7",
+      "when": 1794422082301,
+      "tag": "0008_interview_approval_and_probes",
+      "breakpoints": true
     }
   ]
 }

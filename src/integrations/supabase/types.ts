@@ -760,6 +760,7 @@ export type Database = {
       interview_required: { Args: { p: string[] }; Returns: string[] }
       revise_interview: { Args: { sid: string }; Returns: string }
       save_interview_answer: { Args: { payload: Json }; Returns: string }
+      test_interview_rule: { Args: { test_name: string }; Returns: boolean }
       test_workspace_rule: { Args: { test_name: string }; Returns: boolean }
     }
     Enums: {
