@@ -537,6 +537,14 @@ export type Database = {
     }
     Functions: {
       can_edit_workspace: { Args: never; Returns: boolean }
+      convert_contribution_to_evidence: {
+        Args: {
+          contribution_id: string
+          evidence_code: string
+          evidence_title: string
+        }
+        Returns: string
+      }
       has_role: {
         Args: { role: Database["public"]["Enums"]["app_role"]; user_id: string }
         Returns: boolean
