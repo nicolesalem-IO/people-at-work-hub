@@ -4,6 +4,7 @@ const nav = [
   { to: "/", label: "Job analysis" },
   { to: "/evidence", label: "Evidence" },
   { to: "/contribute", label: "Contribute" },
+  { to: "/interviews", label: "Saved interviews" },
   { to: "/blueprint", label: "Blueprint" },
   { to: "/builders", label: "Tests" },
   { to: "/results", label: "Results" },
@@ -17,7 +18,7 @@ export function AppShell() {
       <div className="h-1.5 bg-brand-yellow" />
       <header className="border-b bg-background">
         <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-4 px-5 py-5 md:px-10">
-          <Link to="/" className="flex items-center gap-3 text-xl font-semibold tracking-tight">
+          <Link to="/" className="flex items-center gap-3 text-xl font-semibold">
             <span className="size-3 rounded-[3px] bg-brand-pink" aria-hidden="true" />
             I-O Workspace
           </Link>

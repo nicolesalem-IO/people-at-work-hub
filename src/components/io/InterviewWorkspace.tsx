@@ -35,7 +35,7 @@ export function InterviewWorkspace({outputsOnly=false,contributionMode=false}:{o
   setValues(previous?.values??{});setNotice('');
  }
  const current=modules[activeModule];
- if(!session||!current)return <p>No saved analysis yet. <Button onClick={()=>{setData(interviewDemo);setNewAnalysis(true);}}>New analysis</Button></p>;
+ if((!session&&!newAnalysis)||!current)return <p>No saved analysis yet. <Button onClick={()=>{setNewAnalysis(true);}}>New analysis</Button></p>;
  return <>
   <PageHeader eyebrow="Purpose first · Job analysis" title={newAnalysis?'New role analysis':data.roles.find(r=>r.id===session?.job_role_id)?.title??'Job analysis'} actions={<Button variant="outline" onClick={()=>setNewAnalysis(!newAnalysis)}><Plus/> {newAnalysis?'Back to analysis':'New analysis'}</Button>}>
    {!newAnalysis&&<span>{chosen.map(p=>purposes[p]).join(' · ')} <span className="mx-2 text-muted-foreground">/</span> {session?.locations} {session?.is_fictional&&<span className="ml-2 font-semibold text-pink-ink">Fictional example</span>}</span>}
@@ -49,7 +49,7 @@ export function InterviewWorkspace({outputsOnly=false,contributionMode=false}:{o
    <fieldset><legend className="mb-3 text-xl font-bold">3. Who are the sources?</legend><div className="flex flex-wrap gap-5">{['incumbent','supervisor','hr','document','observation'].map(type=><label key={type} className="flex items-center gap-2"><Checkbox checked={setup.source_types.includes(type)} onCheckedChange={checked=>setSetup(v=>({...v,source_types:checked?[...v.source_types,type]:v.source_types.filter(t=>t!==type)}))}/>{({incumbent:'Incumbents',supervisor:'Supervisors',hr:'HR',document:'SOPs / documents',observation:'Observation'})[type as 'hr']??type}</label>)}</div></fieldset>
    <fieldset className="grid gap-4 sm:grid-cols-2"><legend className="mb-3 text-xl font-bold">4. How many people, locations or teams?</legend><label>People holding this role<Input type="number" min={1} step={1} required value={setup.incumbents} onChange={e=>setSetup(v=>({...v,incumbents:Number(e.target.value)}))}/></label><label>Number of locations / teams<Input required placeholder="e.g. 2 locations / 4 teams" value={setup.locations} onChange={e=>setSetup(v=>({...v,locations:e.target.value}))}/></label></fieldset>
    <Button type="submit" disabled={!signedIn||!editor||busy}><ArrowRight/> Begin interview</Button>
-  </form>:<>
+  </form>:session&&<>
    {data.sessions.length>1&&<label className="mb-6 block max-w-md text-sm">Saved analysis<select className="mt-2 w-full rounded-md border bg-background p-3" value={session?.id} onChange={e=>{setSelected(e.target.value);setValues({});}}>{data.sessions.map(s=><option key={s.id} value={s.id}>{data.roles.find(r=>r.id===s.job_role_id)?.title} · {s.status}</option>)}</select></label>}
    <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_19rem]">
     <div className="min-w-0">
