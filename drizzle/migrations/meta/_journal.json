@@ -162,6 +162,13 @@
       "when": 1794427802654,
       "tag": "0022_private_candidate_pipeline_actions",
       "breakpoints": true
+    },
+    {
+      "idx": 23,
+      "version": "7",
+      "when": 1794428255477,
+      "tag": "0023_first_run_onboarding_drafts",
+      "breakpoints": true
     }
   ]
 }
