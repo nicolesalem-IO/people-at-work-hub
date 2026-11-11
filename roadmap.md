@@ -1,4 +1,5 @@
 # Roadmap
+- [ ] Apply uploaded visual-style and workflow redesign brief
 - [ ] Persist interview answers/evidence after refresh and walk the signed-in flow with the user's testing account
 - [ ] Assessment data, source-attributed O*NET extract and deterministic scoring rules
 - [ ] Rating-first job analysis, blueprint, builders, results, fairness and HR review
