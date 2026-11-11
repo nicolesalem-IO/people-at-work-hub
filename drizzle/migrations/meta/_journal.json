@@ -141,6 +141,13 @@
       "when": 1794427003563,
       "tag": "0019_restrict_admin_table_default_grants",
       "breakpoints": true
+    },
+    {
+      "idx": 20,
+      "version": "7",
+      "when": 1794427725659,
+      "tag": "0020_candidate_pipeline_storage",
+      "breakpoints": true
     }
   ]
 }

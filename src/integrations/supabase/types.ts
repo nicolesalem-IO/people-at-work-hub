@@ -115,72 +115,99 @@ export type Database = {
       assessment_attempts: {
         Row: {
           accommodation_request: string
+          accommodation_status: string
           alternate_format: string
           answers: Json
+          auto_scored_at: string | null
           battery_id: string
           campaign_id: string | null
+          candidate_id: string | null
+          completed_sections: Json
           created_at: string
           current_section: string | null
           expires_at: string
           extra_minutes: number
           id: string
           name: string
+          option_order: Json
+          practice_completed: Json
           privacy_accepted_at: string | null
           privacy_notice: string
           purged_at: string | null
+          question_order: Json
           raters: Json
           reconciliations: Json
           revoked: boolean
           scores: Json
           section_deadlines: Json
+          section_times: Json
+          started_at: string | null
           status: string
           submitted_at: string | null
           token_hash: string | null
         }
         Insert: {
           accommodation_request?: string
+          accommodation_status?: string
           alternate_format?: string
           answers?: Json
+          auto_scored_at?: string | null
           battery_id: string
           campaign_id?: string | null
+          candidate_id?: string | null
+          completed_sections?: Json
           created_at?: string
           current_section?: string | null
           expires_at?: string
           extra_minutes?: number
           id?: string
           name: string
+          option_order?: Json
+          practice_completed?: Json
           privacy_accepted_at?: string | null
           privacy_notice?: string
           purged_at?: string | null
+          question_order?: Json
           raters?: Json
           reconciliations?: Json
           revoked?: boolean
           scores?: Json
           section_deadlines?: Json
+          section_times?: Json
+          started_at?: string | null
           status?: string
           submitted_at?: string | null
           token_hash?: string | null
         }
         Update: {
           accommodation_request?: string
+          accommodation_status?: string
           alternate_format?: string
           answers?: Json
+          auto_scored_at?: string | null
           battery_id?: string
           campaign_id?: string | null
+          candidate_id?: string | null
+          completed_sections?: Json
           created_at?: string
           current_section?: string | null
           expires_at?: string
           extra_minutes?: number
           id?: string
           name?: string
+          option_order?: Json
+          practice_completed?: Json
           privacy_accepted_at?: string | null
           privacy_notice?: string
           purged_at?: string | null
+          question_order?: Json
           raters?: Json
           reconciliations?: Json
           revoked?: boolean
           scores?: Json
           section_deadlines?: Json
+          section_times?: Json
+          started_at?: string | null
           status?: string
           submitted_at?: string | null
           token_hash?: string | null
@@ -198,6 +225,13 @@ export type Database = {
             columns: ["campaign_id"]
             isOneToOne: false
             referencedRelation: "assessment_campaigns"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "assessment_attempts_candidate_id_fkey"
+            columns: ["candidate_id"]
+            isOneToOne: true
+            referencedRelation: "pipeline_candidates"
             referencedColumns: ["id"]
           },
         ]
@@ -238,24 +272,36 @@ export type Database = {
       assessment_campaigns: {
         Row: {
           battery_id: string
+          candidate_days: number
+          closes_at: string
           created_at: string
           created_by: string | null
           id: string
           name: string
+          opens_at: string
+          welcome_message: string
         }
         Insert: {
           battery_id: string
+          candidate_days?: number
+          closes_at?: string
           created_at?: string
           created_by?: string | null
           id?: string
           name: string
+          opens_at?: string
+          welcome_message?: string
         }
         Update: {
           battery_id?: string
+          candidate_days?: number
+          closes_at?: string
           created_at?: string
           created_by?: string | null
           id?: string
           name?: string
+          opens_at?: string
+          welcome_message?: string
         }
         Relationships: [
           {
@@ -552,6 +598,8 @@ export type Database = {
           decision: string
           id: string
           note: string
+          outcome: string | null
+          reason: string | null
         }
         Insert: {
           attempt_id: string
@@ -560,6 +608,8 @@ export type Database = {
           decision: string
           id?: string
           note: string
+          outcome?: string | null
+          reason?: string | null
         }
         Update: {
           attempt_id?: string
@@ -568,6 +618,8 @@ export type Database = {
           decision?: string
           id?: string
           note?: string
+          outcome?: string | null
+          reason?: string | null
         }
         Relationships: [
           {
@@ -1083,6 +1135,140 @@ export type Database = {
           },
         ]
       }
+      pipeline_candidates: {
+        Row: {
+          campaign_id: string
+          created_at: string
+          email: string
+          id: string
+          name: string
+        }
+        Insert: {
+          campaign_id: string
+          created_at?: string
+          email: string
+          id?: string
+          name: string
+        }
+        Update: {
+          campaign_id?: string
+          created_at?: string
+          email?: string
+          id?: string
+          name?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "pipeline_candidates_campaign_id_fkey"
+            columns: ["campaign_id"]
+            isOneToOne: false
+            referencedRelation: "assessment_campaigns"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      pipeline_rater_scores: {
+        Row: {
+          attempt_id: string
+          comment: string
+          created_at: string
+          id: string
+          item_id: string
+          rater_id: string
+          ratings: Json
+        }
+        Insert: {
+          attempt_id: string
+          comment: string
+          created_at?: string
+          id?: string
+          item_id: string
+          rater_id: string
+          ratings: Json
+        }
+        Update: {
+          attempt_id?: string
+          comment?: string
+          created_at?: string
+          id?: string
+          item_id?: string
+          rater_id?: string
+          ratings?: Json
+        }
+        Relationships: [
+          {
+            foreignKeyName: "pipeline_rater_scores_attempt_id_fkey"
+            columns: ["attempt_id"]
+            isOneToOne: false
+            referencedRelation: "assessment_attempts"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      pipeline_responses: {
+        Row: {
+          answer: string
+          attempt_id: string
+          item_id: string
+          time_seconds: number
+          updated_at: string
+        }
+        Insert: {
+          answer: string
+          attempt_id: string
+          item_id: string
+          time_seconds?: number
+          updated_at?: string
+        }
+        Update: {
+          answer?: string
+          attempt_id?: string
+          item_id?: string
+          time_seconds?: number
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "pipeline_responses_attempt_id_fkey"
+            columns: ["attempt_id"]
+            isOneToOne: false
+            referencedRelation: "assessment_attempts"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      pipeline_scores: {
+        Row: {
+          attempt_id: string
+          created_at: string
+          score_key: string
+          score_type: string
+          value: number
+        }
+        Insert: {
+          attempt_id: string
+          created_at?: string
+          score_key: string
+          score_type: string
+          value: number
+        }
+        Update: {
+          attempt_id?: string
+          created_at?: string
+          score_key?: string
+          score_type?: string
+          value?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "pipeline_scores_attempt_id_fkey"
+            columns: ["attempt_id"]
+            isOneToOne: false
+            referencedRelation: "assessment_attempts"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       profiles: {
         Row: {
           created_at: string
@@ -1246,6 +1432,19 @@ export type Database = {
         Returns: boolean
       }
       org_test_rule: { Args: { rule: string }; Returns: boolean }
+      pipeline_hiring_decision: {
+        Args: { aid: string; outcome: string; reason: string }
+        Returns: boolean
+      }
+      pipeline_invite: {
+        Args: { cid: string; hash: string; v: Json }
+        Returns: string
+      }
+      pipeline_launch: { Args: { v: Json }; Returns: string }
+      pipeline_server_invite: {
+        Args: { actor: string; cid: string; hash: string; v: Json }
+        Returns: string
+      }
       revise_interview: { Args: { sid: string }; Returns: string }
       save_interview_answer: { Args: { payload: Json }; Returns: string }
       test_interview_rule: { Args: { test_name: string }; Returns: boolean }
