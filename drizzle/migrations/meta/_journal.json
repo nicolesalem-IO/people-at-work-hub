@@ -99,6 +99,13 @@
       "when": 1794426263514,
       "tag": "0013_admin_people_permissions_settings",
       "breakpoints": true
+    },
+    {
+      "idx": 14,
+      "version": "7",
+      "when": 1794426319366,
+      "tag": "0014_admin_transaction_actions_and_private_projections",
+      "breakpoints": true
     }
   ]
 }

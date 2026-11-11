@@ -1199,14 +1199,35 @@ export type Database = {
         Returns: boolean
       }
       interview_required: { Args: { p: string[] }; Returns: string[] }
+      org_accept_invitation: { Args: { inv: string }; Returns: boolean }
       org_active: { Args: { uid: string }; Returns: boolean }
       org_assigned: {
         Args: { p: string; rid: string; uid: string }
         Returns: boolean
       }
+      org_blind_work: { Args: { rid: string }; Returns: Json }
       org_can: { Args: { cap: string; rid?: string }; Returns: boolean }
+      org_fairness_data: { Args: { rid: string }; Returns: Json }
       org_has_role: { Args: { r: string; uid: string }; Returns: boolean }
+      org_retention_cleanup: { Args: never; Returns: number }
       org_save_person: { Args: { v: Json }; Returns: string }
+      org_score_snapshot: {
+        Args: { aid: string; item?: string }
+        Returns: Json
+      }
+      org_session: { Args: never; Returns: Json }
+      org_store_score: {
+        Args: {
+          aid: string
+          expected: Json
+          item?: string
+          recs: Json
+          rs: Json
+          sc: Json
+          st: string
+        }
+        Returns: boolean
+      }
       revise_interview: { Args: { sid: string }; Returns: string }
       save_interview_answer: { Args: { payload: Json }; Returns: string }
       test_interview_rule: { Args: { test_name: string }; Returns: boolean }
