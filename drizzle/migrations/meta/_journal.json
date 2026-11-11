@@ -43,6 +43,13 @@
       "when": 1794421795241,
       "tag": "0005_structured_job_analysis_interviews",
       "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "7",
+      "when": 1794421854424,
+      "tag": "0006_interview_transaction_actions",
+      "breakpoints": true
     }
   ]
 }

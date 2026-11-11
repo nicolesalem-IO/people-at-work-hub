@@ -733,6 +733,7 @@ export type Database = {
         }
         Returns: string
       }
+      create_interview: { Args: { payload: Json }; Returns: string }
       has_role: {
         Args: { role: Database["public"]["Enums"]["app_role"]; user_id: string }
         Returns: boolean
@@ -747,6 +748,7 @@ export type Database = {
         Returns: boolean
       }
       interview_required: { Args: { p: string[] }; Returns: string[] }
+      save_interview_answer: { Args: { payload: Json }; Returns: string }
       test_workspace_rule: { Args: { test_name: string }; Returns: boolean }
     }
     Enums: {
