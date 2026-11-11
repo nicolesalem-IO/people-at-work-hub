@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AdminRouteImport } from './routes/admin'
 import { Route as BenchmarkRouteImport } from './routes/benchmark'
 import { Route as BlueprintRouteImport } from './routes/blueprint'
 import { Route as BuildersRouteImport } from './routes/builders'
@@ -28,6 +29,11 @@ import { Route as CandidateTokenRouteImport } from './routes/candidate.$token'
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminRoute = AdminRouteImport.update({
+  id: '/admin',
+  path: '/admin',
   getParentRoute: () => rootRouteImport,
 } as any)
 const BenchmarkRoute = BenchmarkRouteImport.update({
@@ -103,6 +109,7 @@ const CandidateTokenRoute = CandidateTokenRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/admin': typeof AdminRoute
   '/benchmark': typeof BenchmarkRoute
   '/blueprint': typeof BlueprintRoute
   '/builders': typeof BuildersRoute
@@ -120,6 +127,7 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/admin': typeof AdminRoute
   '/benchmark': typeof BenchmarkRoute
   '/blueprint': typeof BlueprintRoute
   '/builders': typeof BuildersRoute
@@ -138,6 +146,7 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/admin': typeof AdminRoute
   '/benchmark': typeof BenchmarkRoute
   '/blueprint': typeof BlueprintRoute
   '/builders': typeof BuildersRoute
@@ -157,6 +166,7 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/admin'
     | '/benchmark'
     | '/blueprint'
     | '/builders'
@@ -174,6 +184,7 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/admin'
     | '/benchmark'
     | '/blueprint'
     | '/builders'
@@ -191,6 +202,7 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
+    | '/admin'
     | '/benchmark'
     | '/blueprint'
     | '/builders'
@@ -209,6 +221,7 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AdminRoute: typeof AdminRoute
   BenchmarkRoute: typeof BenchmarkRoute
   BlueprintRoute: typeof BlueprintRoute
   BuildersRoute: typeof BuildersRoute
@@ -232,6 +245,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin': {
+      id: '/admin'
+      path: '/admin'
+      fullPath: '/admin'
+      preLoaderRoute: typeof AdminRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/benchmark': {
@@ -337,6 +357,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AdminRoute: AdminRoute,
   BenchmarkRoute: BenchmarkRoute,
   BlueprintRoute: BlueprintRoute,
   BuildersRoute: BuildersRoute,
