@@ -1,0 +1,3 @@
+import {createFileRoute} from '@tanstack/react-router';
+import {AssessmentValidity} from '@/components/io/AssessmentValidity';
+export const Route=createFileRoute('/validity')({head:()=>({meta:[{title:'Assessment fairness and validity — I-O Workspace'},{name:'description',content:'Content-alignment evidence, optional pilot-group impact checks and accessibility review flags.'},{property:'og:title',content:'Assessment fairness and validity — I-O Workspace'},{property:'og:description',content:'Content-alignment evidence, optional pilot-group impact checks and accessibility review flags.'},{property:'og:type',content:'website'},{name:'twitter:card',content:'summary_large_image'}]}),component:AssessmentValidity});

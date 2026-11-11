@@ -1,0 +1,3 @@
+import {createFileRoute} from '@tanstack/react-router';
+import {AssessmentResults} from '@/components/io/AssessmentResults';
+export const Route=createFileRoute('/results')({head:()=>({meta:[{title:'Candidate assessment results — I-O Workspace'},{name:'description',content:'Evidence-based candidate profiles by KSAO and assessment method for human review.'},{property:'og:title',content:'Candidate assessment results — I-O Workspace'},{property:'og:description',content:'Evidence-based candidate profiles by KSAO and assessment method for human review.'},{property:'og:type',content:'website'},{name:'twitter:card',content:'summary_large_image'}]}),component:AssessmentResults});
