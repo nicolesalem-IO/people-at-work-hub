@@ -220,8 +220,8 @@
 .coverage-fill { stroke: var(--brand-yellow); }
 .coverage-number { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font: 800 48px var(--font-display); }
 .coverage-number small { font-size: 18px; margin-left: 3px; }
-.rating-scale { display: flex; gap: 4px; }
-.rating-scale button { width: 30px; height: 32px; border-radius: 5px; padding: 0; font-size: 12px; }
+.rating-scale { display: flex; gap: 2px; }
+.rating-scale button { width: 28px; height: 28px; min-width: 28px; border-radius: 5px; padding: 0; font-size: 12px; }
 .rating-scale button[aria-pressed=true] { background: var(--brand-yellow); color: var(--ink); border-color: var(--ink); }
 .rating-scale button:disabled[aria-pressed=true] { background: var(--brand-yellow); color: var(--ink); }
 .battery-summary { border-bottom: 1px solid var(--border); padding-bottom: 44px; margin-bottom: 38px; }
@@ -259,3 +259,18 @@
 .workspace-main .text-pink-ink:not(a):not(.eyebrow) { color:var(--foreground); }
 .workspace-main .border-brand-pink { border-color:var(--border); }
 .workspace-main a.text-pink-ink { color:var(--brand-pink); }
+
+.ratings-layout { display:grid; grid-template-columns:minmax(0,1fr); gap:28px; }
+.ratings-table-scroll { overflow-x:auto; }
+.ratings-table { width:100%; min-width:680px; table-layout:fixed; }
+.ratings-table .rating-binary-col { width:48px; }
+.ratings-table .rating-value-col { width:152px; }
+.ratings-table .rating-show-col { width:96px; }
+.ratings-table th,.ratings-table td { padding:12px 4px; }
+.ratings-table td:first-child { overflow-wrap:anywhere; padding-right:12px; }
+.ratings-table th { font-size:12px; }
+.ratings-table .eyebrow { font-size:10px; letter-spacing:.1em; }
+.ratings-table select { width:100%; min-width:0; font-size:12px; padding:6px 2px; }
+.ratings-table button:disabled[aria-pressed=true] { background:var(--brand-yellow); color:var(--ink); opacity:1; }
+@media(min-width:768px) { .ratings-table-scroll { overflow-x:visible; } .ratings-table { min-width:0; } }
+@media(min-width:1100px) { .ratings-layout { grid-template-columns:minmax(0,1fr) 190px; gap:24px; } .ratings-layout .coverage-sidebar { padding-left:20px; } }
