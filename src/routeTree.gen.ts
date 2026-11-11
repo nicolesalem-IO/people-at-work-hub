@@ -13,6 +13,7 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as ContributeRouteImport } from './routes/contribute'
 import { Route as EvidenceRouteImport } from './routes/evidence'
 import { Route as PackageRouteImport } from './routes/package'
+import { Route as SummarizeRouteImport } from './routes/summarize'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -34,18 +35,25 @@ const PackageRoute = PackageRouteImport.update({
   path: '/package',
   getParentRoute: () => rootRouteImport,
 } as any)
+const SummarizeRoute = SummarizeRouteImport.update({
+  id: '/summarize',
+  path: '/summarize',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/contribute': typeof ContributeRoute
   '/evidence': typeof EvidenceRoute
   '/package': typeof PackageRoute
+  '/summarize': typeof SummarizeRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/contribute': typeof ContributeRoute
   '/evidence': typeof EvidenceRoute
   '/package': typeof PackageRoute
+  '/summarize': typeof SummarizeRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -53,13 +61,14 @@ export interface FileRoutesById {
   '/contribute': typeof ContributeRoute
   '/evidence': typeof EvidenceRoute
   '/package': typeof PackageRoute
+  '/summarize': typeof SummarizeRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/contribute' | '/evidence' | '/package'
+  fullPaths: '/' | '/contribute' | '/evidence' | '/package' | '/summarize'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/contribute' | '/evidence' | '/package'
-  id: '__root__' | '/' | '/contribute' | '/evidence' | '/package'
+  to: '/' | '/contribute' | '/evidence' | '/package' | '/summarize'
+  id: '__root__' | '/' | '/contribute' | '/evidence' | '/package' | '/summarize'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -67,6 +76,7 @@ export interface RootRouteChildren {
   ContributeRoute: typeof ContributeRoute
   EvidenceRoute: typeof EvidenceRoute
   PackageRoute: typeof PackageRoute
+  SummarizeRoute: typeof SummarizeRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -99,6 +109,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PackageRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/summarize': {
+      id: '/summarize'
+      path: '/summarize'
+      fullPath: '/summarize'
+      preLoaderRoute: typeof SummarizeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -107,6 +124,7 @@ const rootRouteChildren: RootRouteChildren = {
   ContributeRoute: ContributeRoute,
   EvidenceRoute: EvidenceRoute,
   PackageRoute: PackageRoute,
+  SummarizeRoute: SummarizeRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
