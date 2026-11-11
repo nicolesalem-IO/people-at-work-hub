@@ -44,7 +44,7 @@ function Evidence() {
           <tbody>
             {rows.map((e) => (
               <tr key={e.id} className="border-t align-top odd:bg-background even:bg-muted hover:bg-yellow-soft">
-                <td className="px-4 py-3 font-mono text-xs">{e.id}</td>
+                <td className="px-4 py-3 font-mono text-xs whitespace-nowrap">{e.id}</td>
                 <td className="px-4 py-3 font-semibold">{e.task}</td>
                 <td className="max-w-md px-4 py-3">“{e.excerpt}”</td>
                 <td className="px-4 py-3 text-muted-foreground">{e.source}<br />{e.contributor}</td>
