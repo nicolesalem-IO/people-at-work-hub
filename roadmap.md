@@ -1,4 +1,9 @@
 # Roadmap
+- [x] ATS handoff: app no longer collects applications; Stage 0 screening criteria export (copy/CSV) for the company's ATS, candidate-side qualification check (unconfirmed → HR review, no auto-reject), ATS CSV import with ats_id, results export CSV; 8 tests
+- [x] Live O*NET Web Services v2 via server-only ONET_API_KEY (search + tasks/knowledge/skills/abilities/technology), cached, merged into the saved benchmark, saved-data fallback; 8 parser tests
+- [x] "See a test plan for any job" on the welcome page and /try: O*NET match → day-one skills → plan (reasoning capped at 25%, interview 15%) → 3 AI-drafted sample questions with server-validated task/skill citations, hourly AI budget, saved/fallback questions; 8 tests
+- [ ] Persist ats_id for live candidates — needs an `ats_candidate_id` column on pipeline candidates (ask Lovable; schema is Lovable-managed)
+- [ ] Add ONET_API_KEY in Lovable Cloud → Secrets to switch the quick plan and benchmark refresh to live O*NET
 - [x] Approved candidate restructuring: plain-language workspace/glossary, retired legacy interview entry, 12 reasoning items/3 demo scenarios, two task-specific rubrics, five-question printable interview guide, finalist-only 40/25/20/15 scores and five staged demo stories
 - [x] Demo walkthrough: Stage 0 screening, separate Stage 1/2 links, ordered parts, timed autosave/refresh, locked submission, third-rater resolution, all five interview ratings and decision readback; 84 non-database tests pass and build OK
 - [ ] Live staged storage, stage-token functions, blind application projection, rater/interview authorization, audit/retention extensions and database-boundary verification — blocked: migration connection fails with tenant/user not found; retries applied nothing; live staged writes explicitly unavailable

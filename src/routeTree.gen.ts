@@ -29,6 +29,7 @@ import { Route as RolesRouteImport } from './routes/roles'
 import { Route as SmeWelcomeRouteImport } from './routes/sme-welcome'
 import { Route as SummarizeRouteImport } from './routes/summarize'
 import { Route as TeamInviteRouteImport } from './routes/team-invite'
+import { Route as TryRouteImport } from './routes/try'
 import { Route as ValidityRouteImport } from './routes/validity'
 import { Route as CandidateTokenRouteImport } from './routes/candidate.$token'
 import { Route as TakeTokenRouteImport } from './routes/take.$token'
@@ -134,6 +135,11 @@ const TeamInviteRoute = TeamInviteRouteImport.update({
   path: '/team-invite',
   getParentRoute: () => rootRouteImport,
 } as any)
+const TryRoute = TryRouteImport.update({
+  id: '/try',
+  path: '/try',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ValidityRoute = ValidityRouteImport.update({
   id: '/validity',
   path: '/validity',
@@ -177,6 +183,7 @@ export interface FileRoutesByFullPath {
   '/sme-welcome': typeof SmeWelcomeRoute
   '/summarize': typeof SummarizeRoute
   '/team-invite': typeof TeamInviteRoute
+  '/try': typeof TryRoute
   '/validity': typeof ValidityRoute
   '/candidate/$token': typeof CandidateTokenRoute
   '/take/$token': typeof TakeTokenRoute
@@ -203,6 +210,7 @@ export interface FileRoutesByTo {
   '/sme-welcome': typeof SmeWelcomeRoute
   '/summarize': typeof SummarizeRoute
   '/team-invite': typeof TeamInviteRoute
+  '/try': typeof TryRoute
   '/validity': typeof ValidityRoute
   '/candidate/$token': typeof CandidateTokenRoute
   '/take/$token': typeof TakeTokenRoute
@@ -230,6 +238,7 @@ export interface FileRoutesById {
   '/sme-welcome': typeof SmeWelcomeRoute
   '/summarize': typeof SummarizeRoute
   '/team-invite': typeof TeamInviteRoute
+  '/try': typeof TryRoute
   '/validity': typeof ValidityRoute
   '/candidate/$token': typeof CandidateTokenRoute
   '/take/$token': typeof TakeTokenRoute
@@ -258,6 +267,7 @@ export interface FileRouteTypes {
     | '/sme-welcome'
     | '/summarize'
     | '/team-invite'
+    | '/try'
     | '/validity'
     | '/candidate/$token'
     | '/take/$token'
@@ -284,6 +294,7 @@ export interface FileRouteTypes {
     | '/sme-welcome'
     | '/summarize'
     | '/team-invite'
+    | '/try'
     | '/validity'
     | '/candidate/$token'
     | '/take/$token'
@@ -310,6 +321,7 @@ export interface FileRouteTypes {
     | '/sme-welcome'
     | '/summarize'
     | '/team-invite'
+    | '/try'
     | '/validity'
     | '/candidate/$token'
     | '/take/$token'
@@ -337,6 +349,7 @@ export interface RootRouteChildren {
   SmeWelcomeRoute: typeof SmeWelcomeRoute
   SummarizeRoute: typeof SummarizeRoute
   TeamInviteRoute: typeof TeamInviteRoute
+  TryRoute: typeof TryRoute
   ValidityRoute: typeof ValidityRoute
   CandidateTokenRoute: typeof CandidateTokenRoute
   TakeTokenRoute: typeof TakeTokenRoute
@@ -485,6 +498,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof TeamInviteRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/try': {
+      id: '/try'
+      path: '/try'
+      fullPath: '/try'
+      preLoaderRoute: typeof TryRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/validity': {
       id: '/validity'
       path: '/validity'
@@ -537,6 +557,7 @@ const rootRouteChildren: RootRouteChildren = {
   SmeWelcomeRoute: SmeWelcomeRoute,
   SummarizeRoute: SummarizeRoute,
   TeamInviteRoute: TeamInviteRoute,
+  TryRoute: TryRoute,
   ValidityRoute: ValidityRoute,
   CandidateTokenRoute: CandidateTokenRoute,
   TakeTokenRoute: TakeTokenRoute,

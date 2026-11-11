@@ -337,3 +337,27 @@ h1,h2,h3 {word-break:normal;overflow-wrap:normal;hyphens:none;}
 .hiring-step.is-current {background:var(--brand-yellow);color:var(--ink);}
 @media(max-width:767px){.hiring-stepper{grid-template-columns:repeat(2,minmax(0,1fr));}.hiring-step{padding:0.75rem;}}
 @media print{.workspace-header,.workspace-top-banner,.workspace-footer,.role-stepper{display:none!important;}.workspace-main{padding:0!important;max-width:none!important;}.interview-print{font-size:11pt;}.interview-print article{break-inside:avoid;}.interview-print h1{font-size:24pt;}}
+
+/* Quick test plan ("see a test plan for any job") */
+.quick-plan{border-top:1px solid var(--border);padding:40px 0 48px;}
+.quick-plan-title{font-size:clamp(36px,6vw,64px);line-height:1.02;margin-top:14px;}
+.quick-plan-form{display:flex;gap:12px;margin-top:28px;max-width:860px;}
+.quick-plan-steps{list-style:none;margin-top:24px;display:grid;gap:8px;max-width:520px;}
+.quick-plan-steps li{padding:10px 14px;border:1px solid var(--border);border-radius:var(--radius);color:var(--muted-foreground);}
+.quick-plan-steps li[data-state=active]{background:var(--brand-yellow);color:var(--ink);border-color:var(--brand-yellow);font-weight:600;}
+.quick-plan-steps li[data-state=done]{color:var(--ink);}
+.quick-plan-steps li[data-state=done]::before{content:"✓ ";}
+.quick-plan-result{margin-top:32px;}
+.quick-plan-match{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;flex-wrap:wrap;background:var(--brand-yellow);color:var(--ink);padding:24px;}
+.quick-plan-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:40px;margin-top:32px;}
+.quick-plan-skill{display:flex;justify-content:space-between;gap:12px;border-bottom:1px solid var(--border);padding-bottom:10px;font-weight:600;}
+.quick-plan-skill span:last-child{font-weight:400;text-align:right;}
+.quick-plan-bar{height:10px;background:var(--secondary);margin-top:6px;}
+.quick-plan-bar span{display:block;height:100%;background:var(--brand-yellow);border-right:2px solid var(--ink);}
+.quick-plan-questions{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;margin-top:16px;}
+.quick-plan-question{border:1px solid var(--border);border-radius:var(--radius);padding:22px;display:flex;flex-direction:column;}
+.quick-plan-trace{margin-top:auto;padding-top:16px;border-top:1px solid var(--border);font-size:13px;display:grid;gap:6px;}
+.quick-plan-question .quick-plan-trace{margin-top:18px;}
+.quick-plan-footer{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;border-top:1px solid var(--border);margin-top:32px;padding-top:24px;}
+@media(max-width:900px){.quick-plan-grid,.quick-plan-questions{grid-template-columns:1fr;}}
+@media(max-width:640px){.quick-plan-form{flex-direction:column;}.quick-plan-skill{flex-direction:column;}.quick-plan-skill span:last-child{text-align:left;}}
