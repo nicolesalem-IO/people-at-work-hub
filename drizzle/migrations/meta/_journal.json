@@ -134,6 +134,13 @@
       "when": 1794426961792,
       "tag": "0018_sync_assigned_sme_source_guards",
       "breakpoints": true
+    },
+    {
+      "idx": 19,
+      "version": "7",
+      "when": 1794427003563,
+      "tag": "0019_restrict_admin_table_default_grants",
+      "breakpoints": true
     }
   ]
 }
