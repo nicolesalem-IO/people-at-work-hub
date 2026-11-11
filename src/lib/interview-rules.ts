@@ -19,8 +19,8 @@ export type Answer = {id:string; module:string; source_id:string; values: Record
 export function requiredModules(selected: readonly Purpose[]) { return [...new Set(selected.flatMap(p => [...purposeModules[p]]))].sort(); }
 export function completeAnswer(module:string, values:Record<string,string>) {
  const definition=modules[module];
- if (!definition || !definition.questions.every((_,i)=>typeof values[String(i)]==='string' && values[String(i)].trim().length>0)) return false;
- if(module==='B') return /^([1-5])$/.test(values['2']) && Number.isFinite(Number(values['4'])) && Number(values['4'])>=0 && Number(values['4'])<=100;
+ if (!definition || !definition.questions.every((_,i)=>typeof values[String(i)]==='string' && (values[String(i)]??'').trim().length>0)) return false;
+ if(module==='B') return /^([1-5])$/.test(values['2']??'') && Number.isFinite(Number(values['4'])) && Number(values['4'])>=0 && Number(values['4'])<=100;
  return true;
 }
 export function coverage(selected: readonly Purpose[], incumbents:number, answers:Answer[]) {

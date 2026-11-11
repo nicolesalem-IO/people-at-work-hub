@@ -1,6 +1,6 @@
 import {describe,it,expect} from 'vitest';
 import {requiredModules,coverage,completeAnswer,outputChoices,canDraft,modules,type Answer} from '../lib/interview-rules';
-const row=(module:string,source_id:string):Answer=>({id:source_id+module,module,source_id,values:Object.fromEntries(modules[module].questions.map((_,i)=>[String(i),module==='B'&&i===2?'3':module==='B'&&i===4?'40':'Answered'])),evidence_id:'ev',created_at:'2026-11-11'});
+const row=(module:string,source_id:string):Answer=>({id:source_id+module,module,source_id,values:Object.fromEntries((modules[module]?.questions??[]).map((_,i)=>[String(i),module==='B'&&i===2?'3':module==='B'&&i===4?'40':'Answered'])),evidence_id:'ev',created_at:'2026-11-11'});
 describe('purpose-first interview rules',()=>{
  it('selection requires A B C D F G',()=>expect(requiredModules(['selection'])).toEqual(['A','B','C','D','F','G']));
  it('training requires A B C D E H',()=>expect(requiredModules(['training'])).toEqual(['A','B','C','D','E','H']));
@@ -9,10 +9,10 @@ describe('purpose-first interview rules',()=>{
  it('legal requires A B G',()=>expect(requiredModules(['legal'])).toEqual(['A','B','G']));
  for(const purpose of ['workforce','redesign','other'] as const) it(`${purpose} requires A B D`,()=>expect(requiredModules([purpose])).toEqual(['A','B','D']));
  it('multi-purpose uses union',()=>expect(requiredModules(['training','selection'])).toEqual(['A','B','C','D','E','F','G','H']));
- it('repeated source cannot satisfy two-source rule',()=>expect(coverage(['training'],8,[row('A','one'),row('A','one')])[0].status).toBe('partial'));
- it('two complete sources cover a module',()=>expect(coverage(['training'],8,[row('A','one'),row('A','two')])[0].status).toBe('covered'));
+ it('repeated source cannot satisfy two-source rule',()=>expect(coverage(['training'],8,[row('A','one'),row('A','one')])[0]?.status).toBe('partial'));
+ it('two complete sources cover a module',()=>expect(coverage(['training'],8,[row('A','one'),row('A','two')])[0]?.status).toBe('covered'));
  it('single incumbent allows one source with warning',()=>expect(coverage(['training'],1,[row('A','one')])[0]).toMatchObject({status:'covered',limited:true}));
- it('missing core question is partial',()=>{const a=row('A','one');a.values['4']='';expect(coverage(['training'],1,[a])[0].status).toBe('partial');});
+ it('missing core question is partial',()=>{const a=row('A','one');a.values['4']='';expect(coverage(['training'],1,[a])[0]?.status).toBe('partial');});
  it('importance must be 1–5',()=>expect(completeAnswer('B',{...row('B','one').values,'2':'6'})).toBe(false));
  it('task time must be 0–100%',()=>expect(completeAnswer('B',{...row('B','one').values,'4':'101'})).toBe(false));
  it('training does not suggest hiring outputs',()=>expect(outputChoices(['training'])).toEqual(['Training-needs summary','Training plan']));
