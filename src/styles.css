@@ -331,3 +331,9 @@ h1,h2,h3 {word-break:normal;overflow-wrap:normal;hyphens:none;}
 .welcome-copy h1 {font-size:clamp(32px,16cqi,96px);}
 .setup-title {font-size:clamp(28px,8cqi,64px);}
 @media(max-width:640px){.step-hero h1,.dashboard-hero h1{font-size:clamp(28px,12cqi,48px);}.welcome-copy h1{font-size:clamp(32px,13cqi,48px);}.setup-title{font-size:clamp(28px,10cqi,48px);}}
+
+.hiring-stepper { display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-block:1px solid var(--border);margin-block:1.5rem; }
+.hiring-step {display:flex;gap:0.75rem;align-items:flex-start;padding:1rem;min-width:0;font-size:0.875rem;}
+.hiring-step.is-current {background:var(--brand-yellow);color:var(--ink);}
+@media(max-width:767px){.hiring-stepper{grid-template-columns:repeat(2,minmax(0,1fr));}.hiring-step{padding:0.75rem;}}
+@media print{.workspace-header,.workspace-top-banner,.workspace-footer,.role-stepper{display:none!important;}.workspace-main{padding:0!important;max-width:none!important;}.interview-print{font-size:11pt;}.interview-print article{break-inside:avoid;}.interview-print h1{font-size:24pt;}}

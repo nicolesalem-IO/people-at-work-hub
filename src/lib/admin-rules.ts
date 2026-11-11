@@ -13,7 +13,7 @@ export const permissionRows = [
  {key:'decision',label:'Record hiring decisions',roles:['admin'],assigned:['hiring_manager']},
  {key:'analysis',label:'Job analysis, blueprint & tests',roles:['admin','analyst'],assigned:[]},
  {key:'fairness',label:'Validity & fairness reports',roles:['admin','analyst','hr'],assigned:[]},
- {key:'sme',label:'Task/KSAO ratings & incidents',roles:['admin'],assigned:['sme']},
+ {key:'sme',label:'Expert task/skill ratings & incidents',roles:['admin'],assigned:['sme']},
  {key:'score',label:'Blind work-sample scoring',roles:['admin'],assigned:['rater']},
 ] as const;
 export type Capability = typeof permissionRows[number]['key'];

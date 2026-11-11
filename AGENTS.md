@@ -50,6 +50,8 @@ use the editor.
 - Candidate pipeline timing, one-attempt state, canonical option IDs, submission locks and scoring are enforced by transactional private-token actions; candidate browser payloads omit answer keys and future timed sections.
 - Demo pipeline progress is isolated browser storage with explicit fictional links, never a live authorization source.
 - Keep demo section counts separate from the shown item subset; item minute allocations drive both blueprint totals and candidate timers so duration stays consistent.
+- Version staged selection separately from legacy attempts; shared stage helpers enforce ordered demo invitations and finalist-only scoring, while live staged writes stay blocked until transactional database guards are applied.
+- Use the shared glossary and Term control for plain-language assessment labels so definitions and accessible technical tooltips stay consistent.
 
 ## Onboarding
 - Persist owner-scoped setup separately from protected organization roles; self-selected practitioner preference changes wording, never authorization.
