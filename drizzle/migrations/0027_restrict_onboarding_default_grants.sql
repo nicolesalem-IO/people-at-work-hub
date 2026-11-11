@@ -1,0 +1,1 @@
+REVOKE ALL ON public.onboarding_drafts FROM anon; REVOKE DELETE,TRUNCATE,REFERENCES,TRIGGER ON public.onboarding_drafts FROM authenticated;

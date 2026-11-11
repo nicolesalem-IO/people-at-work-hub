@@ -934,6 +934,30 @@ export type Database = {
           },
         ]
       }
+      onboarding_drafts: {
+        Row: {
+          completed_at: string | null
+          payload: Json
+          step: number
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          completed_at?: string | null
+          payload?: Json
+          step?: number
+          updated_at?: string
+          user_id?: string
+        }
+        Update: {
+          completed_at?: string | null
+          payload?: Json
+          step?: number
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
       org_assignments: {
         Row: {
           id: string
@@ -1385,6 +1409,12 @@ export type Database = {
         Returns: boolean
       }
       interview_required: { Args: { p: string[] }; Returns: string[] }
+      onboarding_batteries: { Args: never; Returns: Json }
+      onboarding_review_save: {
+        Args: { aid: string; decision: string; note: string; stage: string }
+        Returns: boolean
+      }
+      onboarding_sme_save: { Args: { v: Json }; Returns: boolean }
       org_accept_invitation: { Args: { inv: string }; Returns: boolean }
       org_active: { Args: { uid: string }; Returns: boolean }
       org_assigned: {

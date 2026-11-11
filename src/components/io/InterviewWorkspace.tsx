@@ -1,3 +1,4 @@
+import {EmptyState} from './EmptyState';
 import { useEffect, useState } from 'react';
 import { useServerFn } from '@tanstack/react-start';
 import { CheckCircle2, Circle, CircleDashed, ArrowRight, Plus, Save, Lock, AlertTriangle, Loader2, FileText, Users, ClipboardList } from 'lucide-react';
@@ -35,7 +36,7 @@ export function InterviewWorkspace({outputsOnly=false,contributionMode=false}:{o
   setValues(previous?.values??{});setNotice('');
  }
  const current=modules[activeModule];
- if((!session&&!newAnalysis)||!current)return <p>No saved analysis yet. <Button onClick={()=>{setNewAnalysis(true);}}>New analysis</Button></p>;
+ if((!session&&!newAnalysis)||!current)return <EmptyState message="No saved interviews yet." action="Start an analysis" onAction={()=>setNewAnalysis(true)}/>;
  return <>
   <PageHeader eyebrow="Purpose first · Job analysis" title={newAnalysis?'New role analysis':data.roles.find(r=>r.id===session?.job_role_id)?.title??'Job analysis'} actions={<Button variant="outline" onClick={()=>setNewAnalysis(!newAnalysis)}><Plus/> {newAnalysis?'Back to analysis':'New analysis'}</Button>}>
    {!newAnalysis&&<span>{chosen.map(p=>purposes[p]).join(' · ')} <span className="mx-2 text-muted-foreground">/</span> {session?.locations} {session?.is_fictional&&<span className="ml-2 font-semibold text-pink-ink">Fictional example</span>}</span>}

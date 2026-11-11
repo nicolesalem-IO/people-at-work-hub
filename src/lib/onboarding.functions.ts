@@ -1,0 +1,5 @@
+import {createServerFn} from '@tanstack/react-start';
+import {requireSupabaseAuth} from '@/integrations/supabase/auth-middleware';
+import {onboardingSchema} from './onboarding-rules';
+export const loadSetup=createServerFn({method:'GET'}).middleware([requireSupabaseAuth]).handler(async({context})=>{const {data,error}=await context.supabase.from('onboarding_drafts').select('payload').eq('user_id',context.userId).maybeSingle();if(error)throw new Error('Your setup could not be opened.');return data?onboardingSchema.parse(data.payload):null;});
+export const saveSetup=createServerFn({method:'POST'}).middleware([requireSupabaseAuth]).inputValidator(onboardingSchema).handler(async({data,context})=>{const {error}=await context.supabase.from('onboarding_drafts').upsert({user_id:context.userId,step:data.step,payload:data,completed_at:data.completed?new Date().toISOString():null,updated_at:new Date().toISOString()});if(error)throw new Error('Your setup could not be saved.');return data;});
