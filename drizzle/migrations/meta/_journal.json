@@ -36,6 +36,13 @@
       "when": 1794421421995,
       "tag": "0004_contribution_to_evidence",
       "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "7",
+      "when": 1794421795241,
+      "tag": "0005_structured_job_analysis_interviews",
+      "breakpoints": true
     }
   ]
 }
