@@ -1,13 +1,13 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { RolesDashboard } from '@/components/io/RolesDashboard';
+import { Welcome } from '@/components/io/Welcome';
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Your roles — I-O Workspace" },
-      { name: "description", content: "Your evidence-based job analyses and candidate assessment batteries, in one workspace." },
-      { property: "og:title", content: "Your roles — I-O Workspace" },
-      { property: "og:description", content: "Your evidence-based job analyses and candidate assessment batteries, in one workspace." },
+      { title: "Test what the job actually needs — People at Work" },
+      { name: "description", content: "Turn real job evidence into skills tests, aptitude tests and fair hiring decisions." },
+      { property: "og:title", content: "Test what the job actually needs — People at Work" },
+      { property: "og:description", content: "Turn real job evidence into skills tests, aptitude tests and fair hiring decisions." },
       { property: 'og:type', content: 'website' },
       { name: 'twitter:card', content: 'summary_large_image' },
     ],
@@ -16,5 +16,5 @@ export const Route = createFileRoute("/")({
 });
 
 function Dashboard() {
-  return <RolesDashboard />;
+  return <Welcome />;
 }
