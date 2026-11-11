@@ -34,7 +34,7 @@ function Evidence() {
       <div className="overflow-x-auto rounded-lg border shadow-card">
         <table className="w-full text-left text-sm">
           <caption className="sr-only">Evidence excerpts by task</caption>
-          <thead className="bg-ink text-background">
+          <thead className="bg-ink text-background text-xs uppercase tracking-[0.15em]">
             <tr>
               {["ID", "Task", "Excerpt", "Source", "Status"].map((h) => (
                 <th key={h} scope="col" className="px-4 py-3 font-bold">{h}</th>
