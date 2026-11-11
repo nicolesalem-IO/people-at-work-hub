@@ -28,3 +28,6 @@ use the editor.
   own key and store it in Secrets.
 - **Secrets.** Lovable manages them. Do not put secret values in the repo.
 <!-- LOVABLE:END -->
+
+## AI
+- AI calls go through @lovable.dev/ai-gateway inside createServerFn handlers (src/lib/*.functions.ts); evidence citations are re-validated server-side because model output is untrusted.
