@@ -20,7 +20,7 @@ export const Route = createFileRoute("/summarize")({
 });
 
 const field = "w-full rounded-md border border-input bg-background px-3 py-2.5 text-base placeholder:text-muted-foreground focus-visible:border-ink";
-const supportMap: Record<string, { status: Status; label: string }> = {
+const supportMap: Record<"supported" | "limited" | "conflict", { status: Status; label: string }> = {
   supported: { status: "approved", label: "Supported by 2+ sources" },
   limited: { status: "missing", label: "Limited evidence" },
   conflict: { status: "conflict", label: "Sources disagree" },
@@ -92,7 +92,7 @@ function Summarize() {
               <StatusBadge status="draft" />
               {result.droppedCitations > 0 && <p className="text-sm text-muted-foreground">{result.droppedCitations} citation(s) to unknown notes were removed.</p>}
               {result.competencies.map((c) => {
-                const s = supportMap[c.support] ?? supportMap.limited;
+                const s = supportMap[c.support] ?? supportMap["limited"];
                 return (
                   <article key={c.name} className="rounded-lg border bg-card p-5 shadow-card">
                     <div className="flex flex-wrap items-start justify-between gap-2">
