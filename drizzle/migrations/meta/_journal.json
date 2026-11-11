@@ -71,6 +71,13 @@
       "when": 1794424271029,
       "tag": "0009_assessment_storage",
       "breakpoints": true
+    },
+    {
+      "idx": 10,
+      "version": "7",
+      "when": 1794424360876,
+      "tag": "0010_assessment_validation",
+      "breakpoints": true
     }
   ]
 }

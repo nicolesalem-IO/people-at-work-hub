@@ -893,10 +893,12 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
+      assessment_analysis_ready: { Args: { v: Json }; Returns: boolean }
       assessment_permission: {
         Args: { bid: string; p: string }
         Returns: boolean
       }
+      assessment_ready: { Args: { v: Json }; Returns: boolean }
       can_edit_workspace: { Args: never; Returns: boolean }
       convert_contribution_to_evidence: {
         Args: {
