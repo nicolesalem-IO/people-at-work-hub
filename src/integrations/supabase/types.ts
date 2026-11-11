@@ -80,6 +80,165 @@ export type Database = {
         }
         Relationships: []
       }
+      assessment_access: {
+        Row: {
+          battery_id: string
+          id: string
+          permission: string
+          source_id: string | null
+          user_id: string
+        }
+        Insert: {
+          battery_id: string
+          id?: string
+          permission: string
+          source_id?: string | null
+          user_id: string
+        }
+        Update: {
+          battery_id?: string
+          id?: string
+          permission?: string
+          source_id?: string | null
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "assessment_access_battery_id_fkey"
+            columns: ["battery_id"]
+            isOneToOne: false
+            referencedRelation: "assessment_batteries"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      assessment_attempts: {
+        Row: {
+          accommodation_request: string
+          alternate_format: string
+          answers: Json
+          battery_id: string
+          created_at: string
+          current_section: string | null
+          expires_at: string
+          extra_minutes: number
+          id: string
+          name: string
+          raters: Json
+          reconciliations: Json
+          revoked: boolean
+          scores: Json
+          section_deadlines: Json
+          status: string
+          submitted_at: string | null
+          token_hash: string | null
+        }
+        Insert: {
+          accommodation_request?: string
+          alternate_format?: string
+          answers?: Json
+          battery_id: string
+          created_at?: string
+          current_section?: string | null
+          expires_at?: string
+          extra_minutes?: number
+          id?: string
+          name: string
+          raters?: Json
+          reconciliations?: Json
+          revoked?: boolean
+          scores?: Json
+          section_deadlines?: Json
+          status?: string
+          submitted_at?: string | null
+          token_hash?: string | null
+        }
+        Update: {
+          accommodation_request?: string
+          alternate_format?: string
+          answers?: Json
+          battery_id?: string
+          created_at?: string
+          current_section?: string | null
+          expires_at?: string
+          extra_minutes?: number
+          id?: string
+          name?: string
+          raters?: Json
+          reconciliations?: Json
+          revoked?: boolean
+          scores?: Json
+          section_deadlines?: Json
+          status?: string
+          submitted_at?: string | null
+          token_hash?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "assessment_attempts_battery_id_fkey"
+            columns: ["battery_id"]
+            isOneToOne: false
+            referencedRelation: "assessment_batteries"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      assessment_batteries: {
+        Row: {
+          analysis_status: string
+          approved_at: string | null
+          approved_by: string | null
+          created_at: string
+          created_by: string | null
+          id: string
+          payload: Json
+          status: string
+        }
+        Insert: {
+          analysis_status?: string
+          approved_at?: string | null
+          approved_by?: string | null
+          created_at?: string
+          created_by?: string | null
+          id?: string
+          payload: Json
+          status?: string
+        }
+        Update: {
+          analysis_status?: string
+          approved_at?: string | null
+          approved_by?: string | null
+          created_at?: string
+          created_by?: string | null
+          id?: string
+          payload?: Json
+          status?: string
+        }
+        Relationships: []
+      }
+      assessment_demographics: {
+        Row: {
+          attempt_id: string
+          group_label: string
+        }
+        Insert: {
+          attempt_id: string
+          group_label?: string
+        }
+        Update: {
+          attempt_id?: string
+          group_label?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "assessment_demographics_attempt_id_fkey"
+            columns: ["attempt_id"]
+            isOneToOne: true
+            referencedRelation: "assessment_attempts"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       competencies: {
         Row: {
           analysis_version_id: string
@@ -734,6 +893,10 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
+      assessment_permission: {
+        Args: { bid: string; p: string }
+        Returns: boolean
+      }
       can_edit_workspace: { Args: never; Returns: boolean }
       convert_contribution_to_evidence: {
         Args: {
