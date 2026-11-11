@@ -15,6 +15,13 @@
       "when": 1794421217320,
       "tag": "0001_backend_rule_regression_checks",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1794421281776,
+      "tag": "0002_allow_privileged_regression_runner",
+      "breakpoints": true
     }
   ]
 }
