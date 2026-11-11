@@ -1,4 +1,5 @@
 # Roadmap
+- [ ] Read and implement uploaded first-run onboarding and welcome brief alongside the candidate pipeline
 - [ ] Candidate pipeline: present uploaded campaign, /take private-link testing, autosave, blind scoring, results and mixed-stage demo plan for approval before implementation
 - [x] Admin Center People, permissions matrix, settings, audit, assignments and fictional Nicole access; desktop/phone invitation and role checks, 50 workflow tests plus 4 database-boundary tests verified
 - [ ] Admin live invite/accept, role edits, deactivation and scoring verification — blocked: zero real accounts and no verified first Admin
