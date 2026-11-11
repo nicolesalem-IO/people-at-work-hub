@@ -1432,6 +1432,14 @@ export type Database = {
         Returns: boolean
       }
       org_test_rule: { Args: { rule: string }; Returns: boolean }
+      pipeline_accommodation: {
+        Args: { aid: string; decision: string; extra: number; format: string }
+        Returns: boolean
+      }
+      pipeline_candidate_action: {
+        Args: { command: string; payload?: Json; token: string }
+        Returns: Json
+      }
       pipeline_hiring_decision: {
         Args: { aid: string; outcome: string; reason: string }
         Returns: boolean
@@ -1452,6 +1460,16 @@ export type Database = {
         Returns: boolean
       }
       pipeline_recalculate: { Args: { aid: string }; Returns: boolean }
+      pipeline_server_accommodation: {
+        Args: {
+          actor: string
+          aid: string
+          decision: string
+          extra: number
+          format: string
+        }
+        Returns: boolean
+      }
       pipeline_server_invite: {
         Args: { actor: string; cid: string; hash: string; v: Json }
         Returns: string
