@@ -1,4 +1,5 @@
 # Roadmap
+- [ ] Testing-focused candidate assessment battery — waiting for approval of the plan; no application changes yet
 - [x] Update Evidence and Contribute to structured interviews and saved role information; desktop/phone filters and questions verified
 - [x] Recheck Claude after connector addition — workspace catalog still exposes no permitted Claude generation surface
 - [x] Brand design system + workspace pages
