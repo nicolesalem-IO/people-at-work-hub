@@ -1,0 +1,24 @@
+import {describe,it,expect,beforeEach} from 'vitest';
+import {screeningDemo,screenOutcome,finalistOverall,stageOneScore,stageParts,singleSkillProblems,finalWeights} from '@/lib/hiring-stages';
+import {assessmentDemo} from '@/data/assessment-demo';
+import {demoTake,issueDemoStage,readDemoPipeline,writeDemoPipeline,saveDemoInterview} from '@/lib/pipeline-demo-store';
+import {pipelineDemo} from '@/data/pipeline-demo';
+const experience={programs:3,needs:2,practice:1,evaluation:0};
+describe('Staged hiring policy',()=>{
+ beforeEach(()=>localStorage.clear());
+ it('A degree may be met by equivalent experience',()=>expect(screenOutcome(screeningDemo,{training:'yes',degree:'equivalent'},experience)).toMatchObject({pass:true,total:6}));
+ it('A failed minimum qualification knocks out regardless of experience',()=>expect(screenOutcome(screeningDemo,{training:'no',degree:'yes'},{programs:3,needs:3,practice:3,evaluation:3}).pass).toBe(false));
+ it('All four experience responses must be 0–3',()=>{expect(()=>screenOutcome(screeningDemo,{training:'yes',degree:'yes'},{...experience,programs:4})).toThrow();expect(()=>screenOutcome(screeningDemo,{training:'yes',degree:'yes'},{programs:3})).toThrow();});
+ it('Final weights are exactly 40/25/20/15 and exclude Stage 0',()=>{expect(finalWeights).toEqual({work_sample:40,sjt:25,aptitude:20,interview:15,knowledge:0});expect(finalistOverall(3,true,{work_sample:80,sjt:60,aptitude:70,interview:100,knowledge:0})).toBe(76);});
+ it('Only completed finalists receive overall scores',()=>{const s={work_sample:80,sjt:60,aptitude:70,interview:100};expect(finalistOverall(2,true,s)).toBeNull();expect(finalistOverall(3,false,s)).toBeNull();expect(finalistOverall(3,true,{...s,interview:undefined})).toBeNull();});
+ it('Stage 1 normalizes the 20:25 weights',()=>expect(stageOneScore({aptitude:50,sjt:80})).toBeCloseTo(66.6667,3));
+ it('There are four real items per reasoning area and item times are 1–2 minutes',()=>{for(const name of ['Numerical reasoning','Verbal reasoning','Logical reasoning'])expect(assessmentDemo.items.filter(i=>!i.practice&&i.section===name)).toHaveLength(4);expect(assessmentDemo.items.filter(i=>i.method==='aptitude'&&!i.practice).every(i=>i.minutes>=1&&i.minutes<=2)).toBe(true);});
+ it('Stage timing is 25, 40 and 30 minutes',()=>{expect(stageParts(assessmentDemo,1).reduce((n,s)=>n+s.minutes,0)).toBe(25);expect(stageParts(assessmentDemo,2).reduce((n,s)=>n+s.minutes,0)).toBe(40);expect(stageParts(assessmentDemo,3).reduce((n,s)=>n+s.minutes,0)).toBe(30);});
+ it('Each hands-on exercise has three five-level dimensions',()=>{for(const i of assessmentDemo.items.filter(i=>i.method==='work_sample'&&!i.practice)){expect(i.rubric).toHaveLength(3);expect(i.rubric.every(r=>r.levels.length===5)).toBe(true);}});
+ it('Mathematical Reasoning is counted only in reasoning questions',()=>{expect(singleSkillProblems(assessmentDemo)).toEqual([]);expect(assessmentDemo.items.filter(i=>i.ksao_ids.includes('1.A.1.c.1')).every(i=>i.method==='aptitude')).toBe(true);});
+ it('A screened-out candidate cannot obtain a Stage 1 link',()=>expect(()=>issueDemoStage(pipelineDemo[0]?.id??'',1)).toThrow());
+ it('Below-cut Stage 1 cannot obtain a Stage 2 link',()=>expect(()=>issueDemoStage(pipelineDemo[1]?.id??'',2)).toThrow());
+ it('New stage links cannot expose future-stage items or answer keys',()=>{const d=readDemoPipeline(),a=d.candidates[0];if(!a)throw Error('Missing demo');a.stage_results={'0':{pass:true}};writeDemoPipeline(d.campaigns,d.candidates);const token=issueDemoStage(a.id,1),loaded=demoTake(token,'load');expect(token).not.toBe(a.id);expect(loaded.stage).toBe(1);expect(loaded.items.some(i=>i.method==='work_sample')).toBe(false);expect(loaded.items.some(i=>'key' in i||'correct' in i||'explanation' in i)).toBe(false);expect(()=>issueDemoStage(a.id,1)).toThrow();});
+ it('Cannot skip the ordered first part',()=>{const d=readDemoPipeline(),a=d.candidates[0];if(!a)throw Error('Missing demo');a.stage_results={'0':{pass:true}};writeDemoPipeline(d.campaigns,d.candidates);const t=issueDemoStage(a.id,1);expect(()=>demoTake(t,'practice',{section:'Job scenarios'})).toThrow();});
+ it('Finalist interview requires five scores and notes and locks once complete',()=>{const d=readDemoPipeline(),a=d.candidates[2];if(!a)throw Error('Missing demo');a.stage_results={...a.stage_results,'2':{pass:true}};a.scores.work_sample=75;writeDemoPipeline(d.campaigns,d.candidates);issueDemoStage(a.id,3);expect(()=>saveDemoInterview(a.id,{})).toThrow();const ratings=Object.fromEntries(assessmentDemo.items.filter(i=>i.method==='interview'&&!i.practice).map(i=>[i.id,{rating:4,note:'Specific relevant example.'}]));saveDemoInterview(a.id,ratings);expect(readDemoPipeline().candidates.find(p=>p.id===a.id)?.overall).not.toBeNull();expect(()=>saveDemoInterview(a.id,ratings)).toThrow();});
+});
