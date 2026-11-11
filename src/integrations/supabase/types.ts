@@ -1441,9 +1441,31 @@ export type Database = {
         Returns: string
       }
       pipeline_launch: { Args: { v: Json }; Returns: string }
+      pipeline_rater_score: {
+        Args: {
+          aid: string
+          comment: string
+          consensus?: boolean
+          item: string
+          ratings: Json
+        }
+        Returns: boolean
+      }
+      pipeline_recalculate: { Args: { aid: string }; Returns: boolean }
       pipeline_server_invite: {
         Args: { actor: string; cid: string; hash: string; v: Json }
         Returns: string
+      }
+      pipeline_server_rater_score: {
+        Args: {
+          actor: string
+          aid: string
+          comment: string
+          consensus?: boolean
+          item: string
+          ratings: Json
+        }
+        Returns: boolean
       }
       revise_interview: { Args: { sid: string }; Returns: string }
       save_interview_answer: { Args: { payload: Json }; Returns: string }
