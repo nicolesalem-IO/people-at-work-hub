@@ -1410,6 +1410,10 @@ export type Database = {
       }
       interview_required: { Args: { p: string[] }; Returns: string[] }
       onboarding_batteries: { Args: never; Returns: Json }
+      onboarding_review_save: {
+        Args: { aid: string; decision: string; note: string; stage: string }
+        Returns: boolean
+      }
       onboarding_sme_save: { Args: { v: Json }; Returns: boolean }
       org_accept_invitation: { Args: { inv: string }; Returns: boolean }
       org_active: { Args: { uid: string }; Returns: boolean }
