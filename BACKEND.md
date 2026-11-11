@@ -1,6 +1,14 @@
 # I-O Workspace backend
 
-Email/password authentication is enabled; email confirmation remains on. No sign-in page or existing screen was changed, and the screens still use demo data rather than these tables.
+Email/password authentication is enabled; email confirmation remains on. The job-analysis interview and outputs now use persistent records after sign-in. The previous evidence/contribution pages remain unrelated legacy demos. An inline email/password sign-in uses the existing account model; no provider settings were changed.
+
+## Structured interviews
+
+The first page now shows a fictional Warehouse Shift Lead analysis for training, with required coverage A/B/C/D/E/H. New analyses begin with multi-select purposes, role status, source types, incumbents and locations. Source-attributed answers create append-only evidence transactionally. Coverage requires complete core answers from two distinct sources, except the explicitly warned single-incumbent case. Required modules are unioned for multiple purposes. HR review and purpose-specific output creation are database-gated; legacy hiring writes also require a covered HR-approved selection interview. Outputs and original evidence are append-only. New analysis versions start unapproved.
+
+Eight new rollback-only database checks and twenty interview-rule unit tests passed; 41 tests including existing regressions passed. Desktop and phone browser checks confirmed the training demo, no preselected hiring purpose, coverage counts, locked outputs and no horizontal overflow or runtime errors.
+
+Authenticated save/resume, actual HR approval and AI generation remain unverified: the app currently has no auth accounts. Create the first testing account and assign admin plus hr_reviewer using the instructions below, then sign in through the interview page. Do not auto-promote accounts.
 
 ## Tables
 
