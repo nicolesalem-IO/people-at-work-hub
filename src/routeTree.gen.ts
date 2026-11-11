@@ -10,14 +10,31 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as BlueprintRouteImport } from './routes/blueprint'
+import { Route as BuildersRouteImport } from './routes/builders'
 import { Route as ContributeRouteImport } from './routes/contribute'
 import { Route as EvidenceRouteImport } from './routes/evidence'
+import { Route as InterviewsRouteImport } from './routes/interviews'
 import { Route as PackageRouteImport } from './routes/package'
+import { Route as ResultsRouteImport } from './routes/results'
+import { Route as ReviewRouteImport } from './routes/review'
 import { Route as SummarizeRouteImport } from './routes/summarize'
+import { Route as ValidityRouteImport } from './routes/validity'
+import { Route as CandidateTokenRouteImport } from './routes/candidate.$token'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BlueprintRoute = BlueprintRouteImport.update({
+  id: '/blueprint',
+  path: '/blueprint',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BuildersRoute = BuildersRouteImport.update({
+  id: '/builders',
+  path: '/builders',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ContributeRoute = ContributeRouteImport.update({
@@ -30,9 +47,24 @@ const EvidenceRoute = EvidenceRouteImport.update({
   path: '/evidence',
   getParentRoute: () => rootRouteImport,
 } as any)
+const InterviewsRoute = InterviewsRouteImport.update({
+  id: '/interviews',
+  path: '/interviews',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const PackageRoute = PackageRouteImport.update({
   id: '/package',
   path: '/package',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ResultsRoute = ResultsRouteImport.update({
+  id: '/results',
+  path: '/results',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ReviewRoute = ReviewRouteImport.update({
+  id: '/review',
+  path: '/review',
   getParentRoute: () => rootRouteImport,
 } as any)
 const SummarizeRoute = SummarizeRouteImport.update({
@@ -40,43 +72,118 @@ const SummarizeRoute = SummarizeRouteImport.update({
   path: '/summarize',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ValidityRoute = ValidityRouteImport.update({
+  id: '/validity',
+  path: '/validity',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CandidateTokenRoute = CandidateTokenRouteImport.update({
+  id: '/candidate/$token',
+  path: '/candidate/$token',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/blueprint': typeof BlueprintRoute
+  '/builders': typeof BuildersRoute
   '/contribute': typeof ContributeRoute
   '/evidence': typeof EvidenceRoute
+  '/interviews': typeof InterviewsRoute
   '/package': typeof PackageRoute
+  '/results': typeof ResultsRoute
+  '/review': typeof ReviewRoute
   '/summarize': typeof SummarizeRoute
+  '/validity': typeof ValidityRoute
+  '/candidate/$token': typeof CandidateTokenRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/blueprint': typeof BlueprintRoute
+  '/builders': typeof BuildersRoute
   '/contribute': typeof ContributeRoute
   '/evidence': typeof EvidenceRoute
+  '/interviews': typeof InterviewsRoute
   '/package': typeof PackageRoute
+  '/results': typeof ResultsRoute
+  '/review': typeof ReviewRoute
   '/summarize': typeof SummarizeRoute
+  '/validity': typeof ValidityRoute
+  '/candidate/$token': typeof CandidateTokenRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/blueprint': typeof BlueprintRoute
+  '/builders': typeof BuildersRoute
   '/contribute': typeof ContributeRoute
   '/evidence': typeof EvidenceRoute
+  '/interviews': typeof InterviewsRoute
   '/package': typeof PackageRoute
+  '/results': typeof ResultsRoute
+  '/review': typeof ReviewRoute
   '/summarize': typeof SummarizeRoute
+  '/validity': typeof ValidityRoute
+  '/candidate/$token': typeof CandidateTokenRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/contribute' | '/evidence' | '/package' | '/summarize'
+  fullPaths:
+    | '/'
+    | '/blueprint'
+    | '/builders'
+    | '/contribute'
+    | '/evidence'
+    | '/interviews'
+    | '/package'
+    | '/results'
+    | '/review'
+    | '/summarize'
+    | '/validity'
+    | '/candidate/$token'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/contribute' | '/evidence' | '/package' | '/summarize'
-  id: '__root__' | '/' | '/contribute' | '/evidence' | '/package' | '/summarize'
+  to:
+    | '/'
+    | '/blueprint'
+    | '/builders'
+    | '/contribute'
+    | '/evidence'
+    | '/interviews'
+    | '/package'
+    | '/results'
+    | '/review'
+    | '/summarize'
+    | '/validity'
+    | '/candidate/$token'
+  id:
+    | '__root__'
+    | '/'
+    | '/blueprint'
+    | '/builders'
+    | '/contribute'
+    | '/evidence'
+    | '/interviews'
+    | '/package'
+    | '/results'
+    | '/review'
+    | '/summarize'
+    | '/validity'
+    | '/candidate/$token'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  BlueprintRoute: typeof BlueprintRoute
+  BuildersRoute: typeof BuildersRoute
   ContributeRoute: typeof ContributeRoute
   EvidenceRoute: typeof EvidenceRoute
+  InterviewsRoute: typeof InterviewsRoute
   PackageRoute: typeof PackageRoute
+  ResultsRoute: typeof ResultsRoute
+  ReviewRoute: typeof ReviewRoute
   SummarizeRoute: typeof SummarizeRoute
+  ValidityRoute: typeof ValidityRoute
+  CandidateTokenRoute: typeof CandidateTokenRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -86,6 +193,20 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blueprint': {
+      id: '/blueprint'
+      path: '/blueprint'
+      fullPath: '/blueprint'
+      preLoaderRoute: typeof BlueprintRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/builders': {
+      id: '/builders'
+      path: '/builders'
+      fullPath: '/builders'
+      preLoaderRoute: typeof BuildersRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/contribute': {
@@ -102,11 +223,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof EvidenceRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/interviews': {
+      id: '/interviews'
+      path: '/interviews'
+      fullPath: '/interviews'
+      preLoaderRoute: typeof InterviewsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/package': {
       id: '/package'
       path: '/package'
       fullPath: '/package'
       preLoaderRoute: typeof PackageRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/results': {
+      id: '/results'
+      path: '/results'
+      fullPath: '/results'
+      preLoaderRoute: typeof ResultsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/review': {
+      id: '/review'
+      path: '/review'
+      fullPath: '/review'
+      preLoaderRoute: typeof ReviewRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/summarize': {
@@ -116,15 +258,36 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SummarizeRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/validity': {
+      id: '/validity'
+      path: '/validity'
+      fullPath: '/validity'
+      preLoaderRoute: typeof ValidityRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/candidate/$token': {
+      id: '/candidate/$token'
+      path: '/candidate/$token'
+      fullPath: '/candidate/$token'
+      preLoaderRoute: typeof CandidateTokenRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  BlueprintRoute: BlueprintRoute,
+  BuildersRoute: BuildersRoute,
   ContributeRoute: ContributeRoute,
   EvidenceRoute: EvidenceRoute,
+  InterviewsRoute: InterviewsRoute,
   PackageRoute: PackageRoute,
+  ResultsRoute: ResultsRoute,
+  ReviewRoute: ReviewRoute,
   SummarizeRoute: SummarizeRoute,
+  ValidityRoute: ValidityRoute,
+  CandidateTokenRoute: CandidateTokenRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

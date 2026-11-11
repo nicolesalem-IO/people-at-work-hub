@@ -1,5 +1,10 @@
 # Roadmap
-- [ ] Testing-focused candidate assessment battery — waiting for approval of the plan; no application changes yet
+- [ ] Apply uploaded visual-style and workflow redesign brief
+- [ ] Persist interview answers/evidence after refresh and walk the signed-in flow with the user's testing account
+- [ ] Assessment data, source-attributed O*NET extract and deterministic scoring rules
+- [ ] Rating-first job analysis, blueprint, builders, results, fairness and HR review
+- [ ] Candidate invitations, timed save/resume, submission and protected scoring
+- [ ] Assessment tests, database safeguards and desktop/mobile verification
 - [x] Update Evidence and Contribute to structured interviews and saved role information; desktop/phone filters and questions verified
 - [x] Recheck Claude after connector addition — workspace catalog still exposes no permitted Claude generation surface
 - [x] Brand design system + workspace pages

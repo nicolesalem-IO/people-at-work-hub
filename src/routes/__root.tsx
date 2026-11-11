@@ -13,6 +13,7 @@ import { useEffect, type ReactNode } from "react";
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { AppShell } from "@/components/io/AppShell";
+import {AssessmentProvider} from '@/components/io/AssessmentProvider';
 
 function NotFoundComponent() {
   return (
@@ -83,9 +84,9 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       { title: "I-O Workspace" },
-      { name: "description", content: "Evidence-based role analysis and hiring packages for HR teams." },
+      { name: "description", content: "Evidence-based job analysis and candidate assessment batteries for HR teams." },
       { property: "og:title", content: "I-O Workspace" },
-      { property: "og:description", content: "Evidence-based role analysis and hiring packages for HR teams." },
+      { property: "og:description", content: "Evidence-based job analysis and candidate assessment batteries for HR teams." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
@@ -126,7 +127,7 @@ function RootComponent() {
   return (
     <QueryClientProvider client={queryClient}>
       {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
-      <AppShell />
+      <AssessmentProvider><AppShell /></AssessmentProvider>
     </QueryClientProvider>
   );
 }

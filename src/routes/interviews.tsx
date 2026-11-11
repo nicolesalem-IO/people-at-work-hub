@@ -1,0 +1,3 @@
+import {createFileRoute} from '@tanstack/react-router';
+import {InterviewWorkspace} from '@/components/io/InterviewWorkspace';
+export const Route=createFileRoute('/interviews')({head:()=>({meta:[{title:'Saved job-analysis interviews — I-O Workspace'},{name:'description',content:'Save source-attributed interview answers as dated evidence and resume existing analyses.'},{property:'og:title',content:'Saved job-analysis interviews — I-O Workspace'},{property:'og:description',content:'Save source-attributed interview answers as dated evidence and resume existing analyses.'},{property:'og:type',content:'website'},{name:'twitter:card',content:'summary_large_image'}]}),component:InterviewWorkspace});

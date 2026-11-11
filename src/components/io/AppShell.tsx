@@ -4,7 +4,12 @@ const nav = [
   { to: "/", label: "Job analysis" },
   { to: "/evidence", label: "Evidence" },
   { to: "/contribute", label: "Contribute" },
-  { to: "/summarize", label: "Outputs" },
+  { to: "/interviews", label: "Saved interviews" },
+  { to: "/blueprint", label: "Blueprint" },
+  { to: "/builders", label: "Tests" },
+  { to: "/results", label: "Results" },
+  { to: "/validity", label: "Validity" },
+  { to: "/review", label: "HR review" },
 ] as const;
 
 export function AppShell() {
@@ -13,11 +18,11 @@ export function AppShell() {
       <div className="h-1.5 bg-brand-yellow" />
       <header className="border-b bg-background">
         <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-4 px-5 py-5 md:px-10">
-          <Link to="/" className="flex items-center gap-3 text-xl font-semibold tracking-tight">
+          <Link to="/" className="flex items-center gap-3 text-xl font-semibold">
             <span className="size-3 rounded-[3px] bg-brand-pink" aria-hidden="true" />
             I-O Workspace
           </Link>
-          <nav aria-label="Primary" className="flex flex-wrap gap-x-8 gap-y-2">
+          <nav aria-label="Primary" className="flex flex-wrap gap-x-5 gap-y-2">
             {nav.map(({ to, label }) => (
               <Link
                 key={to}
@@ -35,7 +40,7 @@ export function AppShell() {
         <Outlet />
       </main>
       <footer className="mx-auto max-w-6xl border-t px-5 py-6 text-sm text-muted-foreground md:px-10">
-        Demo data is fictional. Generated materials stay labeled as drafts until reviewed.
+        Demo candidates and scores are fictional. Recommendation requires human review.
       </footer>
     </div>
   );

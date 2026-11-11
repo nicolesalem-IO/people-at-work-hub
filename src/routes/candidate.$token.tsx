@@ -1,0 +1,4 @@
+import {createFileRoute} from '@tanstack/react-router';
+import {CandidateAssessment} from '@/components/io/CandidateAssessment';
+export const Route=createFileRoute('/candidate/$token')({head:()=>({meta:[{title:'Private candidate assessment — I-O Workspace'},{name:'description',content:'Complete an invited, timed candidate assessment and save responses for human review.'},{property:'og:title',content:'Private candidate assessment — I-O Workspace'},{property:'og:description',content:'Complete an invited, timed candidate assessment and save responses for human review.'},{property:'og:type',content:'website'},{name:'twitter:card',content:'summary_large_image'},{name:'robots',content:'noindex,nofollow'}]}),component:CandidatePage});
+function CandidatePage(){const {token}=Route.useParams();return <CandidateAssessment token={token}/>;}

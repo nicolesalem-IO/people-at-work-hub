@@ -44,7 +44,7 @@ function PackageEditor() {
           {["EV-05 Triage inbound tickets", "EV-04 SOP-14 Refund policy"].map((s) => (
             <div key={s} className="rounded-md border p-3">{s}</div>
           ))}
-          <StatusBadge status="unconfigured" label="Job evaluation: configuration required" />
+          <StatusBadge status="unconfigured" label="Archived hiring material" />
         </aside>
       </div>
     </>
