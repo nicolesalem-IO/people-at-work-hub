@@ -169,6 +169,13 @@
       "when": 1794428255477,
       "tag": "0023_first_run_onboarding_drafts",
       "breakpoints": true
+    },
+    {
+      "idx": 24,
+      "version": "7",
+      "when": 1794428473691,
+      "tag": "0024_private_sme_rating_projections",
+      "breakpoints": true
     }
   ]
 }
