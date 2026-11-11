@@ -49,3 +49,7 @@ use the editor.
 - Blind work-sample scoring uses restricted projections and per-attempt/item assignments rather than exposing identity-bearing candidate rows to raters.
 - Candidate pipeline timing, one-attempt state, canonical option IDs, submission locks and scoring are enforced by transactional private-token actions; candidate browser payloads omit answer keys and future timed sections.
 - Demo pipeline progress is isolated browser storage with explicit fictional links, never a live authorization source.
+
+## Onboarding
+- Persist owner-scoped setup separately from protected organization roles; self-selected practitioner preference changes wording, never authorization.
+- Use private projections for non-analyst battery reads and atomic own-source SME merges so individual ratings never leak through full battery payloads.
