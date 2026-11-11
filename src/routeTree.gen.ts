@@ -10,33 +10,63 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ContributeRouteImport } from './routes/contribute'
+import { Route as EvidenceRouteImport } from './routes/evidence'
+import { Route as PackageRouteImport } from './routes/package'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ContributeRoute = ContributeRouteImport.update({
+  id: '/contribute',
+  path: '/contribute',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EvidenceRoute = EvidenceRouteImport.update({
+  id: '/evidence',
+  path: '/evidence',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PackageRoute = PackageRouteImport.update({
+  id: '/package',
+  path: '/package',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/contribute': typeof ContributeRoute
+  '/evidence': typeof EvidenceRoute
+  '/package': typeof PackageRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/contribute': typeof ContributeRoute
+  '/evidence': typeof EvidenceRoute
+  '/package': typeof PackageRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/contribute': typeof ContributeRoute
+  '/evidence': typeof EvidenceRoute
+  '/package': typeof PackageRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths: '/' | '/contribute' | '/evidence' | '/package'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to: '/' | '/contribute' | '/evidence' | '/package'
+  id: '__root__' | '/' | '/contribute' | '/evidence' | '/package'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  ContributeRoute: typeof ContributeRoute
+  EvidenceRoute: typeof EvidenceRoute
+  PackageRoute: typeof PackageRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +78,35 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/contribute': {
+      id: '/contribute'
+      path: '/contribute'
+      fullPath: '/contribute'
+      preLoaderRoute: typeof ContributeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/evidence': {
+      id: '/evidence'
+      path: '/evidence'
+      fullPath: '/evidence'
+      preLoaderRoute: typeof EvidenceRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/package': {
+      id: '/package'
+      path: '/package'
+      fullPath: '/package'
+      preLoaderRoute: typeof PackageRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  ContributeRoute: ContributeRoute,
+  EvidenceRoute: EvidenceRoute,
+  PackageRoute: PackageRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
