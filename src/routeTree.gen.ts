@@ -17,6 +17,8 @@ import { Route as BuildersRouteImport } from './routes/builders'
 import { Route as ContributeRouteImport } from './routes/contribute'
 import { Route as DefineRouteImport } from './routes/define'
 import { Route as EvidenceRouteImport } from './routes/evidence'
+import { Route as GlossaryRouteImport } from './routes/glossary'
+import { Route as InterviewGuideRouteImport } from './routes/interview-guide'
 import { Route as InterviewsRouteImport } from './routes/interviews'
 import { Route as OnboardingRouteImport } from './routes/onboarding'
 import { Route as PackageRouteImport } from './routes/package'
@@ -70,6 +72,16 @@ const DefineRoute = DefineRouteImport.update({
 const EvidenceRoute = EvidenceRouteImport.update({
   id: '/evidence',
   path: '/evidence',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const GlossaryRoute = GlossaryRouteImport.update({
+  id: '/glossary',
+  path: '/glossary',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const InterviewGuideRoute = InterviewGuideRouteImport.update({
+  id: '/interview-guide',
+  path: '/interview-guide',
   getParentRoute: () => rootRouteImport,
 } as any)
 const InterviewsRoute = InterviewsRouteImport.update({
@@ -153,6 +165,8 @@ export interface FileRoutesByFullPath {
   '/contribute': typeof ContributeRoute
   '/define': typeof DefineRoute
   '/evidence': typeof EvidenceRoute
+  '/glossary': typeof GlossaryRoute
+  '/interview-guide': typeof InterviewGuideRoute
   '/interviews': typeof InterviewsRoute
   '/onboarding': typeof OnboardingRoute
   '/package': typeof PackageRoute
@@ -177,6 +191,8 @@ export interface FileRoutesByTo {
   '/contribute': typeof ContributeRoute
   '/define': typeof DefineRoute
   '/evidence': typeof EvidenceRoute
+  '/glossary': typeof GlossaryRoute
+  '/interview-guide': typeof InterviewGuideRoute
   '/interviews': typeof InterviewsRoute
   '/onboarding': typeof OnboardingRoute
   '/package': typeof PackageRoute
@@ -202,6 +218,8 @@ export interface FileRoutesById {
   '/contribute': typeof ContributeRoute
   '/define': typeof DefineRoute
   '/evidence': typeof EvidenceRoute
+  '/glossary': typeof GlossaryRoute
+  '/interview-guide': typeof InterviewGuideRoute
   '/interviews': typeof InterviewsRoute
   '/onboarding': typeof OnboardingRoute
   '/package': typeof PackageRoute
@@ -228,6 +246,8 @@ export interface FileRouteTypes {
     | '/contribute'
     | '/define'
     | '/evidence'
+    | '/glossary'
+    | '/interview-guide'
     | '/interviews'
     | '/onboarding'
     | '/package'
@@ -252,6 +272,8 @@ export interface FileRouteTypes {
     | '/contribute'
     | '/define'
     | '/evidence'
+    | '/glossary'
+    | '/interview-guide'
     | '/interviews'
     | '/onboarding'
     | '/package'
@@ -276,6 +298,8 @@ export interface FileRouteTypes {
     | '/contribute'
     | '/define'
     | '/evidence'
+    | '/glossary'
+    | '/interview-guide'
     | '/interviews'
     | '/onboarding'
     | '/package'
@@ -301,6 +325,8 @@ export interface RootRouteChildren {
   ContributeRoute: typeof ContributeRoute
   DefineRoute: typeof DefineRoute
   EvidenceRoute: typeof EvidenceRoute
+  GlossaryRoute: typeof GlossaryRoute
+  InterviewGuideRoute: typeof InterviewGuideRoute
   InterviewsRoute: typeof InterviewsRoute
   OnboardingRoute: typeof OnboardingRoute
   PackageRoute: typeof PackageRoute
@@ -373,6 +399,20 @@ declare module '@tanstack/react-router' {
       path: '/evidence'
       fullPath: '/evidence'
       preLoaderRoute: typeof EvidenceRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/glossary': {
+      id: '/glossary'
+      path: '/glossary'
+      fullPath: '/glossary'
+      preLoaderRoute: typeof GlossaryRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/interview-guide': {
+      id: '/interview-guide'
+      path: '/interview-guide'
+      fullPath: '/interview-guide'
+      preLoaderRoute: typeof InterviewGuideRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/interviews': {
@@ -485,6 +525,8 @@ const rootRouteChildren: RootRouteChildren = {
   ContributeRoute: ContributeRoute,
   DefineRoute: DefineRoute,
   EvidenceRoute: EvidenceRoute,
+  GlossaryRoute: GlossaryRoute,
+  InterviewGuideRoute: InterviewGuideRoute,
   InterviewsRoute: InterviewsRoute,
   OnboardingRoute: OnboardingRoute,
   PackageRoute: PackageRoute,
