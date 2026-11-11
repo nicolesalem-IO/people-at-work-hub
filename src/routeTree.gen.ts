@@ -18,10 +18,12 @@ import { Route as ContributeRouteImport } from './routes/contribute'
 import { Route as DefineRouteImport } from './routes/define'
 import { Route as EvidenceRouteImport } from './routes/evidence'
 import { Route as InterviewsRouteImport } from './routes/interviews'
+import { Route as OnboardingRouteImport } from './routes/onboarding'
 import { Route as PackageRouteImport } from './routes/package'
 import { Route as RatingsRouteImport } from './routes/ratings'
 import { Route as ResultsRouteImport } from './routes/results'
 import { Route as ReviewRouteImport } from './routes/review'
+import { Route as RolesRouteImport } from './routes/roles'
 import { Route as SummarizeRouteImport } from './routes/summarize'
 import { Route as TeamInviteRouteImport } from './routes/team-invite'
 import { Route as ValidityRouteImport } from './routes/validity'
@@ -74,6 +76,11 @@ const InterviewsRoute = InterviewsRouteImport.update({
   path: '/interviews',
   getParentRoute: () => rootRouteImport,
 } as any)
+const OnboardingRoute = OnboardingRouteImport.update({
+  id: '/onboarding',
+  path: '/onboarding',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const PackageRoute = PackageRouteImport.update({
   id: '/package',
   path: '/package',
@@ -92,6 +99,11 @@ const ResultsRoute = ResultsRouteImport.update({
 const ReviewRoute = ReviewRouteImport.update({
   id: '/review',
   path: '/review',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RolesRoute = RolesRouteImport.update({
+  id: '/roles',
+  path: '/roles',
   getParentRoute: () => rootRouteImport,
 } as any)
 const SummarizeRoute = SummarizeRouteImport.update({
@@ -136,10 +148,12 @@ export interface FileRoutesByFullPath {
   '/define': typeof DefineRoute
   '/evidence': typeof EvidenceRoute
   '/interviews': typeof InterviewsRoute
+  '/onboarding': typeof OnboardingRoute
   '/package': typeof PackageRoute
   '/ratings': typeof RatingsRoute
   '/results': typeof ResultsRoute
   '/review': typeof ReviewRoute
+  '/roles': typeof RolesRoute
   '/summarize': typeof SummarizeRoute
   '/team-invite': typeof TeamInviteRoute
   '/validity': typeof ValidityRoute
@@ -157,10 +171,12 @@ export interface FileRoutesByTo {
   '/define': typeof DefineRoute
   '/evidence': typeof EvidenceRoute
   '/interviews': typeof InterviewsRoute
+  '/onboarding': typeof OnboardingRoute
   '/package': typeof PackageRoute
   '/ratings': typeof RatingsRoute
   '/results': typeof ResultsRoute
   '/review': typeof ReviewRoute
+  '/roles': typeof RolesRoute
   '/summarize': typeof SummarizeRoute
   '/team-invite': typeof TeamInviteRoute
   '/validity': typeof ValidityRoute
@@ -179,10 +195,12 @@ export interface FileRoutesById {
   '/define': typeof DefineRoute
   '/evidence': typeof EvidenceRoute
   '/interviews': typeof InterviewsRoute
+  '/onboarding': typeof OnboardingRoute
   '/package': typeof PackageRoute
   '/ratings': typeof RatingsRoute
   '/results': typeof ResultsRoute
   '/review': typeof ReviewRoute
+  '/roles': typeof RolesRoute
   '/summarize': typeof SummarizeRoute
   '/team-invite': typeof TeamInviteRoute
   '/validity': typeof ValidityRoute
@@ -202,10 +220,12 @@ export interface FileRouteTypes {
     | '/define'
     | '/evidence'
     | '/interviews'
+    | '/onboarding'
     | '/package'
     | '/ratings'
     | '/results'
     | '/review'
+    | '/roles'
     | '/summarize'
     | '/team-invite'
     | '/validity'
@@ -223,10 +243,12 @@ export interface FileRouteTypes {
     | '/define'
     | '/evidence'
     | '/interviews'
+    | '/onboarding'
     | '/package'
     | '/ratings'
     | '/results'
     | '/review'
+    | '/roles'
     | '/summarize'
     | '/team-invite'
     | '/validity'
@@ -244,10 +266,12 @@ export interface FileRouteTypes {
     | '/define'
     | '/evidence'
     | '/interviews'
+    | '/onboarding'
     | '/package'
     | '/ratings'
     | '/results'
     | '/review'
+    | '/roles'
     | '/summarize'
     | '/team-invite'
     | '/validity'
@@ -266,10 +290,12 @@ export interface RootRouteChildren {
   DefineRoute: typeof DefineRoute
   EvidenceRoute: typeof EvidenceRoute
   InterviewsRoute: typeof InterviewsRoute
+  OnboardingRoute: typeof OnboardingRoute
   PackageRoute: typeof PackageRoute
   RatingsRoute: typeof RatingsRoute
   ResultsRoute: typeof ResultsRoute
   ReviewRoute: typeof ReviewRoute
+  RolesRoute: typeof RolesRoute
   SummarizeRoute: typeof SummarizeRoute
   TeamInviteRoute: typeof TeamInviteRoute
   ValidityRoute: typeof ValidityRoute
@@ -343,6 +369,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof InterviewsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/onboarding': {
+      id: '/onboarding'
+      path: '/onboarding'
+      fullPath: '/onboarding'
+      preLoaderRoute: typeof OnboardingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/package': {
       id: '/package'
       path: '/package'
@@ -369,6 +402,13 @@ declare module '@tanstack/react-router' {
       path: '/review'
       fullPath: '/review'
       preLoaderRoute: typeof ReviewRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/roles': {
+      id: '/roles'
+      path: '/roles'
+      fullPath: '/roles'
+      preLoaderRoute: typeof RolesRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/summarize': {
@@ -426,10 +466,12 @@ const rootRouteChildren: RootRouteChildren = {
   DefineRoute: DefineRoute,
   EvidenceRoute: EvidenceRoute,
   InterviewsRoute: InterviewsRoute,
+  OnboardingRoute: OnboardingRoute,
   PackageRoute: PackageRoute,
   RatingsRoute: RatingsRoute,
   ResultsRoute: ResultsRoute,
   ReviewRoute: ReviewRoute,
+  RolesRoute: RolesRoute,
   SummarizeRoute: SummarizeRoute,
   TeamInviteRoute: TeamInviteRoute,
   ValidityRoute: ValidityRoute,
