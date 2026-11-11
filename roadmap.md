@@ -1,6 +1,7 @@
 # Roadmap
-- [ ] Welcome, first-run setup, SME welcome and empty states — plan prepared; awaiting approval
-- [ ] Candidate pipeline: campaigns, private testing, autosave/resume and mixed-stage demo connected; 35 tests and desktop/phone resume checks pass; finish blind scoring/results and live-boundary checks
+- [x] Welcome image/page, five-step saved setup, returning/demo entry, SME welcome, owner-private drafts and rating projections, friendly evidence/blueprint/builder/Admin empty states; desktop/phone walkthrough passes
+- [x] Candidate pipeline screens, private timed testing, autosave/resume, locked submission, blind rubric saves and human decisions verified in isolated demo; 89 tests pass including database boundaries
+- [ ] Live onboarding, SME email verification and candidate administration/scoring walkthrough — blocked: zero real accounts and no verified sender domain
 - [x] Admin Center People, permissions matrix, settings, audit, assignments and fictional Nicole access; desktop/phone invitation and role checks, 50 workflow tests plus 4 database-boundary tests verified
 - [ ] Admin live invite/accept, role edits, deactivation and scoring verification — blocked: zero real accounts and no verified first Admin
 - [ ] Complete official live O*NET field mapping — supported live extraction may be unavailable; saved benchmark remains explicitly separate
@@ -8,11 +9,11 @@
 - [x] Apply uploaded visual-style and workflow redesign brief; dashboard, named steps, yellow bands, focused ratings and battery summaries verified on desktop/phone
 - [ ] Interview answers/evidence are wired to persistent saves; signed-in refresh check blocked: connected app has zero accounts
 - [x] Official O*NET extract and deterministic assessment scoring rules; 11 scoring tests pass
-- [ ] Persistent assessment demo records — deferred by latest visual-only request; no data changes authorized in redesign
+- [x] Candidate pipeline fictional data persists in isolated browser storage; it never grants live access
 - [x] Rating-first job analysis, blueprint, builders, results, fairness and HR review pages
 - [ ] Candidate signed-in administration and timed save/resume verification — blocked: no app accounts
 - [x] Assessment unit tests and desktop/mobile presentation verification
-- [ ] Additional assessment database safeguards and real candidate scoring verification — deferred by latest visual-only scope; requires test accounts
+- [ ] Real candidate scoring verification — database safeguards implemented and tested; account walkthrough blocked by zero accounts
 - [x] Update Evidence and Contribute to structured interviews and saved role information; desktop/phone filters and questions verified
 - [x] Recheck Claude after connector addition — workspace catalog still exposes no permitted Claude generation surface
 - [x] Brand design system + workspace pages
