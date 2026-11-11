@@ -1,0 +1,2066 @@
+{
+  "occupation": "13-1151.00",
+  "title": "Training and Development Specialists",
+  "release": "31.0",
+  "retrieved": "2026-11-11",
+  "url": "https://www.onetonline.org/link/summary/13-1151.00",
+  "license": "O*NET 31.0 Database, National Center for O*NET Development. CC BY 4.0. Local SME ratings and test content are fictional adaptations, not O*NET endorsements.",
+  "elements": [
+    {
+      "id": "94",
+      "kind": "task",
+      "name": "Present information with a variety of instructional techniques or formats, such as role playing, simulations, team exercises, group discussions, videos, or lectures.",
+      "description": "Present information with a variety of instructional techniques or formats, such as role playing, simulations, team exercises, group discussions, videos, or lectures.",
+      "benchmark_importance": null,
+      "source_date": "08/2022"
+    },
+    {
+      "id": "20475",
+      "kind": "task",
+      "name": "Obtain, organize, or develop training procedure manuals, guides, or course materials, such as handouts or visual materials.",
+      "description": "Obtain, organize, or develop training procedure manuals, guides, or course materials, such as handouts or visual materials.",
+      "benchmark_importance": null,
+      "source_date": "08/2022"
+    },
+    {
+      "id": "19559",
+      "kind": "task",
+      "name": "Evaluate modes of training delivery, such as in-person or virtual, to optimize training effectiveness, training costs, or environmental impacts.",
+      "description": "Evaluate modes of training delivery, such as in-person or virtual, to optimize training effectiveness, training costs, or environmental impacts.",
+      "benchmark_importance": null,
+      "source_date": "08/2022"
+    },
+    {
+      "id": "97",
+      "kind": "task",
+      "name": "Offer specific training programs to help workers maintain or improve job skills.",
+      "description": "Offer specific training programs to help workers maintain or improve job skills.",
+      "benchmark_importance": null,
+      "source_date": "08/2022"
+    },
+    {
+      "id": "103",
+      "kind": "task",
+      "name": "Assess training needs through surveys, interviews with employees, focus groups, or consultation with managers, instructors, or customer representatives.",
+      "description": "Assess training needs through surveys, interviews with employees, focus groups, or consultation with managers, instructors, or customer representatives.",
+      "benchmark_importance": null,
+      "source_date": "08/2022"
+    },
+    {
+      "id": "98",
+      "kind": "task",
+      "name": "Monitor, evaluate, or record training activities or program effectiveness.",
+      "description": "Monitor, evaluate, or record training activities or program effectiveness.",
+      "benchmark_importance": null,
+      "source_date": "08/2022"
+    },
+    {
+      "id": "20474",
+      "kind": "task",
+      "name": "Design, plan, organize, or direct orientation and training programs for employees or customers.",
+      "description": "Design, plan, organize, or direct orientation and training programs for employees or customers.",
+      "benchmark_importance": null,
+      "source_date": "08/2022"
+    },
+    {
+      "id": "102",
+      "kind": "task",
+      "name": "Develop alternative training methods if expected improvements are not seen.",
+      "description": "Develop alternative training methods if expected improvements are not seen.",
+      "benchmark_importance": null,
+      "source_date": "08/2022"
+    },
+    {
+      "id": "101",
+      "kind": "task",
+      "name": "Evaluate training materials prepared by instructors, such as outlines, text, or handouts.",
+      "description": "Evaluate training materials prepared by instructors, such as outlines, text, or handouts.",
+      "benchmark_importance": null,
+      "source_date": "08/2022"
+    },
+    {
+      "id": "20476",
+      "kind": "task",
+      "name": "Monitor training costs and prepare budget reports to justify expenditures.",
+      "description": "Monitor training costs and prepare budget reports to justify expenditures.",
+      "benchmark_importance": null,
+      "source_date": "08/2022"
+    },
+    {
+      "id": "106",
+      "kind": "task",
+      "name": "Devise programs to develop executive potential among employees in lower-level positions.",
+      "description": "Devise programs to develop executive potential among employees in lower-level positions.",
+      "benchmark_importance": null,
+      "source_date": "08/2022"
+    },
+    {
+      "id": "93",
+      "kind": "task",
+      "name": "Keep up with developments in area of expertise by reading current journals, books, or magazine articles.",
+      "description": "Keep up with developments in area of expertise by reading current journals, books, or magazine articles.",
+      "benchmark_importance": null,
+      "source_date": "08/2022"
+    },
+    {
+      "id": "99",
+      "kind": "task",
+      "name": "Attend meetings or seminars to obtain information for use in training programs or to inform management of training program status.",
+      "description": "Attend meetings or seminars to obtain information for use in training programs or to inform management of training program status.",
+      "benchmark_importance": null,
+      "source_date": "08/2022"
+    },
+    {
+      "id": "100",
+      "kind": "task",
+      "name": "Coordinate recruitment and placement of training program participants.",
+      "description": "Coordinate recruitment and placement of training program participants.",
+      "benchmark_importance": null,
+      "source_date": "08/2022"
+    },
+    {
+      "id": "105",
+      "kind": "task",
+      "name": "Select and assign instructors to conduct training.",
+      "description": "Select and assign instructors to conduct training.",
+      "benchmark_importance": null,
+      "source_date": "08/2022"
+    },
+    {
+      "id": "108",
+      "kind": "task",
+      "name": "Negotiate contracts with clients for desired training outcomes, fees, or expenses.",
+      "description": "Negotiate contracts with clients for desired training outcomes, fees, or expenses.",
+      "benchmark_importance": null,
+      "source_date": "08/2022"
+    },
+    {
+      "id": "20477",
+      "kind": "task",
+      "name": "Supervise, evaluate, or refer instructors to skill development classes.",
+      "description": "Supervise, evaluate, or refer instructors to skill development classes.",
+      "benchmark_importance": null,
+      "source_date": "08/2022"
+    },
+    {
+      "id": "95",
+      "kind": "task",
+      "name": "Schedule classes based on availability of classrooms, equipment, or instructors.",
+      "description": "Schedule classes based on availability of classrooms, equipment, or instructors.",
+      "benchmark_importance": null,
+      "source_date": "08/2022"
+    },
+    {
+      "id": "111",
+      "kind": "task",
+      "name": "Refer trainees to employer relations representatives, to locations offering job placement assistance, or to appropriate social services agencies, if warranted.",
+      "description": "Refer trainees to employer relations representatives, to locations offering job placement assistance, or to appropriate social services agencies, if warranted.",
+      "benchmark_importance": null,
+      "source_date": "08/2022"
+    },
+    {
+      "id": "19558",
+      "kind": "task",
+      "name": "Develop or implement training programs related to efficiency, recycling, or other issues with environmental impacts.",
+      "description": "Develop or implement training programs related to efficiency, recycling, or other issues with environmental impacts.",
+      "benchmark_importance": null,
+      "source_date": "08/2022"
+    },
+    {
+      "id": "2.C.1.a",
+      "kind": "knowledge",
+      "name": "Administration and Management",
+      "description": "Knowledge of business and management principles involved in strategic planning, resource allocation, human resources modeling, leadership technique, production methods, and coordination of people and resources.",
+      "benchmark_importance": 3.45,
+      "source_date": "08/2022"
+    },
+    {
+      "id": "2.C.1.b",
+      "kind": "knowledge",
+      "name": "Administrative",
+      "description": "Knowledge of administrative and office procedures and systems such as word processing, managing files and records, stenography and transcription, designing forms, and workplace terminology.",
+      "benchmark_importance": 2.87,
+      "source_date": "08/2022"
+    },
+    {
+      "id": "2.C.1.c",
+      "kind": "knowledge",
+      "name": "Economics and Accounting",
+      "description": "Knowledge of economic and accounting principles and practices, the financial markets, banking, and the analysis and reporting of financial data.",
+      "benchmark_importance": 2.05,
+      "source_date": "08/2022"
+    },
+    {
+      "id": "2.C.1.d",
+      "kind": "knowledge",
+      "name": "Sales and Marketing",
+      "description": "Knowledge of principles and methods for showing, promoting, and selling products or services. This includes marketing strategy and tactics, product demonstration, sales techniques, and sales control systems.",
+      "benchmark_importance": 2.61,
+      "source_date": "08/2022"
+    },
+    {
+      "id": "2.C.1.e",
+      "kind": "knowledge",
+      "name": "Customer and Personal Service",
+      "description": "Knowledge of principles and processes for providing customer and personal services. This includes customer needs assessment, meeting quality standards for services, and evaluation of customer satisfaction.",
+      "benchmark_importance": 3.96,
+      "source_date": "08/2022"
+    },
+    {
+      "id": "2.C.1.f",
+      "kind": "knowledge",
+      "name": "Personnel and Human Resources",
+      "description": "Knowledge of principles and procedures for personnel recruitment, selection, training, compensation and benefits, labor relations and negotiation, and personnel information systems.",
+      "benchmark_importance": 3.55,
+      "source_date": "08/2022"
+    },
+    {
+      "id": "2.C.2.a",
+      "kind": "knowledge",
+      "name": "Production and Processing",
+      "description": "Knowledge of raw materials, production processes, quality control, costs, and other techniques for maximizing the effective manufacture and distribution of goods.",
+      "benchmark_importance": 2.13,
+      "source_date": "08/2022"
+    },
+    {
+      "id": "2.C.2.b",
+      "kind": "knowledge",
+      "name": "Food Production",
+      "description": "Knowledge of techniques and equipment for planting, growing, and harvesting food products (both plant and animal) for consumption, including storage/handling techniques.",
+      "benchmark_importance": 1.22,
+      "source_date": "08/2022"
+    },
+    {
+      "id": "2.C.3.a",
+      "kind": "knowledge",
+      "name": "Computers and Electronics",
+      "description": "Knowledge of circuit boards, processors, chips, electronic equipment, and computer hardware and software, including applications and programming.",
+      "benchmark_importance": 2.96,
+      "source_date": "08/2022"
+    },
+    {
+      "id": "2.C.3.b",
+      "kind": "knowledge",
+      "name": "Engineering and Technology",
+      "description": "Knowledge of the practical application of engineering science and technology. This includes applying principles, techniques, procedures, and equipment to the design and production of various goods and services.",
+      "benchmark_importance": 1.83,
+      "source_date": "08/2022"
+    },
+    {
+      "id": "2.C.3.c",
+      "kind": "knowledge",
+      "name": "Design",
+      "description": "Knowledge of design techniques, tools, and principles involved in production of precision technical plans, blueprints, drawings, and models.",
+      "benchmark_importance": 2.26,
+      "source_date": "08/2022"
+    },
+    {
+      "id": "2.C.3.d",
+      "kind": "knowledge",
+      "name": "Building and Construction",
+      "description": "Knowledge of materials, methods, and the tools involved in the construction or repair of houses, buildings, or other structures such as highways and roads.",
+      "benchmark_importance": 1.3,
+      "source_date": "08/2022"
+    },
+    {
+      "id": "2.C.3.e",
+      "kind": "knowledge",
+      "name": "Mechanical",
+      "description": "Knowledge of machines and tools, including their designs, uses, repair, and maintenance.",
+      "benchmark_importance": 1.48,
+      "source_date": "08/2022"
+    },
+    {
+      "id": "2.C.4.a",
+      "kind": "knowledge",
+      "name": "Mathematics",
+      "description": "Knowledge of arithmetic, algebra, geometry, calculus, statistics, and their applications.",
+      "benchmark_importance": 2.3,
+      "source_date": "08/2022"
+    },
+    {
+      "id": "2.C.4.b",
+      "kind": "knowledge",
+      "name": "Physics",
+      "description": "Knowledge and prediction of physical principles, laws, their interrelationships, and applications to understanding fluid, material, and atmospheric dynamics, and mechanical, electrical, atomic and sub-atomic structures and processes.",
+      "benchmark_importance": 1.26,
+      "source_date": "08/2022"
+    },
+    {
+      "id": "2.C.4.c",
+      "kind": "knowledge",
+      "name": "Chemistry",
+      "description": "Knowledge of the chemical composition, structure, and properties of substances and of the chemical processes and transformations that they undergo. This includes uses of chemicals and their interactions, danger signs, production techniques, and disposal methods.",
+      "benchmark_importance": 1.35,
+      "source_date": "08/2022"
+    },
+    {
+      "id": "2.C.4.d",
+      "kind": "knowledge",
+      "name": "Biology",
+      "description": "Knowledge of plant and animal organisms, their tissues, cells, functions, interdependencies, and interactions with each other and the environment.",
+      "benchmark_importance": 1.3,
+      "source_date": "08/2022"
+    },
+    {
+      "id": "2.C.4.e",
+      "kind": "knowledge",
+      "name": "Psychology",
+      "description": "Knowledge of human behavior and performance; individual differences in ability, personality, and interests; learning and motivation; psychological research methods; and the assessment and treatment of behavioral and affective disorders.",
+      "benchmark_importance": 3.35,
+      "source_date": "08/2022"
+    },
+    {
+      "id": "2.C.4.f",
+      "kind": "knowledge",
+      "name": "Sociology and Anthropology",
+      "description": "Knowledge of group behavior and dynamics, societal trends and influences, human migrations, ethnicity, cultures, and their history and origins.",
+      "benchmark_importance": 2.87,
+      "source_date": "08/2022"
+    },
+    {
+      "id": "2.C.4.g",
+      "kind": "knowledge",
+      "name": "Geography",
+      "description": "Knowledge of principles and methods for describing the features of land, sea, and air masses, including their physical characteristics, locations, interrelationships, and distribution of plant, animal, and human life.",
+      "benchmark_importance": 1.65,
+      "source_date": "08/2022"
+    },
+    {
+      "id": "2.C.5.a",
+      "kind": "knowledge",
+      "name": "Medicine and Dentistry",
+      "description": "Knowledge of the information and techniques needed to diagnose and treat human injuries, diseases, and deformities. This includes symptoms, treatment alternatives, drug properties and interactions, and preventive health-care measures.",
+      "benchmark_importance": 1.43,
+      "source_date": "08/2022"
+    },
+    {
+      "id": "2.C.5.b",
+      "kind": "knowledge",
+      "name": "Therapy and Counseling",
+      "description": "Knowledge of principles, methods, and procedures for diagnosis, treatment, and rehabilitation of physical and mental dysfunctions, and for career counseling and guidance.",
+      "benchmark_importance": 1.82,
+      "source_date": "08/2022"
+    },
+    {
+      "id": "2.C.6",
+      "kind": "knowledge",
+      "name": "Education and Training",
+      "description": "Knowledge of principles and methods for curriculum and training design, teaching and instruction for individuals and groups, and the measurement of training effects.",
+      "benchmark_importance": 4.73,
+      "source_date": "08/2022"
+    },
+    {
+      "id": "2.C.7.a",
+      "kind": "knowledge",
+      "name": "English Language",
+      "description": "Knowledge of the structure and content of the English language including the meaning and spelling of words, and rules of composition and grammar.",
+      "benchmark_importance": 3.83,
+      "source_date": "08/2022"
+    },
+    {
+      "id": "2.C.7.b",
+      "kind": "knowledge",
+      "name": "Foreign Language",
+      "description": "Knowledge of the structure and content of a foreign (non-English) language including the meaning and spelling of words, rules of composition and grammar, and pronunciation.",
+      "benchmark_importance": 1.61,
+      "source_date": "08/2022"
+    },
+    {
+      "id": "2.C.7.c",
+      "kind": "knowledge",
+      "name": "Fine Arts",
+      "description": "Knowledge of the theory and techniques required to compose, produce, and perform works of music, dance, visual arts, drama, and sculpture.",
+      "benchmark_importance": 1.52,
+      "source_date": "08/2022"
+    },
+    {
+      "id": "2.C.7.d",
+      "kind": "knowledge",
+      "name": "History and Archeology",
+      "description": "Knowledge of historical events and their causes, indicators, and effects on civilizations and cultures.",
+      "benchmark_importance": 1.74,
+      "source_date": "08/2022"
+    },
+    {
+      "id": "2.C.7.e",
+      "kind": "knowledge",
+      "name": "Philosophy and Theology",
+      "description": "Knowledge of different philosophical systems and religions. This includes their basic principles, values, ethics, ways of thinking, customs, practices, and their impact on human culture.",
+      "benchmark_importance": 2.26,
+      "source_date": "08/2022"
+    },
+    {
+      "id": "2.C.8.a",
+      "kind": "knowledge",
+      "name": "Public Safety and Security",
+      "description": "Knowledge of relevant equipment, policies, procedures, and strategies to promote effective local, state, or national security operations for the protection of people, data, property, and institutions.",
+      "benchmark_importance": 2.3,
+      "source_date": "08/2022"
+    },
+    {
+      "id": "2.C.8.b",
+      "kind": "knowledge",
+      "name": "Law and Government",
+      "description": "Knowledge of laws, legal codes, court procedures, precedents, government regulations, executive orders, agency rules, and the democratic political process.",
+      "benchmark_importance": 2.17,
+      "source_date": "08/2022"
+    },
+    {
+      "id": "2.C.9.a",
+      "kind": "knowledge",
+      "name": "Telecommunications",
+      "description": "Knowledge of transmission, broadcasting, switching, control, and operation of telecommunications systems.",
+      "benchmark_importance": 1.87,
+      "source_date": "08/2022"
+    },
+    {
+      "id": "2.C.9.b",
+      "kind": "knowledge",
+      "name": "Communications and Media",
+      "description": "Knowledge of media production, communication, and dissemination techniques and methods. This includes alternative ways to inform and entertain via written, oral, and visual media.",
+      "benchmark_importance": 3.26,
+      "source_date": "08/2022"
+    },
+    {
+      "id": "2.C.10",
+      "kind": "knowledge",
+      "name": "Transportation",
+      "description": "Knowledge of principles and methods for moving people or goods by air, rail, sea, or road, including the relative costs and benefits.",
+      "benchmark_importance": 1.45,
+      "source_date": "08/2022"
+    },
+    {
+      "id": "1.A.1.a.1",
+      "kind": "ability",
+      "name": "Oral Comprehension",
+      "description": "The ability to listen to and understand information and ideas presented through spoken words and sentences.",
+      "benchmark_importance": 4.0,
+      "source_date": "08/2022"
+    },
+    {
+      "id": "1.A.1.a.2",
+      "kind": "ability",
+      "name": "Written Comprehension",
+      "description": "The ability to read and understand information and ideas presented in writing.",
+      "benchmark_importance": 4.0,
+      "source_date": "08/2022"
+    },
+    {
+      "id": "1.A.1.a.3",
+      "kind": "ability",
+      "name": "Oral Expression",
+      "description": "The ability to communicate information and ideas in speaking so others will understand.",
+      "benchmark_importance": 4.12,
+      "source_date": "08/2022"
+    },
+    {
+      "id": "1.A.1.a.4",
+      "kind": "ability",
+      "name": "Written Expression",
+      "description": "The ability to communicate information and ideas in writing so others will understand.",
+      "benchmark_importance": 4.0,
+      "source_date": "08/2022"
+    },
+    {
+      "id": "1.A.1.b.1",
+      "kind": "ability",
+      "name": "Fluency of Ideas",
+      "description": "The ability to come up with a number of ideas about a topic (the number of ideas is important, not their quality, correctness, or creativity).",
+      "benchmark_importance": 3.75,
+      "source_date": "08/2022"
+    },
+    {
+      "id": "1.A.1.b.2",
+      "kind": "ability",
+      "name": "Originality",
+      "description": "The ability to come up with unusual or clever ideas about a given topic or situation, or to develop creative ways to solve a problem.",
+      "benchmark_importance": 3.62,
+      "source_date": "08/2022"
+    },
+    {
+      "id": "1.A.1.b.3",
+      "kind": "ability",
+      "name": "Problem Sensitivity",
+      "description": "The ability to tell when something is wrong or is likely to go wrong. It does not involve solving the problem, only recognizing that there is a problem.",
+      "benchmark_importance": 3.75,
+      "source_date": "08/2022"
+    },
+    {
+      "id": "1.A.1.b.4",
+      "kind": "ability",
+      "name": "Deductive Reasoning",
+      "description": "The ability to apply general rules to specific problems to produce answers that make sense.",
+      "benchmark_importance": 3.75,
+      "source_date": "08/2022"
+    },
+    {
+      "id": "1.A.1.b.5",
+      "kind": "ability",
+      "name": "Inductive Reasoning",
+      "description": "The ability to combine pieces of information to form general rules or conclusions (includes finding a relationship among seemingly unrelated events).",
+      "benchmark_importance": 3.62,
+      "source_date": "08/2022"
+    },
+    {
+      "id": "1.A.1.b.6",
+      "kind": "ability",
+      "name": "Information Ordering",
+      "description": "The ability to arrange things or actions in a certain order or pattern according to a specific rule or set of rules (e.g., patterns of numbers, letters, words, pictures, mathematical operations).",
+      "benchmark_importance": 3.25,
+      "source_date": "08/2022"
+    },
+    {
+      "id": "1.A.1.b.7",
+      "kind": "ability",
+      "name": "Category Flexibility",
+      "description": "The ability to generate or use different sets of rules for combining or grouping things in different ways.",
+      "benchmark_importance": 3.25,
+      "source_date": "08/2022"
+    },
+    {
+      "id": "1.A.1.c.1",
+      "kind": "ability",
+      "name": "Mathematical Reasoning",
+      "description": "The ability to choose the right mathematical methods or formulas to solve a problem.",
+      "benchmark_importance": 2.5,
+      "source_date": "08/2022"
+    },
+    {
+      "id": "1.A.1.c.2",
+      "kind": "ability",
+      "name": "Number Facility",
+      "description": "The ability to add, subtract, multiply, or divide quickly and correctly.",
+      "benchmark_importance": 2.5,
+      "source_date": "08/2022"
+    },
+    {
+      "id": "1.A.1.d.1",
+      "kind": "ability",
+      "name": "Memorization",
+      "description": "The ability to remember information such as words, numbers, pictures, and procedures.",
+      "benchmark_importance": 3.0,
+      "source_date": "08/2022"
+    },
+    {
+      "id": "1.A.1.e.1",
+      "kind": "ability",
+      "name": "Speed of Closure",
+      "description": "The ability to quickly make sense of, combine, and organize information into meaningful patterns.",
+      "benchmark_importance": 2.62,
+      "source_date": "08/2022"
+    },
+    {
+      "id": "1.A.1.e.2",
+      "kind": "ability",
+      "name": "Flexibility of Closure",
+      "description": "The ability to identify or detect a known pattern (a figure, object, word, or sound) that is hidden in other distracting material.",
+      "benchmark_importance": 2.62,
+      "source_date": "08/2022"
+    },
+    {
+      "id": "1.A.1.e.3",
+      "kind": "ability",
+      "name": "Perceptual Speed",
+      "description": "The ability to quickly and accurately compare similarities and differences among sets of letters, numbers, objects, pictures, or patterns. The things to be compared may be presented at the same time or one after the other. This ability also includes comparing a presented object with a remembered object.",
+      "benchmark_importance": 2.62,
+      "source_date": "08/2022"
+    },
+    {
+      "id": "1.A.1.f.1",
+      "kind": "ability",
+      "name": "Spatial Orientation",
+      "description": "The ability to know your location in relation to the environment or to know where other objects are in relation to you.",
+      "benchmark_importance": 1.12,
+      "source_date": "08/2022"
+    },
+    {
+      "id": "1.A.1.f.2",
+      "kind": "ability",
+      "name": "Visualization",
+      "description": "The ability to imagine how something will look after it is moved around or when its parts are moved or rearranged.",
+      "benchmark_importance": 2.38,
+      "source_date": "08/2022"
+    },
+    {
+      "id": "1.A.1.g.1",
+      "kind": "ability",
+      "name": "Selective Attention",
+      "description": "The ability to concentrate on a task over a period of time without being distracted.",
+      "benchmark_importance": 3.0,
+      "source_date": "08/2022"
+    },
+    {
+      "id": "1.A.1.g.2",
+      "kind": "ability",
+      "name": "Time Sharing",
+      "description": "The ability to shift back and forth between two or more activities or sources of information (such as speech, sounds, touch, or other sources).",
+      "benchmark_importance": 2.75,
+      "source_date": "08/2022"
+    },
+    {
+      "id": "1.A.2.a.1",
+      "kind": "ability",
+      "name": "Arm-Hand Steadiness",
+      "description": "The ability to keep your hand and arm steady while moving your arm or while holding your arm and hand in one position.",
+      "benchmark_importance": 1.0,
+      "source_date": "08/2022"
+    },
+    {
+      "id": "1.A.2.a.2",
+      "kind": "ability",
+      "name": "Manual Dexterity",
+      "description": "The ability to quickly move your hand, your hand together with your arm, or your two hands to grasp, manipulate, or assemble objects.",
+      "benchmark_importance": 1.0,
+      "source_date": "08/2022"
+    },
+    {
+      "id": "1.A.2.a.3",
+      "kind": "ability",
+      "name": "Finger Dexterity",
+      "description": "The ability to make precisely coordinated movements of the fingers of one or both hands to grasp, manipulate, or assemble very small objects.",
+      "benchmark_importance": 1.62,
+      "source_date": "08/2022"
+    },
+    {
+      "id": "1.A.2.b.1",
+      "kind": "ability",
+      "name": "Control Precision",
+      "description": "The ability to quickly and repeatedly adjust the controls of a machine or a vehicle to exact positions.",
+      "benchmark_importance": 1.0,
+      "source_date": "08/2022"
+    },
+    {
+      "id": "1.A.2.b.2",
+      "kind": "ability",
+      "name": "Multilimb Coordination",
+      "description": "The ability to coordinate two or more limbs (for example, two arms, two legs, or one leg and one arm) while sitting, standing, or lying down. It does not involve performing the activities while the whole body is in motion.",
+      "benchmark_importance": 1.0,
+      "source_date": "08/2022"
+    },
+    {
+      "id": "1.A.2.b.3",
+      "kind": "ability",
+      "name": "Response Orientation",
+      "description": "The ability to choose quickly between two or more movements in response to two or more different signals (lights, sounds, pictures). It includes the speed with which the correct response is started with the hand, foot, or other body part.",
+      "benchmark_importance": 1.0,
+      "source_date": "08/2022"
+    },
+    {
+      "id": "1.A.2.b.4",
+      "kind": "ability",
+      "name": "Rate Control",
+      "description": "The ability to time your movements or the movement of a piece of equipment in anticipation of changes in the speed and/or direction of a moving object or scene.",
+      "benchmark_importance": 1.0,
+      "source_date": "08/2022"
+    },
+    {
+      "id": "1.A.2.c.1",
+      "kind": "ability",
+      "name": "Reaction Time",
+      "description": "The ability to quickly respond (with the hand, finger, or foot) to a signal (sound, light, picture) when it appears.",
+      "benchmark_importance": 1.0,
+      "source_date": "08/2022"
+    },
+    {
+      "id": "1.A.2.c.2",
+      "kind": "ability",
+      "name": "Wrist-Finger Speed",
+      "description": "The ability to make fast, simple, repeated movements of the fingers, hands, and wrists.",
+      "benchmark_importance": 1.38,
+      "source_date": "08/2022"
+    },
+    {
+      "id": "1.A.2.c.3",
+      "kind": "ability",
+      "name": "Speed of Limb Movement",
+      "description": "The ability to quickly move the arms and legs.",
+      "benchmark_importance": 1.0,
+      "source_date": "08/2022"
+    },
+    {
+      "id": "1.A.3.a.1",
+      "kind": "ability",
+      "name": "Static Strength",
+      "description": "The ability to exert maximum muscle force to lift, push, pull, or carry objects.",
+      "benchmark_importance": 1.0,
+      "source_date": "08/2022"
+    },
+    {
+      "id": "1.A.3.a.2",
+      "kind": "ability",
+      "name": "Explosive Strength",
+      "description": "The ability to use short bursts of muscle force to propel oneself (as in jumping or sprinting), or to throw an object.",
+      "benchmark_importance": 1.0,
+      "source_date": "08/2022"
+    },
+    {
+      "id": "1.A.3.a.3",
+      "kind": "ability",
+      "name": "Dynamic Strength",
+      "description": "The ability to exert muscle force repeatedly or continuously over time. This involves muscular endurance and resistance to muscle fatigue.",
+      "benchmark_importance": 1.0,
+      "source_date": "08/2022"
+    },
+    {
+      "id": "1.A.3.a.4",
+      "kind": "ability",
+      "name": "Trunk Strength",
+      "description": "The ability to use your abdominal and lower back muscles to support part of the body repeatedly or continuously over time without \"giving out\" or fatiguing.",
+      "benchmark_importance": 2.12,
+      "source_date": "08/2022"
+    },
+    {
+      "id": "1.A.3.b.1",
+      "kind": "ability",
+      "name": "Stamina",
+      "description": "The ability to exert yourself physically over long periods of time without getting winded or out of breath.",
+      "benchmark_importance": 1.0,
+      "source_date": "08/2022"
+    },
+    {
+      "id": "1.A.3.c.1",
+      "kind": "ability",
+      "name": "Extent Flexibility",
+      "description": "The ability to bend, stretch, twist, or reach with your body, arms, and/or legs.",
+      "benchmark_importance": 1.0,
+      "source_date": "08/2022"
+    },
+    {
+      "id": "1.A.3.c.2",
+      "kind": "ability",
+      "name": "Dynamic Flexibility",
+      "description": "The ability to quickly and repeatedly bend, stretch, twist, or reach out with your body, arms, and/or legs.",
+      "benchmark_importance": 1.0,
+      "source_date": "08/2022"
+    },
+    {
+      "id": "1.A.3.c.3",
+      "kind": "ability",
+      "name": "Gross Body Coordination",
+      "description": "The ability to coordinate the movement of your arms, legs, and torso together when the whole body is in motion.",
+      "benchmark_importance": 1.0,
+      "source_date": "08/2022"
+    },
+    {
+      "id": "1.A.3.c.4",
+      "kind": "ability",
+      "name": "Gross Body Equilibrium",
+      "description": "The ability to keep or regain your body balance or stay upright when in an unstable position.",
+      "benchmark_importance": 1.0,
+      "source_date": "08/2022"
+    },
+    {
+      "id": "1.A.4.a.1",
+      "kind": "ability",
+      "name": "Near Vision",
+      "description": "The ability to see details at close range (within a few feet of the observer).",
+      "benchmark_importance": 3.75,
+      "source_date": "08/2022"
+    },
+    {
+      "id": "1.A.4.a.2",
+      "kind": "ability",
+      "name": "Far Vision",
+      "description": "The ability to see details at a distance.",
+      "benchmark_importance": 3.12,
+      "source_date": "08/2022"
+    },
+    {
+      "id": "1.A.4.a.3",
+      "kind": "ability",
+      "name": "Visual Color Discrimination",
+      "description": "The ability to match or detect differences between colors, including shades of color and brightness.",
+      "benchmark_importance": 2.0,
+      "source_date": "08/2022"
+    },
+    {
+      "id": "1.A.4.a.4",
+      "kind": "ability",
+      "name": "Night Vision",
+      "description": "The ability to see under low-light conditions.",
+      "benchmark_importance": 1.0,
+      "source_date": "08/2022"
+    },
+    {
+      "id": "1.A.4.a.5",
+      "kind": "ability",
+      "name": "Peripheral Vision",
+      "description": "The ability to see objects or movement of objects to one's side when the eyes are looking ahead.",
+      "benchmark_importance": 1.0,
+      "source_date": "08/2022"
+    },
+    {
+      "id": "1.A.4.a.6",
+      "kind": "ability",
+      "name": "Depth Perception",
+      "description": "The ability to judge which of several objects is closer or farther away from you, or to judge the distance between you and an object.",
+      "benchmark_importance": 1.75,
+      "source_date": "08/2022"
+    },
+    {
+      "id": "1.A.4.a.7",
+      "kind": "ability",
+      "name": "Glare Sensitivity",
+      "description": "The ability to see objects in the presence of a glare or bright lighting.",
+      "benchmark_importance": 1.0,
+      "source_date": "08/2022"
+    },
+    {
+      "id": "1.A.4.b.1",
+      "kind": "ability",
+      "name": "Hearing Sensitivity",
+      "description": "The ability to detect or tell the differences between sounds that vary in pitch and loudness.",
+      "benchmark_importance": 2.0,
+      "source_date": "08/2022"
+    },
+    {
+      "id": "1.A.4.b.2",
+      "kind": "ability",
+      "name": "Auditory Attention",
+      "description": "The ability to focus on a single source of sound in the presence of other distracting sounds.",
+      "benchmark_importance": 2.12,
+      "source_date": "08/2022"
+    },
+    {
+      "id": "1.A.4.b.3",
+      "kind": "ability",
+      "name": "Sound Localization",
+      "description": "The ability to tell the direction from which a sound originated.",
+      "benchmark_importance": 1.0,
+      "source_date": "08/2022"
+    },
+    {
+      "id": "1.A.4.b.4",
+      "kind": "ability",
+      "name": "Speech Recognition",
+      "description": "The ability to identify and understand the speech of another person.",
+      "benchmark_importance": 4.0,
+      "source_date": "08/2022"
+    },
+    {
+      "id": "1.A.4.b.5",
+      "kind": "ability",
+      "name": "Speech Clarity",
+      "description": "The ability to speak clearly so others can understand you.",
+      "benchmark_importance": 4.0,
+      "source_date": "08/2022"
+    },
+    {
+      "id": "2.A.1.a",
+      "kind": "skill",
+      "name": "Reading Comprehension",
+      "description": "Understanding written sentences and paragraphs in work-related documents.",
+      "benchmark_importance": 3.88,
+      "source_date": "08/2022"
+    },
+    {
+      "id": "2.A.1.b",
+      "kind": "skill",
+      "name": "Active Listening",
+      "description": "Giving full attention to what other people are saying, taking time to understand the points being made, asking questions as appropriate, and not interrupting at inappropriate times.",
+      "benchmark_importance": 4.0,
+      "source_date": "08/2022"
+    },
+    {
+      "id": "2.A.1.c",
+      "kind": "skill",
+      "name": "Writing",
+      "description": "Communicating effectively in writing as appropriate for the needs of the audience.",
+      "benchmark_importance": 3.88,
+      "source_date": "08/2022"
+    },
+    {
+      "id": "2.A.1.d",
+      "kind": "skill",
+      "name": "Speaking",
+      "description": "Talking to others to convey information effectively.",
+      "benchmark_importance": 4.38,
+      "source_date": "08/2022"
+    },
+    {
+      "id": "2.A.1.e",
+      "kind": "skill",
+      "name": "Mathematics",
+      "description": "Using mathematics to solve problems.",
+      "benchmark_importance": 2.38,
+      "source_date": "08/2022"
+    },
+    {
+      "id": "2.A.1.f",
+      "kind": "skill",
+      "name": "Science",
+      "description": "Using scientific rules and methods to solve problems.",
+      "benchmark_importance": 1.62,
+      "source_date": "08/2022"
+    },
+    {
+      "id": "2.A.2.a",
+      "kind": "skill",
+      "name": "Critical Thinking",
+      "description": "Using logic and reasoning to identify the strengths and weaknesses of alternative solutions, conclusions, or approaches to problems.",
+      "benchmark_importance": 3.88,
+      "source_date": "08/2022"
+    },
+    {
+      "id": "2.A.2.b",
+      "kind": "skill",
+      "name": "Active Learning",
+      "description": "Understanding the implications of new information for both current and future problem-solving and decision-making.",
+      "benchmark_importance": 3.88,
+      "source_date": "08/2022"
+    },
+    {
+      "id": "2.A.2.c",
+      "kind": "skill",
+      "name": "Learning Strategies",
+      "description": "Selecting and using training/instructional methods and procedures appropriate for the situation when learning or teaching new things.",
+      "benchmark_importance": 4.12,
+      "source_date": "08/2022"
+    },
+    {
+      "id": "2.A.2.d",
+      "kind": "skill",
+      "name": "Monitoring",
+      "description": "Monitoring/Assessing performance of yourself, other individuals, or organizations to make improvements or take corrective action.",
+      "benchmark_importance": 3.88,
+      "source_date": "08/2022"
+    },
+    {
+      "id": "2.B.1.a",
+      "kind": "skill",
+      "name": "Social Perceptiveness",
+      "description": "Being aware of others' reactions and understanding why they react as they do.",
+      "benchmark_importance": 4.0,
+      "source_date": "08/2022"
+    },
+    {
+      "id": "2.B.1.b",
+      "kind": "skill",
+      "name": "Coordination",
+      "description": "Adjusting actions in relation to others' actions.",
+      "benchmark_importance": 3.75,
+      "source_date": "08/2022"
+    },
+    {
+      "id": "2.B.1.c",
+      "kind": "skill",
+      "name": "Persuasion",
+      "description": "Persuading others to change their minds or behavior.",
+      "benchmark_importance": 3.12,
+      "source_date": "08/2022"
+    },
+    {
+      "id": "2.B.1.d",
+      "kind": "skill",
+      "name": "Negotiation",
+      "description": "Bringing others together and trying to reconcile differences.",
+      "benchmark_importance": 3.12,
+      "source_date": "08/2022"
+    },
+    {
+      "id": "2.B.1.e",
+      "kind": "skill",
+      "name": "Instructing",
+      "description": "Teaching others how to do something.",
+      "benchmark_importance": 4.38,
+      "source_date": "08/2022"
+    },
+    {
+      "id": "2.B.1.f",
+      "kind": "skill",
+      "name": "Service Orientation",
+      "description": "Actively looking for ways to help people.",
+      "benchmark_importance": 3.62,
+      "source_date": "08/2022"
+    },
+    {
+      "id": "2.B.2.i",
+      "kind": "skill",
+      "name": "Complex Problem Solving",
+      "description": "Identifying complex problems and reviewing related information to develop and evaluate options and implement solutions.",
+      "benchmark_importance": 3.25,
+      "source_date": "08/2022"
+    },
+    {
+      "id": "2.B.3.a",
+      "kind": "skill",
+      "name": "Operations Analysis",
+      "description": "Analyzing needs and product requirements to create a design.",
+      "benchmark_importance": 3.12,
+      "source_date": "08/2022"
+    },
+    {
+      "id": "2.B.3.b",
+      "kind": "skill",
+      "name": "Technology Design",
+      "description": "Generating or adapting equipment and technology to serve user needs.",
+      "benchmark_importance": 1.88,
+      "source_date": "08/2022"
+    },
+    {
+      "id": "2.B.3.c",
+      "kind": "skill",
+      "name": "Equipment Selection",
+      "description": "Determining the kind of tools and equipment needed to do a job.",
+      "benchmark_importance": 1.12,
+      "source_date": "08/2022"
+    },
+    {
+      "id": "2.B.3.d",
+      "kind": "skill",
+      "name": "Installation",
+      "description": "Installing equipment, machines, wiring, or programs to meet specifications.",
+      "benchmark_importance": 1.0,
+      "source_date": "08/2022"
+    },
+    {
+      "id": "2.B.3.e",
+      "kind": "skill",
+      "name": "Programming",
+      "description": "Writing computer programs for various purposes.",
+      "benchmark_importance": 1.5,
+      "source_date": "08/2022"
+    },
+    {
+      "id": "2.B.3.g",
+      "kind": "skill",
+      "name": "Operations Monitoring",
+      "description": "Watching gauges, dials, or other indicators to make sure a machine is working properly.",
+      "benchmark_importance": 2.0,
+      "source_date": "08/2022"
+    },
+    {
+      "id": "2.B.3.h",
+      "kind": "skill",
+      "name": "Operation and Control",
+      "description": "Controlling operations of equipment or systems.",
+      "benchmark_importance": 1.12,
+      "source_date": "08/2022"
+    },
+    {
+      "id": "2.B.3.j",
+      "kind": "skill",
+      "name": "Equipment Maintenance",
+      "description": "Performing routine maintenance on equipment and determining when and what kind of maintenance is needed.",
+      "benchmark_importance": 1.0,
+      "source_date": "08/2022"
+    },
+    {
+      "id": "2.B.3.k",
+      "kind": "skill",
+      "name": "Troubleshooting",
+      "description": "Determining causes of operating errors and deciding what to do about it.",
+      "benchmark_importance": 1.0,
+      "source_date": "08/2022"
+    },
+    {
+      "id": "2.B.3.l",
+      "kind": "skill",
+      "name": "Repairing",
+      "description": "Repairing machines or systems using the needed tools.",
+      "benchmark_importance": 1.0,
+      "source_date": "08/2022"
+    },
+    {
+      "id": "2.B.3.m",
+      "kind": "skill",
+      "name": "Quality Control Analysis",
+      "description": "Conducting tests and inspections of products, services, or processes to evaluate quality or performance.",
+      "benchmark_importance": 1.88,
+      "source_date": "08/2022"
+    },
+    {
+      "id": "2.B.4.e",
+      "kind": "skill",
+      "name": "Judgment and Decision Making",
+      "description": "Considering the relative costs and benefits of potential actions to choose the most appropriate one.",
+      "benchmark_importance": 3.88,
+      "source_date": "08/2022"
+    },
+    {
+      "id": "2.B.4.g",
+      "kind": "skill",
+      "name": "Systems Analysis",
+      "description": "Determining how a system should work and how changes in conditions, operations, and the environment will affect outcomes.",
+      "benchmark_importance": 3.12,
+      "source_date": "08/2022"
+    },
+    {
+      "id": "2.B.4.h",
+      "kind": "skill",
+      "name": "Systems Evaluation",
+      "description": "Identifying measures or indicators of system performance and the actions needed to improve or correct performance, relative to the goals of the system.",
+      "benchmark_importance": 3.38,
+      "source_date": "08/2022"
+    },
+    {
+      "id": "2.B.5.a",
+      "kind": "skill",
+      "name": "Time Management",
+      "description": "Managing one's own time and the time of others.",
+      "benchmark_importance": 3.62,
+      "source_date": "08/2022"
+    },
+    {
+      "id": "2.B.5.b",
+      "kind": "skill",
+      "name": "Management of Financial Resources",
+      "description": "Determining how money will be spent to get the work done, and accounting for these expenditures.",
+      "benchmark_importance": 2.25,
+      "source_date": "08/2022"
+    },
+    {
+      "id": "2.B.5.c",
+      "kind": "skill",
+      "name": "Management of Material Resources",
+      "description": "Obtaining and seeing to the appropriate use of equipment, facilities, and materials needed to do certain work.",
+      "benchmark_importance": 2.25,
+      "source_date": "08/2022"
+    },
+    {
+      "id": "2.B.5.d",
+      "kind": "skill",
+      "name": "Management of Personnel Resources",
+      "description": "Motivating, developing, and directing people as they work, identifying the best people for the job.",
+      "benchmark_importance": 3.12,
+      "source_date": "08/2022"
+    },
+    {
+      "id": "2.E.5.b:Adobe Acrobat",
+      "kind": "tool",
+      "name": "Adobe Acrobat",
+      "description": "Software to store, organize, or search documents or files from other software or from paper copies.",
+      "benchmark_importance": null,
+      "source_date": "2026-11-11"
+    },
+    {
+      "id": "2.E.7.b:Adobe ActionScript",
+      "kind": "tool",
+      "name": "Adobe ActionScript",
+      "description": "Software to create or maintain applications which run on a computer or mobile device.",
+      "benchmark_importance": null,
+      "source_date": "2026-11-11"
+    },
+    {
+      "id": "2.E.4.c:Adobe After Effects",
+      "kind": "tool",
+      "name": "Adobe After Effects",
+      "description": "Software to enable production of video content.",
+      "benchmark_importance": null,
+      "source_date": "2026-11-11"
+    },
+    {
+      "id": "2.E.8.b:Adobe Authorware",
+      "kind": "tool",
+      "name": "Adobe Authorware",
+      "description": "Software to create, manage, or provide instructional material or courses accessed from a computer.",
+      "benchmark_importance": null,
+      "source_date": "2026-11-11"
+    },
+    {
+      "id": "2.E.8.b:Adobe Captivate",
+      "kind": "tool",
+      "name": "Adobe Captivate",
+      "description": "Software to create, manage, or provide instructional material or courses accessed from a computer.",
+      "benchmark_importance": null,
+      "source_date": "2026-11-11"
+    },
+    {
+      "id": "2.E.4.b:Adobe Creative Cloud software",
+      "kind": "tool",
+      "name": "Adobe Creative Cloud software",
+      "description": "Software to draw or manipulate images. May adjust colors, add text, or apply special effects.",
+      "benchmark_importance": null,
+      "source_date": "2026-11-11"
+    },
+    {
+      "id": "2.E.4.g:Adobe Dreamweaver",
+      "kind": "tool",
+      "name": "Adobe Dreamweaver",
+      "description": "Software to develop or edit web sites or individual pages.",
+      "benchmark_importance": null,
+      "source_date": "2026-11-11"
+    },
+    {
+      "id": "2.E.4.b:Adobe Illustrator",
+      "kind": "tool",
+      "name": "Adobe Illustrator",
+      "description": "Software to draw or manipulate images. May adjust colors, add text, or apply special effects.",
+      "benchmark_importance": null,
+      "source_date": "2026-11-11"
+    },
+    {
+      "id": "2.E.4.k:Adobe InDesign",
+      "kind": "tool",
+      "name": "Adobe InDesign",
+      "description": "Software to create or edit text and graphics into documents such as books, magazines, brochures, or manuals.",
+      "benchmark_importance": null,
+      "source_date": "2026-11-11"
+    },
+    {
+      "id": "2.E.4.b:Adobe Photoshop",
+      "kind": "tool",
+      "name": "Adobe Photoshop",
+      "description": "Software to draw or manipulate images. May adjust colors, add text, or apply special effects.",
+      "benchmark_importance": null,
+      "source_date": "2026-11-11"
+    },
+    {
+      "id": "2.E.8.b:Adobe Presenter",
+      "kind": "tool",
+      "name": "Adobe Presenter",
+      "description": "Software to create, manage, or provide instructional material or courses accessed from a computer.",
+      "benchmark_importance": null,
+      "source_date": "2026-11-11"
+    },
+    {
+      "id": "2.E.7.e:Advanced business application programming ABAP",
+      "kind": "tool",
+      "name": "Advanced business application programming ABAP",
+      "description": "Software to create or maintain applications using object-oriented programming concepts.",
+      "benchmark_importance": null,
+      "source_date": "2026-11-11"
+    },
+    {
+      "id": "2.E.8.b:Alchemy Systems SISTEM",
+      "kind": "tool",
+      "name": "Alchemy Systems SISTEM",
+      "description": "Software to create, manage, or provide instructional material or courses accessed from a computer.",
+      "benchmark_importance": null,
+      "source_date": "2026-11-11"
+    },
+    {
+      "id": "2.E.7.h:Apache Struts",
+      "kind": "tool",
+      "name": "Apache Struts",
+      "description": "Software to create or maintain applications accessed through web sites or using web technologies such as HTML.",
+      "benchmark_importance": null,
+      "source_date": "2026-11-11"
+    },
+    {
+      "id": "2.E.4.c:Apple Final Cut Pro",
+      "kind": "tool",
+      "name": "Apple Final Cut Pro",
+      "description": "Software to enable production of video content.",
+      "benchmark_importance": null,
+      "source_date": "2026-11-11"
+    },
+    {
+      "id": "2.E.8.b:Articulate Rapid E-Learning Studio",
+      "kind": "tool",
+      "name": "Articulate Rapid E-Learning Studio",
+      "description": "Software to create, manage, or provide instructional material or courses accessed from a computer.",
+      "benchmark_importance": null,
+      "source_date": "2026-11-11"
+    },
+    {
+      "id": "2.E.7.h:Backbone.js",
+      "kind": "tool",
+      "name": "Backbone.js",
+      "description": "Software to create or maintain applications accessed through web sites or using web technologies such as HTML.",
+      "benchmark_importance": null,
+      "source_date": "2026-11-11"
+    },
+    {
+      "id": "2.E.8.b:Beeline Learning Management System LMS",
+      "kind": "tool",
+      "name": "Beeline Learning Management System LMS",
+      "description": "Software to create, manage, or provide instructional material or courses accessed from a computer.",
+      "benchmark_importance": null,
+      "source_date": "2026-11-11"
+    },
+    {
+      "id": "2.E.6.c:Blackbaud The Raiser's Edge",
+      "kind": "tool",
+      "name": "Blackbaud The Raiser's Edge",
+      "description": "Software to manage customer interactions.",
+      "benchmark_importance": null,
+      "source_date": "2026-11-11"
+    },
+    {
+      "id": "2.E.6.f:Blackboard software",
+      "kind": "tool",
+      "name": "Blackboard software",
+      "description": "Software to query, present, or edit information stored in a database sytem.",
+      "benchmark_importance": null,
+      "source_date": "2026-11-11"
+    },
+    {
+      "id": "2.E.8.b:Blatant Media Absorb LMS",
+      "kind": "tool",
+      "name": "Blatant Media Absorb LMS",
+      "description": "Software to create, manage, or provide instructional material or courses accessed from a computer.",
+      "benchmark_importance": null,
+      "source_date": "2026-11-11"
+    },
+    {
+      "id": "2.E.8.b:Brainshark Rapid Learning",
+      "kind": "tool",
+      "name": "Brainshark Rapid Learning",
+      "description": "Software to create, manage, or provide instructional material or courses accessed from a computer.",
+      "benchmark_importance": null,
+      "source_date": "2026-11-11"
+    },
+    {
+      "id": "2.E.16.b:Cisco Webex",
+      "kind": "tool",
+      "name": "Cisco Webex",
+      "description": "Software to enable audio or video conferences between participants using networked devices.",
+      "benchmark_importance": null,
+      "source_date": "2026-11-11"
+    },
+    {
+      "id": "2.E.12.a:Citrix cloud computing software",
+      "kind": "tool",
+      "name": "Citrix cloud computing software",
+      "description": "Software to enable remote access of a computer system across a network.",
+      "benchmark_importance": null,
+      "source_date": "2026-11-11"
+    },
+    {
+      "id": "2.E.8.b:Cobent Learning and Compliance Suite LCS",
+      "kind": "tool",
+      "name": "Cobent Learning and Compliance Suite LCS",
+      "description": "Software to create, manage, or provide instructional material or courses accessed from a computer.",
+      "benchmark_importance": null,
+      "source_date": "2026-11-11"
+    },
+    {
+      "id": "2.E.8.b:Common Curriculum",
+      "kind": "tool",
+      "name": "Common Curriculum",
+      "description": "Software to create, manage, or provide instructional material or courses accessed from a computer.",
+      "benchmark_importance": null,
+      "source_date": "2026-11-11"
+    },
+    {
+      "id": "2.E.8.b:Computer Generated Solutions Learning Management System",
+      "kind": "tool",
+      "name": "Computer Generated Solutions Learning Management System",
+      "description": "Software to create, manage, or provide instructional material or courses accessed from a computer.",
+      "benchmark_importance": null,
+      "source_date": "2026-11-11"
+    },
+    {
+      "id": "2.E.6.f:Database software",
+      "kind": "tool",
+      "name": "Database software",
+      "description": "Software to query, present, or edit information stored in a database sytem.",
+      "benchmark_importance": null,
+      "source_date": "2026-11-11"
+    },
+    {
+      "id": "2.E.7.h:Django",
+      "kind": "tool",
+      "name": "Django",
+      "description": "Software to create or maintain applications accessed through web sites or using web technologies such as HTML.",
+      "benchmark_importance": null,
+      "source_date": "2026-11-11"
+    },
+    {
+      "id": "2.E.8.b:dominKnow Learning Center",
+      "kind": "tool",
+      "name": "dominKnow Learning Center",
+      "description": "Software to create, manage, or provide instructional material or courses accessed from a computer.",
+      "benchmark_importance": null,
+      "source_date": "2026-11-11"
+    },
+    {
+      "id": "2.E.7.h:Drupal",
+      "kind": "tool",
+      "name": "Drupal",
+      "description": "Software to create or maintain applications accessed through web sites or using web technologies such as HTML.",
+      "benchmark_importance": null,
+      "source_date": "2026-11-11"
+    },
+    {
+      "id": "2.E.8.b:Eedo Knowledgeware Eedo Force Ten",
+      "kind": "tool",
+      "name": "Eedo Knowledgeware Eedo Force Ten",
+      "description": "Software to create, manage, or provide instructional material or courses accessed from a computer.",
+      "benchmark_importance": null,
+      "source_date": "2026-11-11"
+    },
+    {
+      "id": "2.E.8.b:ElearningForce JoomlaLMS",
+      "kind": "tool",
+      "name": "ElearningForce JoomlaLMS",
+      "description": "Software to create, manage, or provide instructional material or courses accessed from a computer.",
+      "benchmark_importance": null,
+      "source_date": "2026-11-11"
+    },
+    {
+      "id": "2.E.9.i:Epic Systems",
+      "kind": "tool",
+      "name": "Epic Systems",
+      "description": "Software to evaluate, plan, or redesign healthcare procedures. May include reporting or visualization features.",
+      "benchmark_importance": null,
+      "source_date": "2026-11-11"
+    },
+    {
+      "id": "2.E.8.b:EZ LCMS",
+      "kind": "tool",
+      "name": "EZ LCMS",
+      "description": "Software to create, manage, or provide instructional material or courses accessed from a computer.",
+      "benchmark_importance": null,
+      "source_date": "2026-11-11"
+    },
+    {
+      "id": "2.E.6.f:FileMaker Pro",
+      "kind": "tool",
+      "name": "FileMaker Pro",
+      "description": "Software to query, present, or edit information stored in a database sytem.",
+      "benchmark_importance": null,
+      "source_date": "2026-11-11"
+    },
+    {
+      "id": "2.E.8.b:FlexTraining Total e-Learning Solution",
+      "kind": "tool",
+      "name": "FlexTraining Total e-Learning Solution",
+      "description": "Software to create, manage, or provide instructional material or courses accessed from a computer.",
+      "benchmark_importance": null,
+      "source_date": "2026-11-11"
+    },
+    {
+      "id": "2.E.8.b:G-Cube Solutions Wizdom Web LMS",
+      "kind": "tool",
+      "name": "G-Cube Solutions Wizdom Web LMS",
+      "description": "Software to create, manage, or provide instructional material or courses accessed from a computer.",
+      "benchmark_importance": null,
+      "source_date": "2026-11-11"
+    },
+    {
+      "id": "2.E.8.b:GeoMetrix Data Systems Training Partner",
+      "kind": "tool",
+      "name": "GeoMetrix Data Systems Training Partner",
+      "description": "Software to create, manage, or provide instructional material or courses accessed from a computer.",
+      "benchmark_importance": null,
+      "source_date": "2026-11-11"
+    },
+    {
+      "id": "2.E.16.i:Google Drive",
+      "kind": "tool",
+      "name": "Google Drive",
+      "description": "Software to share or co-author computer files through cloud computing, where documents are stored in a central \"cloud\" of networked servers.",
+      "benchmark_importance": null,
+      "source_date": "2026-11-11"
+    },
+    {
+      "id": "2.E.16.b:Google Meet",
+      "kind": "tool",
+      "name": "Google Meet",
+      "description": "Software to enable audio or video conferences between participants using networked devices.",
+      "benchmark_importance": null,
+      "source_date": "2026-11-11"
+    },
+    {
+      "id": "2.E.4.g:Google Sites",
+      "kind": "tool",
+      "name": "Google Sites",
+      "description": "Software to develop or edit web sites or individual pages.",
+      "benchmark_importance": null,
+      "source_date": "2026-11-11"
+    },
+    {
+      "id": "2.E.4.f:Google Slides",
+      "kind": "tool",
+      "name": "Google Slides",
+      "description": "Software to create presentations, speeches, or slideshows.",
+      "benchmark_importance": null,
+      "source_date": "2026-11-11"
+    },
+    {
+      "id": "2.E.8.b:Halogen eLMS",
+      "kind": "tool",
+      "name": "Halogen eLMS",
+      "description": "Software to create, manage, or provide instructional material or courses accessed from a computer.",
+      "benchmark_importance": null,
+      "source_date": "2026-11-11"
+    },
+    {
+      "id": "2.E.5.b:HP Trim",
+      "kind": "tool",
+      "name": "HP Trim",
+      "description": "Software to store, organize, or search documents or files from other software or from paper copies.",
+      "benchmark_importance": null,
+      "source_date": "2026-11-11"
+    },
+    {
+      "id": "2.E.1.c:Human resource management software HRMS",
+      "kind": "tool",
+      "name": "Human resource management software HRMS",
+      "description": "Software to manage employee evaluations, track wages or absenteeism, maintain safety records, or manage hours or time off.",
+      "benchmark_importance": null,
+      "source_date": "2026-11-11"
+    },
+    {
+      "id": "2.E.7.h:Hypertext markup language HTML",
+      "kind": "tool",
+      "name": "Hypertext markup language HTML",
+      "description": "Software to create or maintain applications accessed through web sites or using web technologies such as HTML.",
+      "benchmark_importance": null,
+      "source_date": "2026-11-11"
+    },
+    {
+      "id": "2.E.16.a:IBM Notes",
+      "kind": "tool",
+      "name": "IBM Notes",
+      "description": "Software to compose, send, or receive email.",
+      "benchmark_importance": null,
+      "source_date": "2026-11-11"
+    },
+    {
+      "id": "2.E.9.d:IBM SPSS Statistics",
+      "kind": "tool",
+      "name": "IBM SPSS Statistics",
+      "description": "Software to capture data, perform analysis, or generate reports or visualizations to support scientific research.",
+      "benchmark_importance": null,
+      "source_date": "2026-11-11"
+    },
+    {
+      "id": "2.E.8.b:ICS Learning Group Inquisiq EX",
+      "kind": "tool",
+      "name": "ICS Learning Group Inquisiq EX",
+      "description": "Software to create, manage, or provide instructional material or courses accessed from a computer.",
+      "benchmark_importance": null,
+      "source_date": "2026-11-11"
+    },
+    {
+      "id": "2.E.8.b:Ikonami AT-Learning Tool",
+      "kind": "tool",
+      "name": "Ikonami AT-Learning Tool",
+      "description": "Software to create, manage, or provide instructional material or courses accessed from a computer.",
+      "benchmark_importance": null,
+      "source_date": "2026-11-11"
+    },
+    {
+      "id": "2.E.8.b:Inspired eLearning iLMS",
+      "kind": "tool",
+      "name": "Inspired eLearning iLMS",
+      "description": "Software to create, manage, or provide instructional material or courses accessed from a computer.",
+      "benchmark_importance": null,
+      "source_date": "2026-11-11"
+    },
+    {
+      "id": "2.E.8.b:Intelladon Enterprise Knowledge Platform EKP",
+      "kind": "tool",
+      "name": "Intelladon Enterprise Knowledge Platform EKP",
+      "description": "Software to create, manage, or provide instructional material or courses accessed from a computer.",
+      "benchmark_importance": null,
+      "source_date": "2026-11-11"
+    },
+    {
+      "id": "2.E.8.b:Intelligent Information Conversion Technologies MeritScholar",
+      "kind": "tool",
+      "name": "Intelligent Information Conversion Technologies MeritScholar",
+      "description": "Software to create, manage, or provide instructional material or courses accessed from a computer.",
+      "benchmark_importance": null,
+      "source_date": "2026-11-11"
+    },
+    {
+      "id": "2.E.8.b:Intellum Rollbook",
+      "kind": "tool",
+      "name": "Intellum Rollbook",
+      "description": "Software to create, manage, or provide instructional material or courses accessed from a computer.",
+      "benchmark_importance": null,
+      "source_date": "2026-11-11"
+    },
+    {
+      "id": "2.E.5.b:Interwoven software",
+      "kind": "tool",
+      "name": "Interwoven software",
+      "description": "Software to store, organize, or search documents or files from other software or from paper copies.",
+      "benchmark_importance": null,
+      "source_date": "2026-11-11"
+    },
+    {
+      "id": "2.E.7.h:JavaScript",
+      "kind": "tool",
+      "name": "JavaScript",
+      "description": "Software to create or maintain applications accessed through web sites or using web technologies such as HTML.",
+      "benchmark_importance": null,
+      "source_date": "2026-11-11"
+    },
+    {
+      "id": "2.E.8.e:Kahoot!",
+      "kind": "tool",
+      "name": "Kahoot!",
+      "description": "Software to educate children or students using interactive or gaming elements.",
+      "benchmark_importance": null,
+      "source_date": "2026-11-11"
+    },
+    {
+      "id": "2.E.8.b:Learn HQ Activate LMS",
+      "kind": "tool",
+      "name": "Learn HQ Activate LMS",
+      "description": "Software to create, manage, or provide instructional material or courses accessed from a computer.",
+      "benchmark_importance": null,
+      "source_date": "2026-11-11"
+    },
+    {
+      "id": "2.E.8.b:Learning management system LMS",
+      "kind": "tool",
+      "name": "Learning management system LMS",
+      "description": "Software to create, manage, or provide instructional material or courses accessed from a computer.",
+      "benchmark_importance": null,
+      "source_date": "2026-11-11"
+    },
+    {
+      "id": "2.E.16.b:LogMeIn GoToMeeting",
+      "kind": "tool",
+      "name": "LogMeIn GoToMeeting",
+      "description": "Software to enable audio or video conferences between participants using networked devices.",
+      "benchmark_importance": null,
+      "source_date": "2026-11-11"
+    },
+    {
+      "id": "2.E.16.c:LogMeIn GoToWebinar",
+      "kind": "tool",
+      "name": "LogMeIn GoToWebinar",
+      "description": "Software to share files, remotely control computers, or transmit real-time data between participants using networked devices.",
+      "benchmark_importance": null,
+      "source_date": "2026-11-11"
+    },
+    {
+      "id": "2.E.8.b:Medworxx Learning Management System",
+      "kind": "tool",
+      "name": "Medworxx Learning Management System",
+      "description": "Software to create, manage, or provide instructional material or courses accessed from a computer.",
+      "benchmark_importance": null,
+      "source_date": "2026-11-11"
+    },
+    {
+      "id": "2.E.4.f:Mentimeter",
+      "kind": "tool",
+      "name": "Mentimeter",
+      "description": "Software to create presentations, speeches, or slideshows.",
+      "benchmark_importance": null,
+      "source_date": "2026-11-11"
+    },
+    {
+      "id": "2.E.6.f:Microsoft Access",
+      "kind": "tool",
+      "name": "Microsoft Access",
+      "description": "Software to query, present, or edit information stored in a database sytem.",
+      "benchmark_importance": null,
+      "source_date": "2026-11-11"
+    },
+    {
+      "id": "2.E.6.c:Microsoft Dynamics",
+      "kind": "tool",
+      "name": "Microsoft Dynamics",
+      "description": "Software to manage customer interactions.",
+      "benchmark_importance": null,
+      "source_date": "2026-11-11"
+    },
+    {
+      "id": "2.E.4.i:Microsoft Excel",
+      "kind": "tool",
+      "name": "Microsoft Excel",
+      "description": "Software to create or edit numbers or text organized into rows and columns of cells. May include formulas which recalculate values based on other cells.",
+      "benchmark_importance": null,
+      "source_date": "2026-11-11"
+    },
+    {
+      "id": "2.E.16.b:Microsoft NetMeeting",
+      "kind": "tool",
+      "name": "Microsoft NetMeeting",
+      "description": "Software to enable audio or video conferences between participants using networked devices.",
+      "benchmark_importance": null,
+      "source_date": "2026-11-11"
+    },
+    {
+      "id": "2.E.1.k:Microsoft Office software",
+      "kind": "tool",
+      "name": "Microsoft Office software",
+      "description": "Software to provide word processing, spreadsheet, e-mail, presentations, or data management capabilities.",
+      "benchmark_importance": null,
+      "source_date": "2026-11-11"
+    },
+    {
+      "id": "2.E.4.d:Microsoft OneNote",
+      "kind": "tool",
+      "name": "Microsoft OneNote",
+      "description": "Software to create, edit, store, or print documents.",
+      "benchmark_importance": null,
+      "source_date": "2026-11-11"
+    },
+    {
+      "id": "2.E.16.a:Microsoft Outlook",
+      "kind": "tool",
+      "name": "Microsoft Outlook",
+      "description": "Software to compose, send, or receive email.",
+      "benchmark_importance": null,
+      "source_date": "2026-11-11"
+    },
+    {
+      "id": "2.E.4.f:Microsoft PowerPoint",
+      "kind": "tool",
+      "name": "Microsoft PowerPoint",
+      "description": "Software to create presentations, speeches, or slideshows.",
+      "benchmark_importance": null,
+      "source_date": "2026-11-11"
+    },
+    {
+      "id": "2.E.1.e:Microsoft Project",
+      "kind": "tool",
+      "name": "Microsoft Project",
+      "description": "Software to plan, organize, staff, or control the completion of a product or set of tasks.",
+      "benchmark_importance": null,
+      "source_date": "2026-11-11"
+    },
+    {
+      "id": "2.E.4.k:Microsoft Publisher",
+      "kind": "tool",
+      "name": "Microsoft Publisher",
+      "description": "Software to create or edit text and graphics into documents such as books, magazines, brochures, or manuals.",
+      "benchmark_importance": null,
+      "source_date": "2026-11-11"
+    },
+    {
+      "id": "2.E.5.b:Microsoft SharePoint",
+      "kind": "tool",
+      "name": "Microsoft SharePoint",
+      "description": "Software to store, organize, or search documents or files from other software or from paper copies.",
+      "benchmark_importance": null,
+      "source_date": "2026-11-11"
+    },
+    {
+      "id": "2.E.1.p:Microsoft Visio",
+      "kind": "tool",
+      "name": "Microsoft Visio",
+      "description": "Software to create visual representations of business work flows, also called flow charts or workflow diagrams.",
+      "benchmark_importance": null,
+      "source_date": "2026-11-11"
+    },
+    {
+      "id": "2.E.4.d:Microsoft Word",
+      "kind": "tool",
+      "name": "Microsoft Word",
+      "description": "Software to create, edit, store, or print documents.",
+      "benchmark_importance": null,
+      "source_date": "2026-11-11"
+    },
+    {
+      "id": "2.E.8.b:Moodle",
+      "kind": "tool",
+      "name": "Moodle",
+      "description": "Software to create, manage, or provide instructional material or courses accessed from a computer.",
+      "benchmark_importance": null,
+      "source_date": "2026-11-11"
+    },
+    {
+      "id": "2.E.6.d:MySQL",
+      "kind": "tool",
+      "name": "MySQL",
+      "description": "Software to store, organize, or provide access to a set of related information.",
+      "benchmark_importance": null,
+      "source_date": "2026-11-11"
+    },
+    {
+      "id": "2.E.8.b:Mzinga On-Demand Learning Suite",
+      "kind": "tool",
+      "name": "Mzinga On-Demand Learning Suite",
+      "description": "Software to create, manage, or provide instructional material or courses accessed from a computer.",
+      "benchmark_importance": null,
+      "source_date": "2026-11-11"
+    },
+    {
+      "id": "2.E.8.b:NetDimensions Enterprise Knowledge Platform EKP",
+      "kind": "tool",
+      "name": "NetDimensions Enterprise Knowledge Platform EKP",
+      "description": "Software to create, manage, or provide instructional material or courses accessed from a computer.",
+      "benchmark_importance": null,
+      "source_date": "2026-11-11"
+    },
+    {
+      "id": "2.E.8.b:OnPoint Digital OnPoint Learning & Performance Suite",
+      "kind": "tool",
+      "name": "OnPoint Digital OnPoint Learning & Performance Suite",
+      "description": "Software to create, manage, or provide instructional material or courses accessed from a computer.",
+      "benchmark_importance": null,
+      "source_date": "2026-11-11"
+    },
+    {
+      "id": "2.E.8.b:Operitel LearnFlex",
+      "kind": "tool",
+      "name": "Operitel LearnFlex",
+      "description": "Software to create, manage, or provide instructional material or courses accessed from a computer.",
+      "benchmark_importance": null,
+      "source_date": "2026-11-11"
+    },
+    {
+      "id": "2.E.6.m:Oracle Business Intelligence Enterprise Edition",
+      "kind": "tool",
+      "name": "Oracle Business Intelligence Enterprise Edition",
+      "description": "Software to present, visualize, or analyze data to help businesses make informed decisions.",
+      "benchmark_importance": null,
+      "source_date": "2026-11-11"
+    },
+    {
+      "id": "2.E.2.b:Oracle PeopleSoft",
+      "kind": "tool",
+      "name": "Oracle PeopleSoft",
+      "description": "Software to integrate, monitor, or analyze data from multiple business operations within a unified system.",
+      "benchmark_importance": null,
+      "source_date": "2026-11-11"
+    },
+    {
+      "id": "2.E.2.b:Oracle PeopleSoft Financials",
+      "kind": "tool",
+      "name": "Oracle PeopleSoft Financials",
+      "description": "Software to integrate, monitor, or analyze data from multiple business operations within a unified system.",
+      "benchmark_importance": null,
+      "source_date": "2026-11-11"
+    },
+    {
+      "id": "2.E.6.d:Oracle PL/SQL",
+      "kind": "tool",
+      "name": "Oracle PL/SQL",
+      "description": "Software to store, organize, or provide access to a set of related information.",
+      "benchmark_importance": null,
+      "source_date": "2026-11-11"
+    },
+    {
+      "id": "2.E.13.c:Oracle Solaris",
+      "kind": "tool",
+      "name": "Oracle Solaris",
+      "description": "Software to provide the operational interface to a computer and provide higher-level services and APIs.",
+      "benchmark_importance": null,
+      "source_date": "2026-11-11"
+    },
+    {
+      "id": "2.E.1.c:Oracle Taleo",
+      "kind": "tool",
+      "name": "Oracle Taleo",
+      "description": "Software to manage employee evaluations, track wages or absenteeism, maintain safety records, or manage hours or time off.",
+      "benchmark_importance": null,
+      "source_date": "2026-11-11"
+    },
+    {
+      "id": "2.E.10.a:Oracle WebLogic Server",
+      "kind": "tool",
+      "name": "Oracle WebLogic Server",
+      "description": "Software to support or run applications which provide services through a communication protocol.",
+      "benchmark_importance": null,
+      "source_date": "2026-11-11"
+    },
+    {
+      "id": "2.E.8.b:Pathlore LMS",
+      "kind": "tool",
+      "name": "Pathlore LMS",
+      "description": "Software to create, manage, or provide instructional material or courses accessed from a computer.",
+      "benchmark_importance": null,
+      "source_date": "2026-11-11"
+    },
+    {
+      "id": "2.E.7.h:PHP",
+      "kind": "tool",
+      "name": "PHP",
+      "description": "Software to create or maintain applications accessed through web sites or using web technologies such as HTML.",
+      "benchmark_importance": null,
+      "source_date": "2026-11-11"
+    },
+    {
+      "id": "2.E.8.b:Plateau Learning Management System LMS",
+      "kind": "tool",
+      "name": "Plateau Learning Management System LMS",
+      "description": "Software to create, manage, or provide instructional material or courses accessed from a computer.",
+      "benchmark_importance": null,
+      "source_date": "2026-11-11"
+    },
+    {
+      "id": "2.E.4.f:Poll Everywhere",
+      "kind": "tool",
+      "name": "Poll Everywhere",
+      "description": "Software to create presentations, speeches, or slideshows.",
+      "benchmark_importance": null,
+      "source_date": "2026-11-11"
+    },
+    {
+      "id": "2.E.4.f:Prezi",
+      "kind": "tool",
+      "name": "Prezi",
+      "description": "Software to create presentations, speeches, or slideshows.",
+      "benchmark_importance": null,
+      "source_date": "2026-11-11"
+    },
+    {
+      "id": "2.E.8.b:PRO-ductivity Systems Compliance Training Manager Web",
+      "kind": "tool",
+      "name": "PRO-ductivity Systems Compliance Training Manager Web",
+      "description": "Software to create, manage, or provide instructional material or courses accessed from a computer.",
+      "benchmark_importance": null,
+      "source_date": "2026-11-11"
+    },
+    {
+      "id": "2.E.8.b:Qarbon ViewletBuilder Professional",
+      "kind": "tool",
+      "name": "Qarbon ViewletBuilder Professional",
+      "description": "Software to create, manage, or provide instructional material or courses accessed from a computer.",
+      "benchmark_importance": null,
+      "source_date": "2026-11-11"
+    },
+    {
+      "id": "2.E.8.b:Right Reason Technologies RightTrack",
+      "kind": "tool",
+      "name": "Right Reason Technologies RightTrack",
+      "description": "Software to create, manage, or provide instructional material or courses accessed from a computer.",
+      "benchmark_importance": null,
+      "source_date": "2026-11-11"
+    },
+    {
+      "id": "2.E.8.b:RISC Virtual Training Assistant",
+      "kind": "tool",
+      "name": "RISC Virtual Training Assistant",
+      "description": "Software to create, manage, or provide instructional material or courses accessed from a computer.",
+      "benchmark_importance": null,
+      "source_date": "2026-11-11"
+    },
+    {
+      "id": "2.E.2.b:SAP software",
+      "kind": "tool",
+      "name": "SAP software",
+      "description": "Software to integrate, monitor, or analyze data from multiple business operations within a unified system.",
+      "benchmark_importance": null,
+      "source_date": "2026-11-11"
+    },
+    {
+      "id": "2.E.4.c:Screencast-O-Matic",
+      "kind": "tool",
+      "name": "Screencast-O-Matic",
+      "description": "Software to enable production of video content.",
+      "benchmark_importance": null,
+      "source_date": "2026-11-11"
+    },
+    {
+      "id": "2.E.8.b:SkillSoft SkillPort",
+      "kind": "tool",
+      "name": "SkillSoft SkillPort",
+      "description": "Software to create, manage, or provide instructional material or courses accessed from a computer.",
+      "benchmark_importance": null,
+      "source_date": "2026-11-11"
+    },
+    {
+      "id": "2.E.4.b:SmugMug Flickr",
+      "kind": "tool",
+      "name": "SmugMug Flickr",
+      "description": "Software to draw or manipulate images. May adjust colors, add text, or apply special effects.",
+      "benchmark_importance": null,
+      "source_date": "2026-11-11"
+    },
+    {
+      "id": "2.E.8.b:SumTotal Systems ToolBook",
+      "kind": "tool",
+      "name": "SumTotal Systems ToolBook",
+      "description": "Software to create, manage, or provide instructional material or courses accessed from a computer.",
+      "benchmark_importance": null,
+      "source_date": "2026-11-11"
+    },
+    {
+      "id": "2.E.8.b:SumTotal Systems TotalLMS",
+      "kind": "tool",
+      "name": "SumTotal Systems TotalLMS",
+      "description": "Software to create, manage, or provide instructional material or courses accessed from a computer.",
+      "benchmark_importance": null,
+      "source_date": "2026-11-11"
+    },
+    {
+      "id": "2.E.8.b:techniques.org knowledgeWorks LMS",
+      "kind": "tool",
+      "name": "techniques.org knowledgeWorks LMS",
+      "description": "Software to create, manage, or provide instructional material or courses accessed from a computer.",
+      "benchmark_importance": null,
+      "source_date": "2026-11-11"
+    },
+    {
+      "id": "2.E.8.b:Telania eLeaP Learning Management System LMS/LCMS",
+      "kind": "tool",
+      "name": "Telania eLeaP Learning Management System LMS/LCMS",
+      "description": "Software to create, manage, or provide instructional material or courses accessed from a computer.",
+      "benchmark_importance": null,
+      "source_date": "2026-11-11"
+    },
+    {
+      "id": "2.E.8.b:The Human Equation InSite LMS",
+      "kind": "tool",
+      "name": "The Human Equation InSite LMS",
+      "description": "Software to create, manage, or provide instructional material or courses accessed from a computer.",
+      "benchmark_importance": null,
+      "source_date": "2026-11-11"
+    },
+    {
+      "id": "2.E.8.b:TrainCaster LMS",
+      "kind": "tool",
+      "name": "TrainCaster LMS",
+      "description": "Software to create, manage, or provide instructional material or courses accessed from a computer.",
+      "benchmark_importance": null,
+      "source_date": "2026-11-11"
+    },
+    {
+      "id": "2.E.8.b:TrainOnTrack Learning Management System LMS",
+      "kind": "tool",
+      "name": "TrainOnTrack Learning Management System LMS",
+      "description": "Software to create, manage, or provide instructional material or courses accessed from a computer.",
+      "benchmark_importance": null,
+      "source_date": "2026-11-11"
+    },
+    {
+      "id": "2.E.8.b:Upside Learning UpsideLMS",
+      "kind": "tool",
+      "name": "Upside Learning UpsideLMS",
+      "description": "Software to create, manage, or provide instructional material or courses accessed from a computer.",
+      "benchmark_importance": null,
+      "source_date": "2026-11-11"
+    },
+    {
+      "id": "2.E.10.e:Web browser software",
+      "kind": "tool",
+      "name": "Web browser software",
+      "description": "Software to view the contents of web pages and to navigate from one page to another.",
+      "benchmark_importance": null,
+      "source_date": "2026-11-11"
+    },
+    {
+      "id": "2.E.4.c:WeVideo",
+      "kind": "tool",
+      "name": "WeVideo",
+      "description": "Software to enable production of video content.",
+      "benchmark_importance": null,
+      "source_date": "2026-11-11"
+    },
+    {
+      "id": "2.E.8.b:Xerceo Learn",
+      "kind": "tool",
+      "name": "Xerceo Learn",
+      "description": "Software to create, manage, or provide instructional material or courses accessed from a computer.",
+      "benchmark_importance": null,
+      "source_date": "2026-11-11"
+    },
+    {
+      "id": "2.E.8.b:Xyleme Learning Content Management System LCMS",
+      "kind": "tool",
+      "name": "Xyleme Learning Content Management System LCMS",
+      "description": "Software to create, manage, or provide instructional material or courses accessed from a computer.",
+      "benchmark_importance": null,
+      "source_date": "2026-11-11"
+    },
+    {
+      "id": "2.E.8.b:Ziiva Prosperity LMS",
+      "kind": "tool",
+      "name": "Ziiva Prosperity LMS",
+      "description": "Software to create, manage, or provide instructional material or courses accessed from a computer.",
+      "benchmark_importance": null,
+      "source_date": "2026-11-11"
+    },
+    {
+      "id": "2.E.16.b:Zoom",
+      "kind": "tool",
+      "name": "Zoom",
+      "description": "Software to enable audio or video conferences between participants using networked devices.",
+      "benchmark_importance": null,
+      "source_date": "2026-11-11"
+    }
+  ]
+}
