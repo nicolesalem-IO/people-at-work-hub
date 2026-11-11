@@ -1,13 +1,13 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { AssessmentAnalysis } from '@/components/io/AssessmentAnalysis';
+import { RolesDashboard } from '@/components/io/RolesDashboard';
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Rating-based job analysis — I-O Workspace" },
-      { name: "description", content: "O*NET benchmarks, SME ratings and testable entry-required KSAOs for candidate assessment." },
-      { property: "og:title", content: "Rating-based job analysis — I-O Workspace" },
-      { property: "og:description", content: "O*NET benchmarks, SME ratings and testable entry-required KSAOs for candidate assessment." },
+      { title: "Your roles — I-O Workspace" },
+      { name: "description", content: "Your evidence-based job analyses and candidate assessment batteries, in one workspace." },
+      { property: "og:title", content: "Your roles — I-O Workspace" },
+      { property: "og:description", content: "Your evidence-based job analyses and candidate assessment batteries, in one workspace." },
       { property: 'og:type', content: 'website' },
       { name: 'twitter:card', content: 'summary_large_image' },
     ],
@@ -16,5 +16,5 @@ export const Route = createFileRoute("/")({
 });
 
 function Dashboard() {
-  return <AssessmentAnalysis />;
+  return <RolesDashboard />;
 }

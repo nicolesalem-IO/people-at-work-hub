@@ -1,0 +1,3 @@
+import {createFileRoute} from '@tanstack/react-router';
+import {AssessmentAnalysis} from '@/components/io/AssessmentAnalysis';
+export const Route=createFileRoute('/define')({head:()=>({meta:[{title:'Define your role — I-O Workspace'},{name:'description',content:'Set the role, organization and purpose for an evidence-based assessment.'},{property:'og:title',content:'Define your role — I-O Workspace'},{property:'og:description',content:'Set the role, organization and purpose for an evidence-based assessment.'},{property:'og:type',content:'website'},{name:'twitter:card',content:'summary_large_image'}]}),component:()=> <AssessmentAnalysis view="define"/>});

@@ -1,0 +1,3 @@
+import {createFileRoute} from '@tanstack/react-router';
+import {AssessmentAnalysis} from '@/components/io/AssessmentAnalysis';
+export const Route=createFileRoute('/benchmark')({head:()=>({meta:[{title:'O*NET role benchmark — I-O Workspace'},{name:'description',content:'Inspect source-attributed occupational tasks, knowledge, skills, abilities and tools.'},{property:'og:title',content:'O*NET role benchmark — I-O Workspace'},{property:'og:description',content:'Inspect source-attributed occupational tasks, knowledge, skills, abilities and tools.'},{property:'og:type',content:'website'},{name:'twitter:card',content:'summary_large_image'}]}),component:()=> <AssessmentAnalysis view="benchmark" evidence/>});
