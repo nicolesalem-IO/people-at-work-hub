@@ -1,4 +1,5 @@
 # Roadmap
+- [ ] Candidate pipeline: present uploaded campaign, /take private-link testing, autosave, blind scoring, results and mixed-stage demo plan for approval before implementation
 - [ ] Admin Center: review plan, then implement People, enforced permissions, settings, audit log, and Admin-only team onboarding; fictional Nicole demo access selected
 - [x] Four small fixes: both SMEs' 22 saved ratings selected, 28px controls fit at 768/979/1280px, stage labels and 40/30/25/5/0 demo weights verified; 15 assessment tests pass
 - [x] Apply uploaded visual-style and workflow redesign brief; dashboard, named steps, yellow bands, focused ratings and battery summaries verified on desktop/phone
