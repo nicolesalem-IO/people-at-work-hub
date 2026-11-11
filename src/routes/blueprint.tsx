@@ -1,0 +1,3 @@
+import {createFileRoute} from '@tanstack/react-router';
+import {AssessmentBlueprint} from '@/components/io/AssessmentBlueprint';
+export const Route=createFileRoute('/blueprint')({head:()=>({meta:[{title:'Test blueprint — I-O Workspace'},{name:'description',content:'Map testable KSAOs to assessment methods, weights and candidate time.'},{property:'og:title',content:'Test blueprint — I-O Workspace'},{property:'og:description',content:'Map testable KSAOs to assessment methods, weights and candidate time.'},{property:'og:type',content:'website'},{name:'twitter:card',content:'summary_large_image'}]}),component:AssessmentBlueprint});
