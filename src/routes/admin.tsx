@@ -1,0 +1,3 @@
+import {createFileRoute} from '@tanstack/react-router';
+import {AdminCenter} from '@/components/io/AdminCenter';
+export const Route=createFileRoute('/admin')({head:()=>({meta:[{title:'Admin Center — I-O Workspace'},{name:'description',content:'Organization people, permissions, settings and audit history.'},{property:'og:title',content:'Admin Center — I-O Workspace'},{property:'og:description',content:'Organization people, permissions, settings and audit history.'},{property:'og:type',content:'website'},{name:'twitter:card',content:'summary_large_image'},{name:'robots',content:'noindex'}]}),component:AdminCenter});

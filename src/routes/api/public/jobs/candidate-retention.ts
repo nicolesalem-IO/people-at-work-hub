@@ -1,0 +1,3 @@
+import {createFileRoute} from '@tanstack/react-router';
+import {authenticateCronRequest} from '@/integrations/supabase/cron-auth';
+export const Route=createFileRoute('/api/public/jobs/candidate-retention')({server:{handlers:{POST:async({request})=>{const failure=await authenticateCronRequest(request);if(failure)return failure;const {supabaseAdmin}=await import('@/integrations/supabase/client.server');const {data,error}=await supabaseAdmin.rpc('org_retention_cleanup');if(error)return Response.json({error:'Retention cleanup failed'},{status:500});return Response.json({removed:data});}}}});

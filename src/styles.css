@@ -274,3 +274,21 @@
 .ratings-table button:disabled[aria-pressed=true] { background:var(--brand-yellow); color:var(--ink); opacity:1; }
 @media(min-width:768px) { .ratings-table-scroll { overflow-x:visible; } .ratings-table { min-width:0; } }
 @media(min-width:1100px) { .ratings-layout { grid-template-columns:minmax(0,1fr) 190px; gap:24px; } .ratings-layout .coverage-sidebar { padding-left:20px; } }
+.admin-tabs {display:flex;gap:12px;flex-wrap:wrap;border-bottom:1px solid var(--border);padding-bottom:22px;margin-bottom:40px;}
+.admin-section-heading {display:flex;justify-content:space-between;align-items:end;gap:20px;flex-wrap:wrap;margin:24px 0;}
+.admin-section-heading h2,.admin-section>h2 {font-size:48px;margin-top:14px;}
+.admin-table-scroll {overflow-x:auto;}
+.admin-table {width:100%;table-layout:fixed;text-align:left;font-size:13px;min-width:750px;}
+.admin-table th,.admin-table td {padding:18px 10px;border-bottom:1px solid var(--border);vertical-align:top;overflow-wrap:anywhere;}
+.admin-table thead {background:var(--secondary);}
+.admin-table th:first-child {width:15%;}
+.admin-table th:nth-child(3) {width:25%;}
+.admin-role-label {font-size:12px;border-left:3px solid var(--brand-yellow);padding-left:7px;}
+.admin-section {border-top:1px solid var(--border);margin-top:48px;padding-top:24px;}
+.admin-assignment-form {display:flex;gap:16px;align-items:end;flex-wrap:wrap;}
+.admin-assignment-form label {flex:1;min-width:160px;font-size:13px;}
+.admin-assignment-form select {display:block;width:100%;padding:10px;border:1px solid var(--input);background:var(--background);}
+.permission-matrix {min-width:1000px;font-size:12px;}
+.permission-matrix th:first-child {width:22%;}
+.permission-matrix th:nth-child(3) {width:auto;}
+@media(max-width:640px){.admin-section-heading h2,.admin-section>h2{font-size:32px;}.admin-tabs{gap:5px;}.admin-table{min-width:720px;}}

@@ -14,6 +14,7 @@ import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { AppShell } from "@/components/io/AppShell";
 import {AssessmentProvider} from '@/components/io/AssessmentProvider';
+import {AdminProvider} from '@/components/io/AdminProvider';
 
 function NotFoundComponent() {
   return (
@@ -128,7 +129,7 @@ function RootComponent() {
   return (
     <QueryClientProvider client={queryClient}>
       {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
-      <AssessmentProvider><AppShell /></AssessmentProvider>
+      <AdminProvider><AssessmentProvider><AppShell /></AssessmentProvider></AdminProvider>
     </QueryClientProvider>
   );
 }

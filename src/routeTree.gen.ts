@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AdminRouteImport } from './routes/admin'
 import { Route as BenchmarkRouteImport } from './routes/benchmark'
 import { Route as BlueprintRouteImport } from './routes/blueprint'
 import { Route as BuildersRouteImport } from './routes/builders'
@@ -22,12 +23,19 @@ import { Route as RatingsRouteImport } from './routes/ratings'
 import { Route as ResultsRouteImport } from './routes/results'
 import { Route as ReviewRouteImport } from './routes/review'
 import { Route as SummarizeRouteImport } from './routes/summarize'
+import { Route as TeamInviteRouteImport } from './routes/team-invite'
 import { Route as ValidityRouteImport } from './routes/validity'
 import { Route as CandidateTokenRouteImport } from './routes/candidate.$token'
+import { Route as ApiPublicJobsCandidateRetentionRouteImport } from './routes/api/public/jobs/candidate-retention'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminRoute = AdminRouteImport.update({
+  id: '/admin',
+  path: '/admin',
   getParentRoute: () => rootRouteImport,
 } as any)
 const BenchmarkRoute = BenchmarkRouteImport.update({
@@ -90,6 +98,11 @@ const SummarizeRoute = SummarizeRouteImport.update({
   path: '/summarize',
   getParentRoute: () => rootRouteImport,
 } as any)
+const TeamInviteRoute = TeamInviteRouteImport.update({
+  id: '/team-invite',
+  path: '/team-invite',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ValidityRoute = ValidityRouteImport.update({
   id: '/validity',
   path: '/validity',
@@ -100,9 +113,16 @@ const CandidateTokenRoute = CandidateTokenRouteImport.update({
   path: '/candidate/$token',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiPublicJobsCandidateRetentionRoute =
+  ApiPublicJobsCandidateRetentionRouteImport.update({
+    id: '/api/public/jobs/candidate-retention',
+    path: '/api/public/jobs/candidate-retention',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/admin': typeof AdminRoute
   '/benchmark': typeof BenchmarkRoute
   '/blueprint': typeof BlueprintRoute
   '/builders': typeof BuildersRoute
@@ -115,11 +135,14 @@ export interface FileRoutesByFullPath {
   '/results': typeof ResultsRoute
   '/review': typeof ReviewRoute
   '/summarize': typeof SummarizeRoute
+  '/team-invite': typeof TeamInviteRoute
   '/validity': typeof ValidityRoute
   '/candidate/$token': typeof CandidateTokenRoute
+  '/api/public/jobs/candidate-retention': typeof ApiPublicJobsCandidateRetentionRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/admin': typeof AdminRoute
   '/benchmark': typeof BenchmarkRoute
   '/blueprint': typeof BlueprintRoute
   '/builders': typeof BuildersRoute
@@ -132,12 +155,15 @@ export interface FileRoutesByTo {
   '/results': typeof ResultsRoute
   '/review': typeof ReviewRoute
   '/summarize': typeof SummarizeRoute
+  '/team-invite': typeof TeamInviteRoute
   '/validity': typeof ValidityRoute
   '/candidate/$token': typeof CandidateTokenRoute
+  '/api/public/jobs/candidate-retention': typeof ApiPublicJobsCandidateRetentionRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/admin': typeof AdminRoute
   '/benchmark': typeof BenchmarkRoute
   '/blueprint': typeof BlueprintRoute
   '/builders': typeof BuildersRoute
@@ -150,13 +176,16 @@ export interface FileRoutesById {
   '/results': typeof ResultsRoute
   '/review': typeof ReviewRoute
   '/summarize': typeof SummarizeRoute
+  '/team-invite': typeof TeamInviteRoute
   '/validity': typeof ValidityRoute
   '/candidate/$token': typeof CandidateTokenRoute
+  '/api/public/jobs/candidate-retention': typeof ApiPublicJobsCandidateRetentionRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/admin'
     | '/benchmark'
     | '/blueprint'
     | '/builders'
@@ -169,11 +198,14 @@ export interface FileRouteTypes {
     | '/results'
     | '/review'
     | '/summarize'
+    | '/team-invite'
     | '/validity'
     | '/candidate/$token'
+    | '/api/public/jobs/candidate-retention'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/admin'
     | '/benchmark'
     | '/blueprint'
     | '/builders'
@@ -186,11 +218,14 @@ export interface FileRouteTypes {
     | '/results'
     | '/review'
     | '/summarize'
+    | '/team-invite'
     | '/validity'
     | '/candidate/$token'
+    | '/api/public/jobs/candidate-retention'
   id:
     | '__root__'
     | '/'
+    | '/admin'
     | '/benchmark'
     | '/blueprint'
     | '/builders'
@@ -203,12 +238,15 @@ export interface FileRouteTypes {
     | '/results'
     | '/review'
     | '/summarize'
+    | '/team-invite'
     | '/validity'
     | '/candidate/$token'
+    | '/api/public/jobs/candidate-retention'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AdminRoute: typeof AdminRoute
   BenchmarkRoute: typeof BenchmarkRoute
   BlueprintRoute: typeof BlueprintRoute
   BuildersRoute: typeof BuildersRoute
@@ -221,8 +259,10 @@ export interface RootRouteChildren {
   ResultsRoute: typeof ResultsRoute
   ReviewRoute: typeof ReviewRoute
   SummarizeRoute: typeof SummarizeRoute
+  TeamInviteRoute: typeof TeamInviteRoute
   ValidityRoute: typeof ValidityRoute
   CandidateTokenRoute: typeof CandidateTokenRoute
+  ApiPublicJobsCandidateRetentionRoute: typeof ApiPublicJobsCandidateRetentionRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -232,6 +272,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin': {
+      id: '/admin'
+      path: '/admin'
+      fullPath: '/admin'
+      preLoaderRoute: typeof AdminRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/benchmark': {
@@ -318,6 +365,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SummarizeRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/team-invite': {
+      id: '/team-invite'
+      path: '/team-invite'
+      fullPath: '/team-invite'
+      preLoaderRoute: typeof TeamInviteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/validity': {
       id: '/validity'
       path: '/validity'
@@ -332,11 +386,19 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CandidateTokenRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/public/jobs/candidate-retention': {
+      id: '/api/public/jobs/candidate-retention'
+      path: '/api/public/jobs/candidate-retention'
+      fullPath: '/api/public/jobs/candidate-retention'
+      preLoaderRoute: typeof ApiPublicJobsCandidateRetentionRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AdminRoute: AdminRoute,
   BenchmarkRoute: BenchmarkRoute,
   BlueprintRoute: BlueprintRoute,
   BuildersRoute: BuildersRoute,
@@ -349,8 +411,10 @@ const rootRouteChildren: RootRouteChildren = {
   ResultsRoute: ResultsRoute,
   ReviewRoute: ReviewRoute,
   SummarizeRoute: SummarizeRoute,
+  TeamInviteRoute: TeamInviteRoute,
   ValidityRoute: ValidityRoute,
   CandidateTokenRoute: CandidateTokenRoute,
+  ApiPublicJobsCandidateRetentionRoute: ApiPublicJobsCandidateRetentionRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

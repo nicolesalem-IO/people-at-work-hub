@@ -1,0 +1,4 @@
+REVOKE ALL ON public.org_people,public.org_person_roles,public.org_assignments,public.org_settings,public.org_invitations,public.assessment_campaigns,public.assessment_rater_assignments,public.hiring_decisions FROM anon;
+REVOKE DELETE ON public.org_people,public.org_settings,public.org_invitations,public.assessment_campaigns,public.hiring_decisions FROM authenticated;
+REVOKE UPDATE ON public.hiring_decisions FROM authenticated;
+REVOKE EXECUTE ON FUNCTION public.org_guard_person(),public.org_guard_role(),public.org_guard_assignment(),public.org_audit(),public.org_guard_sme(),public.org_review_guard(),public.org_rater_assignment_guard(),public.org_candidate_privacy_guard(),public.org_sync_sme_access(),public.org_sme_link_guard() FROM PUBLIC,anon,authenticated;

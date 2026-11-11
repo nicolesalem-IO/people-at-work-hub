@@ -42,3 +42,8 @@ use the editor.
 
 ## Presentation
 - Practitioner pages share a roles dashboard, named stepper, reusable step bands and battery method summaries; progress derives from existing workflow checks so presentation cannot unlock actions.
+
+## Administration
+- Organization roles and active status live in separate protected tables; shared permission helpers drive presentation while database policies and protected actions authorize every operation.
+- Fictional profile selection affects isolated demo data only and never authorizes live reads or writes.
+- Blind work-sample scoring uses restricted projections and per-attempt/item assignments rather than exposing identity-bearing candidate rows to raters.

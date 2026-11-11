@@ -92,6 +92,55 @@
       "when": 1794424629764,
       "tag": "0012_assessment_candidate_actions",
       "breakpoints": true
+    },
+    {
+      "idx": 13,
+      "version": "7",
+      "when": 1794426263514,
+      "tag": "0013_admin_people_permissions_settings",
+      "breakpoints": true
+    },
+    {
+      "idx": 14,
+      "version": "7",
+      "when": 1794426319366,
+      "tag": "0014_admin_transaction_actions_and_private_projections",
+      "breakpoints": true
+    },
+    {
+      "idx": 15,
+      "version": "7",
+      "when": 1794426572673,
+      "tag": "0015_admin_scoring_retention_and_candidate_privacy_guards",
+      "breakpoints": true
+    },
+    {
+      "idx": 16,
+      "version": "7",
+      "when": 1794426608049,
+      "tag": "0016_candidate_privacy_acknowledgement",
+      "breakpoints": true
+    },
+    {
+      "idx": 17,
+      "version": "7",
+      "when": 1794426799957,
+      "tag": "0017_admin_private_scoring_boundary",
+      "breakpoints": true
+    },
+    {
+      "idx": 18,
+      "version": "7",
+      "when": 1794426961792,
+      "tag": "0018_sync_assigned_sme_source_guards",
+      "breakpoints": true
+    },
+    {
+      "idx": 19,
+      "version": "7",
+      "when": 1794427003563,
+      "tag": "0019_restrict_admin_table_default_grants",
+      "breakpoints": true
     }
   ]
 }
