@@ -1,8 +1,12 @@
 import {describe,it,expect} from 'vitest';
 import {assessmentDemo,benchmark} from '../data/assessment-demo';
-import {eligibleKsaos,weights,objectiveScore,raterDisagreement,angoffCut,composite,adverseImpact,analysisGaps,batteryGaps} from '../lib/assessment-rules';
+import {eligibleKsaos,weights,objectiveScore,raterDisagreement,angoffCut,composite,adverseImpact,analysisGaps,batteryGaps,hasBatteryApproval} from '../lib/assessment-rules';
 const kind=(id:string)=>benchmark.elements.find(e=>e.id===id)?.kind??'';
 describe('candidate assessment rules',()=>{
+ it('demo has 22 saved ratings across Priya and Daniel',()=>{expect(assessmentDemo.ratings).toHaveLength(22);for(const source of ['priya','daniel']){const rows=assessmentDemo.ratings.filter(r=>r.source_id===source);expect(rows).toHaveLength(11);expect(new Set(rows.map(r=>r.element_id)).size).toBe(11);}});
+ it('demo uses balanced 40 30 25 5 0 method weights',()=>expect(weights(assessmentDemo,eligibleKsaos(assessmentDemo,kind))).toEqual({work_sample:40,aptitude:30,sjt:25,knowledge:5,interview:0}));
+ it('non-demo defaults derive from SME importance divided across assigned methods',()=>{const a=structuredClone(assessmentDemo);a.weight_overrides={};a.mappings=[{element_id:'one',methods:['work_sample','sjt'],rationale:''},{element_id:'two',methods:['aptitude'],rationale:''}];expect(weights(a,[{id:'one',importance:4},{id:'two',importance:4}])).toEqual({work_sample:25,sjt:25,aptitude:50,knowledge:0,interview:0});});
+ it('approval state alone cannot establish an approval record',()=>{expect(hasBatteryApproval({...assessmentDemo,history:[]})).toBe(false);expect(hasBatteryApproval(assessmentDemo)).toBe(true);expect(hasBatteryApproval({...assessmentDemo,status:'draft'})).toBe(false);});
  it('selection excludes trainable knowledge and includes importance at least four',()=>{const ks=eligibleKsaos(assessmentDemo,kind);expect(ks.map(k=>k.id)).not.toContain('2.C.3.a');expect(ks.map(k=>k.id)).toContain('2.C.6');expect(ks.every(k=>k.importance>=4)).toBe(true);});
  it('applicability disagreement prevents inclusion',()=>{const a=structuredClone(assessmentDemo);const r=a.ratings.find(r=>r.element_id==='2.C.6');if(r)r.applies=false;expect(eligibleKsaos(a,kind).map(k=>k.id)).not.toContain('2.C.6');});
  it('method weights split importance and total 100',()=>{const w=weights(assessmentDemo,eligibleKsaos(assessmentDemo,kind));expect(Object.values(w).reduce((n,x)=>n+x,0)).toBeCloseTo(100);expect(w.interview).toBe(0);});

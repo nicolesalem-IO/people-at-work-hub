@@ -1,4 +1,5 @@
 # Roadmap
+- [ ] Four small fixes: saved demo selections, desktop ratings fit, stage-specific labels and balanced demo weights
 - [x] Apply uploaded visual-style and workflow redesign brief; dashboard, named steps, yellow bands, focused ratings and battery summaries verified on desktop/phone
 - [ ] Interview answers/evidence are wired to persistent saves; signed-in refresh check blocked: connected app has zero accounts
 - [x] Official O*NET extract and deterministic assessment scoring rules; 11 scoring tests pass
