@@ -1,0 +1,15 @@
+import {createContext,useContext,useEffect,useState,type ReactNode} from 'react';
+import {useServerFn} from '@tanstack/react-start';
+import {z} from 'zod';
+import {supabase} from '@/integrations/supabase/client';
+import {getOrgSession} from '@/lib/admin.functions';
+import {can,type Person,type Assignment,type Capability,orgRoles} from '@/lib/admin-rules';
+import {demoPeople,demoAssignments} from '@/data/admin-demo';
+const roleSchema=z.enum(['admin','hr','hiring_manager','analyst','sme','rater']);
+const personSchema=z.object({id:z.string(),user_id:z.string().nullable(),name:z.string(),email:z.string(),status:z.enum(['invited','active','deactivated']),last_active:z.string().nullable(),roles:z.array(roleSchema)});
+const sessionSchema=z.object({person:personSchema.nullable(),assignments:z.array(z.object({id:z.string(),person_id:z.string(),role_id:z.string(),permission:z.enum(['hiring_manager','sme','rater']),source_id:z.string()}))});
+type State={person:Person|null;assignments:Assignment[];demo:boolean;ready:boolean;demoId:string;setDemoId:(id:string)=>void;allowed:(c:Capability,id?:string)=>boolean;refresh:()=>Promise<void>;error:string};
+const Context=createContext<State|null>(null);
+export function useAdmin(){const c=useContext(Context);if(!c)throw new Error('Team context missing');return c;}
+export function AdminProvider({children}:{children:ReactNode}){const read=useServerFn(getOrgSession);const [person,setPerson]=useState<Person|null>(null),[assignments,setAssignments]=useState<Assignment[]>([]),[demo,setDemo]=useState(true),[ready,setReady]=useState(false),[demoId,setDemoId]=useState(''),[error,setError]=useState('');async function refresh(){const {data:{session}}=await supabase.auth.getSession();setDemo(!session);setError('');if(!session){setPerson(null);setAssignments([]);setReady(true);return;}try{const d=sessionSchema.parse(await read());setPerson(d.person);setAssignments(d.assignments);}catch(e){setPerson(null);setAssignments([]);setError(e instanceof Error?e.message:'Team permissions could not load.');}setReady(true);}useEffect(()=>{void refresh();const {data:{subscription}}=supabase.auth.onAuthStateChange(e=>{if(['SIGNED_IN','SIGNED_OUT','USER_UPDATED'].includes(e))void refresh();});return()=>subscription.unsubscribe();},[]);const viewer=demo?demoPeople.find(p=>p.id===demoId)??null:person,access=demo?demoAssignments:assignments;return <Context.Provider value={{person:viewer,assignments:access,demo,ready,demoId,setDemoId,allowed:(cap,id)=>can(viewer,cap,access.filter(a=>a.person_id===viewer?.id&&a.role_id===id).map(a=>a.permission)),refresh,error}}>{children}</Context.Provider>;}
+export function DemoProfileSelector(){const c=useAdmin();if(!c.demo)return null;return <label className="flex flex-wrap items-center gap-2 text-xs">Fictional profile<select aria-label="Fictional profile" className="border bg-background rounded-md p-1 max-w-full" value={c.demoId} onChange={e=>c.setDemoId(e.target.value)}><option value="">Read-only preview</option>{demoPeople.map(p=><option key={p.id} value={p.id}>{p.name} · {p.roles.map(r=>orgRoles[r]).join(' + ')}</option>)}</select></label>;}
