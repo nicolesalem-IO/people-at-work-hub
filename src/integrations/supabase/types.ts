@@ -439,6 +439,7 @@ export type Database = {
           is_fictional: boolean
           job_role_id: string
           locations: string
+          predecessor_id: string | null
           purposes: string[]
           role_state: string
           source_types: string[]
@@ -455,6 +456,7 @@ export type Database = {
           is_fictional?: boolean
           job_role_id: string
           locations?: string
+          predecessor_id?: string | null
           purposes?: string[]
           role_state?: string
           source_types?: string[]
@@ -471,6 +473,7 @@ export type Database = {
           is_fictional?: boolean
           job_role_id?: string
           locations?: string
+          predecessor_id?: string | null
           purposes?: string[]
           role_state?: string
           source_types?: string[]
@@ -489,6 +492,13 @@ export type Database = {
             columns: ["job_role_id"]
             isOneToOne: false
             referencedRelation: "job_roles"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "interview_sessions_predecessor_id_fkey"
+            columns: ["predecessor_id"]
+            isOneToOne: false
+            referencedRelation: "interview_sessions"
             referencedColumns: ["id"]
           },
         ]
@@ -748,6 +758,7 @@ export type Database = {
         Returns: boolean
       }
       interview_required: { Args: { p: string[] }; Returns: string[] }
+      revise_interview: { Args: { sid: string }; Returns: string }
       save_interview_answer: { Args: { payload: Json }; Returns: string }
       test_workspace_rule: { Args: { test_name: string }; Returns: boolean }
     }
