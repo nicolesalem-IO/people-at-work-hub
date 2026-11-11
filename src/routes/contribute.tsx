@@ -11,6 +11,8 @@ export const Route = createFileRoute("/contribute")({
       { name: "description", content: "A simple, independent form for employees and managers to describe their role." },
       { property: "og:title", content: "Contributor form — I-O Workspace" },
       { property: "og:description", content: "A simple, independent form for employees and managers to describe their role." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
   component: Contribute,

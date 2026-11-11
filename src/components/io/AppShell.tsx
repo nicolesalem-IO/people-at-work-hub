@@ -1,11 +1,10 @@
 import { Link, Outlet } from "@tanstack/react-router";
 
 const nav = [
-  { to: "/", label: "Dashboard" },
+  { to: "/", label: "Job analysis" },
   { to: "/evidence", label: "Evidence" },
   { to: "/contribute", label: "Contribute" },
-  { to: "/summarize", label: "Competencies" },
-  { to: "/package", label: "Hiring package" },
+  { to: "/summarize", label: "Outputs" },
 ] as const;
 
 export function AppShell() {

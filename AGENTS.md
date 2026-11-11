@@ -35,4 +35,5 @@ use the editor.
 ## Database
 - Enforce workflow approvals, immutable approved records and same-role evidence links in PostgreSQL triggers as well as RLS, so direct data requests cannot bypass the workflow.
 - Keep audit history trigger-written and client-read-only, and serialize dependent workflow changes with a transaction advisory lock to prevent approval/edit races.
-- Backend setup does not connect the existing demo screens to persistent data; keep that integration a separate requested change.
+- Interview collection, evidence review and purpose-matched outputs use persistent Cloud records; unrelated legacy screens remain demos to keep the interview request scoped.
+- Interview coverage is deterministic and source-counted; database triggers enforce HR approval and version-bound output eligibility because neither AI output nor browser state can authorize drafting.

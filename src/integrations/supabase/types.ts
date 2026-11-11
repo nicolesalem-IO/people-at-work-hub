@@ -337,6 +337,204 @@ export type Database = {
           },
         ]
       }
+      interview_answers: {
+        Row: {
+          created_at: string
+          evidence_id: string
+          id: string
+          module: string
+          session_id: string
+          source_id: string
+          values: Json
+        }
+        Insert: {
+          created_at?: string
+          evidence_id: string
+          id?: string
+          module: string
+          session_id: string
+          source_id: string
+          values: Json
+        }
+        Update: {
+          created_at?: string
+          evidence_id?: string
+          id?: string
+          module?: string
+          session_id?: string
+          source_id?: string
+          values?: Json
+        }
+        Relationships: [
+          {
+            foreignKeyName: "interview_answers_evidence_id_fkey"
+            columns: ["evidence_id"]
+            isOneToOne: false
+            referencedRelation: "evidence_items"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "interview_answers_session_id_fkey"
+            columns: ["session_id"]
+            isOneToOne: false
+            referencedRelation: "interview_sessions"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "interview_answers_source_id_fkey"
+            columns: ["source_id"]
+            isOneToOne: false
+            referencedRelation: "interview_sources"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      interview_outputs: {
+        Row: {
+          content: string
+          created_at: string
+          evidence_ids: string[]
+          id: string
+          output_type: string
+          session_id: string
+          status: string
+        }
+        Insert: {
+          content: string
+          created_at?: string
+          evidence_ids: string[]
+          id?: string
+          output_type: string
+          session_id: string
+          status?: string
+        }
+        Update: {
+          content?: string
+          created_at?: string
+          evidence_ids?: string[]
+          id?: string
+          output_type?: string
+          session_id?: string
+          status?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "interview_outputs_session_id_fkey"
+            columns: ["session_id"]
+            isOneToOne: false
+            referencedRelation: "interview_sessions"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      interview_sessions: {
+        Row: {
+          analysis_version_id: string
+          approved_at: string | null
+          approved_by: string | null
+          created_at: string
+          custom_output: string
+          id: string
+          incumbents: number
+          is_fictional: boolean
+          job_role_id: string
+          locations: string
+          predecessor_id: string | null
+          purposes: string[]
+          role_state: string
+          source_types: string[]
+          status: string
+        }
+        Insert: {
+          analysis_version_id: string
+          approved_at?: string | null
+          approved_by?: string | null
+          created_at?: string
+          custom_output?: string
+          id?: string
+          incumbents?: number
+          is_fictional?: boolean
+          job_role_id: string
+          locations?: string
+          predecessor_id?: string | null
+          purposes?: string[]
+          role_state?: string
+          source_types?: string[]
+          status?: string
+        }
+        Update: {
+          analysis_version_id?: string
+          approved_at?: string | null
+          approved_by?: string | null
+          created_at?: string
+          custom_output?: string
+          id?: string
+          incumbents?: number
+          is_fictional?: boolean
+          job_role_id?: string
+          locations?: string
+          predecessor_id?: string | null
+          purposes?: string[]
+          role_state?: string
+          source_types?: string[]
+          status?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "interview_sessions_analysis_version_id_fkey"
+            columns: ["analysis_version_id"]
+            isOneToOne: true
+            referencedRelation: "role_analysis_versions"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "interview_sessions_job_role_id_fkey"
+            columns: ["job_role_id"]
+            isOneToOne: false
+            referencedRelation: "job_roles"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "interview_sessions_predecessor_id_fkey"
+            columns: ["predecessor_id"]
+            isOneToOne: false
+            referencedRelation: "interview_sessions"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      interview_sources: {
+        Row: {
+          id: string
+          name: string
+          session_id: string
+          source_type: string
+          user_id: string | null
+        }
+        Insert: {
+          id?: string
+          name: string
+          session_id: string
+          source_type: string
+          user_id?: string | null
+        }
+        Update: {
+          id?: string
+          name?: string
+          session_id?: string
+          source_type?: string
+          user_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "interview_sources_session_id_fkey"
+            columns: ["session_id"]
+            isOneToOne: false
+            referencedRelation: "interview_sessions"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       job_roles: {
         Row: {
           created_at: string
@@ -545,10 +743,24 @@ export type Database = {
         }
         Returns: string
       }
+      create_interview: { Args: { payload: Json }; Returns: string }
       has_role: {
         Args: { role: Database["public"]["Enums"]["app_role"]; user_id: string }
         Returns: boolean
       }
+      interview_core_complete: {
+        Args: { m: string; v: Json }
+        Returns: boolean
+      }
+      interview_covered: { Args: { sid: string }; Returns: boolean }
+      interview_output_allowed: {
+        Args: { custom: string; p: string[]; t: string }
+        Returns: boolean
+      }
+      interview_required: { Args: { p: string[] }; Returns: string[] }
+      revise_interview: { Args: { sid: string }; Returns: string }
+      save_interview_answer: { Args: { payload: Json }; Returns: string }
+      test_interview_rule: { Args: { test_name: string }; Returns: boolean }
       test_workspace_rule: { Args: { test_name: string }; Returns: boolean }
     }
     Enums: {

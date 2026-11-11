@@ -36,6 +36,34 @@
       "when": 1794421421995,
       "tag": "0004_contribution_to_evidence",
       "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "7",
+      "when": 1794421795241,
+      "tag": "0005_structured_job_analysis_interviews",
+      "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "7",
+      "when": 1794421854424,
+      "tag": "0006_interview_transaction_actions",
+      "breakpoints": true
+    },
+    {
+      "idx": 7,
+      "version": "7",
+      "when": 1794421892921,
+      "tag": "0007_interview_demo_and_versioning",
+      "breakpoints": true
+    },
+    {
+      "idx": 8,
+      "version": "7",
+      "when": 1794422082301,
+      "tag": "0008_interview_approval_and_probes",
+      "breakpoints": true
     }
   ]
 }

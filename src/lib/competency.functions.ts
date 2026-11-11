@@ -1,4 +1,5 @@
 import { createServerFn } from "@tanstack/react-start";
+import { requireSupabaseAuth } from '@/integrations/supabase/auth-middleware';
 
 export type NoteInput = { id: string; contributor: string; text: string };
 export type Competency = {
@@ -60,10 +61,13 @@ Rules:
 - This is a draft for professional review.`;
 
 export const summarizeCompetencies = createServerFn({ method: "POST" })
-  .inputValidator((input: { role: string; notes: NoteInput[] }) => {
+  .middleware([requireSupabaseAuth])
+  .inputValidator((input: { role: string; notes: NoteInput[]; session_id: string }) => {
+    if (!input.session_id) throw new Error('Complete a job-analysis interview and obtain HR approval first.');
     if (!input?.notes?.length) throw new Error("Add at least one note.");
     if (input.notes.length > 60) throw new Error("Too many notes (max 60).");
     return {
+      session_id: input.session_id,
       role: String(input.role).slice(0, 200),
       notes: input.notes.map((n) => ({
         id: String(n.id).slice(0, 20),
@@ -72,9 +76,17 @@ export const summarizeCompetencies = createServerFn({ method: "POST" })
       })),
     };
   })
-  .handler(async ({ data }): Promise<SummaryResult> => {
+  .handler(async ({ data, context }): Promise<SummaryResult> => {
+    const { data: session } = await context.supabase.from('interview_sessions').select('*').eq('id', data.session_id).single();
+    const { data: covered } = await context.supabase.rpc('interview_covered', { sid: data.session_id });
+    const { data: editor } = await context.supabase.rpc('can_edit_workspace');
+    const { data: conflicts } = await context.supabase.from('evidence_conflicts').select('id').eq('job_role_id', session?.job_role_id ?? '').eq('status', 'open');
+    if (!editor || !session || session.status !== 'approved' || !covered || !session.purposes.includes('selection') || conflicts?.length) return { ok: false, error: 'Competency drafting requires a covered, HR-approved selection analysis without open conflicts.' };
+    const { data: answers } = await context.supabase.from('interview_answers').select('evidence_id').eq('session_id', session.id);
+    const { data: saved } = await context.supabase.from('evidence_items').select('*').in('id', (answers ?? []).map(a => a.evidence_id));
+    const notes = (saved ?? []).map(e => ({ id: e.code, contributor: e.source_reference ?? 'Saved source', text: e.excerpt }));
     const { generateResponse, GatewayError } = await import("@lovable.dev/ai-gateway");
-    const evidence = data.notes.map((n) => `[${n.id}] (${n.contributor}) ${n.text}`).join("\n");
+    const evidence = notes.map((n) => `[${n.id}] (${n.contributor}) ${n.text}`).join("\n");
     try {
       const res = await generateResponse({
         model: "openai/gpt-6-astra",
@@ -90,7 +102,7 @@ export const summarizeCompetencies = createServerFn({ method: "POST" })
       }
       const parsed = JSON.parse(raw) as { competencies: Competency[]; gaps: string[]; conflicts: string[] };
       // Enforce traceability server-side: drop citations to unknown IDs.
-      const { competencies, dropped } = sanitizeCitations(parsed.competencies, data.notes.map((n) => n.id));
+      const { competencies, dropped } = sanitizeCitations(parsed.competencies, notes.map((n) => n.id));
       return { ok: true, competencies, gaps: parsed.gaps, conflicts: parsed.conflicts, droppedCitations: dropped };
     } catch (e) {
       console.error("summarizeCompetencies failed", e);

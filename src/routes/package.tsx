@@ -10,6 +10,8 @@ export const Route = createFileRoute("/package")({
       { name: "description", content: "Draft job posting, work sample and interview guide, linked to approved evidence." },
       { property: "og:title", content: "Hiring package editor — I-O Workspace" },
       { property: "og:description", content: "Draft job posting, work sample and interview guide, linked to approved evidence." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
   component: PackageEditor,
@@ -18,8 +20,8 @@ export const Route = createFileRoute("/package")({
 function PackageEditor() {
   return (
     <>
-      <PageHeader eyebrow="Stage G" title="Hiring package" actions={<><Button variant="outline">Version history</Button><Button disabled><Lock /> Submit for HR approval</Button></>}>
-        Generation unlocks once a role-analysis version is approved.
+      <PageHeader eyebrow="Stage G" title="Hiring package" actions={<><Button disabled><Lock /> Submit for HR approval</Button></>}>
+        Archived fictional draft · Read-only. New hiring outputs require a covered, HR-approved selection interview.
       </PageHeader>
       <div className="grid gap-6 lg:grid-cols-[1fr_18rem]">
         <article className="rounded-lg border bg-card p-6 shadow-card md:p-10">
@@ -28,7 +30,7 @@ function PackageEditor() {
             <StatusBadge status="conflict" label="1 requirement blocked" />
           </div>
           <label htmlFor="doc" className="eyebrow">Job posting — v0.1 draft</label>
-          <div id="doc" contentEditable suppressContentEditableWarning role="textbox" aria-multiline="true"
+          <div id="doc"  
             className="prose mt-3 max-w-[68ch] space-y-4 rounded-md p-2 text-base leading-7 focus-visible:bg-muted">
             <h2 className="text-2xl font-bold">Customer Support Specialist</h2>
             <p>Help customers across chat and email, triage inbound tickets across three queues, and escalate complex cases.</p>
