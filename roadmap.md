@@ -1,5 +1,8 @@
 # Roadmap
-- [ ] Plan candidate restructuring: plain-language labels/glossary, Stage 0–3 gates, stage-specific links/content, finalist-only 40/25/20/15 scoring and revised demo — awaiting plan approval
+- [x] Approved candidate restructuring: plain-language workspace/glossary, retired legacy interview entry, 12 reasoning items/3 demo scenarios, two task-specific rubrics, five-question printable interview guide, finalist-only 40/25/20/15 scores and five staged demo stories
+- [x] Demo walkthrough: Stage 0 screening, separate Stage 1/2 links, ordered parts, timed autosave/refresh, locked submission, third-rater resolution, all five interview ratings and decision readback; 84 non-database tests pass and build OK
+- [ ] Live staged storage, stage-token functions, blind application projection, rater/interview authorization, audit/retention extensions and database-boundary verification — blocked: migration connection fails with tenant/user not found; retries applied nothing; live staged writes explicitly unavailable
+- [ ] Live staged account/email walkthrough — blocked: latest account check returned zero accounts; verified sender unavailable and database currently inaccessible
 - [x] Polish headings without word splits, complete Riley/Casey decisions and Sam disagreement, 95-minute section overview, post-submit optional group and five-day deadlines; 34 targeted tests and desktop/phone browser checks pass
 - [x] Welcome image/page, five-step saved setup, returning/demo entry, SME welcome, owner-private drafts and rating projections, friendly evidence/blueprint/builder/Admin empty states; desktop/phone walkthrough passes
 - [x] Candidate pipeline screens, private timed testing, autosave/resume, locked submission, blind rubric saves and human decisions verified in isolated demo; 89 tests pass including database boundaries
