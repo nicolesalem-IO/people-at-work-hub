@@ -1,52 +1,41 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { Lock } from "lucide-react";
+import { Printer } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { PageHeader, StatusBadge } from "@/components/io/status";
+import { HiringPacket } from "@/components/io/HiringPacket";
+import { packetDemo } from "@/data/packet-demo";
 
 export const Route = createFileRoute("/package")({
   head: () => ({
     meta: [
-      { title: "Hiring package editor — I-O Workspace" },
-      { name: "description", content: "Draft job posting, work sample and interview guide, linked to approved evidence." },
-      { property: "og:title", content: "Hiring package editor — I-O Workspace" },
-      { property: "og:description", content: "Draft job posting, work sample and interview guide, linked to approved evidence." },
+      { title: "Hiring team packet — I-O Workspace" },
+      {
+        name: "description",
+        content: "One work sample, a teach-back and a structured interview, each scored on written 1 to 5 anchors.",
+      },
+      { property: "og:title", content: "Hiring team packet — I-O Workspace" },
+      {
+        property: "og:description",
+        content: "One work sample, a teach-back and a structured interview, each scored on written 1 to 5 anchors.",
+      },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
-  component: PackageEditor,
+  component: PacketPage,
 });
 
-function PackageEditor() {
+function PacketPage() {
   return (
     <>
-      <PageHeader eyebrow="Stage G" title="Hiring package" actions={<><Button disabled><Lock /> Submit for HR approval</Button></>}>
-        Archived fictional draft · Read-only. New hiring outputs require a covered, HR-approved selection interview.
-      </PageHeader>
-      <div className="grid gap-6 lg:grid-cols-[1fr_18rem]">
-        <article className="rounded-lg border bg-card p-6 shadow-card md:p-10">
-          <div className="mb-6 flex flex-wrap items-center gap-2">
-            <StatusBadge status="draft" />
-            <StatusBadge status="conflict" label="1 requirement blocked" />
-          </div>
-          <label htmlFor="doc" className="eyebrow">Job posting — v0.1 draft</label>
-          <div id="doc"  
-            className="prose mt-3 max-w-[68ch] space-y-4 rounded-md p-2 text-base leading-7 focus-visible:bg-muted">
-            <h2 className="text-2xl font-bold">Customer Support Specialist</h2>
-            <p>Help customers across chat and email, triage inbound tickets across three queues, and escalate complex cases.</p>
-            <p className="rounded-md border-l-4 border-brand-pink bg-pink-soft p-3">
-              <strong>Blocked:</strong> refund authority wording is pending conflict resolution (EV-01 to EV-04).
-            </p>
-          </div>
-        </article>
-        <aside aria-label="Traceability" className="space-y-3 text-sm">
-          <h2 className="text-lg font-bold">Sources for this draft</h2>
-          {["EV-05 Triage inbound tickets", "EV-04 SOP-14 Refund policy"].map((s) => (
-            <div key={s} className="rounded-md border p-3">{s}</div>
-          ))}
-          <StatusBadge status="unconfigured" label="Archived hiring material" />
-        </aside>
+      <div className="packet-toolbar">
+        <p className="text-muted-foreground">
+          Sample packet for a fictional role. In the app, experts approve every exercise and anchor before use.
+        </p>
+        <Button onClick={() => window.print()}>
+          <Printer /> Print or save as PDF
+        </Button>
       </div>
+      <HiringPacket data={packetDemo} />
     </>
   );
 }
