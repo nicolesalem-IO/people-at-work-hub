@@ -20,6 +20,7 @@ import { Route as EvidenceRouteImport } from './routes/evidence'
 import { Route as GlossaryRouteImport } from './routes/glossary'
 import { Route as InterviewGuideRouteImport } from './routes/interview-guide'
 import { Route as InterviewsRouteImport } from './routes/interviews'
+import { Route as KitRouteImport } from './routes/kit'
 import { Route as OnboardingRouteImport } from './routes/onboarding'
 import { Route as PackageRouteImport } from './routes/package'
 import { Route as RatingsRouteImport } from './routes/ratings'
@@ -88,6 +89,11 @@ const InterviewGuideRoute = InterviewGuideRouteImport.update({
 const InterviewsRoute = InterviewsRouteImport.update({
   id: '/interviews',
   path: '/interviews',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const KitRoute = KitRouteImport.update({
+  id: '/kit',
+  path: '/kit',
   getParentRoute: () => rootRouteImport,
 } as any)
 const OnboardingRoute = OnboardingRouteImport.update({
@@ -174,6 +180,7 @@ export interface FileRoutesByFullPath {
   '/glossary': typeof GlossaryRoute
   '/interview-guide': typeof InterviewGuideRoute
   '/interviews': typeof InterviewsRoute
+  '/kit': typeof KitRoute
   '/onboarding': typeof OnboardingRoute
   '/package': typeof PackageRoute
   '/ratings': typeof RatingsRoute
@@ -201,6 +208,7 @@ export interface FileRoutesByTo {
   '/glossary': typeof GlossaryRoute
   '/interview-guide': typeof InterviewGuideRoute
   '/interviews': typeof InterviewsRoute
+  '/kit': typeof KitRoute
   '/onboarding': typeof OnboardingRoute
   '/package': typeof PackageRoute
   '/ratings': typeof RatingsRoute
@@ -229,6 +237,7 @@ export interface FileRoutesById {
   '/glossary': typeof GlossaryRoute
   '/interview-guide': typeof InterviewGuideRoute
   '/interviews': typeof InterviewsRoute
+  '/kit': typeof KitRoute
   '/onboarding': typeof OnboardingRoute
   '/package': typeof PackageRoute
   '/ratings': typeof RatingsRoute
@@ -258,6 +267,7 @@ export interface FileRouteTypes {
     | '/glossary'
     | '/interview-guide'
     | '/interviews'
+    | '/kit'
     | '/onboarding'
     | '/package'
     | '/ratings'
@@ -285,6 +295,7 @@ export interface FileRouteTypes {
     | '/glossary'
     | '/interview-guide'
     | '/interviews'
+    | '/kit'
     | '/onboarding'
     | '/package'
     | '/ratings'
@@ -312,6 +323,7 @@ export interface FileRouteTypes {
     | '/glossary'
     | '/interview-guide'
     | '/interviews'
+    | '/kit'
     | '/onboarding'
     | '/package'
     | '/ratings'
@@ -340,6 +352,7 @@ export interface RootRouteChildren {
   GlossaryRoute: typeof GlossaryRoute
   InterviewGuideRoute: typeof InterviewGuideRoute
   InterviewsRoute: typeof InterviewsRoute
+  KitRoute: typeof KitRoute
   OnboardingRoute: typeof OnboardingRoute
   PackageRoute: typeof PackageRoute
   RatingsRoute: typeof RatingsRoute
@@ -433,6 +446,13 @@ declare module '@tanstack/react-router' {
       path: '/interviews'
       fullPath: '/interviews'
       preLoaderRoute: typeof InterviewsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/kit': {
+      id: '/kit'
+      path: '/kit'
+      fullPath: '/kit'
+      preLoaderRoute: typeof KitRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/onboarding': {
@@ -548,6 +568,7 @@ const rootRouteChildren: RootRouteChildren = {
   GlossaryRoute: GlossaryRoute,
   InterviewGuideRoute: InterviewGuideRoute,
   InterviewsRoute: InterviewsRoute,
+  KitRoute: KitRoute,
   OnboardingRoute: OnboardingRoute,
   PackageRoute: PackageRoute,
   RatingsRoute: RatingsRoute,
