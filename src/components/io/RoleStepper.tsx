@@ -11,11 +11,11 @@ export function roleSteps(a: Assessment) {
   const analysisDone = analysisGaps(a).length === 0;
   const testApproved = a.status === "approved";
   return [
-    { to: "/job", name: "Job analysis", done: analysisDone, locked: false, needs: "" },
-    { to: "/test", name: "Hiring test", done: testApproved, locked: !analysisDone, needs: "Finish the job analysis first." },
-    { to: "/results", name: "Candidates", done: false, locked: !testApproved, needs: "HR approves the hiring test first." },
-    { to: "/kit", name: "Scoring", done: false, locked: !testApproved, needs: "HR approves the hiring test first." },
-    { to: "/validity", name: "Decisions & fairness", done: false, locked: !testApproved, needs: "HR approves the hiring test first." },
+    { to: "/job", name: "Job analysis", done: analysisDone, locked: false, needs: "", what: "Confirm what the job needs on day one: the O*NET profile, then ratings from people who know the job." },
+    { to: "/test", name: "Hiring test", done: testApproved, locked: !analysisDone, needs: "Finish the job analysis first.", what: "Review the work sample, teach-back and interview with their scoring guides. Experts and HR approve it." },
+    { to: "/results", name: "Candidates", done: false, locked: !testApproved, needs: "HR approves the hiring test first.", what: "Import candidates from your hiring system and send each one a private link." },
+    { to: "/kit", name: "Scoring", done: false, locked: !testApproved, needs: "HR approves the hiring test first.", what: "Raters practice, then score blind. The hiring manager runs the teach-back and interview." },
+    { to: "/validity", name: "Decisions & fairness", done: false, locked: !testApproved, needs: "HR approves the hiring test first.", what: "Record each decision with a reason and check pass rates across groups." },
   ] as const;
 }
 
@@ -28,6 +28,8 @@ export function RoleStepper() {
   const { battery: a } = useAssessment();
   const path = useLocation({ select: (l) => l.pathname });
   const steps = roleSteps(a);
+  const i = steps.findIndex((s) => s.to === path);
+  const here = steps[i];
   return (
     <div className="role-bar">
       <div className="role-bar-head">
@@ -40,7 +42,7 @@ export function RoleStepper() {
           {a.fictional && <span> · fictional example</span>}
         </p>
       </div>
-      <nav className="role-stepper" aria-label="Steps for this role">
+      <nav className="role-stepper role-track" aria-label="Steps for this role">
         {steps.map((s, n) => {
           const here = path === s.to;
           const inner = (
@@ -54,12 +56,20 @@ export function RoleStepper() {
               {inner}
             </span>
           ) : (
-            <Link key={s.to} to={s.to} className={`role-step ${here ? "is-current" : ""}`} aria-current={here ? "step" : undefined}>
+            <Link key={s.to} to={s.to} className={`role-step ${here ? "is-current" : ""} ${s.done ? "is-done" : ""}`} aria-current={here ? "step" : undefined}>
               {inner}
             </Link>
           );
         })}
       </nav>
+      {here && (
+        <p className="role-bar-what">
+          <span>
+            Step {i + 1} of {steps.length}
+          </span>
+          {here.what}
+        </p>
+      )}
     </div>
   );
 }
