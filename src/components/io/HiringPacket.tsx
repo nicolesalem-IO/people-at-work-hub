@@ -1,3 +1,4 @@
+import { CandidateBrief } from "@/components/io/CandidateBrief";
 import { CRITICAL_FLOOR, PASS_AVERAGE, SCORE_LABELS, type PacketData, type RubricLine } from "@/lib/packet";
 
 const fmtDate = (iso: string) =>
@@ -40,6 +41,7 @@ function Rubric({ lines, caption }: { lines: RubricLine[]; caption: string }) {
               <th scope="row">
                 {l.name}
                 {l.critical && <span className="packet-critical">Critical</span>}
+                {l.part && <span className="packet-part">{l.part}</span>}
               </th>
               {l.anchors.map((a, i) => (
                 <td key={i} className={i === 2 ? "packet-standard" : undefined}>
@@ -97,7 +99,7 @@ export function HiringPacket({ data: p }: { data: PacketData }) {
   const passText = `Average ${PASS_AVERAGE.toFixed(1)} or higher, and no critical line below ${CRITICAL_FLOOR}`;
   const contents = [
     "Why this test",
-    "The work sample",
+    "The skills assessment",
     "Before you rate",
     "Teach-back guide",
     "Interview guide",
@@ -118,14 +120,14 @@ export function HiringPacket({ data: p }: { data: PacketData }) {
         </p>
         <dl className="packet-glance">
           <div>
-            <dt>Work sample</dt>
-            <dd>{ws.minutes} min</dd>
-            <p>Every candidate who passes the qualification check</p>
+            <dt>Skills assessment</dt>
+            <dd>{ws.format === "take_home" ? "Take-home" : "Timed"}</dd>
+            <p>{ws.time}, due within {ws.window.replace(" from your invitation", "")}</p>
           </div>
           <div>
             <dt>Teach-back</dt>
             <dd>{tb.minutes} min</dd>
-            <p>Candidates who pass the work sample</p>
+            <p>Candidates who pass the skills assessment</p>
           </div>
           <div>
             <dt>Interview</dt>
@@ -155,7 +157,7 @@ export function HiringPacket({ data: p }: { data: PacketData }) {
           isn't in this table, it isn't in the test.
         </SectionHead>
         <ol className="packet-chain" aria-label="Logic chain">
-          {["Job task", "Day-one skill", "Exercise", "Rubric line", "Two blind scores", "Decision"].map((s) => (
+          {["Job task", "Day-one skill", "Assessment", "Scoring line", "Two blind scores", "Decision"].map((s) => (
             <li key={s}>{s}</li>
           ))}
         </ol>
@@ -182,7 +184,7 @@ export function HiringPacket({ data: p }: { data: PacketData }) {
           </tbody>
         </table>
         <div className="packet-callout">
-          <h4>Left out on purpose</h4>
+          <h4>Not tested, and why</h4>
           <ul>
             {p.notTested.map((n) => (
               <li key={n.skill}>
@@ -191,23 +193,55 @@ export function HiringPacket({ data: p }: { data: PacketData }) {
             ))}
           </ul>
         </div>
+        {p.aptitude.length > 0 && (
+          <>
+            <h3 className="packet-subhead">Aptitude tests</h3>
+            <p className="packet-small">
+              Aptitude tests, such as numerical, verbal, logical or coding tests, are added when the job analysis shows the ability is
+              important and needed on day one, and the skills assessment doesn't already measure it.
+            </p>
+            <table className="packet-table">
+              <thead>
+                <tr>
+                  <th scope="col">Test</th>
+                  <th scope="col">Decision</th>
+                  <th scope="col">Why</th>
+                </tr>
+              </thead>
+              <tbody>
+                {p.aptitude.map((m) => (
+                  <tr key={m.name}>
+                    <td>
+                      <strong>{m.name}</strong>
+                      {m.decision === "included" && m.items ? (
+                        <>
+                          <br />
+                          <small>
+                            {m.items} questions · {m.minutes} min
+                          </small>
+                        </>
+                      ) : null}
+                    </td>
+                    <td>{m.decision === "included" ? "Included" : "Not included"}</td>
+                    <td>{m.reason}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </>
+        )}
       </section>
 
-      {/* 2. Work sample */}
+      {/* 2. Skills assessment */}
       <section className="packet-page">
-        <SectionHead n={2} kicker={`${ws.minutes} minutes · online`} title={`The work sample: ${ws.title}`}>
-          Tests <strong>{ws.skill}</strong>, from the job task “{ws.task.toLowerCase()}”.
+        <SectionHead n={2} kicker={`${ws.format === "take_home" ? "Take-home" : "Timed"} · ${ws.time.toLowerCase()}`} title="The skills assessment">
+          Tests <strong>{ws.skill}</strong>, from the job tasks “{ws.task.toLowerCase()}”. Every numbered item below has a scoring
+          line, so candidates know exactly what's being judged.
         </SectionHead>
-        <div className="packet-brief">
-          <p className="packet-brief-label">What the candidate sees</p>
-          <h4>Materials</h4>
-          <p>{ws.materials}</p>
-          <h4>Your task</h4>
-          <p>{ws.instructions}</p>
-        </div>
+        <CandidateBrief ws={ws} />
         <Rubric lines={ws.rubric} caption="Score each line from 1 to 5. Read the 3 column first: it's the day-one standard." />
         <ScoreSheet
-          title="Work sample score sheet"
+          title="Skills assessment score sheet"
           rows={ws.rubric}
           note={`Score alone, before seeing the other rater's sheet. Pass: ${passText.toLowerCase()}.`}
         />

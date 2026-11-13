@@ -3,6 +3,7 @@ import { Link } from "@tanstack/react-router";
 import { AlertTriangle, ArrowLeft, ArrowRight, CheckCircle2, Download, Lock, RotateCcw } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
+import { CandidateBrief } from "@/components/io/CandidateBrief";
 import { useAdmin } from "@/components/io/AdminProvider";
 import { useKit } from "@/components/io/KitStore";
 import { demoPeople } from "@/data/admin-demo";
@@ -303,7 +304,7 @@ function RaterKit({ me }: { me: Person }) {
         </KitIntro>
         <article className="kit-card">
           <h3>Candidate's response</h3>
-          <p className="kit-brief-mini">Task: {P.workSample.instructions}</p>
+          <details className="kit-brief-mini"><summary>See the full assessment the candidate was given</summary><CandidateBrief ws={P.workSample} compact /></details>
           <p className="kit-response">{current.response}</p>
         </article>
         <SheetEditor key={current.id} candidateId={current.id} step="work_sample" raterId={me.id} lines={WS} />

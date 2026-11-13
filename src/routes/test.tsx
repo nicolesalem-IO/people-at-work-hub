@@ -18,7 +18,7 @@ export const Route = createFileRoute("/test")({
   head: () => ({
     meta: [
       { title: "Hiring test — Thebe IO" },
-      { name: "description", content: "One work sample, a teach-back and a structured interview, each with written scoring guides." },
+      { name: "description", content: "A skills assessment built from the job, aptitude tests when needed, a teach-back and a structured interview, each with written scoring guides." },
     ],
   }),
   component: HiringTest,

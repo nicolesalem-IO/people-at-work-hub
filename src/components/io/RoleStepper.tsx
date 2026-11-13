@@ -12,7 +12,7 @@ export function roleSteps(a: Assessment) {
   const testApproved = a.status === "approved";
   return [
     { to: "/job", name: "Job analysis", done: analysisDone, locked: false, needs: "", what: "Confirm what the job needs on day one: the O*NET profile, then ratings from people who know the job." },
-    { to: "/test", name: "Hiring test", done: testApproved, locked: !analysisDone, needs: "Finish the job analysis first.", what: "Review the work sample, teach-back and interview with their scoring guides. Experts and HR approve it." },
+    { to: "/test", name: "Hiring test", done: testApproved, locked: !analysisDone, needs: "Finish the job analysis first.", what: "Review the skills assessment, any aptitude tests, the teach-back and interview, with their scoring guides. Experts and HR approve it." },
     { to: "/results", name: "Candidates", done: false, locked: !testApproved, needs: "HR approves the hiring test first.", what: "Import candidates from your hiring system and send each one a private link." },
     { to: "/kit", name: "Scoring", done: false, locked: !testApproved, needs: "HR approves the hiring test first.", what: "Raters practice, then score blind. The hiring manager runs the teach-back and interview." },
     { to: "/validity", name: "Decisions & fairness", done: false, locked: !testApproved, needs: "HR approves the hiring test first.", what: "Record each decision with a reason and check pass rates across groups." },
