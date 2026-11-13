@@ -1,3 +1,17 @@
-import {createFileRoute} from '@tanstack/react-router';
-import {AssessmentValidity} from '@/components/io/AssessmentValidity';
-export const Route=createFileRoute('/validity')({head:()=>({meta:[{title:'Fairness check and evidence — Thebe IO'},{name:'description',content:'Content-alignment evidence, optional pilot-group impact checks and accessibility review flags.'},{property:'og:title',content:'Fairness check and evidence — Thebe IO'},{property:'og:description',content:'Content-alignment evidence, optional pilot-group impact checks and accessibility review flags.'},{property:'og:type',content:'website'},{name:'twitter:card',content:'summary_large_image'}]}),component:AssessmentValidity});
+import { createFileRoute } from "@tanstack/react-router";
+import { DecisionsFairness } from "@/components/io/DecisionsFairness";
+import { KitProvider } from "@/components/io/KitStore";
+
+export const Route = createFileRoute("/validity")({
+  head: () => ({
+    meta: [
+      { title: "Decisions & fairness — Thebe IO" },
+      { name: "description", content: "Decisions with reasons, pass rates at each step, and a fairness check across optional groups." },
+    ],
+  }),
+  component: () => (
+    <KitProvider>
+      <DecisionsFairness />
+    </KitProvider>
+  ),
+});

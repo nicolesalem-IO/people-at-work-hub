@@ -8,12 +8,14 @@ export interface KitCandidate {
   appliedAt: string;
   qualification: "met" | "hr_review";
   qualificationNote?: string;
+  group?: string; // optional self-reported group, fictional; only HR and analysts ever see it
   response: string; // work sample submission
 }
 
 export const kitCandidates: KitCandidate[] = [
   {
     id: "C-1041",
+    group: "Group A",
     name: "Riley Brooks",
     appliedAt: "2026-10-28",
     qualification: "met",
@@ -22,6 +24,7 @@ export const kitCandidates: KitCandidate[] = [
   },
   {
     id: "C-1042",
+    group: "Group B",
     name: "Jordan Ellis",
     appliedAt: "2026-10-29",
     qualification: "met",
@@ -30,6 +33,7 @@ export const kitCandidates: KitCandidate[] = [
   },
   {
     id: "C-1043",
+    group: "Group A",
     name: "Casey Morgan",
     appliedAt: "2026-10-30",
     qualification: "met",
@@ -38,6 +42,7 @@ export const kitCandidates: KitCandidate[] = [
   },
   {
     id: "C-1044",
+    group: "Group B",
     name: "Morgan Lee",
     appliedAt: "2026-11-03",
     qualification: "met",
@@ -46,6 +51,7 @@ export const kitCandidates: KitCandidate[] = [
   },
   {
     id: "C-1045",
+    group: "Group B",
     name: "Avery Kim",
     appliedAt: "2026-11-04",
     qualification: "hr_review",

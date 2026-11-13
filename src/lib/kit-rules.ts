@@ -136,3 +136,13 @@ export function retainUntil(iso: string, months = RETENTION_MONTHS) {
   d.setMonth(d.getMonth() + months);
   return d.toISOString().slice(0, 10);
 }
+
+export const MIN_GROUP_SIZE = 30;
+
+/** Four-fifths rule: flags any group whose pass rate is under 80% of the highest group's rate. */
+export function fourFifths(groups: { group: string; passed: number; total: number }[]) {
+  const rated = groups.filter((g) => g.total > 0).map((g) => ({ ...g, rate: g.passed / g.total }));
+  const highest = Math.max(0, ...rated.map((g) => g.rate));
+  const rows = rated.map((g) => ({ ...g, ratio: highest ? g.rate / highest : 1, flagged: highest > 0 && g.rate / highest < 0.8 }));
+  return { rows, highest, flagged: rows.some((r) => r.flagged), tooSmall: rows.some((r) => r.total < MIN_GROUP_SIZE) };
+}

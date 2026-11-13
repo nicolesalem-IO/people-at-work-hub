@@ -203,7 +203,7 @@ function SheetEditor({ candidateId, step, raterId, lines }: { candidateId: strin
 }
 
 /* ---------- status helpers ---------- */
-function stage(c: KitCandidate, sheets: Sheet[], decisions: ReturnType<typeof useKit>["decisions"]) {
+export function stage(c: KitCandidate, sheets: Sheet[], decisions: ReturnType<typeof useKit>["decisions"]) {
   if (c.qualification === "hr_review") return { ws: null, tb: null, iv: null, decision: undefined, label: "HR review: qualification", tone: "warn" as const };
   const ws = blindResult(WS, sheets, c.id);
   const tb = ws.status === "final" && ws.pass ? panelResult(TB, sheets, c.id, "teach_back") : null;

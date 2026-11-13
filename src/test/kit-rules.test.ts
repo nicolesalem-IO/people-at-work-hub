@@ -56,3 +56,17 @@ describe("hiring kit rules", () => {
     expect(retainUntil("2026-11-12T00:00:00Z")).toBe("2029-11-12");
   });
 });
+
+import { fourFifths } from "@/lib/kit-rules";
+describe("four-fifths rule", () => {
+  it("flags a group passing at under 80% of the highest rate", () => {
+    const r = fourFifths([{ group: "A", passed: 50, total: 100 }, { group: "B", passed: 35, total: 100 }]);
+    expect(r.flagged).toBe(true);
+    expect(r.rows.find((x) => x.group === "B")!.ratio).toBeCloseTo(0.7);
+  });
+  it("doesn't flag rates within four-fifths, and warns when groups are small", () => {
+    const r = fourFifths([{ group: "A", passed: 5, total: 10 }, { group: "B", passed: 4, total: 9 }]);
+    expect(r.flagged).toBe(false);
+    expect(r.tooSmall).toBe(true);
+  });
+});
