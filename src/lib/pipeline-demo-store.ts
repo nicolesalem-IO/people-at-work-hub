@@ -3,10 +3,10 @@ import {pipelineDemo,campaignDemo} from '@/data/pipeline-demo';
 import {assessmentDemo} from '@/data/assessment-demo';
 import {defaultSettings} from './admin-rules';
 import {blindItem,shuffled,scoreProfiles,type PipelineCandidate,type Campaign} from './pipeline-rules';
-import {stageItems,stageParts,screenOutcome,stageOneScore,finalistOverall,nextStageAllowed,selectionDemo} from './hiring-stages';
+import {stageItems,stageParts,screenOutcome,qualificationCheck,stageOneScore,finalistOverall,nextStageAllowed,selectionDemo} from './hiring-stages';
 type Progress={answers:Record<string,string>;deadlines:Record<string,string>;completed:string[];practice:string[];current:string|null;consent:boolean;order:string[];options:Record<string,string[]>};
 type Invitation={token:string;application_id:string;stage:number;expires_at:string;status:string};
-const key='io-fictional-staged-pipeline-v3';
+const key='io-fictional-staged-pipeline-v4';
 export function readDemoPipeline(){try{return JSON.parse(localStorage.getItem(key)??'null') as {campaigns:Campaign[];candidates:PipelineCandidate[]}|null??{campaigns:[campaignDemo],candidates:structuredClone(pipelineDemo)};}catch{return {campaigns:[campaignDemo],candidates:structuredClone(pipelineDemo)};}}
 export function writeDemoPipeline(campaigns:Campaign[],candidates:PipelineCandidate[]){localStorage.setItem(key,JSON.stringify({campaigns,candidates}));}
 function invites():Invitation[]{try{return JSON.parse(localStorage.getItem('io-fictional-stage-links-v3')??'[]') as Invitation[];}catch{return [];}}
@@ -17,7 +17,7 @@ export function demoTake(token:string,command:string,payload:Record<string,unkno
  const stage=invitation?.stage??a.selection_stage??0,status=invitation?.status??a.status;if(!nextStageAllowed(stage,a.stage_results??{}))throw new Error('Earlier hurdles must pass.');const campaign=store.campaigns.find(c=>c.id===a.campaign_id)??campaignDemo,items=stageItems(assessmentDemo,stage),parts=stageParts(assessmentDemo,stage);const progressKey='io-fictional-stage-progress-v3-'+token;
  let p:Progress|null;try{p=JSON.parse(localStorage.getItem(progressKey)??'null') as Progress|null;}catch{p=null;}if(!p)p={answers:{},deadlines:{},completed:[],practice:[],current:null,consent:false,order:shuffled(items.filter(i=>!i.practice).map(i=>i.id)),options:Object.fromEntries(items.map(i=>[i.id,shuffled(i.options.map((_,n)=>String(n)))]))};
  let state=status;const section=String(payload['section']??''),next=parts.find(s=>!p.completed.includes(s.name)),method=(s:string)=>s==='Job scenarios'?'sjt':stage===2?'work_sample':'aptitude';if(command!=='load'&&command!=='demographic'&&['submitted','scored'].includes(state))throw new Error('This stage is locked.');
- if(command==='screen'){if(stage!==0||!payload['privacy_accepted'])throw new Error('Consent to complete the application screen.');const r=screenOutcome(selectionDemo.screening,payload['qualifications'] as Record<string,string>,payload['experience'] as Record<string,number>);a.stage_results={...a.stage_results,'0':{pass:r.pass,score:r.total??undefined,reason:r.reason}};state='scored';a.status=state;a.submitted_at=new Date().toISOString();p.consent=true;}
+ if(command==='screen'){if(stage!==0||!payload['privacy_accepted'])throw new Error('Consent to complete the qualification check.');const exp=payload['experience'] as Record<string,number>|undefined;const r=exp&&Object.keys(exp).length?screenOutcome(selectionDemo.screening,payload['qualifications'] as Record<string,string>,exp):qualificationCheck(selectionDemo.screening,payload['qualifications'] as Record<string,string>);a.stage_results={...a.stage_results,'0':{pass:r.pass,score:r.total??undefined,reason:r.reason}};state='scored';a.status=state;a.submitted_at=new Date().toISOString();p.consent=true;}
  if(command==='demographic'){if(!canOfferOptionalGroup(state))throw new Error('Optional fairness information is available after submission.');localStorage.setItem('io-fictional-group-'+a.id,String(payload['group']??''));}
  if(command==='practice'){if(section!==next?.name)throw new Error('Complete parts in order.');if(!p.practice.includes(method(section)))p.practice.push(method(section));}
  if(command==='accommodation'){a.accommodation_request=String(payload['type'])+': '+String(payload['request']??'');a.accommodation_status='pending';}

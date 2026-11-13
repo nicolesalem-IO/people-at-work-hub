@@ -1,3 +1,8 @@
-import { createFileRoute } from '@tanstack/react-router';
-import { InterviewWorkspace } from '@/components/io/InterviewWorkspace';
-export const Route=createFileRoute('/summarize')({head:()=>({meta:[{title:'Purpose-matched outputs — I-O Workspace'},{name:'description',content:'Evidence-linked outputs unlocked by complete job analysis and HR approval.'},{property:'og:title',content:'Purpose-matched outputs — I-O Workspace'},{property:'og:description',content:'Evidence-linked outputs unlocked by complete job analysis and HR approval.'},{property:'og:type',content:'website'},{name:'twitter:card',content:'summary_large_image'}]}),component:()=> <InterviewWorkspace outputsOnly/>});
+import { createFileRoute, redirect } from "@tanstack/react-router";
+
+// Combined into /roles. Kept so old links and bookmarks still land in the right place.
+export const Route = createFileRoute("/summarize")({
+  beforeLoad: () => {
+    throw redirect({ to: "/roles", statusCode: 301 });
+  },
+});

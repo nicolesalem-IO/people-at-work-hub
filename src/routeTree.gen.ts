@@ -20,6 +20,8 @@ import { Route as EvidenceRouteImport } from './routes/evidence'
 import { Route as GlossaryRouteImport } from './routes/glossary'
 import { Route as InterviewGuideRouteImport } from './routes/interview-guide'
 import { Route as InterviewsRouteImport } from './routes/interviews'
+import { Route as JobRouteImport } from './routes/job'
+import { Route as KitRouteImport } from './routes/kit'
 import { Route as OnboardingRouteImport } from './routes/onboarding'
 import { Route as PackageRouteImport } from './routes/package'
 import { Route as RatingsRouteImport } from './routes/ratings'
@@ -29,6 +31,8 @@ import { Route as RolesRouteImport } from './routes/roles'
 import { Route as SmeWelcomeRouteImport } from './routes/sme-welcome'
 import { Route as SummarizeRouteImport } from './routes/summarize'
 import { Route as TeamInviteRouteImport } from './routes/team-invite'
+import { Route as TestRouteImport } from './routes/test'
+import { Route as TryRouteImport } from './routes/try'
 import { Route as ValidityRouteImport } from './routes/validity'
 import { Route as CandidateTokenRouteImport } from './routes/candidate.$token'
 import { Route as TakeTokenRouteImport } from './routes/take.$token'
@@ -89,6 +93,16 @@ const InterviewsRoute = InterviewsRouteImport.update({
   path: '/interviews',
   getParentRoute: () => rootRouteImport,
 } as any)
+const JobRoute = JobRouteImport.update({
+  id: '/job',
+  path: '/job',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const KitRoute = KitRouteImport.update({
+  id: '/kit',
+  path: '/kit',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const OnboardingRoute = OnboardingRouteImport.update({
   id: '/onboarding',
   path: '/onboarding',
@@ -134,6 +148,16 @@ const TeamInviteRoute = TeamInviteRouteImport.update({
   path: '/team-invite',
   getParentRoute: () => rootRouteImport,
 } as any)
+const TestRoute = TestRouteImport.update({
+  id: '/test',
+  path: '/test',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TryRoute = TryRouteImport.update({
+  id: '/try',
+  path: '/try',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ValidityRoute = ValidityRouteImport.update({
   id: '/validity',
   path: '/validity',
@@ -168,6 +192,8 @@ export interface FileRoutesByFullPath {
   '/glossary': typeof GlossaryRoute
   '/interview-guide': typeof InterviewGuideRoute
   '/interviews': typeof InterviewsRoute
+  '/job': typeof JobRoute
+  '/kit': typeof KitRoute
   '/onboarding': typeof OnboardingRoute
   '/package': typeof PackageRoute
   '/ratings': typeof RatingsRoute
@@ -177,6 +203,8 @@ export interface FileRoutesByFullPath {
   '/sme-welcome': typeof SmeWelcomeRoute
   '/summarize': typeof SummarizeRoute
   '/team-invite': typeof TeamInviteRoute
+  '/test': typeof TestRoute
+  '/try': typeof TryRoute
   '/validity': typeof ValidityRoute
   '/candidate/$token': typeof CandidateTokenRoute
   '/take/$token': typeof TakeTokenRoute
@@ -194,6 +222,8 @@ export interface FileRoutesByTo {
   '/glossary': typeof GlossaryRoute
   '/interview-guide': typeof InterviewGuideRoute
   '/interviews': typeof InterviewsRoute
+  '/job': typeof JobRoute
+  '/kit': typeof KitRoute
   '/onboarding': typeof OnboardingRoute
   '/package': typeof PackageRoute
   '/ratings': typeof RatingsRoute
@@ -203,6 +233,8 @@ export interface FileRoutesByTo {
   '/sme-welcome': typeof SmeWelcomeRoute
   '/summarize': typeof SummarizeRoute
   '/team-invite': typeof TeamInviteRoute
+  '/test': typeof TestRoute
+  '/try': typeof TryRoute
   '/validity': typeof ValidityRoute
   '/candidate/$token': typeof CandidateTokenRoute
   '/take/$token': typeof TakeTokenRoute
@@ -221,6 +253,8 @@ export interface FileRoutesById {
   '/glossary': typeof GlossaryRoute
   '/interview-guide': typeof InterviewGuideRoute
   '/interviews': typeof InterviewsRoute
+  '/job': typeof JobRoute
+  '/kit': typeof KitRoute
   '/onboarding': typeof OnboardingRoute
   '/package': typeof PackageRoute
   '/ratings': typeof RatingsRoute
@@ -230,6 +264,8 @@ export interface FileRoutesById {
   '/sme-welcome': typeof SmeWelcomeRoute
   '/summarize': typeof SummarizeRoute
   '/team-invite': typeof TeamInviteRoute
+  '/test': typeof TestRoute
+  '/try': typeof TryRoute
   '/validity': typeof ValidityRoute
   '/candidate/$token': typeof CandidateTokenRoute
   '/take/$token': typeof TakeTokenRoute
@@ -249,6 +285,8 @@ export interface FileRouteTypes {
     | '/glossary'
     | '/interview-guide'
     | '/interviews'
+    | '/job'
+    | '/kit'
     | '/onboarding'
     | '/package'
     | '/ratings'
@@ -258,6 +296,8 @@ export interface FileRouteTypes {
     | '/sme-welcome'
     | '/summarize'
     | '/team-invite'
+    | '/test'
+    | '/try'
     | '/validity'
     | '/candidate/$token'
     | '/take/$token'
@@ -275,6 +315,8 @@ export interface FileRouteTypes {
     | '/glossary'
     | '/interview-guide'
     | '/interviews'
+    | '/job'
+    | '/kit'
     | '/onboarding'
     | '/package'
     | '/ratings'
@@ -284,6 +326,8 @@ export interface FileRouteTypes {
     | '/sme-welcome'
     | '/summarize'
     | '/team-invite'
+    | '/test'
+    | '/try'
     | '/validity'
     | '/candidate/$token'
     | '/take/$token'
@@ -301,6 +345,8 @@ export interface FileRouteTypes {
     | '/glossary'
     | '/interview-guide'
     | '/interviews'
+    | '/job'
+    | '/kit'
     | '/onboarding'
     | '/package'
     | '/ratings'
@@ -310,6 +356,8 @@ export interface FileRouteTypes {
     | '/sme-welcome'
     | '/summarize'
     | '/team-invite'
+    | '/test'
+    | '/try'
     | '/validity'
     | '/candidate/$token'
     | '/take/$token'
@@ -328,6 +376,8 @@ export interface RootRouteChildren {
   GlossaryRoute: typeof GlossaryRoute
   InterviewGuideRoute: typeof InterviewGuideRoute
   InterviewsRoute: typeof InterviewsRoute
+  JobRoute: typeof JobRoute
+  KitRoute: typeof KitRoute
   OnboardingRoute: typeof OnboardingRoute
   PackageRoute: typeof PackageRoute
   RatingsRoute: typeof RatingsRoute
@@ -337,6 +387,8 @@ export interface RootRouteChildren {
   SmeWelcomeRoute: typeof SmeWelcomeRoute
   SummarizeRoute: typeof SummarizeRoute
   TeamInviteRoute: typeof TeamInviteRoute
+  TestRoute: typeof TestRoute
+  TryRoute: typeof TryRoute
   ValidityRoute: typeof ValidityRoute
   CandidateTokenRoute: typeof CandidateTokenRoute
   TakeTokenRoute: typeof TakeTokenRoute
@@ -422,6 +474,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof InterviewsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/job': {
+      id: '/job'
+      path: '/job'
+      fullPath: '/job'
+      preLoaderRoute: typeof JobRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/kit': {
+      id: '/kit'
+      path: '/kit'
+      fullPath: '/kit'
+      preLoaderRoute: typeof KitRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/onboarding': {
       id: '/onboarding'
       path: '/onboarding'
@@ -485,6 +551,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof TeamInviteRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/test': {
+      id: '/test'
+      path: '/test'
+      fullPath: '/test'
+      preLoaderRoute: typeof TestRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/try': {
+      id: '/try'
+      path: '/try'
+      fullPath: '/try'
+      preLoaderRoute: typeof TryRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/validity': {
       id: '/validity'
       path: '/validity'
@@ -528,6 +608,8 @@ const rootRouteChildren: RootRouteChildren = {
   GlossaryRoute: GlossaryRoute,
   InterviewGuideRoute: InterviewGuideRoute,
   InterviewsRoute: InterviewsRoute,
+  JobRoute: JobRoute,
+  KitRoute: KitRoute,
   OnboardingRoute: OnboardingRoute,
   PackageRoute: PackageRoute,
   RatingsRoute: RatingsRoute,
@@ -537,6 +619,8 @@ const rootRouteChildren: RootRouteChildren = {
   SmeWelcomeRoute: SmeWelcomeRoute,
   SummarizeRoute: SummarizeRoute,
   TeamInviteRoute: TeamInviteRoute,
+  TestRoute: TestRoute,
+  TryRoute: TryRoute,
   ValidityRoute: ValidityRoute,
   CandidateTokenRoute: CandidateTokenRoute,
   TakeTokenRoute: TakeTokenRoute,

@@ -4,7 +4,7 @@ export type Person = {id:string;user_id:string|null;name:string;email:string;sta
 export type Assignment = {id:string;person_id:string;role_id:string;permission:'hiring_manager'|'sme'|'rater';source_id:string};
 export type OrgSettings = {name:string;logo_path:string;onet_mode:'demo'|'live';candidate_days:number;retention_months:number;privacy_notice:string};
 export type AuditEvent = {id:string;actor:string;action:string;entity_type:string;entity_id:string|null;details:unknown;created_at:string};
-export const defaultSettings:OrgSettings={name:'People at Work',logo_path:'',onet_mode:'demo',candidate_days:30,retention_months:12,privacy_notice:'Your responses are used to assess job-relevant skills and are reviewed by authorized members of the hiring team. Optional demographic information is kept separate from scoring. Candidate data is retained for 12 months. Contact the hiring team with privacy or accommodation questions.'};
+export const defaultSettings:OrgSettings={name:'People at Work',logo_path:'',onet_mode:'demo',candidate_days:30,retention_months:36,privacy_notice:'Your responses are used to assess job-relevant skills and are reviewed by authorized members of the hiring team. Optional demographic information is kept separate from scoring. Hiring records, including scores and notes, are retained for 36 months. Contact the hiring team with privacy or accommodation questions.'};
 export const permissionRows = [
  {key:'people',label:'People, settings & audit',roles:['admin'],assigned:[]},
  {key:'campaigns',label:'Campaigns & candidate invitations',roles:['admin','hr'],assigned:[]},

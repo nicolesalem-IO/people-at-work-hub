@@ -1,5 +1,5 @@
 import {finalWeights,singleSkillProblems,type SelectionPlan} from './hiring-stages';
-export const methods = {work_sample:'Hands-on tasks',aptitude:'Reasoning questions',sjt:'Job scenarios',knowledge:'Job knowledge',interview:'Structured interview'} as const;
+export const methods = {work_sample:'Work sample',aptitude:'Reasoning questions',sjt:'Job scenarios',knowledge:'Job knowledge',interview:'Structured interview'} as const;
 export type Method = keyof typeof methods;
 export type Rating = {element_id:string;source_id:string;applies:boolean;importance:number;frequency:number;entry:boolean;show:'test'|'observe'|'ask';date:string};
 export type Source = {id:string;name:string;type:string;user_id?:string|undefined};
