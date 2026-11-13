@@ -603,3 +603,9 @@ h1,h2,h3 {word-break:normal;overflow-wrap:normal;hyphens:none;}
 .role-bar-what{display:flex;flex-wrap:wrap;gap:6px 12px;align-items:baseline;padding:0 0 16px;font-size:15px;color:var(--muted-foreground);}
 .role-bar-what span{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.1em;color:var(--brand-pink);}
 @media (max-width:767px){.welcome-product{aspect-ratio:auto;padding:24px 20px;}.welcome-copy{order:-1;}}
+/* Hero: straight, aligned cards (no tilt) */
+.hero-task,.hero-score,.hero-raters{transform:none;}
+.hero-score{margin-left:0;}
+.hero-raters{justify-self:stretch;}
+.hero-visual{gap:14px;}
+.hero-card{box-shadow:0 1px 2px oklch(0 0 0 / .06),0 10px 24px -16px oklch(0 0 0 / .3);}
