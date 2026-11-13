@@ -17,7 +17,7 @@ export const Route = createFileRoute("/test")({
   }),
   head: () => ({
     meta: [
-      { title: "Hiring test — I-O Workspace" },
+      { title: "Hiring test — Thebe IO" },
       { name: "description", content: "One work sample, a teach-back and a structured interview, each with written scoring guides." },
     ],
   }),

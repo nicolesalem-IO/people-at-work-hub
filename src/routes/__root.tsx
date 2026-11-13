@@ -84,9 +84,9 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "I-O Workspace" },
+      { title: "Thebe IO" },
       { name: "description", content: "Evidence-based job analysis and candidate assessment batteries for HR teams." },
-      { property: "og:title", content: "I-O Workspace" },
+      { property: "og:title", content: "Thebe IO" },
       { property: "og:description", content: "Evidence-based job analysis and candidate assessment batteries for HR teams." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
