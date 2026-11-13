@@ -546,3 +546,7 @@ h1,h2,h3 {word-break:normal;overflow-wrap:normal;hyphens:none;}
 @media (max-width:760px){.kit-anchors{grid-template-columns:1fr;}.kit-stats{grid-template-columns:1fr 1fr;}.kit-row{grid-template-columns:1fr auto;}}
 .kit-line legend{float:left;width:100%;margin:0 0 8px;padding:0;}
 .kit-line legend+*{clear:both;}
+.kit-tabs a{border:1px solid var(--border);border-radius:999px;padding:7px 16px;font-weight:700;font-size:14px;background:var(--card);text-decoration:none;}
+.kit-tabs a.is-on{background:var(--ink);color:var(--background);border-color:var(--ink);}
+.kit-tabs a:hover:not(.is-on){border-color:var(--ink);}
+@media print{.kit-tabs{display:none!important;}}

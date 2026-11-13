@@ -1,3 +1,8 @@
-import {createFileRoute} from '@tanstack/react-router';
-import {AssessmentReview} from '@/components/io/AssessmentReview';
-export const Route=createFileRoute('/review')({head:()=>({meta:[{title:'HR approval — I-O Workspace'},{name:'description',content:'Review versioned assessment batteries, SME approvals, cut scores and release readiness.'},{property:'og:title',content:'HR approval — I-O Workspace'},{property:'og:description',content:'Review versioned assessment batteries, SME approvals, cut scores and release readiness.'},{property:'og:type',content:'website'},{name:'twitter:card',content:'summary_large_image'}]}),component:AssessmentReview});
+import { createFileRoute, redirect } from "@tanstack/react-router";
+
+// Combined into /test. Kept so old links and bookmarks still land in the right place.
+export const Route = createFileRoute("/review")({
+  beforeLoad: () => {
+    throw redirect({ to: "/test", search: { part: "approval" }, statusCode: 301 });
+  },
+});

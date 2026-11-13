@@ -1,7 +1,32 @@
-import {Term} from './Term';
-import {Link,useLocation} from '@tanstack/react-router';
-import {Check} from 'lucide-react';
-import {useAssessment} from './AssessmentProvider';
-import {analysisGaps,batteryGaps,eligibleKsaos} from '@/lib/assessment-rules';
-import {benchmark} from '@/data/assessment-demo';
-export function RoleStepper(){const {battery:a}=useAssessment(),path=useLocation({select:l=>l.pathname});const analysisReady=analysisGaps(a).length===0,ready=batteryGaps(a,eligibleKsaos(a,id=>benchmark.elements.find(e=>e.id===id)?.kind??'')).length===0;const steps=[{to:'/define',name:'Define role',done:Boolean(a.title&&a.purpose.length),active:['/define']},{to:'/benchmark',name:'Job profile',done:Boolean(a.occupation),active:['/benchmark','/evidence']},{to:'/ratings',name:'Expert ratings',done:analysisReady,active:['/ratings','/contribute']},{to:'/blueprint',name:'Test plan',done:analysisReady&&a.mappings.length>0,active:['/blueprint']},{to:'/builders',name:'Build tests',done:ready,active:['/builders']},{to:'/validity',name:'Try out & check fairness',done:a.status==='approved',active:['/validity','/results']},{to:'/review',name:'HR approval',done:a.status==='approved',active:['/review']}] as const;return <nav className="role-stepper" aria-label="Role workflow">{steps.map((s,n)=><Link key={s.to} to={s.to} className={`role-step ${s.active.some(p=>p===path)?'is-current':''}`} aria-current={s.active.some(p=>p===path)?'step':undefined}><span className="step-number">{s.done&&!s.active.some(p=>p===path)?<Check size={15}/>:n+1}</span><span>{s.name}</span></Link>)}</nav>;}
+import { Link, useLocation } from "@tanstack/react-router";
+import { Check } from "lucide-react";
+import { useAssessment } from "./AssessmentProvider";
+import { analysisGaps } from "@/lib/assessment-rules";
+
+// The whole flow in six screens. Old pages redirect into these.
+export function RoleStepper() {
+  const { battery: a } = useAssessment();
+  const path = useLocation({ select: (l) => l.pathname });
+  const analysisReady = analysisGaps(a).length === 0;
+  const steps = [
+    { to: "/roles", name: "Role", done: Boolean(a.title), active: ["/roles", "/onboarding"] },
+    { to: "/job", name: "Job analysis", done: analysisReady, active: ["/job", "/sme-welcome"] },
+    { to: "/test", name: "Hiring test", done: a.status === "approved", active: ["/test"] },
+    { to: "/results", name: "Candidates", done: false, active: ["/results"] },
+    { to: "/kit", name: "Scoring", done: false, active: ["/kit"] },
+    { to: "/validity", name: "Decisions & fairness", done: false, active: ["/validity"] },
+  ] as const;
+  return (
+    <nav className="role-stepper" aria-label="Hiring steps">
+      {steps.map((s, n) => {
+        const here = (s.active as readonly string[]).includes(path);
+        return (
+          <Link key={s.to} to={s.to} className={`role-step ${here ? "is-current" : ""}`} aria-current={here ? "step" : undefined}>
+            <span className="step-number">{s.done && !here ? <Check size={15} /> : n + 1}</span>
+            <span>{s.name}</span>
+          </Link>
+        );
+      })}
+    </nav>
+  );
+}

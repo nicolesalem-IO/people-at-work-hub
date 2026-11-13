@@ -606,7 +606,7 @@ function ExpertKit({ me }: { me: Person }) {
       </ol>
       <div className="kit-actions">
         <Button asChild variant="outline">
-          <Link to="/package">Read the full packet <ArrowRight /></Link>
+          <Link to="/test" search={{ part: "packet" }}>Read the full packet <ArrowRight /></Link>
         </Button>
         {kit.approvedBy ? (
           <span className="kit-locked">

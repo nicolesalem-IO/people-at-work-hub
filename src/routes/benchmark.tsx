@@ -1,3 +1,8 @@
-import {createFileRoute} from '@tanstack/react-router';
-import {AssessmentAnalysis} from '@/components/io/AssessmentAnalysis';
-export const Route=createFileRoute('/benchmark')({head:()=>({meta:[{title:'O*NET job profile — I-O Workspace'},{name:'description',content:'Inspect source-attributed occupational tasks, knowledge, skills, abilities and tools.'},{property:'og:title',content:'O*NET job profile — I-O Workspace'},{property:'og:description',content:'Inspect source-attributed occupational tasks, knowledge, skills, abilities and tools.'},{property:'og:type',content:'website'},{name:'twitter:card',content:'summary_large_image'}]}),component:()=> <AssessmentAnalysis view="benchmark" evidence/>});
+import { createFileRoute, redirect } from "@tanstack/react-router";
+
+// Combined into /job. Kept so old links and bookmarks still land in the right place.
+export const Route = createFileRoute("/benchmark")({
+  beforeLoad: () => {
+    throw redirect({ to: "/job", search: { part: "profile" }, statusCode: 301 });
+  },
+});
