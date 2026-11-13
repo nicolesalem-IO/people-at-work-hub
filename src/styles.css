@@ -609,3 +609,26 @@ h1,h2,h3 {word-break:normal;overflow-wrap:normal;hyphens:none;}
 .hero-raters{justify-self:stretch;}
 .hero-visual{gap:14px;}
 .hero-card{box-shadow:0 1px 2px oklch(0 0 0 / .06),0 10px 24px -16px oklch(0 0 0 / .3);}
+
+/* Guided expert ratings */
+.guided{max-width:760px;}
+.guided-top{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:end;gap:10px;}
+.guided-progress-text{font-size:14px;color:var(--muted-foreground);margin-top:4px;}
+.guided-bar{height:6px;background:var(--muted);border-radius:999px;overflow:hidden;margin:10px 0 18px;}
+.guided-bar span{display:block;height:100%;background:var(--ink);transition:width .25s;}
+.guided-card{border:1px solid var(--border);border-radius:16px;padding:28px 30px;background:var(--card);margin-top:14px;}
+.guided-kind{font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:var(--brand-pink);}
+.guided-card h2{font:800 clamp(22px,3vw,28px)/1.2 var(--font-display);margin-top:8px;}
+.guided-desc{color:var(--muted-foreground);margin-top:8px;line-height:1.55;}
+.guided-q{margin-top:24px;border:0;padding:0;}
+.guided-q legend{font-weight:800;font-size:16px;margin-bottom:10px;}
+.guided-choices{display:flex;flex-wrap:wrap;gap:8px;}
+.guided-choices button{border:1.5px solid var(--input);border-radius:999px;padding:10px 18px;font-weight:700;background:var(--background);}
+.guided-choices button.is-on,.guided-scale button.is-on{border-color:var(--ink);background:var(--ink);color:var(--background);}
+.guided-scale{display:grid;grid-template-columns:repeat(5,1fr);gap:6px;}
+.guided-scale button{border:1.5px solid var(--input);border-radius:12px;padding:10px 6px;background:var(--background);font-size:12px;line-height:1.3;}
+.guided-scale button strong{display:block;font:800 20px var(--font-display);}
+.guided-nav{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-top:28px;border-top:1px solid var(--border);padding-top:18px;}
+.guided-jump{display:inline-block;margin-top:12px;font-size:14px;}
+@media (max-width:640px){.guided-scale{grid-template-columns:1fr;}.guided-scale button{display:flex;gap:10px;align-items:center;text-align:left;}.guided-scale button strong{font-size:16px;}.guided-card{padding:20px;}}
+.guided-card h2{text-transform:none;letter-spacing:0;font-size:clamp(20px,2.4vw,24px);line-height:1.3;}
