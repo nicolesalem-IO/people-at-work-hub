@@ -4,9 +4,9 @@ import { glossary } from "@/lib/plain-language";
 export const Route = createFileRoute("/glossary")({
   head: () => ({
     meta: [
-      { title: "How it works — People at Work" },
+      { title: "How it works — Thebe IO" },
       { name: "description", content: "The science behind the hiring test, in plain words." },
-      { property: "og:title", content: "How it works — People at Work" },
+      { property: "og:title", content: "How it works — Thebe IO" },
       { property: "og:description", content: "The science behind the hiring test, in plain words." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
@@ -20,7 +20,7 @@ function Glossary() {
     <>
       <header className="step-hero">
         <div>
-          <p className="eyebrow">People at Work / How it works</p>
+          <p className="eyebrow">Thebe IO / How it works</p>
           <h1>The science, in plain words.</h1>
         </div>
         <div className="step-hero-copy">
