@@ -33,7 +33,7 @@ const nameOf = (id: string) => demoPeople.find((p) => p.id === id)?.name ?? id;
 const fmt = (iso: string) => new Date(iso).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" });
 
 type KitView = "rater" | "manager" | "hr" | "expert";
-const KIT_LABEL: Record<KitView, string> = { rater: "Rater kit", manager: "Hiring manager kit", hr: "HR kit", expert: "Expert kit" };
+const KIT_LABEL: Record<KitView, string> = { rater: "Score work samples", manager: "Teach-back, interview & decision", hr: "Hiring round overview", expert: "Approve the test" };
 function kitsFor(p: Person): KitView[] {
   const r = new Set(p.roles);
   const out: KitView[] = [];
@@ -654,9 +654,9 @@ export function HiringKit() {
     return (
       <section className="kit">
         <header className="kit-hero">
-          <p className="eyebrow">Hiring kit · fictional demo</p>
-          <h1>Who's using the kit?</h1>
-          <p>Each person gets only what their role needs. Pick someone to see their kit.</p>
+          <p className="eyebrow">My tasks · fictional demo</p>
+          <h1>Who are you?</h1>
+          <p>Everyone on the hiring team gets only their part: raters score, the hiring manager interviews and decides, experts approve, HR oversees. Pick someone to see their tasks.</p>
         </header>
         {team.demo ? (
           <div className="kit-people">
@@ -679,10 +679,10 @@ export function HiringKit() {
       <header className="kit-hero">
         <div>
           <p className="eyebrow">
-            Hiring kit · {P.role}
+            My tasks · {P.role}
             {team.demo ? " · fictional demo" : ""}
           </p>
-          <h1>{me.name.split(" ")[0]}'s kit</h1>
+          <h1>{me.name.split(" ")[0]}'s tasks</h1>
         </div>
         {team.demo && (
           <div className="kit-hero-actions">

@@ -550,3 +550,21 @@ h1,h2,h3 {word-break:normal;overflow-wrap:normal;hyphens:none;}
 .kit-tabs a.is-on{background:var(--ink);color:var(--background);border-color:var(--ink);}
 .kit-tabs a:hover:not(.is-on){border-color:var(--ink);}
 @media print{.kit-tabs{display:none!important;}}
+.setup-note{grid-column:1/-1;margin-top:8px;border-left:4px solid var(--brand-yellow);background:var(--yellow-soft);padding:12px 16px;border-radius:0 var(--radius) var(--radius) 0;}
+.setup-subhead{font:800 20px var(--font-display);margin:32px 0 6px;}
+.setup-path{list-style:none;padding:0;margin-top:24px;display:grid;gap:12px;}
+.setup-path li{display:grid;grid-template-columns:auto 1fr;gap:14px;align-items:start;border-top:1px solid var(--border);padding-top:12px;}
+.setup-path span{display:inline-flex;width:30px;height:30px;align-items:center;justify-content:center;border-radius:999px;background:var(--ink);color:var(--background);font:800 14px var(--font-display);}
+.setup-path p{color:var(--muted-foreground);font-size:15px;margin-top:2px;}
+.role-bar{border-bottom:1px solid var(--border);margin-bottom:28px;}
+.role-bar-head{display:flex;flex-wrap:wrap;align-items:center;gap:8px 20px;padding:4px 0 10px;font-size:15px;}
+.role-bar-head p span{color:var(--muted-foreground);}
+.role-bar-back{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:700;color:var(--muted-foreground);}
+.role-bar-back:hover{color:var(--ink);}
+.role-bar .role-stepper{border-bottom:0;margin-bottom:0;}
+.role-step.is-locked{opacity:.45;cursor:not-allowed;}
+.next-step{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px;margin-top:48px;border-top:2px solid var(--ink);padding:18px 0 4px;font-size:15px;}
+.next-step p,.next-step-locked{display:inline-flex;align-items:center;gap:8px;}
+.next-step-locked{color:var(--muted-foreground);}
+.next-step-link{display:inline-flex;align-items:center;gap:8px;background:var(--ink);color:var(--background);font-weight:800;padding:12px 22px;border-radius:999px;}
+@media print{.role-bar,.next-step{display:none!important;}}
