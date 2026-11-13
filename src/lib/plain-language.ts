@@ -40,6 +40,18 @@ export const glossary: readonly GlossaryTerm[] = [
     science: "Doing the work predicts doing the work. Work samples are among the strongest predictors of job performance and tend to show smaller group differences than general aptitude tests.",
   },
   {
+    label: "Skills assessment",
+    technical: "Work sample test (take-home)",
+    definition: "A detailed, multi-part assignment built from the job's most important tasks, with exact instructions on what to turn in, how and by when.",
+    science: "Explicit instructions keep the test fair: every candidate knows what's being judged, so scores reflect skill rather than guessing what reviewers want.",
+  },
+  {
+    label: "Aptitude test",
+    technical: "Cognitive ability test (numerical, verbal, logical, coding)",
+    definition: "Timed questions that measure abilities like working with numbers or reasoning through problems. Added only when the job analysis shows the ability matters on day one.",
+    science: "Aptitude tests predict performance well, especially in complex jobs, but can show larger differences between groups than skills tests. That's why they're added only when the job needs them, and why the fairness check matters.",
+  },
+  {
     label: "Teach-back",
     technical: "Performance test (live work sample)",
     definition: "Finalists show a skill live, such as teaching part of their own module, while trained people score it.",

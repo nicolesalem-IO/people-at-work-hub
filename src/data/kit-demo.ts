@@ -20,7 +20,7 @@ export const kitCandidates: KitCandidate[] = [
     appliedAt: "2026-10-28",
     qualification: "met",
     response:
-      "Objectives: (1) Given 5 mixed urgent and routine requests arriving in pairs, route 5 of 5 to the correct queue. (2) State the 3 urgent signs from memory with no prompts.\n\nPractice (18 min): Pairs of learners get request cards two at a time from a shuffled deck, with a 60-second timer. Partner checks against the routing key and gives feedback after each round. Rounds 3–4 add after-hours requests.\n\nCheck (7 min): Each learner routes a new set of 5 paired cards alone. Pass = 5 of 5. Anyone below gets a 10-minute follow-up with their supervisor that week.",
+      "Excerpt from the submitted PDF.\n\nPart 1.1 Objectives: (1) Given 5 mixed urgent and routine requests arriving in pairs, route 5 of 5 to the correct queue. (2) State the 3 urgent signs from memory with no prompts.\n\nPractice (18 min): Pairs of learners get request cards two at a time from a shuffled deck, with a 60-second timer. Partner checks against the routing key and gives feedback after each round. Rounds 3–4 add after-hours requests.\n\nCheck (7 min): Each learner routes a new set of 5 paired cards alone. Pass = 5 of 5. Anyone below gets a 10-minute follow-up with their supervisor that week.\n\nPart 2: Compare audit accuracy (baseline 6 of 12) and average time to route at 30 and 60 days; supervisor spot checks weekly. If accuracy is under 10 of 12 at 60 days, I redesign the practice rounds.\n\nPart 3.1: I'd offer to run the session in two 15-minute blocks so phones stay covered, and show the audit numbers: the PDF went out last month and accuracy is 50%.",
   },
   {
     id: "C-1042",
@@ -29,7 +29,7 @@ export const kitCandidates: KitCandidate[] = [
     appliedAt: "2026-10-29",
     qualification: "met",
     response:
-      "Objectives: (1) Schedulers will correctly route urgent requests, 5 of 5, in a timed check. (2) Schedulers will name the after-hours route without notes.\n\nPractice: I'd walk through the policy slides (15 min) with examples of each request type, then open it up for questions and stories from the floor (10 min).\n\nCheck (5 min): Timed routing of 5 requests; pass = 5 of 5, with a re-check the next week for anyone who misses.",
+      "Objectives: (1) Schedulers will correctly route urgent requests, 5 of 5, in a timed check. (2) Schedulers will name the after-hours route without notes.\n\nPractice: I'd walk through the policy slides (15 min) with examples of each request type, then open it up for questions and stories from the floor (10 min).\n\nCheck (5 min): Timed routing of 5 requests; pass = 5 of 5, with a re-check the next week for anyone who misses.\n\nPart 2: Post-session survey and supervisor feedback.\n\nPart 3.1: Explain that training is required.",
   },
   {
     id: "C-1043",
@@ -38,7 +38,7 @@ export const kitCandidates: KitCandidate[] = [
     appliedAt: "2026-10-30",
     qualification: "met",
     response:
-      "Objectives: Learners will understand the urgent routing policy and be able to route urgent calls correctly.\n\nPractice (20 min): Role-play where one person calls in with a request and the other routes it. Two callers phone in at the same time in the last round.\n\nCheck: Short quiz on the policy at the end, plus a feedback form.",
+      "Objectives: Learners will understand the urgent routing policy and be able to route urgent calls correctly.\n\nPractice (20 min): Role-play where one person calls in with a request and the other routes it. Two callers phone in at the same time in the last round.\n\nCheck: Short quiz on the policy at the end, plus a feedback form.\n\nPart 2: Survey at the end.\n\nPart 3.2: Ask the evening supervisor what is different.",
   },
   {
     id: "C-1044",
@@ -67,21 +67,21 @@ export const kitBenchmarks = [
     label: "Benchmark A",
     response:
       "Objective: understand the routing policy. Activity: 25-minute presentation of the policy with Q&A. Check: satisfaction survey.",
-    expert: { objectives: 1, practice: 1, check: 1 },
+    expert: { objectives: 1, practice: 1, check: 1, evaluation: 1, judgment: 2, writing: 2 },
   },
   {
     id: "B2",
     label: "Benchmark B",
     response:
       "Objectives: route urgent requests correctly; know the after-hours number. Practice (15 min): learners route sample requests one at a time from a worksheet and compare answers. Check: route 5 requests alone.",
-    expert: { objectives: 3, practice: 3, check: 3 },
+    expert: { objectives: 3, practice: 3, check: 3, evaluation: 3, judgment: 3, writing: 3 },
   },
   {
     id: "B3",
     label: "Benchmark C",
     response:
       "Objectives: (1) route 5 of 5 paired requests in under 90 seconds each; (2) name the 3 urgent signs unprompted. Practice: timed pairs of requests that get harder each round, with partner feedback. Check: 5 new pairs alone, pass = 5 of 5, follow-up session for misses.",
-    expert: { objectives: 5, practice: 5, check: 5 },
+    expert: { objectives: 5, practice: 5, check: 5, evaluation: 5, judgment: 4, writing: 5 },
   },
 ];
 
@@ -95,12 +95,12 @@ const sheet = (
 ): Sheet => ({ id: `${candidateId}-${step}-${raterId}`, candidateId, step, raterId, scores, notes, submittedAt, history: [] });
 
 export const kitSeedSheets: Sheet[] = [
-  sheet("C-1041", "work_sample", "sam", { objectives: 4, practice: 4, check: 3 }, { practice: "Paired, timed rounds with partner feedback" }, "2026-11-05T16:10:00Z"),
-  sheet("C-1041", "work_sample", "lena", { objectives: 4, practice: 4, check: 3 }, { check: "Check has a standard; follow-up is vague" }, "2026-11-05T18:40:00Z"),
-  sheet("C-1042", "work_sample", "sam", { objectives: 4, practice: 1, check: 4 }, { practice: "Slides and discussion only" }, "2026-11-06T15:00:00Z"),
-  sheet("C-1042", "work_sample", "lena", { objectives: 4, practice: 1, check: 4 }, { practice: "No hands-on routing at all" }, "2026-11-06T17:20:00Z"),
-  sheet("C-1043", "work_sample", "sam", { objectives: 2, practice: 2, check: 2 }, { practice: "Role-play is one call at a time until the end" }, "2026-11-07T15:30:00Z"),
-  sheet("C-1043", "work_sample", "lena", { objectives: 2, practice: 4, check: 2 }, { practice: "Last round has two callers at once" }, "2026-11-07T19:05:00Z"),
+  sheet("C-1041", "work_sample", "sam", { objectives: 4, practice: 4, check: 3, evaluation: 4, judgment: 4, writing: 4 }, { practice: "Paired, timed rounds with partner feedback" }, "2026-11-05T16:10:00Z"),
+  sheet("C-1041", "work_sample", "lena", { objectives: 4, practice: 4, check: 3, evaluation: 4, judgment: 3, writing: 4 }, { check: "Check has a standard; follow-up is vague" }, "2026-11-05T18:40:00Z"),
+  sheet("C-1042", "work_sample", "sam", { objectives: 4, practice: 1, check: 4, evaluation: 3, judgment: 3, writing: 3 }, { practice: "Slides and discussion only" }, "2026-11-06T15:00:00Z"),
+  sheet("C-1042", "work_sample", "lena", { objectives: 4, practice: 1, check: 4, evaluation: 3, judgment: 3, writing: 3 }, { practice: "No hands-on routing at all" }, "2026-11-06T17:20:00Z"),
+  sheet("C-1043", "work_sample", "sam", { objectives: 2, practice: 2, check: 2, evaluation: 2, judgment: 3, writing: 3 }, { practice: "Role-play is one call at a time until the end" }, "2026-11-07T15:30:00Z"),
+  sheet("C-1043", "work_sample", "lena", { objectives: 2, practice: 4, check: 2, evaluation: 2, judgment: 3, writing: 3 }, { practice: "Last round has two callers at once" }, "2026-11-07T19:05:00Z"),
   sheet("C-1041", "teach_back", "daniel", { checks: 4, clear: 4, confusion: 3 }, { confusion: "Re-explained with a new example; didn't check it landed" }, "2026-11-10T17:00:00Z"),
 ];
 
@@ -108,6 +108,6 @@ export const kitSeedDecisions: Decision[] = [];
 
 // Seeded calibration results: Sam and Lena are calibrated; Nicole (third rater) still has to calibrate.
 export const kitSeedCalibration: Record<string, Record<string, Record<string, number>>> = {
-  sam: { B1: { objectives: 1, practice: 1, check: 2 }, B2: { objectives: 3, practice: 3, check: 3 }, B3: { objectives: 5, practice: 4, check: 5 } },
-  lena: { B1: { objectives: 1, practice: 2, check: 1 }, B2: { objectives: 3, practice: 3, check: 4 }, B3: { objectives: 5, practice: 5, check: 5 } },
+  sam: { B1: { objectives: 1, practice: 1, check: 2, evaluation: 1, judgment: 2, writing: 2 }, B2: { objectives: 3, practice: 3, check: 3, evaluation: 3, judgment: 3, writing: 4 }, B3: { objectives: 5, practice: 4, check: 5, evaluation: 5, judgment: 4, writing: 5 } },
+  lena: { B1: { objectives: 1, practice: 2, check: 1, evaluation: 2, judgment: 2, writing: 1 }, B2: { objectives: 3, practice: 3, check: 4, evaluation: 3, judgment: 3, writing: 3 }, B3: { objectives: 5, practice: 5, check: 5, evaluation: 4, judgment: 5, writing: 5 } },
 };

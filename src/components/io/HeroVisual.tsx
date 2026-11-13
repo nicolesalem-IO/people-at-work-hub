@@ -4,13 +4,13 @@ export function HeroVisual() {
   return (
     <div className="hero-visual" role="img" aria-label="A work sample task card, a 1 to 5 scoring row with 3 marked as the day-one standard, and two blind raters who both scored 4.">
       <div className="hero-card hero-task">
-        <p className="hero-label">Work sample · 25 min</p>
-        <h3>Design a 30-minute training module</h3>
+        <p className="hero-label">Skills assessment · take-home</p>
+        <h3>Learning &amp; Development Specialist</h3>
         <p>
-          Twelve new schedulers know the policy but freeze when two urgent requests arrive at once. Outline two
-          objectives, one practice activity and a quick check.
+          Part 1: training design · Part 2: measuring impact · Part 3: written questions. Turn in one PDF, up to 3
+          pages.
         </p>
-        <span className="hero-chip">From the job task: design training programs</span>
+        <span className="hero-chip">Built from the job tasks experts rated most important</span>
       </div>
       <div className="hero-card hero-score">
         <p className="hero-label">Practice matches the problem · Critical</p>

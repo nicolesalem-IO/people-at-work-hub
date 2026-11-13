@@ -380,7 +380,7 @@ export function Onboarding() {
               <ol className="setup-path">
                 {[
                   ["Job analysis", "Confirm the O*NET profile; your experts rate what's needed on day one."],
-                  ["Hiring test", "One work sample, a teach-back and an interview, with written scoring guides. Experts and HR approve it."],
+                  ["Hiring test", "A skills assessment built from the job, aptitude tests if the job needs them, a teach-back and an interview, all with written scoring guides. Experts and HR approve it."],
                   ["Candidates", "Import candidates from your hiring system and send each one a private link."],
                   ["Scoring", "Raters practice, then score blind. The hiring manager runs the teach-back and interview."],
                   ["Decisions & fairness", "The manager records each decision with a reason; HR checks pass rates."],
