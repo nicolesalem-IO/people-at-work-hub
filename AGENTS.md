@@ -29,8 +29,20 @@ use the editor.
 - **Secrets.** Lovable manages them. Do not put secret values in the repo.
 <!-- LOVABLE:END -->
 
+## Hosting and services (project decision, Nov 2026)
+- This app is hosted on Netlify (netlify.toml, NITRO_PRESET=netlify), not Lovable hosting. Don't change netlify.toml or the build command.
+- The database is the owner's own Supabase project. Schema changes are applied there as numbered migrations; don't add Lovable Cloud tables or migrations.
+- Secrets (ANTHROPIC_API_KEY, ONET_API_KEY, SUPABASE_SERVICE_ROLE_KEY) live in Netlify environment variables. Never put secret values in the repo or browser code.
+
 ## AI
-- AI calls go through @lovable.dev/ai-gateway inside createServerFn handlers (src/lib/*.functions.ts); evidence citations are re-validated server-side because model output is untrusted.
+- AI calls use the Claude API through src/lib/claude.server.ts (claudeJson) inside createServerFn handlers, not @lovable.dev/ai-gateway. Keep it that way; don't reintroduce the gateway or LOVABLE_API_KEY.
+- Model output is untrusted: it is validated server-side (item-draft.ts, packet.ts packetProblems) and stays a draft until experts and HR approve.
+
+## Design changes in Lovable
+- Visual and layout changes are welcome: styles.css, page layout, components' markup and copy.
+- Don't change the logic in src/lib/packet.ts, src/lib/kit-rules.ts, src/lib/onet-api.ts, src/lib/claude.server.ts, *.functions.ts, or the redirects in src/routes for old pages. Tests in src/test cover them.
+- Keep plain-language labels on screen; research terms belong in the glossary (src/lib/plain-language.ts) and Term tooltips.
+- The flow is one role at a time: Job analysis, Hiring test, Candidates, Scoring, Decisions & fairness (src/components/io/RoleStepper.tsx). Team members use My tasks (/kit).
 
 ## Database
 - Enforce workflow approvals, immutable approved records and same-role evidence links in PostgreSQL triggers as well as RLS, so direct data requests cannot bypass the workflow.
