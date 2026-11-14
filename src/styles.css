@@ -667,3 +667,7 @@ h1,h2,h3 {word-break:normal;overflow-wrap:normal;hyphens:none;}
 .kit-brief-mini summary{cursor:pointer;font-weight:700;margin-bottom:10px;}
 @media (max-width:760px){.brief{padding:20px;}.brief-facts{grid-template-columns:1fr 1fr;}}
 @media print{.brief{break-inside:auto;}}
+.quick-plan-parts{list-style:none;padding:0;margin-top:16px;display:grid;gap:14px;}
+.quick-plan-parts li{border-top:1px solid var(--border);padding-top:10px;}
+.quick-plan-part-head{display:flex;justify-content:space-between;align-items:center;gap:10px;}
+.quick-plan-loading{display:flex;align-items:center;gap:10px;margin-top:14px;color:var(--muted-foreground);}
