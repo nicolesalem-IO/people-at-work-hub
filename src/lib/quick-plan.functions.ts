@@ -115,18 +115,18 @@ export const draftSample = createServerFn({ method: "POST" })
       skills = pickDayOne(l.elements),
       parts = planParts(l.elements, tasks),
       modules = parts.filter((p) => p.kind === "aptitude").map((p) => p.label.replace(/ test$/, ""));
-    const fallback = (): DraftResult => {
+    const fallback = (why = "AI drafting isn't available right now."): DraftResult => {
       if (data.part === "interview") {
         const samePacket = l.occupation.code === benchmark.occupation;
-        return { ai: false, notice: "AI drafting isn't available right now, so this shows example questions.", interview: samePacket ? packetDemo.interview.questions : packetDemo.interview.questions.slice(0, 3), aptitude: [] };
+        return { ai: false, notice: `${why} Showing example questions instead.`, interview: samePacket ? packetDemo.interview.questions : packetDemo.interview.questions.slice(0, 3), aptitude: [] };
       }
       return {
         ai: false,
-        notice: "AI drafting isn't available right now, so this shows a template your experts would fill in.",
+        notice: `${why} Showing a template your experts would fill in.`,
         assessment: l.occupation.code === benchmark.occupation ? packetDemo.workSample : templateAssessment(role, tasks, skills[0]?.name ?? ""),
       };
     };
-    if (!aiBudget()) return fallback();
+    if (!aiBudget()) return fallback("The hourly AI limit was reached.");
     try {
       const { claudeJson, CLAUDE_FAST } = await import("./claude.server");
       const context = `Job: ${role} (O*NET ${l.occupation.code})\n\nTop job tasks:\n${tasks.map((t) => `[${t.id}] ${t.name}`).join("\n")}\n\nSkills and abilities rated most important:\n${skills.map((s) => `${s.name} (${s.importance ?? "?"} of 5)`).join("\n")}`;
@@ -134,18 +134,19 @@ export const draftSample = createServerFn({ method: "POST" })
       if (data.part === "assessment") {
         const out = await claudeJson<unknown>({ model: CLAUDE_FAST, system: ASSESSMENT_PROMPT, user: context, name: "skills_assessment", schema: assessmentSchema as unknown as Record<string, unknown>, maxTokens: 4000, timeoutMs: 24000 });
         const assessment = sanitizeAssessment(out, role, tasks, skills[0]?.name ?? "");
-        if (!assessment) return fallback();
+        if (!assessment) return fallback("The AI draft was incomplete.");
         value = { ai: true, notice: "", assessment };
       } else {
         const out = await claudeJson<unknown>({ model: CLAUDE_FAST, system: INTERVIEW_PROMPT, user: `${context}\n\nAptitude modules: ${modules.length ? modules.join(", ") : "none"}`, name: "interview_and_aptitude", schema: interviewSchema as unknown as Record<string, unknown>, maxTokens: 3000, timeoutMs: 24000 });
         const r = sanitizeInterview(out, modules);
-        if (r.questions.length < 3) return fallback();
+        if (r.questions.length < 3) return fallback("The AI draft was incomplete.");
         value = { ai: true, notice: "", interview: r.questions, aptitude: r.aptitude };
       }
       cache.set(key, { at: Date.now(), value });
       return value;
     } catch (e) {
       console.error("draftSample failed", e);
-      return fallback();
+      const { claudeErrorMessage } = await import("./claude.server");
+      return fallback(claudeErrorMessage(e));
     }
   });
