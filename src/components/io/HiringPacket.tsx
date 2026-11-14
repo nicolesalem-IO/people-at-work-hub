@@ -19,7 +19,7 @@ function SectionHead({ n, kicker, title, children }: { n: number; kicker: string
   );
 }
 
-function Rubric({ lines, caption }: { lines: RubricLine[]; caption: string }) {
+export function Rubric({ lines, caption }: { lines: RubricLine[]; caption: string }) {
   return (
     <div className="packet-rubric-wrap">
       <table className="packet-rubric">

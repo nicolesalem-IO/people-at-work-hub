@@ -4,8 +4,10 @@ import { useServerFn } from "@tanstack/react-start";
 import { ArrowRight, Sparkles, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { buildQuickPlan } from "@/lib/quick-plan.functions";
-import { methodLabels, type QuickPlan as Plan } from "@/lib/quick-plan";
+import { buildQuickPlan, draftSample, type DraftResult } from "@/lib/quick-plan.functions";
+import type { QuickPlan as Plan } from "@/lib/quick-plan";
+import { CandidateBrief } from "@/components/io/CandidateBrief";
+import { Rubric } from "@/components/io/HiringPacket";
 
 const suggestions = [
   "Learning & Development Specialist",
@@ -14,9 +16,8 @@ const suggestions = [
 ];
 const steps = [
   "Matching the job to O*NET…",
-  "Picking skills needed on day one…",
-  "Drafting the test plan…",
-  "Writing sample questions…",
+  "Finding the most important tasks and skills…",
+  "Choosing the parts of the test that fit this job…",
 ];
 
 /** The 10-second demo: job title → O*NET → day-one skills → test plan → sample questions with traceability. */
@@ -46,13 +47,13 @@ export function QuickPlan() {
   }
   return (
     <section className="quick-plan" aria-labelledby="quick-plan-title">
-      <p className="eyebrow text-pink-ink">Try it · about 10 seconds</p>
+      <p className="eyebrow text-pink-ink">Try it · under a minute</p>
       <h2 id="quick-plan-title" className="quick-plan-title">
         See a test plan for any job.
       </h2>
       <p className="mt-4 max-w-2xl text-lg">
-        Type a job title. We match it to O*NET, pick the skills needed on day one and draft a test
-        plan with sample questions, each one traced back to a real job task.
+        Type a job title. We match it to O*NET, choose the parts of the hiring test that fit the job, and draft a
+        detailed skills assessment, scoring guide and interview questions, all traced back to real job tasks.
       </p>
       <form
         className="quick-plan-form"
@@ -112,6 +113,21 @@ export function QuickPlan() {
 }
 
 function Result({ plan, onPick }: { plan: Plan; onPick: (code: string) => void }) {
+  const draft = useServerFn(draftSample);
+  const [assessment, setAssessment] = useState<DraftResult | null>(null),
+    [interview, setInterview] = useState<DraftResult | null>(null);
+  useEffect(() => {
+    if (!plan.occupation.code || !plan.skills.length) return;
+    let live = true;
+    setAssessment(null);
+    setInterview(null);
+    const fail = (): DraftResult => ({ ai: false, notice: "The draft couldn't be loaded. Try again in a minute." });
+    draft({ data: { code: plan.occupation.code, part: "assessment" } }).then((r) => live && setAssessment(r), () => live && setAssessment(fail()));
+    draft({ data: { code: plan.occupation.code, part: "interview" } }).then((r) => live && setInterview(r), () => live && setInterview(fail()));
+    return () => {
+      live = false;
+    };
+  }, [plan.occupation.code]);
   if (!plan.skills.length)
     return (
       <div className="mt-8">
@@ -121,6 +137,7 @@ function Result({ plan, onPick }: { plan: Plan; onPick: (code: string) => void }
         {plan.alternatives.length > 0 && <Alternatives plan={plan} onPick={onPick} />}
       </div>
     );
+  const status = { always: "Always", recommended: "Recommended", consider: "Consider" } as const;
   return (
     <div className="quick-plan-result" aria-live="polite">
       {plan.notice && (
@@ -135,82 +152,113 @@ function Result({ plan, onPick }: { plan: Plan; onPick: (code: string) => void }
           </p>
           <h3 className="text-3xl mt-2">{plan.occupation.title}</h3>
         </div>
-        <a
-          className="text-sm underline"
-          href={`https://www.onetonline.org/link/summary/${plan.occupation.code}`}
-          target="_blank"
-          rel="noreferrer"
-        >
+        <a className="text-sm underline" href={`https://www.onetonline.org/link/summary/${plan.occupation.code}`} target="_blank" rel="noreferrer">
           View on O*NET ↗
         </a>
       </div>
       {plan.alternatives.length > 0 && <Alternatives plan={plan} onPick={onPick} />}
       <div className="quick-plan-grid">
         <div>
-          <p className="eyebrow text-pink-ink">01 · Skills needed on day one</p>
+          <p className="eyebrow text-pink-ink">01 · Most important skills (O*NET)</p>
           <ul className="mt-4 space-y-3">
             {plan.skills.map((s) => (
               <li key={s.id} className="quick-plan-skill">
                 <span>{s.name}</span>
-                <span className="text-sm text-muted-foreground">
-                  {s.importance !== null ? `Importance ${s.importance.toFixed(1)}/5 · ` : ""}
-                  {methodLabels[s.method]}
-                </span>
+                <span className="text-sm text-muted-foreground">{s.importance !== null ? `Importance ${s.importance.toFixed(1)}/5` : ""}</span>
               </li>
             ))}
           </ul>
+          <p className="text-sm text-muted-foreground mt-3">Your experts confirm which are needed on day one.</p>
         </div>
         <div>
-          <p className="eyebrow text-pink-ink">02 · Draft test plan</p>
-          <ul className="mt-4 space-y-4">
-            {plan.plan.map((p) => (
-              <li key={p.method}>
-                <div className="flex justify-between font-semibold">
-                  <span>{p.label}</span>
-                  <span>{p.weight}%</span>
+          <p className="eyebrow text-pink-ink">02 · The hiring test for this job</p>
+          <ul className="quick-plan-parts">
+            {plan.parts.map((p) => (
+              <li key={p.label}>
+                <div className="quick-plan-part-head">
+                  <strong>{p.label}</strong>
+                  <span className={`kit-pill kit-pill-${p.status === "consider" ? "wait" : "ok"}`}>{status[p.status]}</span>
                 </div>
-                <div className="quick-plan-bar">
-                  <span style={{ width: `${p.weight}%` }} />
-                </div>
-                <p className="text-sm text-muted-foreground mt-1">{p.skills.join(" · ")}</p>
+                <p className="text-sm text-muted-foreground mt-1">{p.detail}</p>
               </li>
             ))}
           </ul>
         </div>
       </div>
-      <p className="eyebrow text-pink-ink mt-10">
-        03 · Sample questions {plan.ai ? "· drafted by AI" : "· examples"}
-      </p>
-      <div className="quick-plan-questions">
-        {plan.questions.map((q, n) => (
-          <article key={n} className="quick-plan-question">
-            <p className="eyebrow">{methodLabels[q.method]}</p>
-            <p className="mt-3 font-semibold leading-snug">{q.prompt}</p>
-            {q.options.length > 0 && (
-              <ol className="mt-3 space-y-1 text-sm list-[upper-alpha] pl-5">
-                {q.options.map((o, i) => (
-                  <li key={i} className={i === q.answer_index ? "font-semibold" : ""}>
-                    {o}
-                    {i === q.answer_index ? " ✓" : ""}
-                  </li>
-                ))}
-              </ol>
-            )}
-            <div className="quick-plan-trace">
-              <p>
-                <strong>Measures:</strong> {q.skill_name}
-              </p>
-              <p>
-                <strong>From job task:</strong> {q.task_name}
-              </p>
+
+      <p className="eyebrow text-pink-ink mt-12">03 · Draft skills assessment {assessment?.ai ? "· drafted by AI" : ""}</p>
+      {!assessment ? (
+        <p className="quick-plan-loading">
+          <Loader2 className="animate-spin" /> Drafting the skills assessment and its scoring guide…
+        </p>
+      ) : assessment.assessment ? (
+        <>
+          {assessment.notice && <p className="kit-hint">{assessment.notice}</p>}
+          <div className="mt-4">
+            <CandidateBrief ws={assessment.assessment} />
+          </div>
+          <Rubric lines={assessment.assessment.rubric} caption="Scoring guide. 3 is what you'd accept from a new hire on day one." />
+        </>
+      ) : (
+        <p className="kit-hint">{assessment.notice}</p>
+      )}
+
+      <p className="eyebrow text-pink-ink mt-12">04 · Interview{interview?.aptitude?.length ? " and aptitude" : ""} samples {interview?.ai ? "· drafted by AI" : ""}</p>
+      {!interview ? (
+        <p className="quick-plan-loading">
+          <Loader2 className="animate-spin" /> Drafting interview questions…
+        </p>
+      ) : (
+        <>
+          {interview.notice && <p className="kit-hint">{interview.notice}</p>}
+          {interview.aptitude && interview.aptitude.length > 0 && (
+            <div className="quick-plan-questions">
+              {interview.aptitude.map((q, n) => (
+                <article key={n} className="quick-plan-question">
+                  <p className="eyebrow">{q.module}</p>
+                  <p className="mt-3 font-semibold leading-snug">{q.prompt}</p>
+                  <ol className="mt-3 space-y-1 text-sm list-[upper-alpha] pl-5">
+                    {q.options.map((o, i) => (
+                      <li key={i} className={i === q.answer_index ? "font-semibold" : ""}>
+                        {o}
+                        {i === q.answer_index ? " ✓" : ""}
+                      </li>
+                    ))}
+                  </ol>
+                </article>
+              ))}
             </div>
-          </article>
-        ))}
-      </div>
+          )}
+          <div className="packet-questions">
+            {(interview.interview ?? []).map((q, n) => (
+              <div className="packet-question" key={n}>
+                <div className="packet-question-head">
+                  <span className="packet-question-number">{n + 1}</span>
+                  <div>
+                    <p className="packet-question-text">{q.question}</p>
+                    <p className="packet-small">
+                      {q.followUp ? `If needed: ${q.followUp} · ` : ""}Measures <strong>{q.measures}</strong>
+                    </p>
+                  </div>
+                </div>
+                <ol className="packet-anchor-row">
+                  {q.anchors.map((a, i) => (
+                    <li key={i} className={i === 2 ? "packet-standard" : undefined}>
+                      <span className="packet-score">{i + 1}</span>
+                      {a}
+                    </li>
+                  ))}
+                </ol>
+              </div>
+            ))}
+          </div>
+        </>
+      )}
+
       <div className="quick-plan-footer">
         <p className="text-sm max-w-xl">
-          This is a draft. Job experts confirm every skill and approve every question before
-          anything reaches a candidate, and people make the hiring decision.
+          This is a draft. Experts confirm the skills and approve every exercise and scoring guide before anything reaches a candidate,
+          and people make every hiring decision.
         </p>
         <div className="flex flex-wrap gap-3">
           <Button asChild>

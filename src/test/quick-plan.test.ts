@@ -1,116 +1,98 @@
 import { describe, expect, it } from "vitest";
-import { benchmark } from "@/data/assessment-demo";
-import {
-  pickDayOne,
-  pickTasks,
-  planFor,
-  sanitizeQuestions,
-  savedQuestions,
-  fallbackQuestions,
-  nameQuestions,
-  methodFor,
-  withCitedSkills,
-} from "@/lib/quick-plan";
+import { pickDayOne, pickTasks, planParts } from "@/lib/quick-plan";
+import { sanitizeAssessment, sanitizeInterview, templateAssessment } from "@/lib/packet-draft";
 import type { OnetElement } from "@/lib/onet-api";
+import { packetProblems } from "@/lib/packet";
+import { packetDemo } from "@/data/packet-demo";
 
-const els = benchmark.elements as OnetElement[];
-describe("Quick test plan", () => {
-  it("Day-one skills come from skills, abilities and knowledge, most important first, max 3 per method", () => {
-    const s = pickDayOne(els);
-    expect(s.length).toBe(6);
-    expect(s.every((x) => ["skill", "ability", "knowledge"].includes(x.kind))).toBe(true);
-    for (const m of ["hands_on", "scenarios", "reasoning"])
-      expect(s.filter((x) => x.method === m).length).toBeLessThanOrEqual(3);
+const el = (id: string, kind: string, name: string, imp: number | null): OnetElement =>
+  ({ id, kind, name, description: name, benchmark_importance: imp }) as OnetElement;
+const analyst = [
+  el("t1", "task", "Analyze large data sets using statistical software.", null),
+  el("t2", "task", "Create charts to explain results.", null),
+  el("t3", "task", "Present findings to stakeholders.", null),
+  el("k1", "knowledge", "Mathematics", 4.5),
+  el("s1", "skill", "Mathematics", 4.4),
+  el("a1", "ability", "Deductive Reasoning", 4.2),
+  el("s2", "skill", "Critical Thinking", 4.2),
+  el("s3", "skill", "Programming", 3.1),
+];
+
+describe("quick plan", () => {
+  it("lists each skill once, keeping the higher rating", () => {
+    const s = pickDayOne(analyst);
+    expect(s.filter((x) => x.name === "Mathematics")).toHaveLength(1);
+    expect(s[0]).toMatchObject({ name: "Mathematics", importance: 4.5 });
   });
-  it("Methods follow what the skill is", () => {
-    expect(methodFor({ kind: "skill", name: "Judgment and Decision Making" })).toBe("scenarios");
-    expect(methodFor({ kind: "ability", name: "Deductive Reasoning" })).toBe("reasoning");
-    expect(methodFor({ kind: "knowledge", name: "Education and Training" })).toBe("hands_on");
+  it("adds aptitude tests only when O*NET rates the ability 4 or higher", () => {
+    const parts = planParts(analyst, pickTasks(analyst));
+    const labels = parts.map((p) => p.label);
+    expect(labels).toContain("Numerical reasoning test");
+    expect(labels).toContain("Logical reasoning test");
+    expect(labels).not.toContain("Coding test");
+    expect(parts[0]!.kind).toBe("skills");
+    expect(parts.at(-1)!.kind).toBe("interview");
   });
-  it("Plan weights add to 100 with a 15% structured interview", () => {
-    const p = planFor(pickDayOne(els));
-    expect(p.reduce((n, x) => n + x.weight, 0)).toBe(100);
-    expect(p.find((x) => x.method === "interview")?.weight).toBe(15);
-    expect(p.every((x) => x.weight % 5 === 0)).toBe(true);
-  });
-  it("Model questions citing unknown tasks or skills are dropped", () => {
-    const skills = pickDayOne(els),
-      tasks = pickTasks(els);
-    const ok = {
-      method: "reasoning",
-      prompt: "Q?",
-      options: ["a", "b", "c", "d"],
-      answer_index: 1,
-      skill_id: skills[0]!.id,
-      task_id: tasks[0]!.id,
-      why: "w",
-    };
-    expect(
-      sanitizeQuestions(
-        [
-          ok,
-          { ...ok, skill_id: "made-up" },
-          { ...ok, task_id: "999999" },
-          { ...ok, answer_index: 7 },
-          { ...ok, method: "astrology" },
-        ],
-        skills,
-        tasks,
-      ),
-    ).toHaveLength(1);
-  });
-  it("Hands-on prompts have no options or answer key", () => {
-    const skills = pickDayOne(els),
-      tasks = pickTasks(els);
-    expect(
-      sanitizeQuestions(
-        [
-          {
-            method: "hands_on",
-            prompt: "Do it",
-            options: ["x"],
-            answer_index: 0,
-            skill_id: skills[0]!.id,
-            task_id: tasks[0]!.id,
-          },
-        ],
-        skills,
-        tasks,
-      )[0],
-    ).toMatchObject({ options: [], answer_index: null });
-  });
-  it("Saved questions cite real benchmark elements and have correct keys", () => {
-    const ids = new Set(els.map((e) => e.id));
-    for (const q of savedQuestions) {
-      expect(ids.has(q.skill_id)).toBe(true);
-      expect(ids.has(q.task_id)).toBe(true);
-    }
-    expect(savedQuestions[0]!.options[savedQuestions[0]!.answer_index!]).toBe("92%");
-    const named = nameQuestions(savedQuestions, els);
-    expect(named[2]!.task_name).toMatch(/orientation and training/i);
-  });
-  it("Fallback questions work for any occupation with tasks and skills", () => {
-    const q = fallbackQuestions(pickDayOne(els), pickTasks(els));
-    expect(q).toHaveLength(3);
-    expect(q.find((x) => x.method === "reasoning")?.options[2]).toBe("15");
+  it("suggests a live exercise for people-facing jobs only", () => {
+    const trainer = [...analyst, el("s9", "skill", "Instructing", 4.3)];
+    expect(planParts(trainer, pickTasks(trainer)).some((p) => p.kind === "live")).toBe(true);
+    expect(planParts(analyst, pickTasks(analyst)).some((p) => p.kind === "live")).toBe(false);
   });
 });
 
-describe("Cited skills", () => {
-  it("Skills measured by sample questions are added to the day-one list and plan", () => {
-    const skills = pickDayOne(els);
-    const shown = withCitedSkills(
-      skills.map((s) => ({ ...s })),
-      savedQuestions,
-      els,
+const five = ["a", "b", "c", "d", "e"];
+const goodAssessment = {
+  title: "Data Analyst: Skills Assessment",
+  time: "About 2 hours",
+  scenario: "A regional clinic network has 14 months of appointment data across 6 sites. No-show rates rose from 8% to 13% this year and the operations director needs to know why before the budget meeting in two weeks.",
+  instructions: ["Answer every item.", "No names in the document.", "Use your own work.", "Ask for accommodations first."],
+  task_ids: ["t1", "nope"],
+  parts: [
+    { title: "Part 1: Analysis", items: [{ label: "Approach", detail: "Describe the analysis you'd run." }] },
+    { title: "Part 2: Written questions", items: [{ label: "Pushback", detail: "A manager disagrees. Respond." }] },
+  ],
+  rubric: [
+    { name: "Sound analysis", part: "Part 1", critical: false, anchors: five },
+    { name: "Clear charts", part: "Part 1", critical: false, anchors: five },
+    { name: "Judgment", part: "Part 2", critical: false, anchors: five },
+    { name: "Broken line", part: "Part 2", critical: true, anchors: ["only", "four", "anchors", "here"] },
+  ],
+};
+
+describe("AI draft checks", () => {
+  it("accepts a complete assessment, drops broken scoring lines and fills in submission rules", () => {
+    const ws = sanitizeAssessment(goodAssessment, "Data Analyst", pickTasks(analyst), "Mathematics")!;
+    expect(ws.rubric).toHaveLength(3);
+    expect(ws.rubric.some((l) => l.critical)).toBe(true); // first line made critical when none are
+    expect(ws.task).toBe("Analyze large data sets using statistical software");
+    expect(ws.submission.fileName).toMatch(/^firstname_lastname_dataanalyst\.pdf/);
+    expect(packetProblems({ ...packetDemo, workSample: ws })).toEqual([]);
+  });
+  it("rejects an assessment that's too thin to use", () => {
+    expect(sanitizeAssessment({ ...goodAssessment, parts: goodAssessment.parts.slice(0, 1) }, "X", [], "")).toBeNull();
+    expect(sanitizeAssessment("not an object", "X", [], "")).toBeNull();
+  });
+  it("keeps only interview questions with five anchors and aptitude items with a valid answer", () => {
+    const r = sanitizeInterview(
+      {
+        questions: [
+          { question: "Tell me about a deadline you missed.", follow_up: "What first?", measures: "Dependability", anchors: five },
+          { question: "Bad one", follow_up: "", measures: "", anchors: ["x"] },
+        ],
+        aptitude_samples: [
+          { module: "Numerical reasoning", prompt: "12 of 48 is what percent?", options: ["20%", "25%", "30%", "40%"], answer_index: 1 },
+          { module: "Numerical reasoning", prompt: "Broken", options: ["a", "b", "c"], answer_index: 7 },
+          { module: "Coding", prompt: "Not requested", options: ["a", "b", "c", "d"], answer_index: 0 },
+        ],
+      },
+      ["Numerical reasoning"],
     );
-    for (const q of savedQuestions)
-      expect(shown.find((s) => s.id === q.skill_id)?.method).toBe(q.method);
-    const plan = planFor(shown);
-    expect(plan.reduce((n, p) => n + p.weight, 0)).toBe(100);
-    expect(plan.find((p) => p.method === "scenarios")?.skills).toContain(
-      "Judgment and Decision Making",
-    );
-    expect(plan.find((p) => p.method === "reasoning")?.weight).toBeLessThanOrEqual(25);
+    expect(r.questions).toHaveLength(1);
+    expect(r.aptitude).toHaveLength(1);
+  });
+  it("the no-AI template is complete and clearly marked as a template", () => {
+    const t = templateAssessment("Data Analyst", pickTasks(analyst), "Mathematics");
+    expect(t.title).toMatch(/template/);
+    expect(packetProblems({ ...packetDemo, workSample: t })).toEqual([]);
   });
 });
