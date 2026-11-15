@@ -1,3 +1,4 @@
+import { enterDemo } from "@/lib/demo-mode";
 import { useEffect, useRef, useState } from "react";
 import { Link, useNavigate } from "@tanstack/react-router";
 import { useServerFn } from "@tanstack/react-start";
@@ -115,7 +116,7 @@ export function Onboarding() {
       if (!(await persist({ ...s, completed: true }))) return;
     } else {
       if (!(await persist({ ...s, completed: true }))) return;
-      localStorage.setItem("io-demo-entered", "yes");
+      enterDemo();
     }
     await navigate({ to: "/job", search: { part: "define" } });
   }

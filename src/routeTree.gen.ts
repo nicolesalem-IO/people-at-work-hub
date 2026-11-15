@@ -16,6 +16,7 @@ import { Route as BlueprintRouteImport } from './routes/blueprint'
 import { Route as BuildersRouteImport } from './routes/builders'
 import { Route as ContributeRouteImport } from './routes/contribute'
 import { Route as DefineRouteImport } from './routes/define'
+import { Route as DemoRouteImport } from './routes/demo'
 import { Route as EvidenceRouteImport } from './routes/evidence'
 import { Route as GlossaryRouteImport } from './routes/glossary'
 import { Route as InterviewGuideRouteImport } from './routes/interview-guide'
@@ -71,6 +72,11 @@ const ContributeRoute = ContributeRouteImport.update({
 const DefineRoute = DefineRouteImport.update({
   id: '/define',
   path: '/define',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DemoRoute = DemoRouteImport.update({
+  id: '/demo',
+  path: '/demo',
   getParentRoute: () => rootRouteImport,
 } as any)
 const EvidenceRoute = EvidenceRouteImport.update({
@@ -188,6 +194,7 @@ export interface FileRoutesByFullPath {
   '/builders': typeof BuildersRoute
   '/contribute': typeof ContributeRoute
   '/define': typeof DefineRoute
+  '/demo': typeof DemoRoute
   '/evidence': typeof EvidenceRoute
   '/glossary': typeof GlossaryRoute
   '/interview-guide': typeof InterviewGuideRoute
@@ -218,6 +225,7 @@ export interface FileRoutesByTo {
   '/builders': typeof BuildersRoute
   '/contribute': typeof ContributeRoute
   '/define': typeof DefineRoute
+  '/demo': typeof DemoRoute
   '/evidence': typeof EvidenceRoute
   '/glossary': typeof GlossaryRoute
   '/interview-guide': typeof InterviewGuideRoute
@@ -249,6 +257,7 @@ export interface FileRoutesById {
   '/builders': typeof BuildersRoute
   '/contribute': typeof ContributeRoute
   '/define': typeof DefineRoute
+  '/demo': typeof DemoRoute
   '/evidence': typeof EvidenceRoute
   '/glossary': typeof GlossaryRoute
   '/interview-guide': typeof InterviewGuideRoute
@@ -281,6 +290,7 @@ export interface FileRouteTypes {
     | '/builders'
     | '/contribute'
     | '/define'
+    | '/demo'
     | '/evidence'
     | '/glossary'
     | '/interview-guide'
@@ -311,6 +321,7 @@ export interface FileRouteTypes {
     | '/builders'
     | '/contribute'
     | '/define'
+    | '/demo'
     | '/evidence'
     | '/glossary'
     | '/interview-guide'
@@ -341,6 +352,7 @@ export interface FileRouteTypes {
     | '/builders'
     | '/contribute'
     | '/define'
+    | '/demo'
     | '/evidence'
     | '/glossary'
     | '/interview-guide'
@@ -372,6 +384,7 @@ export interface RootRouteChildren {
   BuildersRoute: typeof BuildersRoute
   ContributeRoute: typeof ContributeRoute
   DefineRoute: typeof DefineRoute
+  DemoRoute: typeof DemoRoute
   EvidenceRoute: typeof EvidenceRoute
   GlossaryRoute: typeof GlossaryRoute
   InterviewGuideRoute: typeof InterviewGuideRoute
@@ -444,6 +457,13 @@ declare module '@tanstack/react-router' {
       path: '/define'
       fullPath: '/define'
       preLoaderRoute: typeof DefineRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/demo': {
+      id: '/demo'
+      path: '/demo'
+      fullPath: '/demo'
+      preLoaderRoute: typeof DemoRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/evidence': {
@@ -604,6 +624,7 @@ const rootRouteChildren: RootRouteChildren = {
   BuildersRoute: BuildersRoute,
   ContributeRoute: ContributeRoute,
   DefineRoute: DefineRoute,
+  DemoRoute: DemoRoute,
   EvidenceRoute: EvidenceRoute,
   GlossaryRoute: GlossaryRoute,
   InterviewGuideRoute: InterviewGuideRoute,

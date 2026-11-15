@@ -267,18 +267,7 @@ function Result({ plan, onPick }: { plan: Plan; onPick: (code: string) => void }
             </Link>
           </Button>
           <Button asChild variant="outline">
-            <Link
-              to="/roles"
-              onClick={() => {
-                try {
-                  localStorage.setItem("io-demo-entered", "yes");
-                } catch {
-                  /* storage unavailable */
-                }
-              }}
-            >
-              Explore the full demo
-            </Link>
+            <Link to="/demo">See the full demo</Link>
           </Button>
         </div>
       </div>

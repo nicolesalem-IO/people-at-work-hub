@@ -65,7 +65,7 @@ describe("AI draft checks", () => {
     expect(ws.rubric).toHaveLength(3);
     expect(ws.rubric.some((l) => l.critical)).toBe(true); // first line made critical when none are
     expect(ws.task).toBe("Analyze large data sets using statistical software");
-    expect(ws.submission.fileName).toMatch(/^firstname_lastname_dataanalyst\.pdf/);
+    expect(ws.submission.fileName).toMatch(/^firstname_lastname_data_analyst\.pdf/);
     expect(packetProblems({ ...packetDemo, workSample: ws })).toEqual([]);
   });
   it("rejects an assessment that's too thin to use", () => {

@@ -107,7 +107,13 @@ const anchorsOf = (a: unknown): Anchors | null => {
 };
 
 export function submissionFor(role: string) {
-  const slug = role.toLowerCase().replace(/[^a-z0-9]+/g, "").slice(0, 16) || "role";
+  const slug =
+    role
+      .toLowerCase()
+      .split(/[^a-z0-9]+/)
+      .filter(Boolean)
+      .slice(0, 3)
+      .join("_") || "role";
   return {
     format: "One PDF file",
     maxLength: "No more than 3 pages (letter size, 11-point font or larger)",
@@ -226,3 +232,46 @@ export function templateAssessment(role: string, tasks: QuickTask[], skill: stri
     ],
   };
 }
+
+/** Job-neutral backup interview questions, used when AI drafting is unavailable. */
+export const GENERAL_INTERVIEW: InterviewQuestion[] = [
+  {
+    question: "Tell me about a time your plans changed at the last minute at work.",
+    followUp: "What did you keep, and what did you drop?",
+    measures: "Adaptability",
+    id: "general-1",
+    anchors: [
+      "Blamed others; made no change",
+      "Made a change but can't say why",
+      "Adjusted and kept the main goal",
+      "Adjusted around the goal and told the people affected",
+      "Re-prioritized around the goal, explained why, and checked the result afterward",
+    ],
+  },
+  {
+    question: "Describe a time you relied on someone outside your team to get something done.",
+    followUp: "How did you handle a disagreement?",
+    measures: "Cooperation",
+    id: "general-2",
+    anchors: [
+      "Worked around them or escalated first",
+      "Cooperated only when it was easy",
+      "Raised the disagreement directly and reached a workable answer",
+      "Found what each side needed and agreed on a plan",
+      "Built agreement, kept the working relationship, and credited others",
+    ],
+  },
+  {
+    question: "Tell me about a commitment you nearly missed.",
+    followUp: "What did you do first?",
+    measures: "Dependability",
+    id: "general-3",
+    anchors: [
+      "No ownership; blamed circumstances",
+      "Recovered, but told people late",
+      "Owned it and delivered, with some warning",
+      "Flagged the risk early, then delivered or reset the date",
+      "Flagged it early, reset expectations, delivered, and changed how they plan",
+    ],
+  },
+];
