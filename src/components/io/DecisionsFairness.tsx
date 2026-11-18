@@ -193,7 +193,7 @@ export function DecisionsFairness() {
       <section className="decisions-section">
         <h2>5. Records</h2>
         <p className="kit-hint">
-          Every score, note, change and decision is kept for 3 years. HR can export everything from the hiring round overview.
+          Every score, note, change and decision is saved to the hiring record. Your organization sets how long records are kept, to meet the laws that apply to you. HR can export everything from the hiring round overview.
         </p>
         <Button asChild variant="outline">
           <Link to="/kit">Open the hiring round overview</Link>

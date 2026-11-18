@@ -148,7 +148,7 @@ export function submissionFor(role: string, format: AssessmentFormat = "take_hom
     return {
       format: "Done live. Nothing to turn in.",
       maxLength: "A trained role-player plays the other person; two trained raters score",
-      fileName: "Your notes stay with the raters after the session and are shredded once scored.",
+      fileName: "Any notes you take are collected and kept with your hiring record.",
       how: "Join in person or by the video link in your invitation at your scheduled time.",
     };
   if (format === "timed")

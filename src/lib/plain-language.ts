@@ -104,7 +104,7 @@ export const glossary: readonly GlossaryTerm[] = [
   {
     label: "Hiring records",
     technical: "Selection documentation",
-    definition: "Every score, note, change and decision, kept for 3 years and exportable.",
+    definition: "Every score, note, change and decision, kept for as long as your organization's retention policy requires, and exportable.",
   },
   {
     label: "Try out & check fairness",

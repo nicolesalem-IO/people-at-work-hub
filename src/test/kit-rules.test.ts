@@ -53,8 +53,8 @@ describe("hiring kit rules", () => {
     expect(r.history[0]!.scores["objectives"]).toBe(3);
     expect(r.scores["objectives"]).toBe(4);
   });
-  it("keeps records 3 years", () => {
-    expect(retainUntil("2026-11-12T00:00:00Z")).toBe("2029-11-12");
+  it("computes the deletion date from the organization's own setting", () => {
+    expect(retainUntil("2026-11-12T00:00:00Z", 36)).toBe("2029-11-12");
   });
 });
 

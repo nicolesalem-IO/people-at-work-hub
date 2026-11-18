@@ -31,7 +31,6 @@ export interface Decision {
   at: string;
 }
 
-export const RETENTION_MONTHS = 36;
 export const GAP_LIMIT = 1;
 export const AGREEMENT_TARGET = 0.8;
 
@@ -131,7 +130,8 @@ export function reviseSheet(sheet: Sheet, scores: Record<string, number>, notes:
   };
 }
 
-export function retainUntil(iso: string, months = RETENTION_MONTHS) {
+/** Date a record may be deleted under the organization's own retention setting (the app sets no period). */
+export function retainUntil(iso: string, months: number) {
   const d = new Date(iso);
   d.setMonth(d.getMonth() + months);
   return d.toISOString().slice(0, 10);

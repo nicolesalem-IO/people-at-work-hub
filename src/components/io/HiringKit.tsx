@@ -13,12 +13,10 @@ import { orgRoles, type Person } from "@/lib/admin-rules";
 import { downloadText, toCsv } from "@/lib/ats";
 import {
   AGREEMENT_TARGET,
-  RETENTION_MONTHS,
   agreement,
   blindResult,
   calibrationCheck,
   panelResult,
-  retainUntil,
   submitted,
   type Choice,
   type Sheet,
@@ -526,10 +524,6 @@ function HrKit() {
           <strong className={agree && !agree.onTarget ? "is-warn" : ""}>{agree ? `${Math.round(agree.rate * 100)}%` : "–"}</strong>
           <small>Target {Math.round(AGREEMENT_TARGET * 100)}% within 1 point{agree && !agree.onTarget ? " · recalibrate raters" : ""}</small>
         </div>
-        <div>
-          <span>Records kept</span>
-          <strong>{RETENTION_MONTHS / 12} years</strong>
-        </div>
       </div>
       {flags.length > 0 && (
         <div className="packet-callout packet-callout-warn">
@@ -554,7 +548,6 @@ function HrKit() {
               <th>Teach-back</th>
               <th>Interview</th>
               <th>Status</th>
-              <th>Keep records until</th>
             </tr>
           </thead>
           <tbody>
@@ -571,7 +564,6 @@ function HrKit() {
                 <td>
                   <Pill tone={s.tone}>{s.label}</Pill>
                 </td>
-                <td>{fmt(retainUntil(s.decision?.at ?? c.appliedAt))}</td>
               </tr>
             ))}
           </tbody>
@@ -583,8 +575,9 @@ function HrKit() {
         </Button>
       </div>
       <p className="kit-hint">
-        Hiring records, including every score, note, change and decision, are kept for {RETENTION_MONTHS / 12} years from the decision (or from
-        the application if there's no decision). If your company stops using the app, export the records first and store them securely.
+        Every score, note, change and decision is saved to the hiring record. Your organization decides how long records are kept, to meet
+        the laws that apply to you (set it in Admin Center → Settings). If your company stops using the app, export the records first and
+        store them securely.
       </p>
     </section>
   );
