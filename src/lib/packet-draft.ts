@@ -214,7 +214,7 @@ export function sanitizeAssessment(raw: unknown, role: string, tasks: QuickTask[
   const sampled = tasks.filter((t) => ids.has(t.id));
   const instructions = (Array.isArray(r["instructions"]) ? r["instructions"] : []).map((x) => clean(x, 240)).filter(Boolean).slice(0, 6);
   return {
-    title: clean(r["title"], 90) || `${role}: ${NOUN[format]}`,
+    title: clean(r["title"], 140) || `${role}: ${NOUN[format]}`,
     format,
     time: clean(r["time"], 40) || (format === "take_home" ? "About 2 hours" : format === "timed" ? "About 45 minutes" : "About 45 minutes"),
     window: WINDOW[format],
