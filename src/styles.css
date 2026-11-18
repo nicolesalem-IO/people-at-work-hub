@@ -690,3 +690,13 @@ h1,h2,h3 {word-break:normal;overflow-wrap:normal;hyphens:none;}
 .workspace-top-banner.is-demo{background:var(--brand-yellow,#f7d046);color:#111;}
 .workspace-top-banner.is-demo select{color:#111;}
 .workspace-demo-label{font-weight:800;text-transform:uppercase;letter-spacing:.12em;margin-right:8px;}
+.method-stage{display:inline-block;font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.12em;border:1px solid var(--border);border-radius:999px;padding:2px 8px;margin-right:8px;vertical-align:middle;}
+.method-because{list-style:disc;padding-left:18px;margin-top:6px;font-size:13px;color:var(--muted-foreground);display:grid;gap:3px;}
+.method-criteria{margin-top:28px;border:1.5px solid var(--foreground);border-radius:14px;padding:16px 20px;}
+.method-criteria summary{cursor:pointer;font-weight:800;}
+.method-criteria table{width:100%;margin-top:14px;font-size:14px;border-collapse:collapse;}
+.method-criteria th{text-align:left;font-size:11px;text-transform:uppercase;letter-spacing:.1em;padding:6px 8px;border-bottom:1.5px solid var(--foreground);}
+.method-criteria td{padding:8px;border-bottom:1px solid var(--border);vertical-align:top;}
+.method-criteria td:first-child{font-weight:700;white-space:nowrap;}
+.method-questions{list-style:disc;padding-left:18px;margin-top:8px;display:grid;gap:4px;}
+@media (max-width:700px){.method-criteria td:first-child{white-space:normal;}}

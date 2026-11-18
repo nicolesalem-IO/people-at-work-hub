@@ -135,3 +135,29 @@ export function mergeElements<T extends OnetElement>(
   const known = new Set(saved.map((s) => s.id));
   return [...merged, ...live.filter((e) => !known.has(e.id))];
 }
+
+/** Extra O*NET reports used only to choose test methods: how the work is done and the job's preparation level. */
+export const SIGNAL_REPORTS = ["work_activities", "work_context"] as const;
+
+/** Work activities and work context as name + 1–5 value (context percentages are rescaled the same way). */
+export function parseSignals(json: unknown): { name: string; importance: number | null }[] {
+  return recordList(json)
+    .map((r) => ({ name: str(r["title"] ?? r["name"] ?? r["element_name"]), importance: importanceOf(r) }))
+    .filter((s) => s.name);
+}
+
+/** O*NET job zone 1–5 (preparation needed), found wherever the report puts it. */
+export function parseJobZone(json: unknown): number | null {
+  const seen = (v: unknown): number | null => {
+    const n = typeof v === "number" ? v : typeof v === "string" && /^\d$/.test(v.trim()) ? Number(v) : NaN;
+    return Number.isInteger(n) && n >= 1 && n <= 5 ? n : null;
+  };
+  if (!isObj(json)) return null;
+  for (const k of ["job_zone", "code", "value", "zone"]) {
+    const v = json[k];
+    const n = seen(isObj(v) ? (v["code"] ?? v["value"]) : v);
+    if (n) return n;
+  }
+  for (const v of Object.values(json)) if (isObj(v)) { const n = parseJobZone(v); if (n) return n; }
+  return null;
+}

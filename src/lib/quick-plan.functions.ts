@@ -4,7 +4,7 @@ import { packetDemo } from "@/data/packet-demo";
 import { fetchOccupation, searchOnet } from "./onet.functions";
 import { isOnetCode, type OnetElement, type OnetMatch } from "./onet-api";
 import {
-  ASSESSMENT_PROMPT,
+  promptFor,
   INTERVIEW_PROMPT,
   assessmentSchema,
   interviewSchema,
@@ -16,7 +16,8 @@ import {
   GENERAL_INTERVIEW,
 } from "./packet-draft";
 import type { InterviewQuestion } from "./packet";
-import { pickDayOne, pickTasks, planParts, type QuickPlan } from "./quick-plan";
+import { pickDayOne, pickTasks, planFor, type QuickPlan } from "./quick-plan";
+import { mainFormat, type Signal } from "./method-rules";
 
 // Public demo endpoints (signed-out visitors can try them). Protections: input limits, a per-occupation cache,
 // and an hourly AI budget so anonymous traffic can't run up AI costs.
@@ -30,7 +31,7 @@ function aiBudget() {
   return true;
 }
 
-type Loaded = { live: boolean; notice: string; matches: OnetMatch[]; occupation: OnetMatch; elements: OnetElement[] };
+type Loaded = { live: boolean; notice: string; matches: OnetMatch[]; occupation: OnetMatch; elements: OnetElement[]; signals: Signal[]; jobZone: number | null };
 
 async function loadOccupation(input: { title: string; code: string }): Promise<Loaded | { empty: string; live: boolean; matches: OnetMatch[] }> {
   let matches: OnetMatch[] = [];
@@ -46,6 +47,8 @@ async function loadOccupation(input: { title: string; code: string }): Promise<L
       matches,
       occupation: { code, title: occ.title || matches.find((m) => m.code === code)?.title || input.title },
       elements: occ.elements,
+      signals: occ.signals,
+      jobZone: occ.jobZone,
     };
   } catch {
     // No key, or O*NET unreachable: use the saved, real O*NET benchmark instead of failing.
@@ -54,6 +57,8 @@ async function loadOccupation(input: { title: string; code: string }): Promise<L
       matches: [],
       occupation: { code: benchmark.occupation, title: benchmark.title },
       elements: benchmark.elements as OnetElement[],
+      signals: [],
+      jobZone: 4, // Training and Development Specialists: O*NET job zone 4
       notice: `Live O*NET isn't connected right now, so this shows the saved O*NET benchmark for ${benchmark.title}${input.title && !/train|learn|develop|l&d|instruct/i.test(input.title) ? ` instead of "${input.title}"` : ""}.`,
     };
   }
@@ -71,11 +76,11 @@ export const buildQuickPlan = createServerFn({ method: "POST" })
   .handler(async ({ data }): Promise<QuickPlan> => {
     const l = await loadOccupation(data);
     if ("empty" in l)
-      return { live: l.live, notice: l.empty, occupation: { code: "", title: "" }, alternatives: l.matches.slice(0, 4), skills: [], tasks: [], parts: [] };
+      return { live: l.live, notice: l.empty, occupation: { code: "", title: "" }, alternatives: l.matches.slice(0, 4), skills: [], tasks: [], plan: null };
     const skills = pickDayOne(l.elements),
       tasks = pickTasks(l.elements);
     if (!skills.length || !tasks.length)
-      return { live: l.live, notice: "O*NET has too little detail for this occupation to draft a plan.", occupation: l.occupation, alternatives: [], skills: [], tasks: [], parts: [] };
+      return { live: l.live, notice: "O*NET has too little detail for this occupation to draft a plan.", occupation: l.occupation, alternatives: [], skills: [], tasks: [], plan: null };
     return {
       live: l.live,
       notice: l.notice,
@@ -83,7 +88,7 @@ export const buildQuickPlan = createServerFn({ method: "POST" })
       alternatives: l.matches.filter((m) => m.code !== l.occupation.code).slice(0, 4),
       skills,
       tasks,
-      parts: planParts(l.elements, tasks),
+      plan: planFor(l.occupation.code, l.elements, l.signals, l.jobZone),
     };
   });
 
@@ -106,7 +111,7 @@ export const draftSample = createServerFn({ method: "POST" })
     return { code, part: d.part as "assessment" | "interview" };
   })
   .handler(async ({ data }): Promise<DraftResult> => {
-    const key = `${data.code}:${data.part}`;
+    const key = `${data.code}:${data.part}:v2`;
     const hit = cache.get(key);
     if (hit && Date.now() - hit.at < DAY) return hit.value;
     const l = await loadOccupation({ title: "", code: data.code });
@@ -114,8 +119,9 @@ export const draftSample = createServerFn({ method: "POST" })
     const role = l.occupation.title,
       tasks = pickTasks(l.elements, 8),
       skills = pickDayOne(l.elements),
-      parts = planParts(l.elements, tasks),
-      modules = parts.filter((p) => p.kind === "aptitude").map((p) => p.label.replace(/ test$/, ""));
+      plan = planFor(l.occupation.code, l.elements, l.signals, l.jobZone),
+      format = mainFormat(plan),
+      modules = plan.methods.filter((m) => m.kind === "aptitude").map((m) => m.label.replace(/ test$/, ""));
     const fallback = (why = "AI drafting isn't available right now."): DraftResult => {
       if (data.part === "interview") {
         const samePacket = l.occupation.code === benchmark.occupation;
@@ -124,7 +130,7 @@ export const draftSample = createServerFn({ method: "POST" })
       return {
         ai: false,
         notice: `${why} Showing a template your experts would fill in.`,
-        assessment: l.occupation.code === benchmark.occupation ? packetDemo.workSample : templateAssessment(role, tasks, skills[0]?.name ?? ""),
+        assessment: l.occupation.code === benchmark.occupation && format === packetDemo.workSample.format ? packetDemo.workSample : templateAssessment(role, tasks, skills[0]?.name ?? "", format),
       };
     };
     if (!aiBudget()) return fallback("The hourly AI limit was reached.");
@@ -133,8 +139,8 @@ export const draftSample = createServerFn({ method: "POST" })
       const context = `Job: ${role} (O*NET ${l.occupation.code})\n\nTop job tasks:\n${tasks.map((t) => `[${t.id}] ${t.name}`).join("\n")}\n\nSkills and abilities rated most important:\n${skills.map((s) => `${s.name} (${s.importance ?? "?"} of 5)`).join("\n")}`;
       let value: DraftResult;
       if (data.part === "assessment") {
-        const out = await claudeJson<unknown>({ model: CLAUDE_FAST, system: ASSESSMENT_PROMPT, user: context, name: "skills_assessment", schema: assessmentSchema as unknown as Record<string, unknown>, maxTokens: 4000, timeoutMs: 24000 });
-        const assessment = sanitizeAssessment(out, role, tasks, skills[0]?.name ?? "");
+        const out = await claudeJson<unknown>({ model: CLAUDE_FAST, system: promptFor(format), user: context, name: "skills_assessment", schema: assessmentSchema as unknown as Record<string, unknown>, maxTokens: 4000, timeoutMs: 24000 });
+        const assessment = sanitizeAssessment(out, role, tasks, skills[0]?.name ?? "", format);
         if (!assessment) return fallback("The AI draft was incomplete.");
         value = { ai: true, notice: "", assessment };
       } else {
