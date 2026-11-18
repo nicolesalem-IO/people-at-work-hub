@@ -76,10 +76,10 @@ export const MODE_SIGNALS: Record<Mode, string[]> = {
     "Deductive Reasoning", "Inductive Reasoning", "Systems Analysis", "Judgment and Decision Making",
     "Analyzing Data or Information", "Processing Information", "Programming", "Science",
   ],
-  written: [
-    "Writing", "Reading Comprehension", "Written Expression", "Written Comprehension", "Computers and Electronics",
-    "English Language", "Documenting/Recording Information", "Working with Computers", "Clerical",
-  ],
+  // Producing written work. Reading and language comprehension are left out: every job needs them, so they
+  // don't show how the work is done.
+  // General computer use is left out for the same reason: nearly every office job rates it high.
+  written: ["Writing", "Written Expression", "Documenting/Recording Information", "Clerical"],
 };
 
 const HAZARD = /hazard|protective or safety equipment|safety equipment|exposed to/i;

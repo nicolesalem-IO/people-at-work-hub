@@ -17,7 +17,7 @@ const plumber = s([
 const csr = s([
   ["Customer and Personal Service", 4.7], ["Active Listening", 4.0], ["Service Orientation", 4.0], ["Speaking", 3.9],
   ["Oral Expression", 4.1], ["Reading Comprehension", 3.7], ["Writing", 3.3], ["Critical Thinking", 3.4],
-  ["English Language", 3.9], ["Mathematics", 2.9], ["Performing for or Working Directly with the Public", 4.3],
+  ["English Language", 3.9], ["Written Comprehension", 3.9], ["Mathematics", 2.9], ["Interacting With Computers", 4.3], ["Documenting/Recording Information", 3.9], ["Computers and Electronics", 3.6], ["Performing for or Working Directly with the Public", 4.3],
 ]);
 const analyst = s([
   ["Mathematics", 4.5], ["Critical Thinking", 4.2], ["Deductive Reasoning", 4.2], ["Programming", 3.9],
