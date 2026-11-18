@@ -9,6 +9,7 @@ export class ClaudeError extends Error {
   constructor(
     message: string,
     public status: number,
+    public detail = "",
   ) {
     super(message);
     this.name = "ClaudeError";
@@ -25,7 +26,7 @@ export function claudeErrorMessage(e: unknown) {
     if (e.status === 0)
       return "AI isn't set up yet. Add ANTHROPIC_API_KEY in your hosting settings.";
     if (e.status === 401 || e.status === 403)
-      return "The AI key was rejected. Check ANTHROPIC_API_KEY.";
+      return `The AI key was rejected. ${e.detail || "Check ANTHROPIC_API_KEY."}`;
     if (e.status === 429 || e.status === 529)
       return "The AI is busy right now. Please wait a minute and try again.";
     if (e.status === 402 || e.status === 400)
@@ -70,13 +71,21 @@ export async function claudeJson<T>(opts: {
     }),
   });
   if (!res.ok) {
+    let detail = "";
     if (res.status === 401 || res.status === 403) {
-      // Diagnostics without exposing the key: Anthropic's reason plus the key's shape only.
+      // Safe diagnostics: Anthropic's message plus the key's type and length, never the key itself.
       const reason = await res.text().catch(() => "");
-      const shape = `${key.slice(0, 10)}… length ${key.length}, whitespace inside: ${/\s/.test(key)}`;
-      console.error(`Anthropic auth failed (${res.status}): ${reason.slice(0, 300)} | key shape: ${shape}`);
+      let msg = "";
+      try {
+        msg = String((JSON.parse(reason) as { error?: { message?: string } }).error?.message ?? "");
+      } catch {
+        msg = reason.slice(0, 120);
+      }
+      const kind = key.startsWith("sk-ant-api") ? "an API key (sk-ant-api…)" : key.startsWith("sk-ant-admin") ? "an Admin key (sk-ant-admin…), which can't call the AI" : key.startsWith("sk-ant-") ? "a key starting sk-ant- of an unexpected type" : "not an Anthropic key (it doesn't start with sk-ant-)";
+      detail = `Anthropic says: "${msg.slice(0, 120)}". The saved value is ${kind}, ${key.length} characters long${/\s/.test(key) ? ", with a space or line break inside" : ""}.`;
+      console.error(`Anthropic auth failed (${res.status}): ${detail}`);
     }
-    throw new ClaudeError(`claude-${res.status}`, res.status);
+    throw new ClaudeError(`claude-${res.status}`, res.status, detail);
   }
   const body = (await res.json()) as {
     content?: { type: string; name?: string; input?: unknown }[];
