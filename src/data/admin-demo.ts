@@ -6,6 +6,7 @@ export const demoPeople:Person[]=[
  {id:'daniel',user_id:null,name:'Daniel Okafor',email:'daniel@example.test',roles:['hiring_manager','sme'],status:'active',last_active:null},
  {id:'priya',user_id:null,name:'Priya Shah',email:'priya@example.test',roles:['sme'],status:'active',last_active:null},
  {id:'lena',user_id:null,name:'Lena Park',email:'lena@example.test',roles:['rater'],status:'active',last_active:null},
+ {id:'marcus',user_id:null,name:'Marcus Reed',email:'marcus@example.test',roles:['hiring_manager','sme'],status:'active',last_active:null},
  {id:'sam',user_id:null,name:'Sam Ortiz',email:'sam@example.test',roles:['rater'],status:'active',last_active:null},
 ];
 export const demoAssignments:Assignment[]=[

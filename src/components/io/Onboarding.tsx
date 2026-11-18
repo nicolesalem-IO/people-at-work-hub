@@ -1,4 +1,3 @@
-import { enterDemo } from "@/lib/demo-mode";
 import { useEffect, useRef, useState } from "react";
 import { Link, useNavigate } from "@tanstack/react-router";
 import { useServerFn } from "@tanstack/react-start";
@@ -6,24 +5,25 @@ import { ArrowRight, CheckCircle2, Plus } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useAssessment } from "./AssessmentProvider";
+import { useWorkspace } from "./WorkspaceStore";
+import { newJob, type Member, type TeamRole } from "@/lib/workflow";
 import { TeamOnboarding } from "./TeamOnboarding";
 import {
   initialSetup,
   onboardingSchema,
   setupProblem,
   benchmarkMatches,
+  savedOccupations,
   isBuilder,
   type Setup,
 } from "@/lib/onboarding-rules";
-import { saveAssessment } from "@/lib/assessment.functions";
 import { loadSetup, saveSetup } from "@/lib/onboarding.functions";
-import { assessmentDemo } from "@/data/assessment-demo";
 export function Onboarding() {
+  const ws = useWorkspace();
   const c = useAssessment(),
     navigate = useNavigate(),
     read = useServerFn(loadSetup),
     store = useServerFn(saveSetup),
-    create = useServerFn(saveAssessment),
     [s, setS] = useState<Setup>(initialSetup),
     [ready, setReady] = useState(false),
     [busy, setBusy] = useState(false),
@@ -38,7 +38,7 @@ export function Onboarding() {
         if (saved) {
           const parsed = onboardingSchema.parse(saved);
           if (parsed.completed) {
-            await navigate({ to: "/roles", replace: true });
+            await navigate({ to: "/work", replace: true });
             return;
           }
           setS(parsed);
@@ -76,49 +76,31 @@ export function Onboarding() {
     // Hiring managers, experts and raters don't build anything: their work arrives in My tasks.
     if (s.step === 1 && !isBuilder(s.persona)) {
       if (!(await persist({ ...s, completed: true }))) return;
-      await navigate({ to: "/kit" });
+      await navigate({ to: "/work" });
       return;
     }
     if (s.step < 5) {
       await persist({ ...s, step: s.step + 1 });
       return;
     }
-    if (c.signedIn) {
-      if (!c.editor) {
-        setError("Setup is saved. Ask your Admin for I-O analyst access to create this role.");
-        return;
-      }
-      const battery = {
-        ...assessmentDemo,
-        selection: undefined,
-        id: crypto.randomUUID(),
-        title: s.title,
-        organization: s.organization,
-        purpose: ["selection"],
-        occupation: s.occupation,
-        fictional: false,
-        version: 1,
-        status: "draft" as const,
-        analysis_status: "draft" as const,
-        sources: s.smes.map((p, n) => ({ id: "source-" + n, name: p.name, type: p.type })),
-        ratings: [],
-        mappings: [],
-        incidents: [],
-        items: [],
-        conflicts: [],
-        angoff: [],
-        history: [],
-        weight_overrides: {},
-      };
-      const id = await create({ data: battery });
-      await c.refresh();
-      if (!id) return;
+    if (!c.signedIn || !ws.me) {
+      // Without an account there's nowhere to save a real job: show the same workflow in the demo.
       if (!(await persist({ ...s, completed: true }))) return;
-    } else {
-      if (!(await persist({ ...s, completed: true }))) return;
-      enterDemo();
+      await navigate({ to: "/demo" });
+      return;
     }
-    await navigate({ to: "/job", search: { part: "define" } });
+    const id = crypto.randomUUID();
+    const me = ws.me;
+    const roleOf = (r: string): TeamRole => (r === "hiring_manager" ? "manager" : r === "rater" ? "rater" : r === "hr" ? "hr" : "expert");
+    const team: Member[] = [
+      { id: me.id, name: me.name, email: me.email, roles: s.persona === "hr" ? ["builder", "hr"] : ["builder"] },
+      ...s.smes.filter((p) => p.name.trim()).map((p) => ({ id: crypto.randomUUID(), name: p.name.trim(), email: p.email.trim(), roles: ["expert" as TeamRole] })),
+      ...s.team.filter((p) => p.name.trim()).map((p) => ({ id: crypto.randomUUID(), name: p.name.trim(), email: p.email.trim(), roles: [roleOf(p.role)] })),
+    ];
+    const occ = savedOccupations.find((o) => o.code === s.occupation);
+    ws.createJob(newJob({ id, title: s.title, organization: s.organization, onet: s.occupation ? { code: s.occupation, title: occ?.title ?? s.occupation } : null, team, now: new Date().toISOString() }));
+    if (!(await persist({ ...s, completed: true }))) return;
+    await navigate({ to: "/jobs/$jobId", params: { jobId: id }, search: { step: "description" } });
   }
   const titles = [
       "What's your part in hiring?",
@@ -142,7 +124,7 @@ export function Onboarding() {
           variant="link"
           disabled={busy}
           onClick={async () => {
-            if (await persist(s)) await navigate({ to: "/roles" });
+            if (await persist(s)) await navigate({ to: c.signedIn ? "/jobs" : "/" });
           }}
         >
           Skip for now <ArrowRight />
@@ -397,8 +379,8 @@ export function Onboarding() {
               </ol>
               {!c.signedIn && (
                 <p className="mt-6">
-                  Your setup stays in this browser. The next screen uses the fictional Northwind
-                  Health workspace; sign in to create a saved role.
+                  You're not signed in, so this job can't be saved yet. Next you'll see the same workflow in the demo,
+                  with a fictional company. Sign in to create a real job.
                 </p>
               )}
             </div>

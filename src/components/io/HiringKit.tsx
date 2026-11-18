@@ -221,7 +221,7 @@ export function stage(c: KitCandidate, sheets: Sheet[], decisions: ReturnType<ty
 const Pill = ({ tone, children }: { tone: string; children: React.ReactNode }) => <span className={`kit-pill kit-pill-${tone}`}>{children}</span>;
 
 /* ---------- Rater kit ---------- */
-function RaterKit({ me }: { me: Person }) {
+export function RaterKit({ me }: { me: Person }) {
   const kit = useKit();
   const [open, setOpen] = useState<string | null>(null);
   const [cal, setCal] = useState<Record<string, Record<string, number>>>(kit.calibration[me.id] ?? {});
@@ -363,7 +363,7 @@ function RaterKit({ me }: { me: Person }) {
 }
 
 /* ---------- Hiring manager kit ---------- */
-function ManagerKit({ me }: { me: Person }) {
+export function ManagerKit({ me }: { me: Person }) {
   const kit = useKit();
   const [open, setOpen] = useState<string | null>(null);
   const [tab, setTab] = useState<"teach_back" | "interview" | "decision">("teach_back");
@@ -485,7 +485,7 @@ function ManagerKit({ me }: { me: Person }) {
 }
 
 /* ---------- HR kit ---------- */
-function HrKit() {
+export function HrKit() {
   const kit = useKit();
   const rows = kitCandidates.map((c) => ({ c, s: stage(c, kit.sheets, kit.decisions) }));
   const agree = agreement(WS, kit.sheets);
@@ -599,9 +599,6 @@ function ExpertKit({ me }: { me: Person }) {
         <li>Nothing in the materials needs knowledge only insiders would have.</li>
       </ol>
       <div className="kit-actions">
-        <Button asChild variant="outline">
-          <Link to="/test" search={{ part: "packet" }}>Read the full packet <ArrowRight /></Link>
-        </Button>
         {kit.approvedBy ? (
           <span className="kit-locked">
             <CheckCircle2 className="size-4" /> Approved by {kit.approvedBy}

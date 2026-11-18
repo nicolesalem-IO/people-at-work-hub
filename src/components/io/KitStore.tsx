@@ -29,6 +29,11 @@ const seed = (): KitState => ({
 });
 const Ctx = createContext<KitActions | null>(null);
 
+/** For screens that also render outside the demo hiring kit. */
+export function useKitMaybe() {
+  return useContext(Ctx);
+}
+
 export function useKit() {
   const c = useContext(Ctx);
   if (!c) throw new Error("Hiring kit context missing");

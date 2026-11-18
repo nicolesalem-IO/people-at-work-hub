@@ -195,9 +195,7 @@ export function DecisionsFairness() {
         <p className="kit-hint">
           Every score, note, change and decision is saved to the hiring record. Your organization sets how long records are kept, to meet the laws that apply to you. HR can export everything from the hiring round overview.
         </p>
-        <Button asChild variant="outline">
-          <Link to="/kit">Open the hiring round overview</Link>
-        </Button>
+        <p className="kit-hint">The round overview is in step 6, Scoring, in HR's view.</p>
         <p className="kit-hint decisions-later">
           Coming later: about 90 days after someone starts, their manager rates their job performance on the same day-one skills. Over
           time that shows whether work sample scores predict success on the job.

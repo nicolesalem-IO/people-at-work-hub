@@ -177,8 +177,36 @@ function Result({ plan, onPick }: { plan: Plan; onPick: (code: string) => void }
       </div>
       {plan.plan && <Criteria mp={plan.plan} />}
 
+      <DraftSections assessment={assessment} interview={interview} mainLabel={mainLabel} />
+
+      <div className="quick-plan-footer">
+        <p className="text-sm max-w-xl">
+          This is a draft. Experts confirm the skills and approve every exercise and scoring guide before anything reaches a candidate,
+          and people make every hiring decision.
+        </p>
+        <div className="flex flex-wrap gap-3">
+          <Button asChild>
+            <Link to="/onboarding">
+              Build this for real <ArrowRight />
+            </Link>
+          </Button>
+          <Button asChild variant="outline">
+            <Link to="/demo">See the full demo</Link>
+          </Button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/** The drafted main test (as candidates see it, with its scoring guide) and the interview and aptitude samples. */
+export function DraftSections({ assessment, interview, mainLabel, numbered = true }: { assessment: DraftResult | null; interview: DraftResult | null; mainLabel: string; numbered?: boolean }) {
+  const n3 = numbered ? "03 · " : "",
+    n4 = numbered ? "04 · " : "";
+  return (
+    <>
       <p className="eyebrow text-pink-ink mt-12">
-        03 · Draft {mainLabel} {assessment?.ai ? "· drafted by AI" : ""}
+        {n3}Draft {mainLabel} {assessment?.ai ? "· drafted by AI" : ""}
       </p>
       {!assessment ? (
         <p className="quick-plan-loading">
@@ -196,7 +224,7 @@ function Result({ plan, onPick }: { plan: Plan; onPick: (code: string) => void }
         <p className="kit-hint">{assessment.notice}</p>
       )}
 
-      <p className="eyebrow text-pink-ink mt-12">04 · Interview{interview?.aptitude?.length ? " and aptitude" : ""} samples {interview?.ai ? "· drafted by AI" : ""}</p>
+      <p className="eyebrow text-pink-ink mt-12">{n4}Interview{interview?.aptitude?.length ? " and aptitude" : ""} samples {interview?.ai ? "· drafted by AI" : ""}</p>
       {!interview ? (
         <p className="quick-plan-loading">
           <Loader2 className="animate-spin" /> Drafting interview questions…
@@ -248,23 +276,7 @@ function Result({ plan, onPick }: { plan: Plan; onPick: (code: string) => void }
         </>
       )}
 
-      <div className="quick-plan-footer">
-        <p className="text-sm max-w-xl">
-          This is a draft. Experts confirm the skills and approve every exercise and scoring guide before anything reaches a candidate,
-          and people make every hiring decision.
-        </p>
-        <div className="flex flex-wrap gap-3">
-          <Button asChild>
-            <Link to="/onboarding">
-              Build this for real <ArrowRight />
-            </Link>
-          </Button>
-          <Button asChild variant="outline">
-            <Link to="/demo">See the full demo</Link>
-          </Button>
-        </div>
-      </div>
-    </div>
+    </>
   );
 }
 
@@ -275,7 +287,7 @@ const STATUS: Record<Status, { label: string; tone: string }> = {
   confirm: { label: "Experts confirm", tone: "wait" },
 };
 
-function MethodList({ mp }: { mp: MethodPlan }) {
+export function MethodList({ mp }: { mp: MethodPlan }) {
   return (
     <div>
       <p className="eyebrow text-pink-ink">02 · The hiring test for this job</p>
@@ -307,7 +319,7 @@ function MethodList({ mp }: { mp: MethodPlan }) {
   );
 }
 
-function Criteria({ mp }: { mp: MethodPlan }) {
+export function Criteria({ mp }: { mp: MethodPlan }) {
   return (
     <details className="method-criteria">
       <summary>How we chose: the 8 criteria</summary>
