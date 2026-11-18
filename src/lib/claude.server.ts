@@ -69,7 +69,15 @@ export async function claudeJson<T>(opts: {
       tool_choice: { type: "tool", name: opts.name },
     }),
   });
-  if (!res.ok) throw new ClaudeError(`claude-${res.status}`, res.status);
+  if (!res.ok) {
+    if (res.status === 401 || res.status === 403) {
+      // Diagnostics without exposing the key: Anthropic's reason plus the key's shape only.
+      const reason = await res.text().catch(() => "");
+      const shape = `${key.slice(0, 10)}… length ${key.length}, whitespace inside: ${/\s/.test(key)}`;
+      console.error(`Anthropic auth failed (${res.status}): ${reason.slice(0, 300)} | key shape: ${shape}`);
+    }
+    throw new ClaudeError(`claude-${res.status}`, res.status);
+  }
   const body = (await res.json()) as {
     content?: { type: string; name?: string; input?: unknown }[];
   };
