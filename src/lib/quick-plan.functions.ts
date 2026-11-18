@@ -13,6 +13,7 @@ import {
   templateAssessment,
   type AptitudeSample,
   type WorkSample,
+  GENERAL_INTERVIEW,
 } from "./packet-draft";
 import type { InterviewQuestion } from "./packet";
 import { pickDayOne, pickTasks, planParts, type QuickPlan } from "./quick-plan";
@@ -118,7 +119,7 @@ export const draftSample = createServerFn({ method: "POST" })
     const fallback = (why = "AI drafting isn't available right now."): DraftResult => {
       if (data.part === "interview") {
         const samePacket = l.occupation.code === benchmark.occupation;
-        return { ai: false, notice: `${why} Showing example questions instead.`, interview: samePacket ? packetDemo.interview.questions : packetDemo.interview.questions.slice(0, 3), aptitude: [] };
+        return { ai: false, notice: `${why} Showing example questions instead.`, interview: samePacket ? packetDemo.interview.questions : GENERAL_INTERVIEW, aptitude: [] };
       }
       return {
         ai: false,
