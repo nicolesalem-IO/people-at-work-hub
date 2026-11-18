@@ -47,7 +47,10 @@ export async function claudeJson<T>(opts: {
   // Tolerate stray spaces, line breaks or quote marks picked up when the key was pasted.
   const key = (process.env["ANTHROPIC_API_KEY"] ?? "").trim().replace(/^["']|["']$/g, "").trim();
   if (!key) throw new ClaudeError("missing-key", 0);
-  const res = await fetch("https://api.anthropic.com/v1/messages", {
+  // If Netlify's AI Gateway supplied the credentials (no own key reached the function), route through the gateway
+  // address it provides. Netlify never sets this when your own ANTHROPIC_API_KEY is visible to functions.
+  const base = (process.env["ANTHROPIC_BASE_URL"] ?? "").trim().replace(/\/+$/, "") || "https://api.anthropic.com";
+  const res = await fetch(`${base}/v1/messages`, {
     method: "POST",
     headers: {
       "content-type": "application/json",
