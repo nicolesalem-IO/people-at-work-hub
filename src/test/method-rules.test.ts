@@ -25,7 +25,22 @@ const analyst = s([
   ["Writing", 3.6], ["Speaking", 3.6], ["Active Listening", 3.6],
 ]);
 
+// Shaped like O*NET's ratings for Registered Nurses: patient care leads; one physical-activity rating stands alone.
+const nurse = s([
+  ["Assisting and Caring for Others", 5.0], ["Customer and Personal Service", 4.4], ["Social Perceptiveness", 4.1],
+  ["Service Orientation", 4.0], ["Active Listening", 4.2], ["Documenting/Recording Information", 4.4],
+  ["Written Expression", 3.8], ["Writing", 3.6], ["Critical Thinking", 4.1], ["Medicine and Dentistry", 4.3],
+  ["Performing General Physical Activities", 4.6], ["Deductive Reasoning", 4.1],
+]);
+
 describe("method rules: the main test fits how the work is done", () => {
+  it("a nurse gets a live patient-care simulation and a license check, not a hands-on trade practical", () => {
+    const p = chooseMethods({ code: "29-1141.00", signals: nurse, jobZone: 3 });
+    expect(p.mode).toBe("people");
+    expect(mainFormat(p)).toBe("live");
+    expect(p.methods.find((m) => m.kind === "license")).toMatchObject({ status: "required" });
+    expect(p.methods.some((m) => /code check/.test(m.label))).toBe(false);
+  });
   it("a plumber gets an on-site practical, a license check and a safety check, not a take-home", () => {
     const p = chooseMethods({ code: "47-2152.00", signals: plumber, jobZone: 3 });
     expect(p.mode).toBe("hands_on");

@@ -112,7 +112,8 @@ function modeScore(signals: Signal[], mode: Mode) {
   const best = new Map<string, number>();
   for (const s of signals) if (names.has(s.name) && s.importance !== null) best.set(s.name, Math.max(best.get(s.name) ?? 0, s.importance));
   const top = [...best.entries()].sort((a, b) => b[1] - a[1]).slice(0, 3);
-  return { score: top.length ? top.reduce((t, [, v]) => t + v, 0) / top.length : 0, top };
+  // Divide by at least 2: a mode backed by a single rating can't win on that one number.
+  return { score: top.reduce((t, [, v]) => t + v, 0) / Math.max(2, top.length), top };
 }
 
 export function chooseMethods(input: { code: string; signals: Signal[]; jobZone: number | null; answers?: Answers }): MethodPlan {
@@ -125,9 +126,10 @@ export function chooseMethods(input: { code: string; signals: Signal[]; jobZone:
   const ranked = hands.score >= 3.5 ? [hands, ...scored.filter((s) => s !== hands).sort((x, y) => y.score - x.score)] : [...scored].sort((x, y) => y.score - x.score);
   let primary = ranked[0]!;
   // Live exercises need an assessor for every candidate. When a people-facing job also has substantial written or
-  // analytic work, that work sample comes first and the live exercise moves to finalists (criteria 6 and 8).
+  // analytic work (rated 3.75+ and within 0.4 of the people rating), that work sample comes first and the live
+  // exercise moves to finalists (criteria 6 and 8).
   let liveMovedToFinalists = false;
-  if (primary.mode === "people" && ranked[1] && ranked[1].mode !== "hands_on" && ranked[1].score >= 3.75) {
+  if (primary.mode === "people" && ranked[1] && ranked[1].mode !== "hands_on" && ranked[1].score >= 3.75 && primary.score - ranked[1].score <= 0.4) {
     primary = ranked[1];
     liveMovedToFinalists = true;
   }
