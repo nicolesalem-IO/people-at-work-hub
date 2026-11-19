@@ -33,7 +33,18 @@ const nurse = s([
   ["Performing General Physical Activities", 4.6], ["Deductive Reasoning", 4.1],
 ]);
 
+// Shaped like O*NET's live ratings for Training and Development Specialists.
+const trainer = s([
+  ["Training and Teaching Others", 4.6], ["Instructing", 4.4], ["Speaking", 4.4], ["Developing Objectives and Strategies", 4.1],
+  ["Written Expression", 4.0], ["Critical Thinking", 3.9], ["Written Comprehension", 4.0],
+]);
+
 describe("method rules: the main test fits how the work is done", () => {
+  it("a professional trainer gets the written work sample first and a live teach-back for finalists", () => {
+    const p = chooseMethods({ code: "13-1151.00", signals: trainer, jobZone: 4 });
+    expect(mainFormat(p)).toBe("take_home");
+    expect(p.methods.find((m) => m.kind === "roleplay")).toMatchObject({ stage: "finalists", status: "required" });
+  });
   it("a nurse gets a live patient-care simulation and a license check, not a hands-on trade practical", () => {
     const p = chooseMethods({ code: "29-1141.00", signals: nurse, jobZone: 3 });
     expect(p.mode).toBe("people");

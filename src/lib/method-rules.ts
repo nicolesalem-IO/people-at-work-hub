@@ -127,11 +127,12 @@ export function chooseMethods(input: { code: string; signals: Signal[]; jobZone:
   // Hands-on work wins when it is clearly important: it can't be shown on paper.
   const ranked = hands.score >= 3.5 ? [hands, ...scored.filter((s) => s !== hands).sort((x, y) => y.score - x.score)] : [...scored].sort((x, y) => y.score - x.score);
   let primary = ranked[0]!;
-  // Live exercises need an assessor for every candidate. When a people-facing job also has substantial written or
-  // analytic work (rated 3.75+ and within 0.4 of the people rating), that work sample comes first and the live
-  // exercise moves to finalists (criteria 6 and 8).
+  // Live exercises need an assessor for every candidate. When a professional-level people-facing job (O*NET job
+  // zone 4-5) also produces substantial written, planned or analytic work (rated 3.75+), that work sample comes
+  // first and the live exercise moves to finalists (criteria 6 and 8). Nurses, front-desk and service jobs keep the
+  // live simulation as the main test.
   let liveMovedToFinalists = false;
-  if (primary.mode === "people" && ranked[1] && ranked[1].mode !== "hands_on" && ranked[1].score >= 3.75 && primary.score - ranked[1].score <= 0.4) {
+  if (primary.mode === "people" && (jobZone ?? 3) >= 4 && ranked[1] && ranked[1].mode !== "hands_on" && ranked[1].score >= 3.75) {
     primary = ranked[1];
     liveMovedToFinalists = true;
   }
