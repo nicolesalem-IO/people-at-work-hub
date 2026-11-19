@@ -423,7 +423,7 @@ export function AnalysisStep({ job, roles, meName, update, locked }: StepProps) 
 /* ---------- 3. Test plan ---------- */
 const ADDABLE: { kind: MethodKind; label: string }[] = [
   { kind: "practical", label: "Hands-on practical" },
-  { kind: "roleplay", label: "Role-play simulation" },
+  { kind: "roleplay", label: "Live simulation (role-play)" },
   { kind: "work_sample", label: "Take-home skills assessment" },
   { kind: "timed_sample", label: "Timed skills assessment" },
   { kind: "sjt", label: "Situational judgment questions" },

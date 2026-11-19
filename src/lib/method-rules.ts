@@ -44,7 +44,7 @@ export type MethodPlan = {
 
 export const MODE_LABEL: Record<Mode, string> = {
   hands_on: "Hands-on work with tools, equipment or materials",
-  people: "Work with customers, clients or the public",
+  people: "Work with patients, customers, clients or the public",
   analytic: "Analysis, numbers and problem solving",
   written: "Written and computer-based work",
 };
@@ -179,7 +179,7 @@ export function chooseMethods(input: { code: string; signals: Signal[]; jobZone:
   if (mode === "hands_on")
     methods.push({ kind: "practical", label: "Hands-on practical", stage: "main", delivery: "On site, supervised by two trained raters", time: zone >= 3 ? "45 to 90 minutes" : "30 to 45 minutes", status: "required", because: [why1, `Criterion 3: real tools and equipment${hazard.length ? ` and hazards (${hazard.map((h) => h.name).slice(0, 2).join("; ")})` : ""}, so it's done on site with safety equipment provided, never at home.`, "Criterion 4: done in person, so it's the candidate's own work."] });
   else if (mode === "people")
-    methods.push({ kind: "roleplay", label: "Role-play simulation", stage: "main", delivery: "Live (in person or video), with a trained role-player", time: "20 to 30 minutes", status: "required", because: [why1, "Criterion 4: live, so it's the candidate's own work and AI can't do it for them."] });
+    methods.push({ kind: "roleplay", label: "Live simulation (role-play)", stage: "main", delivery: "Live (in person or video), with a trained role-player", time: "20 to 30 minutes", status: "required", because: [why1, "Criterion 4: live, so it's the candidate's own work and AI can't do it for them."] });
   else {
     const remote = a.remoteOk !== false && zone >= 3;
     const cap = zone >= 5 ? "About 3 hours" : zone === 4 ? "About 2 hours" : "About 90 minutes";
@@ -198,7 +198,7 @@ export function chooseMethods(input: { code: string; signals: Signal[]; jobZone:
     else if (secondary.mode === "hands_on")
       methods.push({ kind: "practical", label: "Short hands-on task", stage: "finalists", delivery: "On site, supervised", time: "20 to 30 minutes", status: "recommended", because: [`Criterion 1: hands-on work is also important (O*NET: ${ev}).`] });
     else if (mode === "hands_on" || mode === "people")
-      methods.push({ kind: "timed_sample", label: "Short written exercise", stage: "finalists", delivery: "On site or online, timed", time: "20 to 30 minutes", status: "consider", because: [`Criterion 1: ${MODE_LABEL[secondary.mode].toLowerCase()} also matters (O*NET: ${ev}), e.g. writing up a job or a customer record.`] });
+      methods.push({ kind: "timed_sample", label: "Short written exercise", stage: "finalists", delivery: "On site or online, timed", time: "20 to 30 minutes", status: "consider", because: [`Criterion 1: ${MODE_LABEL[secondary.mode].toLowerCase()} also matters (O*NET: ${ev}), e.g. a short written case or record.`] });
   }
 
   // 7. Fairness: aptitude only when the job clearly calls for it
