@@ -46,7 +46,7 @@ describe("method rules: the main test fits how the work is done", () => {
     expect(p.methods.find((m) => m.kind === "roleplay")).toMatchObject({ stage: "finalists", status: "required" });
   });
   it("a nurse gets a live patient-care simulation and a license check, not a hands-on trade practical", () => {
-    const p = chooseMethods({ code: "29-1141.00", signals: nurse, jobZone: 3 });
+    const p = chooseMethods({ code: "29-1141.00", signals: [...nurse, ["Developing Objectives and Strategies", 3.9], ["Written Expression", 3.9]].map((x) => (Array.isArray(x) ? { name: x[0] as string, importance: x[1] as number } : x)), jobZone: 4 });
     expect(p.mode).toBe("people");
     expect(mainFormat(p)).toBe("live");
     expect(p.methods.find((m) => m.kind === "license")).toMatchObject({ status: "required" });

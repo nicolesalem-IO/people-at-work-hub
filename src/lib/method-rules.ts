@@ -130,9 +130,12 @@ export function chooseMethods(input: { code: string; signals: Signal[]; jobZone:
   // Live exercises need an assessor for every candidate. When a professional-level people-facing job (O*NET job
   // zone 4-5) also produces substantial written, planned or analytic work (rated 3.75+), that work sample comes
   // first and the live exercise moves to finalists (criteria 6 and 8). Nurses, front-desk and service jobs keep the
-  // live simulation as the main test.
+  // live simulation as the main test, and so do licensed jobs.
   let liveMovedToFinalists = false;
-  if (primary.mode === "people" && (jobZone ?? 3) >= 4 && ranked[1] && ranked[1].mode !== "hands_on" && ranked[1].score >= 3.75) {
+  // A licensed job's knowledge is already certified (criterion 2), so the test adds what the license can't show:
+  // how the person works with patients or clients, live.
+  const licensedEarly = a.license === true || (a.license !== false && Boolean(licenseFor(code)));
+  if (primary.mode === "people" && !licensedEarly && (jobZone ?? 3) >= 4 && ranked[1] && ranked[1].mode !== "hands_on" && ranked[1].score >= 3.75) {
     primary = ranked[1];
     liveMovedToFinalists = true;
   }
