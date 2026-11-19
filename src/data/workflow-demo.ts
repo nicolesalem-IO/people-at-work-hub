@@ -1,7 +1,7 @@
 import { newJob, type ExpertRating, type Job, type Member } from "@/lib/workflow";
 
 // Fictional demo workspace. Two jobs at different points in the same workflow the real product uses:
-// an L&D Specialist hire that's being scored, and a Plumber hire that's just starting.
+// an L&D Specialist hire that's being scored, and a Registered Nurse hire that's just starting.
 
 const at = (d: string) => `${d}T15:00:00.000Z`;
 
@@ -63,25 +63,25 @@ const ld: Job = {
   test: { expertApprovedBy: "Priya Shah", hrApprovedBy: "Maya Chen" },
 };
 
-const plumbTeam: Member[] = [
+const rnTeam: Member[] = [
   { id: "nicole", name: "Nicole", email: "nicole@example.test", roles: ["builder"] },
   { id: "maya", name: "Maya Chen", email: "maya@example.test", roles: ["hr"] },
-  { id: "marcus", name: "Marcus Reed", email: "marcus@example.test", roles: ["expert", "manager"] },
+  { id: "grace", name: "Grace Owens", email: "grace@example.test", roles: ["expert", "manager"] },
   { id: "priya", name: "Priya Shah", email: "priya@example.test", roles: ["expert"] },
   { id: "sam", name: "Sam Ortiz", email: "sam@example.test", roles: ["rater"] },
 ];
 
-const plumber: Job = {
-  ...newJob({ id: "demo-plumber", title: "Plumber", organization: "Northwind Health Facilities", onet: { code: "47-2152.00", title: "Plumbers, Pipefitters, and Steamfitters" }, team: plumbTeam, now: at("2026-11-10"), fictional: true }),
+const nurse: Job = {
+  ...newJob({ id: "demo-rn", title: "Registered Nurse, Medical-Surgical", organization: "Northwind Health", onet: { code: "29-1141.00", title: "Registered Nurses" }, team: rnTeam, now: at("2026-11-10"), fictional: true }),
   description: {
     versions: [
       {
         at: at("2026-11-10"),
         by: "Nicole",
-        note: "Uploaded the posting from the facilities team.",
-        text: `Plumber, Northwind Health Facilities
+        note: "Uploaded the posting from the nursing team.",
+        text: `Registered Nurse, Medical-Surgical Unit, Northwind Health
 
-Maintain and repair water, drain, steam and medical gas piping across two hospital campuses. Respond to urgent leaks, replace fixtures, and keep work orders up to date. Must hold a state journeyman plumbing license. Some evenings and on-call weekends.`,
+Care for 4 to 5 adult patients per shift on a 32-bed medical-surgical unit. Assess patients, give medications, update care plans, teach patients and families before discharge, and work with physicians, therapists and case managers. Must hold an active state RN license and BLS certification. 12-hour shifts, including some nights and weekends.`,
       },
     ],
     source: "uploaded",
@@ -90,4 +90,4 @@ Maintain and repair water, drain, steam and medical gas piping across two hospit
   },
 };
 
-export const demoJobs = (): Job[] => [ld, plumber].map((j) => structuredClone(j));
+export const demoJobs = (): Job[] => [ld, nurse].map((j) => structuredClone(j));

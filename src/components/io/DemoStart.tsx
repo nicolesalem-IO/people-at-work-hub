@@ -23,7 +23,7 @@ export function DemoStart() {
         </h1>
         <p>
           Northwind Health, a made-up hospital, is hiring two jobs: a Learning &amp; Development Specialist (being scored now) and a
-          Plumber (just starting). These are the same screens as the real product. Pick a person to see their work. You can switch
+          Registered Nurse (just starting). These are the same screens as the real product. Pick a person to see their work. You can switch
           people any time from the bar at the top, and nothing here leaves this browser.
         </p>
       </header>

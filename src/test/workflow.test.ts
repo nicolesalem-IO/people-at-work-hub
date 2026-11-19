@@ -48,9 +48,9 @@ describe("one workflow for every job", () => {
     expect(currentStep(j).id).toBe("candidates");
   });
   it("the demo shows two jobs at different points in the same workflow", () => {
-    const [ld, plumber] = demoJobs();
+    const [ld, nurse] = demoJobs();
     expect(currentStep(ld!, { candidates: 5, scored: 2, decided: 0 }).id).toBe("scoring");
-    expect(currentStep(plumber!).id).toBe("description");
-    expect(tasksFor("marcus", plumber!)[0]).toMatchObject({ title: "Rate the job", locked: true });
+    expect(currentStep(nurse!).id).toBe("description");
+    expect(tasksFor("grace", nurse!)[0]).toMatchObject({ title: "Rate the job", locked: true });
   });
 });

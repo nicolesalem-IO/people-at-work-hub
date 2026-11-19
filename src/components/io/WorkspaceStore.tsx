@@ -35,7 +35,7 @@ export function WorkspaceProvider({ mode, children }: { mode: Mode; children: Re
   const kit = useKitMaybe();
   // Product pages belong to signed-in people only; the demo uses its fictional person.
   const person = mode === "demo" ? team.person : team.demo ? null : team.person;
-  const key = mode === "demo" ? "thebe-demo-v2" : `thebe-work-v1:${person?.id ?? "signed-out"}`;
+  const key = mode === "demo" ? "thebe-demo-v3" : `thebe-work-v1:${person?.id ?? "signed-out"}`;
   const seed = () => (mode === "demo" ? demoJobs() : []);
   const [jobs, setJobs] = useState<Job[]>(seed);
   const [ready, setReady] = useState(false);

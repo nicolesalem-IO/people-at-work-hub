@@ -301,7 +301,7 @@ function NewJob({ onClose }: { onClose: () => void }) {
       <div className="grid gap-4 sm:grid-cols-2">
         <label>
           Job title
-          <Input value={title} onChange={(e) => setTitle(e.target.value)} placeholder="e.g. Plumber" required />
+          <Input value={title} onChange={(e) => setTitle(e.target.value)} placeholder="e.g. Patient Access Representative" required />
         </label>
         <label>
           Organization
