@@ -78,8 +78,9 @@ export const MODE_SIGNALS: Record<Mode, string[]> = {
   ],
   // Producing written work. Reading and language comprehension are left out: every job needs them, so they
   // don't show how the work is done.
-  // General computer use is left out for the same reason: nearly every office job rates it high.
-  written: ["Writing", "Written Expression", "Documenting/Recording Information", "Clerical"],
+  // General computer use and routine record-keeping (Documenting/Recording Information, e.g. charting) are left out
+  // for the same reason: many jobs rate them high without written work being the job's main product.
+  written: ["Writing", "Written Expression", "Clerical"],
 };
 
 const HAZARD = /hazard|protective or safety equipment|safety equipment|exposed to/i;

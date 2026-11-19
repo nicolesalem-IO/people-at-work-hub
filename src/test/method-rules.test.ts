@@ -28,8 +28,8 @@ const analyst = s([
 // Shaped like O*NET's ratings for Registered Nurses: patient care leads; one physical-activity rating stands alone.
 const nurse = s([
   ["Assisting and Caring for Others", 5.0], ["Customer and Personal Service", 4.4], ["Social Perceptiveness", 4.1],
-  ["Service Orientation", 4.0], ["Active Listening", 4.2], ["Documenting/Recording Information", 4.4],
-  ["Written Expression", 3.8], ["Writing", 3.6], ["Critical Thinking", 4.1], ["Medicine and Dentistry", 4.3],
+  ["Service Orientation", 4.0], ["Active Listening", 4.2], ["Documenting/Recording Information", 4.9],
+  ["Writing", 3.8], ["Critical Thinking", 4.1], ["Medicine and Dentistry", 4.3],
   ["Performing General Physical Activities", 4.6], ["Deductive Reasoning", 4.1],
 ]);
 
