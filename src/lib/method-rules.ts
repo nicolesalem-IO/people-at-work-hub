@@ -46,7 +46,7 @@ export const MODE_LABEL: Record<Mode, string> = {
   hands_on: "Hands-on work with tools, equipment or materials",
   people: "Work with patients, customers, clients or the public",
   analytic: "Analysis, numbers and problem solving",
-  written: "Written and computer-based work",
+  written: "Written work, plans and designs",
 };
 export const STAGE_LABEL: Record<Stage, string> = {
   screen: "Screen",
@@ -80,7 +80,8 @@ export const MODE_SIGNALS: Record<Mode, string[]> = {
   // don't show how the work is done.
   // General computer use and routine record-keeping (Documenting/Recording Information, e.g. charting) are left out
   // for the same reason: many jobs rate them high without written work being the job's main product.
-  written: ["Writing", "Written Expression", "Clerical"],
+  // Planning and designing work products (a training program, a plan, a design) counts here too.
+  written: ["Writing", "Written Expression", "Clerical", "Thinking Creatively", "Developing Objectives and Strategies"],
 };
 
 const HAZARD = /hazard|protective or safety equipment|safety equipment|exposed to/i;
