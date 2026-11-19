@@ -1,7 +1,15 @@
 import type { PacketData } from "@/lib/packet";
 
 // The skills assessment exactly as the candidate sees it: what to do, what to turn in, how and by when.
+const LABELS = {
+  file: { turnIn: "Turn in", length: "Length", how: "How to submit", a: "File", b: "Name it", c: "Send it" },
+  timed: { turnIn: "Answers", length: "Sitting", how: "How to take it", a: "Answers", b: "Files", c: "Start" },
+  inPerson: { turnIn: "Turn in", length: "Scoring", how: "On the day", a: "Format", b: "Bring", c: "Where" },
+  live: { turnIn: "Turn in", length: "Scoring", how: "On the day", a: "Format", b: "Your notes", c: "Where" },
+};
+
 export function CandidateBrief({ ws, compact = false }: { ws: PacketData["workSample"]; compact?: boolean }) {
+  const L = ws.format === "on_site" ? LABELS.inPerson : ws.format === "live" ? LABELS.live : ws.format === "timed" ? LABELS.timed : LABELS.file;
   return (
     <div className={`brief${compact ? " brief-compact" : ""}`}>
       <p className="packet-brief-label">What the candidate sees</p>
@@ -16,11 +24,11 @@ export function CandidateBrief({ ws, compact = false }: { ws: PacketData["workSa
           <dd>{ws.window}</dd>
         </div>
         <div>
-          <dt>Turn in</dt>
+          <dt>{L.turnIn}</dt>
           <dd>{ws.submission.format}</dd>
         </div>
         <div>
-          <dt>Length</dt>
+          <dt>{L.length}</dt>
           <dd>{ws.submission.maxLength}</dd>
         </div>
       </dl>
@@ -47,16 +55,16 @@ export function CandidateBrief({ ws, compact = false }: { ws: PacketData["workSa
         </section>
       ))}
       <div className="brief-submit">
-        <h4>How to submit</h4>
+        <h4>{L.how}</h4>
         <ul>
           <li>
-            <strong>File:</strong> {ws.submission.format}, {ws.submission.maxLength.charAt(0).toLowerCase() + ws.submission.maxLength.slice(1)}
+            <strong>{L.a}:</strong> {ws.format === "take_home" ? `${ws.submission.format}, ${ws.submission.maxLength.charAt(0).toLowerCase() + ws.submission.maxLength.slice(1)}` : ws.submission.format}
           </li>
           <li>
-            <strong>Name it:</strong> {ws.submission.fileName}
+            <strong>{L.b}:</strong> {ws.submission.fileName}
           </li>
           <li>
-            <strong>Send it:</strong> {ws.submission.how}
+            <strong>{L.c}:</strong> {ws.submission.how}
           </li>
         </ul>
       </div>

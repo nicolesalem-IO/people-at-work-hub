@@ -3,6 +3,15 @@
 
 export type Anchors = [string, string, string, string, string];
 
+/** How the main test is given: chosen by the method rules (src/lib/method-rules.ts). */
+export type AssessmentFormat = "take_home" | "timed" | "on_site" | "live";
+export const FORMAT_LABEL: Record<AssessmentFormat, string> = {
+  take_home: "Take-home",
+  timed: "Timed",
+  on_site: "On site, hands-on",
+  live: "Live role-play",
+};
+
 export interface RubricLine {
   id: string;
   name: string;
@@ -51,7 +60,7 @@ export interface PacketData {
   notTested: { skill: string; reason: string }[];
   workSample: {
     title: string;
-    format: "take_home" | "timed";
+    format: AssessmentFormat;
     time: string; // how long candidates should plan on, e.g. "About 2 hours"
     window: string; // e.g. "3 business days from your invitation"
     task: string;

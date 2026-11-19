@@ -1,5 +1,5 @@
 import { CandidateBrief } from "@/components/io/CandidateBrief";
-import { CRITICAL_FLOOR, PASS_AVERAGE, SCORE_LABELS, type PacketData, type RubricLine } from "@/lib/packet";
+import { CRITICAL_FLOOR, PASS_AVERAGE, SCORE_LABELS, type PacketData, type RubricLine, FORMAT_LABEL } from "@/lib/packet";
 
 const fmtDate = (iso: string) =>
   new Date(`${iso}T12:00:00`).toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" });
@@ -121,7 +121,7 @@ export function HiringPacket({ data: p }: { data: PacketData }) {
         <dl className="packet-glance">
           <div>
             <dt>Skills assessment</dt>
-            <dd>{ws.format === "take_home" ? "Take-home" : "Timed"}</dd>
+            <dd>{FORMAT_LABEL[ws.format]}</dd>
             <p>{ws.time}, due within {ws.window.replace(" from your invitation", "")}</p>
           </div>
           <div>
@@ -234,7 +234,7 @@ export function HiringPacket({ data: p }: { data: PacketData }) {
 
       {/* 2. Skills assessment */}
       <section className="packet-page">
-        <SectionHead n={2} kicker={`${ws.format === "take_home" ? "Take-home" : "Timed"} · ${ws.time.toLowerCase()}`} title="The skills assessment">
+        <SectionHead n={2} kicker={`${FORMAT_LABEL[ws.format]} · ${ws.time.toLowerCase()}`} title="The skills assessment">
           Tests <strong>{ws.skill}</strong>, from the job tasks “{ws.task.toLowerCase()}”. Every numbered item below has a scoring
           line, so candidates know exactly what's being judged.
         </SectionHead>

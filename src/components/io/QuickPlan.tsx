@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { buildQuickPlan, draftSample, type DraftResult } from "@/lib/quick-plan.functions";
 import type { QuickPlan as Plan } from "@/lib/quick-plan";
+import { STAGE_LABEL, type MethodPlan, type Status } from "@/lib/method-rules";
 import { CandidateBrief } from "@/components/io/CandidateBrief";
 import { Rubric } from "@/components/io/HiringPacket";
 
@@ -17,7 +18,8 @@ const suggestions = [
 const steps = [
   "Matching the job to O*NET…",
   "Finding the most important tasks and skills…",
-  "Choosing the parts of the test that fit this job…",
+  "Checking how the work is done…",
+  "Choosing test methods by 8 criteria…",
 ];
 
 /** The 10-second demo: job title → O*NET → day-one skills → test plan → sample questions with traceability. */
@@ -137,7 +139,8 @@ function Result({ plan, onPick }: { plan: Plan; onPick: (code: string) => void }
         {plan.alternatives.length > 0 && <Alternatives plan={plan} onPick={onPick} />}
       </div>
     );
-  const status = { always: "Always", recommended: "Recommended", consider: "Consider" } as const;
+  const main = plan.plan?.methods.find((m) => m.stage === "main" && ["practical", "roleplay", "work_sample", "timed_sample"].includes(m.kind));
+  const mainLabel = (main?.label ?? "skills assessment").toLowerCase();
   return (
     <div className="quick-plan-result" aria-live="polite">
       {plan.notice && (
@@ -170,26 +173,44 @@ function Result({ plan, onPick }: { plan: Plan; onPick: (code: string) => void }
           </ul>
           <p className="text-sm text-muted-foreground mt-3">Your experts confirm which are needed on day one.</p>
         </div>
-        <div>
-          <p className="eyebrow text-pink-ink">02 · The hiring test for this job</p>
-          <ul className="quick-plan-parts">
-            {plan.parts.map((p) => (
-              <li key={p.label}>
-                <div className="quick-plan-part-head">
-                  <strong>{p.label}</strong>
-                  <span className={`kit-pill kit-pill-${p.status === "consider" ? "wait" : "ok"}`}>{status[p.status]}</span>
-                </div>
-                <p className="text-sm text-muted-foreground mt-1">{p.detail}</p>
-              </li>
-            ))}
-          </ul>
+        {plan.plan && <MethodList mp={plan.plan} />}
+      </div>
+      {plan.plan && <Criteria mp={plan.plan} />}
+
+      <DraftSections assessment={assessment} interview={interview} mainLabel={mainLabel} />
+
+      <div className="quick-plan-footer">
+        <p className="text-sm max-w-xl">
+          This is a draft. Experts confirm the skills and approve every exercise and scoring guide before anything reaches a candidate,
+          and people make every hiring decision.
+        </p>
+        <div className="flex flex-wrap gap-3">
+          <Button asChild>
+            <Link to="/onboarding">
+              Build this for real <ArrowRight />
+            </Link>
+          </Button>
+          <Button asChild variant="outline">
+            <Link to="/demo">See the full demo</Link>
+          </Button>
         </div>
       </div>
+    </div>
+  );
+}
 
-      <p className="eyebrow text-pink-ink mt-12">03 · Draft skills assessment {assessment?.ai ? "· drafted by AI" : ""}</p>
+/** The drafted main test (as candidates see it, with its scoring guide) and the interview and aptitude samples. */
+export function DraftSections({ assessment, interview, mainLabel, numbered = true }: { assessment: DraftResult | null; interview: DraftResult | null; mainLabel: string; numbered?: boolean }) {
+  const n3 = numbered ? "03 · " : "",
+    n4 = numbered ? "04 · " : "";
+  return (
+    <>
+      <p className="eyebrow text-pink-ink mt-12">
+        {n3}Draft {mainLabel} {assessment?.ai ? "· drafted by AI" : ""}
+      </p>
       {!assessment ? (
         <p className="quick-plan-loading">
-          <Loader2 className="animate-spin" /> Drafting the skills assessment and its scoring guide…
+          <Loader2 className="animate-spin" /> Drafting the {mainLabel} and its scoring guide…
         </p>
       ) : assessment.assessment ? (
         <>
@@ -203,7 +224,7 @@ function Result({ plan, onPick }: { plan: Plan; onPick: (code: string) => void }
         <p className="kit-hint">{assessment.notice}</p>
       )}
 
-      <p className="eyebrow text-pink-ink mt-12">04 · Interview{interview?.aptitude?.length ? " and aptitude" : ""} samples {interview?.ai ? "· drafted by AI" : ""}</p>
+      <p className="eyebrow text-pink-ink mt-12">{n4}Interview{interview?.aptitude?.length ? " and aptitude" : ""} samples {interview?.ai ? "· drafted by AI" : ""}</p>
       {!interview ? (
         <p className="quick-plan-loading">
           <Loader2 className="animate-spin" /> Drafting interview questions…
@@ -255,34 +276,87 @@ function Result({ plan, onPick }: { plan: Plan; onPick: (code: string) => void }
         </>
       )}
 
-      <div className="quick-plan-footer">
-        <p className="text-sm max-w-xl">
-          This is a draft. Experts confirm the skills and approve every exercise and scoring guide before anything reaches a candidate,
-          and people make every hiring decision.
-        </p>
-        <div className="flex flex-wrap gap-3">
-          <Button asChild>
-            <Link to="/onboarding">
-              Build this for real <ArrowRight />
-            </Link>
-          </Button>
-          <Button asChild variant="outline">
-            <Link
-              to="/roles"
-              onClick={() => {
-                try {
-                  localStorage.setItem("io-demo-entered", "yes");
-                } catch {
-                  /* storage unavailable */
-                }
-              }}
-            >
-              Explore the full demo
-            </Link>
-          </Button>
-        </div>
-      </div>
+    </>
+  );
+}
+
+const STATUS: Record<Status, { label: string; tone: string }> = {
+  required: { label: "Required", tone: "ok" },
+  recommended: { label: "Recommended", tone: "ok" },
+  consider: { label: "Consider", tone: "wait" },
+  confirm: { label: "Experts confirm", tone: "wait" },
+};
+
+export function MethodList({ mp }: { mp: MethodPlan }) {
+  return (
+    <div>
+      <p className="eyebrow text-pink-ink">02 · The hiring test for this job</p>
+      <p className="text-sm mt-3">
+        <strong>How the work is done:</strong> {mp.modeSummary.charAt(0).toLowerCase() + mp.modeSummary.slice(1)}.
+      </p>
+      <ol className="quick-plan-parts">
+        {mp.methods.map((m) => (
+          <li key={m.label}>
+            <div className="quick-plan-part-head">
+              <span>
+                <span className="method-stage">{STAGE_LABEL[m.stage]}</span>
+                <strong>{m.label}</strong>
+              </span>
+              <span className={`kit-pill kit-pill-${STATUS[m.status].tone}`}>{STATUS[m.status].label}</span>
+            </div>
+            <p className="text-sm mt-1">
+              {m.delivery} · {m.time}
+            </p>
+            <ul className="method-because">
+              {m.because.map((b) => (
+                <li key={b}>{b}</li>
+              ))}
+            </ul>
+          </li>
+        ))}
+      </ol>
     </div>
+  );
+}
+
+export function Criteria({ mp }: { mp: MethodPlan }) {
+  return (
+    <details className="method-criteria">
+      <summary>How we chose: the 8 criteria</summary>
+      <table>
+        <thead>
+          <tr>
+            <th>Criterion</th>
+            <th>Result for this job</th>
+            <th>Based on</th>
+          </tr>
+        </thead>
+        <tbody>
+          {mp.criteria.map((c) => (
+            <tr key={c.n}>
+              <td>
+                {c.n}. {c.name}
+              </td>
+              <td>{c.result}</td>
+              <td className="text-muted-foreground">{c.source}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+      {mp.questions.length > 0 && (
+        <>
+          <p className="eyebrow mt-6">Questions for your experts</p>
+          <ul className="method-questions">
+            {mp.questions.map((q) => (
+              <li key={q}>{q}</li>
+            ))}
+          </ul>
+        </>
+      )}
+      <p className="text-sm text-muted-foreground mt-4">
+        Experts confirm or change each choice. Any change needs a written reason, which goes into the hiring record.
+      </p>
+    </details>
   );
 }
 

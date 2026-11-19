@@ -15,5 +15,5 @@ describe('Organization permission rules',()=>{
  it('Last active Admin cannot lose Admin or be deactivated',()=>{expect(()=>validatePersonChange(demoPeople,{...nicole,roles:['analyst']})).toThrow('active Admin');expect(()=>validatePersonChange(demoPeople,{...nicole,status:'deactivated'})).toThrow('active Admin');});
  it('Daniel holds hiring manager and SME roles, not blind rater',()=>{expect(demoPeople.find(p=>p.id==='daniel')?.roles).toEqual(['hiring_manager','sme']);});
  it('Per-job assignments need matching active organization role',()=>{expect(()=>validateAssignment(p(['sme']),'rater')).toThrow();expect(()=>validateAssignment(p(['sme']),'sme')).not.toThrow();});
- it('Hiring records are retained for 36 months by default',()=>{expect(defaultSettings.retention_months).toBe(36);expect(retentionCutoff(new Date('2026-11-11T00:00:00Z'),12).toISOString()).toBe('2025-11-11T00:00:00.000Z');});
+ it('The demo organization uses its own retention setting',()=>{expect(defaultSettings.retention_months).toBe(36);expect(retentionCutoff(new Date('2026-11-11T00:00:00Z'),12).toISOString()).toBe('2025-11-11T00:00:00.000Z');});
 });

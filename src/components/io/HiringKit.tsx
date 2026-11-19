@@ -13,12 +13,10 @@ import { orgRoles, type Person } from "@/lib/admin-rules";
 import { downloadText, toCsv } from "@/lib/ats";
 import {
   AGREEMENT_TARGET,
-  RETENTION_MONTHS,
   agreement,
   blindResult,
   calibrationCheck,
   panelResult,
-  retainUntil,
   submitted,
   type Choice,
   type Sheet,
@@ -223,7 +221,7 @@ export function stage(c: KitCandidate, sheets: Sheet[], decisions: ReturnType<ty
 const Pill = ({ tone, children }: { tone: string; children: React.ReactNode }) => <span className={`kit-pill kit-pill-${tone}`}>{children}</span>;
 
 /* ---------- Rater kit ---------- */
-function RaterKit({ me }: { me: Person }) {
+export function RaterKit({ me }: { me: Person }) {
   const kit = useKit();
   const [open, setOpen] = useState<string | null>(null);
   const [cal, setCal] = useState<Record<string, Record<string, number>>>(kit.calibration[me.id] ?? {});
@@ -365,7 +363,7 @@ function RaterKit({ me }: { me: Person }) {
 }
 
 /* ---------- Hiring manager kit ---------- */
-function ManagerKit({ me }: { me: Person }) {
+export function ManagerKit({ me }: { me: Person }) {
   const kit = useKit();
   const [open, setOpen] = useState<string | null>(null);
   const [tab, setTab] = useState<"teach_back" | "interview" | "decision">("teach_back");
@@ -487,7 +485,7 @@ function ManagerKit({ me }: { me: Person }) {
 }
 
 /* ---------- HR kit ---------- */
-function HrKit() {
+export function HrKit() {
   const kit = useKit();
   const rows = kitCandidates.map((c) => ({ c, s: stage(c, kit.sheets, kit.decisions) }));
   const agree = agreement(WS, kit.sheets);
@@ -526,10 +524,6 @@ function HrKit() {
           <strong className={agree && !agree.onTarget ? "is-warn" : ""}>{agree ? `${Math.round(agree.rate * 100)}%` : "–"}</strong>
           <small>Target {Math.round(AGREEMENT_TARGET * 100)}% within 1 point{agree && !agree.onTarget ? " · recalibrate raters" : ""}</small>
         </div>
-        <div>
-          <span>Records kept</span>
-          <strong>{RETENTION_MONTHS / 12} years</strong>
-        </div>
       </div>
       {flags.length > 0 && (
         <div className="packet-callout packet-callout-warn">
@@ -554,7 +548,6 @@ function HrKit() {
               <th>Teach-back</th>
               <th>Interview</th>
               <th>Status</th>
-              <th>Keep records until</th>
             </tr>
           </thead>
           <tbody>
@@ -571,7 +564,6 @@ function HrKit() {
                 <td>
                   <Pill tone={s.tone}>{s.label}</Pill>
                 </td>
-                <td>{fmt(retainUntil(s.decision?.at ?? c.appliedAt))}</td>
               </tr>
             ))}
           </tbody>
@@ -583,8 +575,9 @@ function HrKit() {
         </Button>
       </div>
       <p className="kit-hint">
-        Hiring records, including every score, note, change and decision, are kept for {RETENTION_MONTHS / 12} years from the decision (or from
-        the application if there's no decision). If your company stops using the app, export the records first and store them securely.
+        Every score, note, change and decision is saved to the hiring record. Your organization decides how long records are kept, to meet
+        the laws that apply to you (set it in Admin Center → Settings). If your company stops using the app, export the records first and
+        store them securely.
       </p>
     </section>
   );
@@ -606,9 +599,6 @@ function ExpertKit({ me }: { me: Person }) {
         <li>Nothing in the materials needs knowledge only insiders would have.</li>
       </ol>
       <div className="kit-actions">
-        <Button asChild variant="outline">
-          <Link to="/test" search={{ part: "packet" }}>Read the full packet <ArrowRight /></Link>
-        </Button>
         {kit.approvedBy ? (
           <span className="kit-locked">
             <CheckCircle2 className="size-4" /> Approved by {kit.approvedBy}

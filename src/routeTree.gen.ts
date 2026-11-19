@@ -16,6 +16,7 @@ import { Route as BlueprintRouteImport } from './routes/blueprint'
 import { Route as BuildersRouteImport } from './routes/builders'
 import { Route as ContributeRouteImport } from './routes/contribute'
 import { Route as DefineRouteImport } from './routes/define'
+import { Route as DemoRouteImport } from './routes/demo'
 import { Route as EvidenceRouteImport } from './routes/evidence'
 import { Route as GlossaryRouteImport } from './routes/glossary'
 import { Route as InterviewGuideRouteImport } from './routes/interview-guide'
@@ -34,9 +35,17 @@ import { Route as TeamInviteRouteImport } from './routes/team-invite'
 import { Route as TestRouteImport } from './routes/test'
 import { Route as TryRouteImport } from './routes/try'
 import { Route as ValidityRouteImport } from './routes/validity'
+import { Route as WorkRouteImport } from './routes/work'
 import { Route as CandidateTokenRouteImport } from './routes/candidate.$token'
+import { Route as DemoIndexRouteImport } from './routes/demo.index'
+import { Route as DemoHelpRouteImport } from './routes/demo.help'
+import { Route as DemoTeamRouteImport } from './routes/demo.team'
+import { Route as DemoWorkRouteImport } from './routes/demo.work'
+import { Route as JobsIndexRouteImport } from './routes/jobs.index'
+import { Route as JobsJobIdRouteImport } from './routes/jobs.$jobId'
 import { Route as TakeTokenRouteImport } from './routes/take.$token'
-import { Route as ApiPublicJobsCandidateRetentionRouteImport } from './routes/api/public/jobs/candidate-retention'
+import { Route as DemoJobsIndexRouteImport } from './routes/demo.jobs.index'
+import { Route as DemoJobsJobIdRouteImport } from './routes/demo.jobs.$jobId'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -71,6 +80,11 @@ const ContributeRoute = ContributeRouteImport.update({
 const DefineRoute = DefineRouteImport.update({
   id: '/define',
   path: '/define',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DemoRoute = DemoRouteImport.update({
+  id: '/demo',
+  path: '/demo',
   getParentRoute: () => rootRouteImport,
 } as any)
 const EvidenceRoute = EvidenceRouteImport.update({
@@ -163,9 +177,44 @@ const ValidityRoute = ValidityRouteImport.update({
   path: '/validity',
   getParentRoute: () => rootRouteImport,
 } as any)
+const WorkRoute = WorkRouteImport.update({
+  id: '/work',
+  path: '/work',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const CandidateTokenRoute = CandidateTokenRouteImport.update({
   id: '/candidate/$token',
   path: '/candidate/$token',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DemoIndexRoute = DemoIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => DemoRoute,
+} as any)
+const DemoHelpRoute = DemoHelpRouteImport.update({
+  id: '/help',
+  path: '/help',
+  getParentRoute: () => DemoRoute,
+} as any)
+const DemoTeamRoute = DemoTeamRouteImport.update({
+  id: '/team',
+  path: '/team',
+  getParentRoute: () => DemoRoute,
+} as any)
+const DemoWorkRoute = DemoWorkRouteImport.update({
+  id: '/work',
+  path: '/work',
+  getParentRoute: () => DemoRoute,
+} as any)
+const JobsIndexRoute = JobsIndexRouteImport.update({
+  id: '/jobs/',
+  path: '/jobs/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const JobsJobIdRoute = JobsJobIdRouteImport.update({
+  id: '/jobs/$jobId',
+  path: '/jobs/$jobId',
   getParentRoute: () => rootRouteImport,
 } as any)
 const TakeTokenRoute = TakeTokenRouteImport.update({
@@ -173,12 +222,16 @@ const TakeTokenRoute = TakeTokenRouteImport.update({
   path: '/take/$token',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ApiPublicJobsCandidateRetentionRoute =
-  ApiPublicJobsCandidateRetentionRouteImport.update({
-    id: '/api/public/jobs/candidate-retention',
-    path: '/api/public/jobs/candidate-retention',
-    getParentRoute: () => rootRouteImport,
-  } as any)
+const DemoJobsIndexRoute = DemoJobsIndexRouteImport.update({
+  id: '/jobs/',
+  path: '/jobs/',
+  getParentRoute: () => DemoRoute,
+} as any)
+const DemoJobsJobIdRoute = DemoJobsJobIdRouteImport.update({
+  id: '/jobs/$jobId',
+  path: '/jobs/$jobId',
+  getParentRoute: () => DemoRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -188,6 +241,7 @@ export interface FileRoutesByFullPath {
   '/builders': typeof BuildersRoute
   '/contribute': typeof ContributeRoute
   '/define': typeof DefineRoute
+  '/demo': typeof DemoRouteWithChildren
   '/evidence': typeof EvidenceRoute
   '/glossary': typeof GlossaryRoute
   '/interview-guide': typeof InterviewGuideRoute
@@ -206,9 +260,17 @@ export interface FileRoutesByFullPath {
   '/test': typeof TestRoute
   '/try': typeof TryRoute
   '/validity': typeof ValidityRoute
+  '/work': typeof WorkRoute
   '/candidate/$token': typeof CandidateTokenRoute
+  '/demo/help': typeof DemoHelpRoute
+  '/demo/team': typeof DemoTeamRoute
+  '/demo/work': typeof DemoWorkRoute
+  '/jobs/$jobId': typeof JobsJobIdRoute
   '/take/$token': typeof TakeTokenRoute
-  '/api/public/jobs/candidate-retention': typeof ApiPublicJobsCandidateRetentionRoute
+  '/demo/': typeof DemoIndexRoute
+  '/jobs/': typeof JobsIndexRoute
+  '/demo/jobs/$jobId': typeof DemoJobsJobIdRoute
+  '/demo/jobs/': typeof DemoJobsIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -236,9 +298,17 @@ export interface FileRoutesByTo {
   '/test': typeof TestRoute
   '/try': typeof TryRoute
   '/validity': typeof ValidityRoute
+  '/work': typeof WorkRoute
   '/candidate/$token': typeof CandidateTokenRoute
+  '/demo/help': typeof DemoHelpRoute
+  '/demo/team': typeof DemoTeamRoute
+  '/demo/work': typeof DemoWorkRoute
+  '/jobs/$jobId': typeof JobsJobIdRoute
   '/take/$token': typeof TakeTokenRoute
-  '/api/public/jobs/candidate-retention': typeof ApiPublicJobsCandidateRetentionRoute
+  '/demo': typeof DemoIndexRoute
+  '/jobs': typeof JobsIndexRoute
+  '/demo/jobs/$jobId': typeof DemoJobsJobIdRoute
+  '/demo/jobs': typeof DemoJobsIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -249,6 +319,7 @@ export interface FileRoutesById {
   '/builders': typeof BuildersRoute
   '/contribute': typeof ContributeRoute
   '/define': typeof DefineRoute
+  '/demo': typeof DemoRouteWithChildren
   '/evidence': typeof EvidenceRoute
   '/glossary': typeof GlossaryRoute
   '/interview-guide': typeof InterviewGuideRoute
@@ -267,9 +338,17 @@ export interface FileRoutesById {
   '/test': typeof TestRoute
   '/try': typeof TryRoute
   '/validity': typeof ValidityRoute
+  '/work': typeof WorkRoute
   '/candidate/$token': typeof CandidateTokenRoute
+  '/demo/help': typeof DemoHelpRoute
+  '/demo/team': typeof DemoTeamRoute
+  '/demo/work': typeof DemoWorkRoute
+  '/jobs/$jobId': typeof JobsJobIdRoute
   '/take/$token': typeof TakeTokenRoute
-  '/api/public/jobs/candidate-retention': typeof ApiPublicJobsCandidateRetentionRoute
+  '/demo/': typeof DemoIndexRoute
+  '/jobs/': typeof JobsIndexRoute
+  '/demo/jobs/$jobId': typeof DemoJobsJobIdRoute
+  '/demo/jobs/': typeof DemoJobsIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -281,6 +360,7 @@ export interface FileRouteTypes {
     | '/builders'
     | '/contribute'
     | '/define'
+    | '/demo'
     | '/evidence'
     | '/glossary'
     | '/interview-guide'
@@ -299,9 +379,17 @@ export interface FileRouteTypes {
     | '/test'
     | '/try'
     | '/validity'
+    | '/work'
     | '/candidate/$token'
+    | '/demo/help'
+    | '/demo/team'
+    | '/demo/work'
+    | '/jobs/$jobId'
     | '/take/$token'
-    | '/api/public/jobs/candidate-retention'
+    | '/demo/'
+    | '/jobs/'
+    | '/demo/jobs/$jobId'
+    | '/demo/jobs/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -329,9 +417,17 @@ export interface FileRouteTypes {
     | '/test'
     | '/try'
     | '/validity'
+    | '/work'
     | '/candidate/$token'
+    | '/demo/help'
+    | '/demo/team'
+    | '/demo/work'
+    | '/jobs/$jobId'
     | '/take/$token'
-    | '/api/public/jobs/candidate-retention'
+    | '/demo'
+    | '/jobs'
+    | '/demo/jobs/$jobId'
+    | '/demo/jobs'
   id:
     | '__root__'
     | '/'
@@ -341,6 +437,7 @@ export interface FileRouteTypes {
     | '/builders'
     | '/contribute'
     | '/define'
+    | '/demo'
     | '/evidence'
     | '/glossary'
     | '/interview-guide'
@@ -359,9 +456,17 @@ export interface FileRouteTypes {
     | '/test'
     | '/try'
     | '/validity'
+    | '/work'
     | '/candidate/$token'
+    | '/demo/help'
+    | '/demo/team'
+    | '/demo/work'
+    | '/jobs/$jobId'
     | '/take/$token'
-    | '/api/public/jobs/candidate-retention'
+    | '/demo/'
+    | '/jobs/'
+    | '/demo/jobs/$jobId'
+    | '/demo/jobs/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -372,6 +477,7 @@ export interface RootRouteChildren {
   BuildersRoute: typeof BuildersRoute
   ContributeRoute: typeof ContributeRoute
   DefineRoute: typeof DefineRoute
+  DemoRoute: typeof DemoRouteWithChildren
   EvidenceRoute: typeof EvidenceRoute
   GlossaryRoute: typeof GlossaryRoute
   InterviewGuideRoute: typeof InterviewGuideRoute
@@ -390,9 +496,11 @@ export interface RootRouteChildren {
   TestRoute: typeof TestRoute
   TryRoute: typeof TryRoute
   ValidityRoute: typeof ValidityRoute
+  WorkRoute: typeof WorkRoute
   CandidateTokenRoute: typeof CandidateTokenRoute
+  JobsJobIdRoute: typeof JobsJobIdRoute
   TakeTokenRoute: typeof TakeTokenRoute
-  ApiPublicJobsCandidateRetentionRoute: typeof ApiPublicJobsCandidateRetentionRoute
+  JobsIndexRoute: typeof JobsIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -444,6 +552,13 @@ declare module '@tanstack/react-router' {
       path: '/define'
       fullPath: '/define'
       preLoaderRoute: typeof DefineRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/demo': {
+      id: '/demo'
+      path: '/demo'
+      fullPath: '/demo'
+      preLoaderRoute: typeof DemoRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/evidence': {
@@ -572,11 +687,60 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ValidityRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/work': {
+      id: '/work'
+      path: '/work'
+      fullPath: '/work'
+      preLoaderRoute: typeof WorkRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/candidate/$token': {
       id: '/candidate/$token'
       path: '/candidate/$token'
       fullPath: '/candidate/$token'
       preLoaderRoute: typeof CandidateTokenRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/demo/': {
+      id: '/demo/'
+      path: '/'
+      fullPath: '/demo/'
+      preLoaderRoute: typeof DemoIndexRouteImport
+      parentRoute: typeof DemoRoute
+    }
+    '/demo/help': {
+      id: '/demo/help'
+      path: '/help'
+      fullPath: '/demo/help'
+      preLoaderRoute: typeof DemoHelpRouteImport
+      parentRoute: typeof DemoRoute
+    }
+    '/demo/team': {
+      id: '/demo/team'
+      path: '/team'
+      fullPath: '/demo/team'
+      preLoaderRoute: typeof DemoTeamRouteImport
+      parentRoute: typeof DemoRoute
+    }
+    '/demo/work': {
+      id: '/demo/work'
+      path: '/work'
+      fullPath: '/demo/work'
+      preLoaderRoute: typeof DemoWorkRouteImport
+      parentRoute: typeof DemoRoute
+    }
+    '/jobs/': {
+      id: '/jobs/'
+      path: '/jobs'
+      fullPath: '/jobs/'
+      preLoaderRoute: typeof JobsIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/jobs/$jobId': {
+      id: '/jobs/$jobId'
+      path: '/jobs/$jobId'
+      fullPath: '/jobs/$jobId'
+      preLoaderRoute: typeof JobsJobIdRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/take/$token': {
@@ -586,15 +750,42 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof TakeTokenRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/api/public/jobs/candidate-retention': {
-      id: '/api/public/jobs/candidate-retention'
-      path: '/api/public/jobs/candidate-retention'
-      fullPath: '/api/public/jobs/candidate-retention'
-      preLoaderRoute: typeof ApiPublicJobsCandidateRetentionRouteImport
-      parentRoute: typeof rootRouteImport
+    '/demo/jobs/': {
+      id: '/demo/jobs/'
+      path: '/jobs'
+      fullPath: '/demo/jobs/'
+      preLoaderRoute: typeof DemoJobsIndexRouteImport
+      parentRoute: typeof DemoRoute
+    }
+    '/demo/jobs/$jobId': {
+      id: '/demo/jobs/$jobId'
+      path: '/jobs/$jobId'
+      fullPath: '/demo/jobs/$jobId'
+      preLoaderRoute: typeof DemoJobsJobIdRouteImport
+      parentRoute: typeof DemoRoute
     }
   }
 }
+
+interface DemoRouteChildren {
+  DemoHelpRoute: typeof DemoHelpRoute
+  DemoTeamRoute: typeof DemoTeamRoute
+  DemoWorkRoute: typeof DemoWorkRoute
+  DemoIndexRoute: typeof DemoIndexRoute
+  DemoJobsJobIdRoute: typeof DemoJobsJobIdRoute
+  DemoJobsIndexRoute: typeof DemoJobsIndexRoute
+}
+
+const DemoRouteChildren: DemoRouteChildren = {
+  DemoHelpRoute: DemoHelpRoute,
+  DemoTeamRoute: DemoTeamRoute,
+  DemoWorkRoute: DemoWorkRoute,
+  DemoIndexRoute: DemoIndexRoute,
+  DemoJobsJobIdRoute: DemoJobsJobIdRoute,
+  DemoJobsIndexRoute: DemoJobsIndexRoute,
+}
+
+const DemoRouteWithChildren = DemoRoute._addFileChildren(DemoRouteChildren)
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
@@ -604,6 +795,7 @@ const rootRouteChildren: RootRouteChildren = {
   BuildersRoute: BuildersRoute,
   ContributeRoute: ContributeRoute,
   DefineRoute: DefineRoute,
+  DemoRoute: DemoRouteWithChildren,
   EvidenceRoute: EvidenceRoute,
   GlossaryRoute: GlossaryRoute,
   InterviewGuideRoute: InterviewGuideRoute,
@@ -622,9 +814,11 @@ const rootRouteChildren: RootRouteChildren = {
   TestRoute: TestRoute,
   TryRoute: TryRoute,
   ValidityRoute: ValidityRoute,
+  WorkRoute: WorkRoute,
   CandidateTokenRoute: CandidateTokenRoute,
+  JobsJobIdRoute: JobsJobIdRoute,
   TakeTokenRoute: TakeTokenRoute,
-  ApiPublicJobsCandidateRetentionRoute: ApiPublicJobsCandidateRetentionRoute,
+  JobsIndexRoute: JobsIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

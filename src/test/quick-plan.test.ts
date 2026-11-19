@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { pickDayOne, pickTasks, planParts } from "@/lib/quick-plan";
+import { pickDayOne, pickTasks, planFor } from "@/lib/quick-plan";
 import { sanitizeAssessment, sanitizeInterview, templateAssessment } from "@/lib/packet-draft";
 import type { OnetElement } from "@/lib/onet-api";
 import { packetProblems } from "@/lib/packet";
@@ -24,19 +24,11 @@ describe("quick plan", () => {
     expect(s.filter((x) => x.name === "Mathematics")).toHaveLength(1);
     expect(s[0]).toMatchObject({ name: "Mathematics", importance: 4.5 });
   });
-  it("adds aptitude tests only when O*NET rates the ability 4 or higher", () => {
-    const parts = planParts(analyst, pickTasks(analyst));
-    const labels = parts.map((p) => p.label);
-    expect(labels).toContain("Numerical reasoning test");
-    expect(labels).toContain("Logical reasoning test");
-    expect(labels).not.toContain("Coding test");
-    expect(parts[0]!.kind).toBe("skills");
-    expect(parts.at(-1)!.kind).toBe("interview");
-  });
-  it("suggests a live exercise for people-facing jobs only", () => {
-    const trainer = [...analyst, el("s9", "skill", "Instructing", 4.3)];
-    expect(planParts(trainer, pickTasks(trainer)).some((p) => p.kind === "live")).toBe(true);
-    expect(planParts(analyst, pickTasks(analyst)).some((p) => p.kind === "live")).toBe(false);
+  it("builds a method plan with a main test and an interview", () => {
+    const p = planFor("15-2051.00", analyst, [], 4);
+    expect(p.methods.at(-1)!.kind).toBe("interview");
+    expect(p.methods.some((m) => m.stage === "main")).toBe(true);
+    expect(p.criteria).toHaveLength(8);
   });
 });
 
@@ -65,7 +57,7 @@ describe("AI draft checks", () => {
     expect(ws.rubric).toHaveLength(3);
     expect(ws.rubric.some((l) => l.critical)).toBe(true); // first line made critical when none are
     expect(ws.task).toBe("Analyze large data sets using statistical software");
-    expect(ws.submission.fileName).toMatch(/^firstname_lastname_dataanalyst\.pdf/);
+    expect(ws.submission.fileName).toMatch(/^firstname_lastname_data_analyst\.pdf/);
     expect(packetProblems({ ...packetDemo, workSample: ws })).toEqual([]);
   });
   it("rejects an assessment that's too thin to use", () => {

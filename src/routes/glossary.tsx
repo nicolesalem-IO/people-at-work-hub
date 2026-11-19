@@ -15,7 +15,7 @@ export const Route = createFileRoute("/glossary")({
   component: Glossary,
 });
 
-function Glossary() {
+export function Glossary() {
   return (
     <>
       <header className="step-hero">

@@ -10,8 +10,7 @@ import {
   parseDetails,
   parseSearch,
   type OnetElement,
-  type OnetMatch,
-} from "./onet-api";
+  type OnetMatch, SIGNAL_REPORTS, parseSignals, parseJobZone } from "./onet-api";
 
 // Server-only. The O*NET key is read from the ONET_API_KEY secret (Netlify → Environment variables) and never sent to browsers.
 const cache = new Map<string, { at: number; value: unknown }>();
@@ -55,7 +54,20 @@ export async function fetchOccupation(code: string) {
         .catch(() => [] as OnetElement[]),
     ),
   ]);
-  return { code, title, elements: reports.flat(), retrieved: today };
+  // Method-choice data: optional, so a failure never blocks the plan.
+  const [signals, jobZone] = await Promise.all([
+    Promise.all(
+      SIGNAL_REPORTS.map((p) =>
+        onetGet(`/online/occupations/${code}/details/${p}`)
+          .then(parseSignals)
+          .catch(() => [] as { name: string; importance: number | null }[]),
+      ),
+    ).then((x) => x.flat()),
+    onetGet(`/online/occupations/${code}/details/job_zone`)
+      .then(parseJobZone)
+      .catch(() => null),
+  ]);
+  return { code, title, elements: reports.flat(), signals, jobZone, retrieved: today };
 }
 
 /** Public, read-only occupation search (public CC BY data; results cached on the server). */

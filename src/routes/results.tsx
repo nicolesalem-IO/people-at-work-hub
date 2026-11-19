@@ -1,3 +1,8 @@
-import {createFileRoute} from '@tanstack/react-router';
-import {CandidatePipeline} from '@/components/io/CandidatePipeline';
-export const Route=createFileRoute('/results')({head:()=>({meta:[{title:'Candidate pipeline & results — Thebe IO'},{name:'description',content:'HR campaigns, private candidate invitations, blind scoring and human decisions.'},{property:'og:title',content:'Candidate pipeline & results — Thebe IO'},{property:'og:description',content:'HR campaigns, private candidate invitations, blind scoring and human decisions.'},{property:'og:type',content:'website'},{name:'twitter:card',content:'summary_large_image'}]}),component:CandidatePipeline});
+import { createFileRoute, redirect } from "@tanstack/react-router";
+
+// Moved: every job now follows one workflow under /jobs.
+export const Route = createFileRoute("/results")({
+  beforeLoad: () => {
+    throw redirect({ to: "/jobs", statusCode: 301 });
+  },
+});
